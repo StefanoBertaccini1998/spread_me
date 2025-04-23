@@ -1,0 +1,11 @@
+.landing-container {
+    @apply flex flex-col items-center justify-center text-center min-h-[calc(100vh-8rem)] px-4;
+}
+
+.landing-title {
+    @apply text-4xl font-bold text-blue-700 mb-6;
+}
+
+.landing-subtitle {
+    @apply text-lg text-gray-700;
+}
