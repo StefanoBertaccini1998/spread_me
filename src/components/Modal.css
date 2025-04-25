@@ -3,14 +3,14 @@
 }
 
 .modal-content {
-    @apply bg-white p-8 rounded-lg shadow-2xl w-full max-w-lg relative border border-gray-200;
-    animation: modalFade 0.3s ease-in-out;
+    @apply p-6 rounded-lg shadow-xl w-full max-w-lg relative border-t-8;
+    background-color: white;
 }
 
-/* Smooth fade effect */
+/* Animated entrance */
 @keyframes modalFade {
     0% {
-        transform: scale(0.9);
+        transform: scale(0.95);
         opacity: 0;
     }
 
@@ -21,25 +21,82 @@
 }
 
 .modal-close {
-    @apply absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl font-bold;
+    @apply absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl font-bold cursor-pointer;
     background: none;
     border: none;
-    cursor: pointer;
 }
 
-/* Form inside modal */
-.modal-content form {
-    @apply space-y-4;
+/* Expense Modal - RED STYLE */
+.modal-expense {
+    @apply border-red-600;
 }
 
-.modal-content label {
-    @apply block text-sm font-semibold text-gray-700 mb-1;
+.modal-expense form label {
+    @apply text-sm font-semibold text-red-700 mb-1 block;
 }
 
-.modal-content input,
-.modal-content textarea,
+.modal-expense form input,
+.modal-expense form textarea {
+    @apply bg-white border border-gray-300 rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-red-500;
+}
 
-/* Save Button */
-.modal-content button[type="submit"] {
-    @apply bg-primary text-white py-2 px-6 rounded hover:bg-blue-700 mt-4;
+.modal-expense form button[type="submit"] {
+    @apply bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-md shadow transition duration-150;
+}
+
+/* Income Modal */
+.modal-income {
+    @apply border-green-600;
+}
+
+.modal-income form label {
+    @apply text-sm font-semibold text-green-700 mb-1 block;
+}
+
+.modal-income form input,
+.modal-income form textarea {
+    @apply bg-white border border-gray-300 rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-green-500;
+}
+
+.modal-income form button[type="submit"] {
+    @apply bg-green-700 hover:bg-green-800 text-white px-6 py-2 rounded-md shadow transition duration-150;
+}
+
+/* Transfer Modal */
+.modal-transfer {
+    @apply border-purple-600;
+}
+
+.modal-transfer form label {
+    @apply text-sm font-semibold text-purple-700 mb-1 block;
+}
+
+.modal-transfer form input,
+.modal-transfer form textarea {
+    @apply bg-white border border-gray-300 rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-purple-500;
+}
+
+.modal-transfer form button[type="submit"] {
+    @apply bg-purple-700 hover:bg-purple-800 text-white px-6 py-2 rounded-md shadow transition duration-150;
+}
+
+/* Generic input field styling */
+.input-field,
+.styled-select {
+    @apply w-full p-2 border border-gray-300 rounded focus:outline-none;
+}
+
+/* EXPENSE MODAL - Red Highlighted Selects */
+.modal-expense select {
+    @apply bg-white border border-gray-300 rounded px-3 py-2 w-full focus:ring-2 focus:ring-red-500;
+}
+
+/* INCOME MODAL - Green Highlighted Selects */
+.modal-income select {
+    @apply bg-white border border-gray-300 rounded px-3 py-2 w-full focus:ring-2 focus:ring-green-500;
+}
+
+/* TRANSFER MODAL - Purple Highlighted Selects */
+.modal-transfer select {
+    @apply bg-white border border-gray-300 rounded px-3 py-2 w-full focus:ring-2 focus:ring-purple-500;
 }

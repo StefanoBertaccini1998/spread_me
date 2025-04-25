@@ -4,7 +4,7 @@ import Modal from '../../components/Modal';
 import DynamicForm from './DynamicForm';
 import './ExpensesSection.css';
 
-const ExpensesSection = () => {
+const ExpensesSection = ({ setToastMessage, setToastType }) => {
     const { expenses } = useExpenses();
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -19,7 +19,7 @@ const ExpensesSection = () => {
                 {expenses.length > 0 ? (
                     expenses.map((expense, index) => (
                         <li key={index} className="list-item">
-                            {expense.datetime} - {expense.category} - {expense.account} - {expense.amountBaseCurrency} {expense.baseCurrency}
+                            {expense.date} - {expense.category} - {expense.account} - {expense.amountBaseCurrency} {expense.baseCurrency}
                         </li>
                     ))
                 ) : (
@@ -27,8 +27,8 @@ const ExpensesSection = () => {
                 )}
             </ul>
 
-            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-                <DynamicForm type="expense" onClose={() => setIsModalOpen(false)} />
+            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} type="expense">
+                <DynamicForm type="expense" onClose={() => setIsModalOpen(false)} setToastMessage={setToastMessage} setToastType={setToastType} />
             </Modal>
         </div>
     );

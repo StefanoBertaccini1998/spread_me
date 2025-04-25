@@ -7,7 +7,7 @@ export const useExpenses = () => useContext(ExpenseContext);
 export const ExpenseProvider = ({ children }) => {
     const [expenses, setExpenses] = useState([
         {
-            datetime: "2024-12-30T00:00",
+            date: "2024-12-30",
             category: "Barbiere",
             account: "Revolut",
             amountBaseCurrency: 20.00,

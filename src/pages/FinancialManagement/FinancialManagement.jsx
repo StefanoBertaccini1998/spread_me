@@ -4,9 +4,12 @@ import ExpensesSection from './ExpensesSection';
 import IncomeSection from './IncomeSection';
 import TransfersSection from './TransfersSection';
 import './FinancialManagement.css';
+import Toast from '../../components/Toast';
 
 const FinancialManagement = ({ section }) => {
     const [view, setView] = useState(section ? section : 'expenses');
+    const [toastMessage, setToastMessage] = useState('');
+    const [toastType, setToastType] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -23,13 +26,13 @@ const FinancialManagement = ({ section }) => {
     const renderSection = () => {
         switch (view) {
             case 'expenses':
-                return <ExpensesSection />;
+                return <ExpensesSection setToastMessage={setToastMessage} setToastType={setToastType} />;
             case 'income':
-                return <IncomeSection />;
+                return <IncomeSection setToastMessage={setToastMessage} setToastType={setToastType} />;
             case 'transfers':
-                return <TransfersSection />;
+                return <TransfersSection setToastMessage={setToastMessage} setToastType={setToastType} />;
             default:
-                return <ExpensesSection />;
+                return <ExpensesSection setToastMessage={setToastMessage} setToastType={setToastType} />;
         }
     };
 
@@ -48,6 +51,12 @@ const FinancialManagement = ({ section }) => {
             <div className="finance-content">
                 {renderSection()}
             </div>
+            {toastMessage && (
+                <Toast message={toastMessage} type={toastType} onClose={() => {
+                    setToastMessage('');
+                    setToastType(null);
+                }} />
+            )}
         </div>
     );
 };

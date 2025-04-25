@@ -4,7 +4,7 @@ import Modal from '../../components/Modal';
 import DynamicForm from './DynamicForm';
 import './TransfersSection.css';
 
-const TransfersSection = () => {
+const TransfersSection = ({ setToastMessage, setToastType }) => {
     const { transfers } = useTransfers();
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -19,7 +19,7 @@ const TransfersSection = () => {
                 {transfers.length > 0 ? (
                     transfers.map((transfer, index) => (
                         <li key={index} className="list-item">
-                            {transfer.datetime} - Da {transfer.fromAccount} ➡️ A {transfer.toAccount} - {transfer.amountFromCurrency} {transfer.fromCurrency}
+                            {transfer.date} - Da {transfer.fromAccount} ➡️ A {transfer.toAccount} - {transfer.amountFromCurrency} {transfer.fromCurrency}
                         </li>
                     ))
                 ) : (
@@ -27,8 +27,8 @@ const TransfersSection = () => {
                 )}
             </ul>
 
-            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-                <DynamicForm type="transfer" onClose={() => setIsModalOpen(false)} />
+            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} type="transfer">
+                <DynamicForm type="transfer" onClose={() => setIsModalOpen(false)} setToastMessage={setToastMessage} setToastType={setToastType} />
             </Modal>
         </div>
     );

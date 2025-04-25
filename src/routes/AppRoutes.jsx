@@ -5,6 +5,7 @@ import Login from '../pages/Login';
 import Dashboard from '../pages/Dashboard';
 import ProtectedRoute from '../components/ProtectedRoute';
 import FinancialManagement from '../pages/FinancialManagement/FinancialManagement';
+import ImportPage from '../pages/ImportPage';
 
 
 const AppRoutes = () => {
@@ -37,6 +38,11 @@ const AppRoutes = () => {
                     <Route path="finance/transfers" element={
                         <ProtectedRoute>
                             <FinancialManagement section={"transfers"} />
+                        </ProtectedRoute>
+                    } />
+                    <Route path="/import" element={
+                        <ProtectedRoute>
+                            <ImportPage />
                         </ProtectedRoute>
                     } />
                 </Route>

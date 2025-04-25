@@ -7,7 +7,7 @@ export const useIncome = () => useContext(IncomeContext);
 export const IncomeProvider = ({ children }) => {
     const [income, setIncome] = useState([
         {
-            datetime: "2024-12-28T00:00",
+            date: "2024-12-28",
             category: "Regalo",
             account: "Contanti",
             amountBaseCurrency: 100.00,

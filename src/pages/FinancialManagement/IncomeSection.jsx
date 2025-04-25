@@ -4,7 +4,7 @@ import Modal from '../../components/Modal';
 import DynamicForm from './DynamicForm';
 import './IncomeSection.css';
 
-const IncomeSection = () => {
+const IncomeSection = ({ setToastMessage, setToastType }) => {
     const { income } = useIncome();
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -19,7 +19,7 @@ const IncomeSection = () => {
                 {income.length > 0 ? (
                     income.map((entry, index) => (
                         <li key={index} className="list-item">
-                            {entry.datetime} - {entry.category} - {entry.account} - {entry.amountBaseCurrency} {entry.baseCurrency}
+                            {entry.date} - {entry.category} - {entry.account} - {entry.amountBaseCurrency} {entry.baseCurrency}
                         </li>
                     ))
                 ) : (
@@ -27,8 +27,8 @@ const IncomeSection = () => {
                 )}
             </ul>
 
-            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-                <DynamicForm type="income" onClose={() => setIsModalOpen(false)} />
+            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} type="income">
+                <DynamicForm type="income" onClose={() => setIsModalOpen(false)} setToastMessage={setToastMessage} setToastType={setToastType} />
             </Modal>
         </div>
     );

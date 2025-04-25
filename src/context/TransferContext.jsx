@@ -7,7 +7,7 @@ export const useTransfers = () => useContext(TransferContext);
 export const TransferProvider = ({ children }) => {
     const [transfers, setTransfers] = useState([
         {
-            datetime: "2024-12-16T00:00",
+            datetime: "2024-12-16",
             fromAccount: "BPER",
             toAccount: "Contanti",
             amountFromCurrency: 140.00,
