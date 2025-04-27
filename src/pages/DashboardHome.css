@@ -1,0 +1,11 @@
+.dashboard-container {
+    @apply p-6 max-w-6xl mx-auto;
+}
+
+.dashboard-title {
+    @apply text-2xl font-bold mb-6 text-gray-800;
+}
+
+.stat-grid {
+    @apply flex flex-wrap gap-4;
+}

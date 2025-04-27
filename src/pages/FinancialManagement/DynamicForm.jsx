@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useExpenses } from '../../context/ExpenseContext';
 import { useIncome } from '../../context/IncomeContext';
 import { useTransfers } from '../../context/TransferContext';
+import { useUser } from '../../context/UserContext';
+
 import {
     DEFAULT_ACCOUNTS,
     DEFAULT_EXPENSE_CATEGORIES,
@@ -15,6 +17,7 @@ const DynamicForm = ({ type, onClose, setToastMessage, setToastType }) => {
     const { addIncome } = useIncome();
     const { addTransfer } = useTransfers();
     const [error, setError] = useState('');
+    const { userSettings } = useUser();
 
     const [form, setForm] = useState({
         date: '',
@@ -115,8 +118,8 @@ const DynamicForm = ({ type, onClose, setToastMessage, setToastType }) => {
                     <label>Categoria</label>
                     <select name="category" value={form.category} onChange={handleChange} className="styled-select" required>
                         <option value="">-- Seleziona --</option>
-                        {(type === 'expense' ? DEFAULT_EXPENSE_CATEGORIES : DEFAULT_INCOME_CATEGORIES).map(cat => (
-                            <option key={cat} value={cat}>{cat}</option>
+                        {userSettings.categories.map(cat => (
+                            <option key={cat.name} value={cat.name}>{cat.icon} {cat.name}</option>
                         ))}
                     </select>
                 </div>
@@ -126,16 +129,20 @@ const DynamicForm = ({ type, onClose, setToastMessage, setToastType }) => {
                 <>
                     <div>
                         <label>Conto di Uscita</label>
-                        <select name="fromAccount" value={form.fromAccount} onChange={handleChange} className="styled-select" required>
+                        <select name="account" value={form.account} onChange={handleChange} className="styled-select" required>
                             <option value="">-- Seleziona --</option>
-                            {DEFAULT_ACCOUNTS.map(acc => <option key={acc} value={acc}>{acc}</option>)}
+                            {userSettings.accounts.map(acc => (
+                                <option key={acc.name} value={acc.name}>{acc.icon} {acc.name}</option>
+                            ))}
                         </select>
                     </div>
                     <div>
                         <label>Conto di Entrata</label>
-                        <select name="toAccount" value={form.toAccount} onChange={handleChange} className="styled-select" required>
+                        <select name="account" value={form.account} onChange={handleChange} className="styled-select" required>
                             <option value="">-- Seleziona --</option>
-                            {DEFAULT_ACCOUNTS.map(acc => <option key={acc} value={acc}>{acc}</option>)}
+                            {userSettings.accounts.map(acc => (
+                                <option key={acc.name} value={acc.name}>{acc.icon} {acc.name}</option>
+                            ))}
                         </select>
                     </div>
                 </>
@@ -144,7 +151,9 @@ const DynamicForm = ({ type, onClose, setToastMessage, setToastType }) => {
                     <label>Conto</label>
                     <select name="account" value={form.account} onChange={handleChange} className="styled-select" required>
                         <option value="">-- Seleziona --</option>
-                        {DEFAULT_ACCOUNTS.map(acc => <option key={acc} value={acc}>{acc}</option>)}
+                        {userSettings.accounts.map(acc => (
+                            <option key={acc.name} value={acc.name}>{acc.icon} {acc.name}</option>
+                        ))}
                     </select>
                 </div>
             )}

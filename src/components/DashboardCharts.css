@@ -1,0 +1,7 @@
+.dashboard-charts {
+    @apply mt-8 flex flex-col items-center gap-4;
+}
+
+.dashboard-charts select {
+    @apply w-full md:w-1/3 p-2 border border-gray-300 rounded-lg bg-white shadow focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700;
+}

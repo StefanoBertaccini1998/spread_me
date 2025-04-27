@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Contanti",
+    "color": "#f87171",
+    "icon": "💵",
+    "balance": 500.00
+  },
+  {
+    "name": "BPER",
+    "color": "#60a5fa",
+    "icon": "🏦",
+    "balance": 1500.00
+  }
+]

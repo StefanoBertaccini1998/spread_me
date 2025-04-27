@@ -1,16 +1,27 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import ExpensesSection from './ExpensesSection';
 import IncomeSection from './IncomeSection';
 import TransfersSection from './TransfersSection';
 import './FinancialManagement.css';
 import Toast from '../../components/Toast';
+import FilterBar from '../../components/FilterBar';
 
 const FinancialManagement = ({ section }) => {
     const [view, setView] = useState(section ? section : 'expenses');
     const [toastMessage, setToastMessage] = useState('');
     const [toastType, setToastType] = useState(null);
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const initialFilters = location.state?.filters || {
+        month: new Date().getMonth(),
+        year: new Date().getFullYear(),
+        category: 'All',
+        account: 'All'
+    };
+
+    const [filters, setFilters] = useState(initialFilters);
 
     useEffect(() => {
         if (section) {
@@ -22,6 +33,8 @@ const FinancialManagement = ({ section }) => {
         setView(newView);
         navigate(`/finance/${newView}`);
     };
+
+
 
     const renderSection = () => {
         switch (view) {
@@ -38,6 +51,7 @@ const FinancialManagement = ({ section }) => {
 
     return (
         <div className="finance-container">
+            <FilterBar filters={filters} setFilters={setFilters} />
             <div className="breadcrumb">
                 <Link to="/dashboard" className="breadcrumb-link">Dashboard</Link> / Gestione Finanze / {view === 'expenses' ? 'Spese' : view === 'income' ? 'Entrate' : 'Trasferimenti'}
             </div>

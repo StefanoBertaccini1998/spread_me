@@ -39,24 +39,61 @@ const ImportPage = () => {
         ? filterKnownColumns(extractFromSheetWithHeaderDetection(expenseSheet, knownExpenseKeys), knownExpenseKeys)
         : [];
 
+      const parsedExpenseData = expenseData.map(row => ({
+        ...row,
+        'Data e ora': parseDate(row['Data e ora']),
+      }));
+
       const incomeData = incomeSheet
         ? filterKnownColumns(extractFromSheetWithHeaderDetection(incomeSheet, knownIncomeKeys), knownIncomeKeys)
         : [];
+
+      const parsedIncomeData = incomeData.map(row => ({
+        ...row,
+        'Data e ora': parseDate(row['Data e ora']),
+      }));
 
       const transferData = transferSheet
         ? filterKnownColumns(extractFromSheetWithHeaderDetection(transferSheet, knownTransferKeys), knownTransferKeys)
         : [];
 
-      setExpenses(expenseData);
-      setIncomes(incomeData);
-      setTransfers(transferData);
+      const parsedTransferData = transferData.map(row => ({
+        ...row,
+        'Data e ora': parseDate(row['Data e ora']),
+      }));
+
+      setExpenses(parsedExpenseData);
+      setIncomes(parsedIncomeData);
+      setTransfers(parsedTransferData);
     };
 
     reader.readAsArrayBuffer(file);
   };
 
+  const parseDate = (rawDate) => {
+    if (!rawDate) return '';
+
+    if (typeof rawDate === 'number') {
+      // Excel serialized date (number) handling
+      const excelEpoch = new Date(1899, 11, 30);
+      return new Date(excelEpoch.getTime() + rawDate * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+    }
+
+    if (typeof rawDate === 'string') {
+      const parts = rawDate.split('/');
+      if (parts.length === 3) {
+        // Expected format "dd/mm/yyyy"
+        const [day, month, year] = parts;
+        return new Date(`${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`).toISOString().slice(0, 10);
+      }
+    }
+
+    return '';
+  };
+
+
   const mapExpenseRow = (row) => ({
-    date: Date(row['Data e ora']) || '',
+    date: parseDate(row['Data e ora']) || '',
     category: row['Categoria'] || '',
     account: row['Conto'] || '',
     amountBaseCurrency: parseFloat(row['Importo in valuta predefinita']) || 0,
@@ -70,7 +107,7 @@ const ImportPage = () => {
   });
 
   const mapIncomeRow = (row) => ({
-    date: Date(row['Data e ora']) || '',
+    date: parseDate(row['Data e ora']) || '',
     category: row['Categoria'] || '',
     account: row['Conto'] || '',
     amountBaseCurrency: parseFloat(row['Importo in valuta predefinita']) || 0,
@@ -84,7 +121,7 @@ const ImportPage = () => {
   });
 
   const mapTransferRow = (row) => ({
-    date: Date(row['Data e ora']) || '',
+    date: parseDate(row['Data e ora']) || '',
     fromAccount: row['In uscita'] || '',
     toAccount: row['In entrata'] || '',
     amountFromCurrency: parseFloat(row['Importo nella valuta in uscita']) || 0,

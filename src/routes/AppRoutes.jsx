@@ -2,10 +2,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from '../components/Layout';
 import Landing from '../pages/Landing';
 import Login from '../pages/Login';
-import Dashboard from '../pages/Dashboard';
 import ProtectedRoute from '../components/ProtectedRoute';
 import FinancialManagement from '../pages/FinancialManagement/FinancialManagement';
 import ImportPage from '../pages/ImportPage';
+import DashboardHome from '../pages/DashboardHome';
+import ProfilePage from '../pages/ProfilePage';
 
 
 const AppRoutes = () => {
@@ -17,7 +18,7 @@ const AppRoutes = () => {
                     <Route path="login" element={<Login />} />
                     <Route path="dashboard" element={
                         <ProtectedRoute>
-                            <Dashboard />
+                            <DashboardHome />
                         </ProtectedRoute>
                     } />
                     <Route path="finance" element={
@@ -43,6 +44,11 @@ const AppRoutes = () => {
                     <Route path="/import" element={
                         <ProtectedRoute>
                             <ImportPage />
+                        </ProtectedRoute>
+                    } />
+                    <Route path="profile" element={
+                        <ProtectedRoute>
+                            <ProfilePage />
                         </ProtectedRoute>
                     } />
                 </Route>

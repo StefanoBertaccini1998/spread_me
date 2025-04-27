@@ -1,0 +1,76 @@
+.profile-container {
+    @apply p-6 max-w-4xl mx-auto;
+}
+
+.profile-title {
+    @apply text-3xl font-bold mb-8;
+}
+
+.profile-section {
+    @apply mb-10;
+}
+
+.profile-subtitle {
+    @apply text-2xl font-semibold mb-6 flex items-center gap-2;
+}
+
+.profile-list {
+    @apply flex flex-wrap gap-4 mb-4;
+}
+
+.profile-item {
+    @apply p-4 rounded shadow text-primary font-semibold min-w-[120px] text-center bg-gray-100;
+}
+
+/* Bank Account Card */
+.profile-account-item {
+    @apply rounded-lg shadow-md text-white font-semibold flex flex-col items-center justify-center w-32 h-24 p-3;
+}
+
+.profile-account-top,
+.profile-category-top {
+    @apply flex items-center gap-2 text-lg mb-1;
+}
+
+.profile-account-name,
+.profile-category-name {
+    @apply text-center text-lg;
+}
+
+.profile-account-balance {
+    @apply text-xl font-bold;
+}
+
+.profile-account-balance {
+    @apply text-xl font-bold;
+}
+
+
+.profile-form {
+    @apply flex gap-2 flex-wrap items-center mt-4;
+}
+
+.profile-input {
+    @apply border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+
+.profile-form-row {
+    @apply flex gap-2 w-full;
+}
+
+.profile-color-picker {
+    @apply w-12 h-12 p-1 border rounded;
+}
+
+.profile-button {
+    @apply bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded font-semibold transition;
+}
+
+.emoji-picker-container {
+    @apply mt-2;
+}
+
+/* Category Card */
+.profile-category-item {
+    @apply bg-gray-100 rounded-lg shadow-md text-primary font-semibold flex flex-col items-center justify-center w-32 h-16 p-3;
+}
