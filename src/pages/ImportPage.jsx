@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import * as XLSX from 'xlsx';
 import './ImportPage.css';
+import { useNavigate } from 'react-router-dom';
 
 import { useExpenses } from '../context/ExpenseContext';
 import { useIncome } from '../context/IncomeContext';
@@ -10,6 +11,8 @@ const ImportPage = () => {
   const { addExpense } = useExpenses();
   const { addIncome } = useIncome();
   const { addTransfer } = useTransfers();
+  const navigate = useNavigate();
+
 
   const [filename, setFilename] = useState('');
   const [expenses, setExpenses] = useState([]);
@@ -29,7 +32,7 @@ const ImportPage = () => {
 
     reader.onload = (evt) => {
       const data = new Uint8Array(evt.target.result);
-      const workbook = XLSX.read(data, { type: 'array' });
+      const workbook = XLSX.read(data, { type: 'array', cellDates: true });
 
       const expenseSheet = workbook.Sheets['Spese'];
       const incomeSheet = workbook.Sheets['Entrate'];
@@ -73,18 +76,26 @@ const ImportPage = () => {
   const parseDate = (rawDate) => {
     if (!rawDate) return '';
 
-    if (typeof rawDate === 'number') {
-      // Excel serialized date (number) handling
-      const excelEpoch = new Date(1899, 11, 30);
-      return new Date(excelEpoch.getTime() + rawDate * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+    // If it's already a Date object
+    if (rawDate instanceof Date) {
+      return rawDate.toISOString().slice(0, 10);
     }
 
+    // If it's a number (Excel serial)
+    if (typeof rawDate === 'number') {
+      const jsDate = new Date((rawDate - 25569) * 86400000);
+      return jsDate.toISOString().slice(0, 10);
+    }
+
+    // If it's a string in the format "dd/mm/yyyy"
     if (typeof rawDate === 'string') {
       const parts = rawDate.split('/');
       if (parts.length === 3) {
-        // Expected format "dd/mm/yyyy"
         const [day, month, year] = parts;
-        return new Date(`${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`).toISOString().slice(0, 10);
+        const date = new Date(`${year}-${month}-${day}`);
+        if (!isNaN(date)) {
+          return date.toISOString().slice(0, 10);
+        }
       }
     }
 
@@ -93,7 +104,7 @@ const ImportPage = () => {
 
 
   const mapExpenseRow = (row) => ({
-    date: parseDate(row['Data e ora']) || '',
+    date: row['Data e ora'] || '',
     category: row['Categoria'] || '',
     account: row['Conto'] || '',
     amountBaseCurrency: parseFloat(row['Importo in valuta predefinita']) || 0,
@@ -107,7 +118,7 @@ const ImportPage = () => {
   });
 
   const mapIncomeRow = (row) => ({
-    date: parseDate(row['Data e ora']) || '',
+    date: row['Data e ora'] || '',
     category: row['Categoria'] || '',
     account: row['Conto'] || '',
     amountBaseCurrency: parseFloat(row['Importo in valuta predefinita']) || 0,
@@ -121,7 +132,7 @@ const ImportPage = () => {
   });
 
   const mapTransferRow = (row) => ({
-    date: parseDate(row['Data e ora']) || '',
+    date: row['Data e ora'] || '',
     fromAccount: row['In uscita'] || '',
     toAccount: row['In entrata'] || '',
     amountFromCurrency: parseFloat(row['Importo nella valuta in uscita']) || 0,
@@ -141,6 +152,7 @@ const ImportPage = () => {
     setTransfers([]);
     setFilename('');
     alert('📥 Dati importati con successo!');
+    navigate('/dashboard');
   };
 
   const renderTable = (title, data) => (

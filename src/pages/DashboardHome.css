@@ -7,5 +7,5 @@
 }
 
 .stat-grid {
-    @apply flex flex-wrap gap-4;
+    @apply flex flex-row gap-4;
 }

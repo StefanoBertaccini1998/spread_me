@@ -72,5 +72,5 @@
 
 /* Category Card */
 .profile-category-item {
-    @apply bg-gray-100 rounded-lg shadow-md text-primary font-semibold flex flex-col items-center justify-center w-32 h-16 p-3;
+    @apply bg-gray-100 rounded-lg shadow-md text-white font-semibold flex flex-col items-center justify-center w-32 h-16 p-3;
 }

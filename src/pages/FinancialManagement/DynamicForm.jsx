@@ -4,14 +4,6 @@ import { useIncome } from '../../context/IncomeContext';
 import { useTransfers } from '../../context/TransferContext';
 import { useUser } from '../../context/UserContext';
 
-import {
-    DEFAULT_ACCOUNTS,
-    DEFAULT_EXPENSE_CATEGORIES,
-    DEFAULT_INCOME_CATEGORIES
-} from '../../constants/defaults';
-
-
-
 const DynamicForm = ({ type, onClose, setToastMessage, setToastType }) => {
     const { addExpense } = useExpenses();
     const { addIncome } = useIncome();

@@ -5,3 +5,11 @@
 .filter-bar select {
     @apply px-3 py-2 border rounded bg-white shadow text-sm focus:outline-none focus:ring-2 focus:ring-blue-400;
 }
+
+.dashboard-charts {
+    @apply mt-8;
+}
+
+.filter-select {
+    @apply border border-gray-300 rounded px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary;
+}

@@ -10,10 +10,12 @@ export const UserProvider = ({ children }) => {
             { name: 'Paypal', color: '#3b82f6', icon: '💳' }
         ],
         categories: [
-            { name: 'Alimentari' },
-            { name: 'Svago' },
-            { name: 'Trasporti' },
-            { name: 'Discoteca' }
+            { name: "Alimentari", color: "#60a5fa", icon: "🛒" },
+            { name: "Svago", color: "#f87171", icon: "🎉" },
+            { name: "Trasporti", color: "#34d399", icon: "🚗" },
+            { name: "Discoteca", color: "#c084fc", icon: "🎶" },
+            { name: "Regali", color: "#facc15", icon: "🎁" },
+            { name: "Vacanza", color: "#38bdf8", icon: "🏖️" }
         ]
     });
 
