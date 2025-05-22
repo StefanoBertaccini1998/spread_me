@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useAppDispatch } from '../../redux/hooks/useRedux';
-import { addExpense, addIncome, addTransfer } from '../../redux/slices/transactionSlice';
+import { useAppDispatch } from '../redux/hooks/useRedux';
+import { addExpense, addIncome, addTransfer } from '../redux/slices/transactionSlice';
 import styles from './DynamicForm.module.css';
 
 const DynamicForm = ({ type, onClose, setToastMessage, setToastType }) => {

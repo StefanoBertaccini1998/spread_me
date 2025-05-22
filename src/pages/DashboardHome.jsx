@@ -4,7 +4,7 @@ import StatCard from '../components/StatCard';
 import FilterBar from '../components/FilterBar';
 import NavigationButtons from '../components/NavigationButtons';
 import DashboardCharts from '../components/DashboardCharts';
-import styles from './Dashboard.module.css';
+import styles from './DashboardHome.module.css';
 
 const DashboardHome = () => {
     const expenses = useAppSelector(state => state.transaction.expenses);

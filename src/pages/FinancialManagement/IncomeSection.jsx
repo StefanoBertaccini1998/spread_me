@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useIncome } from '../../context/IncomeContext';
 import Modal from '../../components/Modal';
-import DynamicForm from './DynamicForm';
 import './IncomeSection.css';
 
 const IncomeSection = ({ setToastMessage, setToastType }) => {

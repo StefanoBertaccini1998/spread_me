@@ -1,17 +1,36 @@
 .section {
-    @apply w-full max-w-4xl bg-white shadow rounded p-6;
+    @apply w-full max-w-4xl p-6 rounded;
 }
 
 .header {
-    @apply flex justify-between items-center mb-4;
+    @apply flex justify-between items-center mb-6;
 }
 
-.title {
-    @apply text-2xl font-semibold text-gray-700;
+/* Expenses styles */
+.expenses-title {
+    @apply text-3xl font-bold text-red-700;
 }
 
-.button {
-    @apply bg-primary text-white py-2 px-4 rounded hover:bg-blue-700;
+.expenses-button {
+    @apply bg-red-700 text-white py-2 px-4 rounded hover:bg-red-800;
+}
+
+/* Income styles */
+.income-title {
+    @apply text-3xl font-bold text-green-700;
+}
+
+.income-button {
+    @apply bg-green-700 text-white py-2 px-4 rounded hover:bg-green-800;
+}
+
+/* Transfers styles */
+.transfers-title {
+    @apply text-3xl font-bold text-purple-700;
+}
+
+.transfers-button {
+    @apply bg-purple-700 text-white py-2 px-4 rounded hover:bg-purple-800;
 }
 
 .list {
@@ -19,5 +38,5 @@
 }
 
 .item {
-    @apply border p-3 rounded bg-background;
+    @apply p-4 bg-gray-100 rounded;
 }

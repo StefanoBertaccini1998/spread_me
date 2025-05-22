@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './TransactionView.module.css';
 import { useAppSelector } from '../../redux/hooks/useRedux';
 import Modal from '../../components/Modal';
-import DynamicForm from './DynamicForm';
+import DynamicForm from '../../components/DynamicForm';
 
 const labels = {
     expenses: 'Spese',
@@ -25,8 +25,8 @@ const TransactionView = ({ type, setToastMessage, setToastType }) => {
     return (
         <div className={styles.section}>
             <div className={styles.header}>
-                <h1 className={styles.title}>{labels[type]}</h1>
-                <button className={styles.button} onClick={() => setIsModalOpen(true)}>➕ Aggiungi</button>
+                <h1 className={styles[`${type}-title`]}>{labels[type]}</h1>
+                <button className={styles[`${type}-button`]} onClick={() => setIsModalOpen(true)}>Aggiungi</button>
             </div>
 
             <ul className={styles.list}>

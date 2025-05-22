@@ -1,0 +1,32 @@
+.card {
+    @apply relative rounded-lg shadow text-white font-semibold flex flex-col items-center justify-center w-36 h-24 p-4 cursor-pointer hover:scale-105 transition-all;
+}
+
+.cardTop {
+    @apply flex items-center gap-2 text-xl;
+}
+
+.cardName {
+    @apply truncate max-w-[90px];
+}
+
+.cardBalance {
+    @apply text-xl font-bold mt-1;
+}
+
+.actions {
+    @apply absolute bottom-1 flex gap-2;
+}
+
+.edit {
+    @apply text-white hover:text-yellow-300 transition-colors;
+    pointer-events: none;
+    /* edit hidden from click */
+    display: none;
+    /* visually hidden as per new behavior */
+}
+
+.delete {
+    @apply text-white hover:text-red-400 transition-colors;
+    z-index: 10;
+}

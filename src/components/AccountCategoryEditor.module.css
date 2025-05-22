@@ -1,0 +1,42 @@
+/* AccountCategoryEditor.module.css */
+
+.editorContainer {
+    @apply p-4 space-y-4;
+}
+
+.editorTitle {
+    @apply text-lg font-semibold text-gray-700;
+}
+
+.formGroup {
+    @apply flex flex-col gap-2;
+}
+
+.inputField,
+.selectField {
+    @apply border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+
+.colorPicker {
+    @apply w-12 h-12 border rounded p-1;
+}
+
+.buttonGroup {
+    @apply flex justify-end gap-2 mt-4;
+}
+
+.saveButton {
+    @apply bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700;
+}
+
+.cancelButton {
+    @apply bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400;
+}
+
+.emojiTrigger {
+    @apply bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-700;
+}
+
+.emojiPicker {
+    @apply mt-2;
+}

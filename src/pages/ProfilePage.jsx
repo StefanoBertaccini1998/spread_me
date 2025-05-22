@@ -1,54 +1,49 @@
-
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../redux/hooks/useRedux';
-import { addAccount, addCategory } from '../redux/slices/userSlice';
-import EmojiPicker from 'emoji-picker-react';
-import styles from './Profile.module.css';
+import {
+    addAccountSetting,
+    addCategorySetting,
+    removeAccountSetting,
+    removeCategorySetting
+} from '../redux/slices/userSlice';
+import styles from './ProfilePage.module.css';
+import AccountCategoryEditor from '../components/AccountCategoryEditor';
+import AccountCategoryCard from '../components/AccountCategoryCard';
+import { v4 as uuidv4 } from 'uuid';
 
 const ProfilePage = () => {
     const dispatch = useAppDispatch();
     const { accounts, categories } = useAppSelector((state) => state.userSettings);
 
-    const [newAccountName, setNewAccountName] = useState('');
-    const [newAccountColor, setNewAccountColor] = useState('#60a5fa');
-    const [newAccountIcon, setNewAccountIcon] = useState('🏦');
-    const [newAccountBalance, setNewAccountBalance] = useState(0);
-    const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
+    const [editing, setEditing] = useState(null);
+    const [mode, setMode] = useState(null); // 'account' | 'category'
 
-    const [newCategoryName, setNewCategoryName] = useState('');
-    const [newCategoryColor, setNewCategoryColor] = useState('#e5e7eb');
-    const [newCategoryIcon, setNewCategoryIcon] = useState('🛒');
-    const [emojiCategoryPickerVisible, setEmojiCategoryPickerVisible] = useState(false);
-
-    const handleAddAccount = () => {
-        if (newAccountName.trim() !== '') {
-            dispatch(addAccount({
-                name: newAccountName,
-                color: newAccountColor,
-                icon: newAccountIcon,
-                balance: parseFloat(newAccountBalance),
-            }));
-            setNewAccountName('');
-            setNewAccountColor('#60a5fa');
-            setNewAccountIcon('🏦');
-            setNewAccountBalance(0);
-            setEmojiPickerVisible(false);
-        }
+    const handleAddAccount = (data) => {
+        dispatch(addAccountSetting({ ...data, id: uuidv4() }));
+        setEditing(null);
     };
 
-    const handleAddCategory = () => {
-        if (newCategoryName.trim() !== '') {
-            dispatch(addCategory({
-                name: newCategoryName,
-                color: newCategoryColor,
-                icon: newCategoryIcon,
-            }));
-            setNewCategoryName('');
-            setNewCategoryColor('#e5e7eb');
-            setNewCategoryIcon('🛒');
-            setEmojiCategoryPickerVisible(false);
-        }
+    const handleAddCategory = (data) => {
+        dispatch(addCategorySetting({ ...data, id: uuidv4() }));
+        setEditing(null);
     };
+
+    const handleDelete = (id, type) => {
+        if (type === 'account') dispatch(removeAccountSetting(id));
+        if (type === 'category') dispatch(removeCategorySetting(id));
+    };
+
+    const modalRef = useRef();
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (modalRef.current && !modalRef.current.contains(event.target)) {
+                setEditing(null);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
 
     return (
         <div className={styles.container}>
@@ -57,80 +52,74 @@ const ProfilePage = () => {
             <section className={styles.section}>
                 <h2 className={styles.subtitle}>🏦 Conti Bancari</h2>
                 <div className={styles.list}>
-                    {accounts.map((acc, idx) => (
-                        <div key={idx} className={styles.accountItem} style={{ backgroundColor: acc.color }}>
-                            <div className={styles.accountTop}>
-                                <span className="text-2xl">{acc.icon}</span>
-                                <span className={styles.accountName}>{acc.name}</span>
-                            </div>
-                            <div className={styles.accountBalance}>
-                                €{acc.balance?.toFixed(2) || '0.00'}
-                            </div>
-                        </div>
+                    {accounts.map((acc) => (
+                        <AccountCategoryCard
+                            key={acc.id}
+                            name={acc.name}
+                            icon={acc.icon}
+                            color={acc.color}
+                            balance={acc.balance}
+                            onEdit={() => {
+                                setEditing(acc);
+                                setMode('account');
+                            }}
+                            onDelete={() => handleDelete(acc.id, 'account')}
+                        />
                     ))}
                 </div>
 
-                <div className={styles.form}>
-                    <div className={styles.formRow}>
-                        <input type="text" value={newAccountName} onChange={(e) => setNewAccountName(e.target.value)} placeholder="Nome Conto" className={styles.input} />
-                        <input type="number" value={newAccountBalance} onChange={(e) => setNewAccountBalance(e.target.value)} placeholder="Saldo Iniziale (€)" className={styles.input} />
-                        <input type="color" value={newAccountColor} onChange={(e) => setNewAccountColor(e.target.value)} className={styles.colorPicker} />
-                    </div>
-                    <div className={styles.formRow}>
-                        <button type="button" onClick={() => setEmojiPickerVisible(!emojiPickerVisible)} className={styles.button}>
-                            {newAccountIcon} Scegli Emoji
-                        </button>
-                        <button onClick={handleAddAccount} className={`${styles.button} bg-green-600 hover:bg-green-700`}>
-                            ➕ Aggiungi Conto
-                        </button>
-                    </div>
-                    {emojiPickerVisible && (
-                        <div className={styles.emojiPicker}>
-                            <EmojiPicker onEmojiClick={(emojiData) => {
-                                setNewAccountIcon(emojiData.emoji);
-                                setEmojiPickerVisible(false);
-                            }} />
-                        </div>
-                    )}
-                </div>
+                <button
+                    className={`${styles.button} bg-green-600 hover:bg-green-700`}
+                    onClick={() => {
+                        setEditing({ name: '', color: '#60a5fa', icon: '🏦', balance: 0 });
+                        setMode('account');
+                    }}
+                >
+                    ➕ Aggiungi Conto
+                </button>
             </section>
 
             <section className={styles.section}>
                 <h2 className={styles.subtitle}>🛒 Categorie di Spesa</h2>
                 <div className={styles.list}>
-                    {categories.map((cat, idx) => (
-                        <div key={idx} className={styles.categoryItem} style={{ backgroundColor: cat.color }}>
-                            <div className={styles.categoryTop}>
-                                <span className="text-2xl">{cat.icon}</span>
-                                <span className={styles.categoryName}>{cat.name}</span>
-                            </div>
-                        </div>
+                    {categories.map((cat) => (
+                        <AccountCategoryCard
+                            key={cat.id}
+                            name={cat.name}
+                            icon={cat.icon}
+                            color={cat.color}
+                            onEdit={() => {
+                                setEditing(cat);
+                                setMode('category');
+                            }}
+                            onDelete={() => handleDelete(cat.id, 'category')}
+                        />
                     ))}
                 </div>
 
-                <div className={styles.form}>
-                    <div className={styles.formRow}>
-                        <input type="text" value={newCategoryName} onChange={(e) => setNewCategoryName(e.target.value)} placeholder="Nome Categoria" className={styles.input} />
-                        <input type="color" value={newCategoryColor} onChange={(e) => setNewCategoryColor(e.target.value)} className={styles.colorPicker} />
-                    </div>
-                    <div className={styles.formRow}>
-                        <button type="button" onClick={() => setEmojiCategoryPickerVisible(!emojiCategoryPickerVisible)} className={styles.button}>
-                            {newCategoryIcon} Scegli Emoji
-                        </button>
-                        <button onClick={handleAddCategory} className={`${styles.button} bg-green-600 hover:bg-green-700`}>
-                            ➕ Aggiungi Categoria
-                        </button>
-                    </div>
-                    {emojiCategoryPickerVisible && (
-                        <div className={styles.emojiPicker}>
-                            <EmojiPicker onEmojiClick={(emojiData) => {
-                                setNewCategoryIcon(emojiData.emoji);
-                                setEmojiCategoryPickerVisible(false);
-                            }} />
-                        </div>
-                    )}
-                </div>
+                <button
+                    className={`${styles.button} bg-green-600 hover:bg-green-700`}
+                    onClick={() => {
+                        setEditing({ name: '', color: '#e5e7eb', icon: '🛒' });
+                        setMode('category');
+                    }}
+                >
+                    ➕ Aggiungi Categoria
+                </button>
             </section>
+
+            {editing && (
+                <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
+                    <div ref={modalRef} className="bg-white p-6 rounded shadow-lg w-full max-w-md">
+                        <AccountCategoryEditor
+                            initialData={editing}
+                            mode={mode}
+                            onSave={mode === 'account' ? handleAddAccount : handleAddCategory}
+                            onCancel={() => setEditing(null)}
+                        />
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
