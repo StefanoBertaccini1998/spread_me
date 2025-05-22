@@ -2,26 +2,26 @@
     @apply bg-primary text-white p-4 flex justify-between items-center;
 }
 
-.navbar-title {
+.title {
     @apply font-bold text-2xl;
 }
 
-.navbar-links {
+.links {
     @apply flex space-x-6 items-center;
 }
 
-.navbar-link {
+.link {
     @apply text-white hover:underline opacity-90 hover:opacity-100 cursor-pointer;
 }
 
-.navbar-button {
+.button {
     @apply bg-white text-primary font-semibold py-1 px-3 rounded hover:bg-gray-100;
 }
 
-.dropdown-menu {
+.dropdownMenu {
     @apply rounded py-2 px-2 w-48;
 }
 
-.dropdown-link {
+.dropdownLink {
     @apply px-4 py-2 hover:bg-primary hover:text-white transition-colors duration-200;
 }

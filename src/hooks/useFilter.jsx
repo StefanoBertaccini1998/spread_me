@@ -1,4 +1,3 @@
-// src/hooks/useFilter.js
 import { useLocation } from 'react-router-dom';
 
 const useFilter = () => {

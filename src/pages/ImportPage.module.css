@@ -1,31 +1,31 @@
-.import-container {
+.container {
     @apply p-6 max-w-4xl mx-auto;
 }
 
-.import-title {
+.title {
     @apply text-2xl font-bold mb-4;
 }
 
-.import-file {
+.file {
     @apply mb-6;
 }
 
-.import-filename {
+.filename {
     @apply mb-4;
 }
 
-.import-table-wrapper {
+.tableWrapper {
     @apply overflow-x-auto;
 }
 
-.import-table {
+.table {
     @apply w-full table-auto border;
 }
 
-.import-th {
+.th {
     @apply border px-2 py-1 bg-gray-200 text-sm;
 }
 
-.import-td {
+.td {
     @apply border px-2 py-1 text-xs;
 }

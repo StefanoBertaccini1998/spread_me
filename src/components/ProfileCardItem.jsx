@@ -1,14 +1,14 @@
-import './ProfileCardItem.css';
+import styles from './ProfileCardItem.module.css';
 
 const ProfileCardItem = ({ icon, name, color, balance }) => {
     return (
-        <div className="profile-card-item" style={{ backgroundColor: color }}>
-            <div className="profile-card-top">
-                <span className="profile-card-icon">{icon}</span>
-                <span className="profile-card-name" title={name}>{name}</span>
+        <div className={styles.item} style={{ backgroundColor: color }}>
+            <div className={styles.top}>
+                <span className={styles.icon}>{icon}</span>
+                <span className={styles.name} title={name}>{name}</span>
             </div>
             {balance !== undefined && (
-                <div className="profile-card-balance">
+                <div className={styles.balance}>
                     €{parseFloat(balance).toFixed(2)}
                 </div>
             )}

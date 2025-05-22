@@ -11,6 +11,7 @@ import {
     Tooltip,
     Legend
 } from 'chart.js';
+import styles from './DashboardCharts.module.css';
 
 ChartJS.register(
     CategoryScale,
@@ -29,9 +30,15 @@ const chartTypes = {
     pie: Pie
 };
 
-const DashboardCharts = ({ expensesData, incomeData, transfersData }) => {
+const DashboardCharts = ({ expensesData, incomeData }) => {
     const [chartType, setChartType] = useState('bar');
     const ChartComponent = chartTypes[chartType];
+
+    const totalIncome = incomeData.values.reduce((a, b) => a + b, 0);
+    const totalExpenses = expensesData.values.reduce((a, b) => a + b, 0);
+    const saldoNetto = totalIncome - totalExpenses;
+    const netLabel = saldoNetto >= 0 ? 'Risparmio' : 'Deficit';
+    const netColor = saldoNetto >= 0 ? '#7777f8' : '#f87171';
 
     const formatCurrency = (value) => `€${value}`;
 
@@ -66,10 +73,35 @@ const DashboardCharts = ({ expensesData, incomeData, transfersData }) => {
         }
     };
 
-    const buildTimeSeriesData = (data) => {
+    const incomeExpenseComparison = {
+        labels: ['Entrate', 'Spese'],
+        datasets: [
+            {
+                label: 'Totale',
+                data: [totalIncome, totalExpenses],
+                backgroundColor: ['#34d399', '#f87171']
+            }
+        ]
+    };
+
+    const expensesByCategory = {
+        labels: expensesData.labels,
+        datasets: [
+            {
+                label: 'Spese',
+                data: expensesData.values,
+                backgroundColor: expensesData.labels.map((_, index) => {
+                    const colors = ['#f87171', '#fbbf24', '#60a5fa', '#34d399', '#c084fc'];
+                    return colors[index % colors.length];
+                })
+            }
+        ]
+    };
+
+    const buildTimeSeriesData = (data, type) => {
         const grouped = {};
 
-        data.forEach((item, index) => {
+        data.forEach((item) => {
             const category = item.category || 'Sconosciuto';
             const date = new Date(item.date).toISOString().slice(0, 10);
 
@@ -79,7 +111,6 @@ const DashboardCharts = ({ expensesData, incomeData, transfersData }) => {
             grouped[category][date] += item.amountBaseCurrency;
         });
 
-        // Ottieni tutte le date uniche ordinate
         const allDatesSet = new Set();
         Object.values(grouped).forEach((catData) =>
             Object.keys(catData).forEach((date) => allDatesSet.add(date))
@@ -89,41 +120,39 @@ const DashboardCharts = ({ expensesData, incomeData, transfersData }) => {
         const datasets = Object.entries(grouped).map(([category, values]) => ({
             label: category,
             data: allDates.map((date) => values[date] || 0),
-            backgroundColor: 'rgba(239,68,68,0.6)',
-            borderColor: 'rgba(239,68,68,1)',
+            backgroundColor: type === 'expense' ? 'rgba(239,68,68,0.6)' : 'rgba(68,239,68,0.6)',
+            borderColor: type === 'expense' ? 'rgba(239,68,68,1)' : 'rgba(68,239,68,1)',
             fill: chartType === 'line' ? false : true,
             tension: 0.3
         }));
 
+        if (allDates.length === 1) {
+            allDates.push(allDates[0]);
+            datasets.forEach(ds => ds.data.push(ds.data[0]));
+        }
+
         return { labels: allDates, datasets };
     };
 
-    const timeSeriesExpenses = buildTimeSeriesData(expensesData.raw || []);
-    const timeSeriesIncome = buildTimeSeriesData(incomeData.raw || []);
-
-    // 🧠 Calcolo Saldo Netto
-    const totalIncome = incomeData.values.reduce((a, b) => a + b, 0);
-    const totalExpenses = expensesData.values.reduce((a, b) => a + b, 0);
-    const saldoNetto = totalIncome - totalExpenses;
-    const netLabel = saldoNetto >= 0 ? 'Risparmio' : 'Deficit';
-    const netColor = saldoNetto >= 0 ? '#34d399' : '#f87171';
+    const timeSeriesExpenses = buildTimeSeriesData(expensesData.raw || [], 'expense');
+    const timeSeriesIncome = buildTimeSeriesData(incomeData.raw || [], 'income');
 
     return (
-        <div className="dashboard-charts">
+        <div className={styles.container}>
             <select
                 value={chartType}
                 onChange={(e) => setChartType(e.target.value)}
-                className="filter-select mb-6"
+                className={styles.select}
             >
-                <option value="bar">📊 Grafico Barre</option>
-                <option value="line">📈 Grafico Linea</option>
+                <option value="bar">📊 Grafico Barre per Categoria</option>
+                <option value="line">📈 Grafico Linea per Categoria</option>
                 <option value="pie">🥧 Grafici Torta</option>
             </select>
 
             {chartType === 'pie' ? (
-                <div className="flex flex-wrap gap-6 justify-center">
-                    <div className="w-64">
-                        <h3 className="text-center font-semibold mb-2">Spese</h3>
+                <div className={styles.chartGroup}>
+                    <div className={styles.chartWrapper}>
+                        <h3 className={styles.chartLabel}>Spese</h3>
                         <Pie
                             data={{
                                 labels: expensesData.labels,
@@ -137,8 +166,8 @@ const DashboardCharts = ({ expensesData, incomeData, transfersData }) => {
                             options={pieOptions}
                         />
                     </div>
-                    <div className="w-64">
-                        <h3 className="text-center font-semibold mb-2">Entrate</h3>
+                    <div className={styles.chartWrapper}>
+                        <h3 className={styles.chartLabel}>Entrate</h3>
                         <Pie
                             data={{
                                 labels: incomeData.labels,
@@ -152,8 +181,8 @@ const DashboardCharts = ({ expensesData, incomeData, transfersData }) => {
                             options={pieOptions}
                         />
                     </div>
-                    <div className="w-64">
-                        <h3 className="text-center font-semibold mb-2">Saldo Netto</h3>
+                    <div className={styles.chartWrapper}>
+                        <h3 className={styles.chartLabel}>Saldo Netto</h3>
                         <Pie
                             data={{
                                 labels: [netLabel],
@@ -168,13 +197,21 @@ const DashboardCharts = ({ expensesData, incomeData, transfersData }) => {
                         />
                     </div>
                 </div>
-            ) : (
+            ) : chartType === 'line' ? (
                 <>
-                    <h3 className="text-lg font-semibold mb-2">Spese per Categoria</h3>
+                    <h3 className={styles.chartTitle}>Spese per Categoria</h3>
                     <ChartComponent data={timeSeriesExpenses} options={barLineOptions} />
 
-                    <h3 className="text-lg font-semibold mt-10 mb-2">Entrate per Categoria</h3>
+                    <h3 className={`${styles.chartTitle} mt-10`}>Entrate per Categoria</h3>
                     <ChartComponent data={timeSeriesIncome} options={barLineOptions} />
+                </>
+            ) : (
+                <>
+                    <h3 className={styles.chartTitle}>Entrate vs Spese</h3>
+                    <ChartComponent data={incomeExpenseComparison} options={barLineOptions} />
+
+                    <h3 className={`${styles.chartTitle} mt-10`}>Spese per Categoria</h3>
+                    <ChartComponent data={expensesByCategory} options={barLineOptions} />
                 </>
             )}
         </div>

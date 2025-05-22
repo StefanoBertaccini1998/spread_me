@@ -1,37 +1,37 @@
 import { Link } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
-import './Navbar.css';
+import { useAppSelector, useAppDispatch } from '../redux/hooks/useRedux';
+import { logout } from '../redux/slices/authSlice';
+import styles from './Navbar.module.css';
 
 const Navbar = () => {
-  const { user, logout } = useAuth();
+  const user = useAppSelector(state => state.auth.user);
+  const dispatch = useAppDispatch();
+
+  const handleLogout = () => dispatch(logout());
 
   return (
-    <nav className="navbar">
-      <div className="navbar-title">
-        Finance Tracker
-      </div>
-      <div className="navbar-links">
-        <Link to="/" className="navbar-link">Home</Link>
+    <nav className={styles.navbar}>
+      <div className={styles.title}>Finance Tracker</div>
+      <div className={styles.links}>
+        <Link to="/" className={styles.link}>Home</Link>
         {user ? (
           <>
-            <Link to="/dashboard" className="navbar-link">Dashboard</Link>
-            {/* Dropdown for Financial Management */}
+            <Link to="/dashboard" className={styles.link}>Dashboard</Link>
             <div className="relative group">
-              <button className="navbar-link">Gestione Finanza ▾</button>
-              <div className="dropdown-menu hidden group-hover:flex flex-col absolute bg-white text-primary shadow-lg mt-1 z-50">
-                <Link to="/finance/expenses" className="dropdown-link">Spese</Link>
-                <Link to="/finance/income" className="dropdown-link">Entrate</Link>
-                <Link to="/finance/transfers" className="dropdown-link">Trasferimenti</Link>
+              <button className={styles.link}>Gestione Finanza ▾</button>
+              <div className={`hidden group-hover:flex flex-col absolute bg-white text-primary shadow-lg mt-1 z-50 ${styles.dropdownMenu}`}>
+                <Link to="/finance/expenses" className={styles.dropdownLink}>Spese</Link>
+                <Link to="/finance/income" className={styles.dropdownLink}>Entrate</Link>
+                <Link to="/finance/transfers" className={styles.dropdownLink}>Trasferimenti</Link>
               </div>
             </div>
-            {/* Profile Button */}
-            <Link to="/profile" className="navbar-link flex items-center gap-1">
+            <Link to="/profile" className={`${styles.link} flex items-center gap-1`}>
               <span role="img" aria-label="profile">👤</span> Profilo
             </Link>
-            <button onClick={logout} className="navbar-button">Logout</button>
+            <button onClick={handleLogout} className={styles.button}>Logout</button>
           </>
         ) : (
-          <Link to="/login" className="navbar-link">Login</Link>
+          <Link to="/login" className={styles.link}>Login</Link>
         )}
       </div>
     </nav>

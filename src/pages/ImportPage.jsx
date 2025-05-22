@@ -1,18 +1,13 @@
 import { useState } from 'react';
 import * as XLSX from 'xlsx';
-import './ImportPage.css';
 import { useNavigate } from 'react-router-dom';
-
-import { useExpenses } from '../context/ExpenseContext';
-import { useIncome } from '../context/IncomeContext';
-import { useTransfers } from '../context/TransferContext';
+import { useAppDispatch } from '../redux/hooks/useRedux';
+import { addExpense, addIncome, addTransfer } from '../redux/slices/transactionSlice';
+import styles from './ImportPage.module.css';
 
 const ImportPage = () => {
-  const { addExpense } = useExpenses();
-  const { addIncome } = useIncome();
-  const { addTransfer } = useTransfers();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
 
   const [filename, setFilename] = useState('');
   const [expenses, setExpenses] = useState([]);
@@ -38,191 +33,111 @@ const ImportPage = () => {
       const incomeSheet = workbook.Sheets['Entrate'];
       const transferSheet = workbook.Sheets['Bonifici'];
 
-      const expenseData = expenseSheet
-        ? filterKnownColumns(extractFromSheetWithHeaderDetection(expenseSheet, knownExpenseKeys), knownExpenseKeys)
-        : [];
+      const expenseData = expenseSheet ? filterKnownColumns(extractFromSheet(expenseSheet, knownExpenseKeys), knownExpenseKeys) : [];
+      const incomeData = incomeSheet ? filterKnownColumns(extractFromSheet(incomeSheet, knownIncomeKeys), knownIncomeKeys) : [];
+      const transferData = transferSheet ? filterKnownColumns(extractFromSheet(transferSheet, knownTransferKeys), knownTransferKeys) : [];
 
-      const parsedExpenseData = expenseData.map(row => ({
-        ...row,
-        'Data e ora': parseDate(row['Data e ora']),
-      }));
-
-      const incomeData = incomeSheet
-        ? filterKnownColumns(extractFromSheetWithHeaderDetection(incomeSheet, knownIncomeKeys), knownIncomeKeys)
-        : [];
-
-      const parsedIncomeData = incomeData.map(row => ({
-        ...row,
-        'Data e ora': parseDate(row['Data e ora']),
-      }));
-
-      const transferData = transferSheet
-        ? filterKnownColumns(extractFromSheetWithHeaderDetection(transferSheet, knownTransferKeys), knownTransferKeys)
-        : [];
-
-      const parsedTransferData = transferData.map(row => ({
-        ...row,
-        'Data e ora': parseDate(row['Data e ora']),
-      }));
-
-      setExpenses(parsedExpenseData);
-      setIncomes(parsedIncomeData);
-      setTransfers(parsedTransferData);
+      setExpenses(expenseData.map(parseDateField));
+      setIncomes(incomeData.map(parseDateField));
+      setTransfers(transferData.map(parseDateField));
     };
 
     reader.readAsArrayBuffer(file);
   };
 
-  const parseDate = (rawDate) => {
-    if (!rawDate) return '';
+  const parseDateField = (row) => ({
+    ...row,
+    'Data e ora': parseDate(row['Data e ora'])
+  });
 
-    // If it's already a Date object
-    if (rawDate instanceof Date) {
-      return rawDate.toISOString().slice(0, 10);
-    }
-
-    // If it's a number (Excel serial)
-    if (typeof rawDate === 'number') {
-      const jsDate = new Date((rawDate - 25569) * 86400000);
-      return jsDate.toISOString().slice(0, 10);
-    }
-
-    // If it's a string in the format "dd/mm/yyyy"
-    if (typeof rawDate === 'string') {
-      const parts = rawDate.split('/');
-      if (parts.length === 3) {
-        const [day, month, year] = parts;
-        const date = new Date(`${year}-${month}-${day}`);
-        if (!isNaN(date)) {
-          return date.toISOString().slice(0, 10);
-        }
+  const parseDate = (value) => {
+    if (value instanceof Date) return value.toISOString().slice(0, 10);
+    if (typeof value === 'number') return new Date((value - 25569) * 86400000).toISOString().slice(0, 10);
+    if (typeof value === 'string') {
+      const [d, m, y] = value.split('/');
+      if (d && m && y) {
+        const date = new Date(`${y}-${m}-${d}`);
+        return !isNaN(date) ? date.toISOString().slice(0, 10) : '';
       }
     }
-
     return '';
   };
 
+  const extractFromSheet = (sheet, knownKeys) => {
+    const allRows = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '' });
+    const headerIdx = allRows.findIndex(row => row.some(cell => knownKeys.includes(cell?.toString().trim())));
+    if (headerIdx === -1) return [];
+    return XLSX.utils.sheet_to_json(sheet, { defval: '', range: headerIdx });
+  };
 
-  const mapExpenseRow = (row) => ({
-    date: row['Data e ora'] || '',
-    category: row['Categoria'] || '',
-    account: row['Conto'] || '',
-    amountBaseCurrency: parseFloat(row['Importo in valuta predefinita']) || 0,
-    baseCurrency: row['Valuta predefinita'] || 'EUR',
-    amountAccountCurrency: parseFloat(row['Importo in valuta del conto']) || 0,
-    accountCurrency: row['Valuta conto'] || 'EUR',
-    amountTransactionCurrency: null,
-    transactionCurrency: null,
-    tag: row['Tag'] || null,
-    comment: row['Commento'] || '',
+  const filterKnownColumns = (rows, keys) => rows.map(row => {
+    const cleaned = {};
+    keys.forEach(k => cleaned[k] = row[k] ?? '');
+    return cleaned;
+  }).filter(row => Object.values(row).some(val => val !== ''));
+
+  const mapExpense = (r) => ({
+    date: r['Data e ora'], category: r['Categoria'], account: r['Conto'],
+    amountBaseCurrency: parseFloat(r['Importo in valuta predefinita']) || 0,
+    baseCurrency: r['Valuta predefinita'], amountAccountCurrency: parseFloat(r['Importo in valuta del conto']) || 0,
+    accountCurrency: r['Valuta conto'], amountTransactionCurrency: null,
+    transactionCurrency: null, tag: r['Tag'], comment: r['Commento']
   });
 
-  const mapIncomeRow = (row) => ({
-    date: row['Data e ora'] || '',
-    category: row['Categoria'] || '',
-    account: row['Conto'] || '',
-    amountBaseCurrency: parseFloat(row['Importo in valuta predefinita']) || 0,
-    baseCurrency: row['Valuta predefinita'] || 'EUR',
-    amountAccountCurrency: parseFloat(row['Importo in valuta del conto']) || 0,
-    accountCurrency: row['Valuta conto'] || 'EUR',
-    amountTransactionCurrency: null,
-    transactionCurrency: null,
-    tag: row['Tag'] || null,
-    comment: row['Commento'] || '',
+  const mapIncome = (r) => ({
+    date: r['Data e ora'], category: r['Categoria'], account: r['Conto'],
+    amountBaseCurrency: parseFloat(r['Importo in valuta predefinita']) || 0,
+    baseCurrency: r['Valuta predefinita'], amountAccountCurrency: parseFloat(r['Importo in valuta del conto']) || 0,
+    accountCurrency: r['Valuta conto'], amountTransactionCurrency: null,
+    transactionCurrency: null, tag: r['Tag'], comment: r['Commento']
   });
 
-  const mapTransferRow = (row) => ({
-    date: row['Data e ora'] || '',
-    fromAccount: row['In uscita'] || '',
-    toAccount: row['In entrata'] || '',
-    amountFromCurrency: parseFloat(row['Importo nella valuta in uscita']) || 0,
-    fromCurrency: row['Valuta in uscita'] || 'EUR',
-    amountToCurrency: null,
-    toCurrency: null,
-    comment: row['Commento'] || '',
+  const mapTransfer = (r) => ({
+    date: r['Data e ora'], fromAccount: r['In uscita'], toAccount: r['In entrata'],
+    amountFromCurrency: parseFloat(r['Importo nella valuta in uscita']) || 0,
+    fromCurrency: r['Valuta in uscita'], amountToCurrency: null,
+    toCurrency: null, comment: r['Commento']
   });
 
   const handleImport = () => {
-    expenses.forEach(row => addExpense(mapExpenseRow(row)));
-    incomes.forEach(row => addIncome(mapIncomeRow(row)));
-    transfers.forEach(row => addTransfer(mapTransferRow(row)));
-
-    setExpenses([]);
-    setIncomes([]);
-    setTransfers([]);
-    setFilename('');
+    expenses.forEach(row => dispatch(addExpense(mapExpense(row))));
+    incomes.forEach(row => dispatch(addIncome(mapIncome(row))));
+    transfers.forEach(row => dispatch(addTransfer(mapTransfer(row))));
+    setExpenses([]); setIncomes([]); setTransfers([]); setFilename('');
     alert('📥 Dati importati con successo!');
     navigate('/dashboard');
   };
 
   const renderTable = (title, data) => (
-    <div className="sheet-preview">
-      <h2 className="sheet-title">{title}</h2>
-      <div className="import-table-wrapper">
-        <table className="import-table">
-          <thead>
-            <tr>
-              {Object.keys(data[0]).map((key) => (
-                <th key={key} className="import-th">{key}</th>
-              ))}
+    <div className={styles.tableWrapper}>
+      <h2 className={styles.title}>{title}</h2>
+      <table className={styles.table}>
+        <thead>
+          <tr>
+            {Object.keys(data[0]).map((key) => <th key={key} className={styles.th}>{key}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((row, i) => (
+            <tr key={i}>
+              {Object.values(row).map((val, idx) => <td key={idx} className={styles.td}>{val}</td>)}
             </tr>
-          </thead>
-          <tbody>
-            {data.map((row, idx) => (
-              <tr key={idx}>
-                {Object.values(row).map((val, i) => (
-                  <td key={i} className="import-td">{val}</td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 
-  const hasData = expenses.length > 0 || incomes.length > 0 || transfers.length > 0;
-
-  const extractFromSheetWithHeaderDetection = (sheet, knownHeaders) => {
-    const allRows = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '' });
-
-    const headerIndex = allRows.findIndex(row =>
-      row.some(cell => knownHeaders.includes(cell?.toString().trim()))
-    );
-
-    if (headerIndex === -1) return [];
-
-    return XLSX.utils.sheet_to_json(sheet, {
-      defval: '',
-      range: headerIndex
-    });
-  };
-
-  const filterKnownColumns = (data, knownKeys) =>
-    data
-      .map(row => {
-        const filtered = {};
-        knownKeys.forEach(key => {
-          if (row.hasOwnProperty(key)) {
-            filtered[key] = row[key];
-          }
-        });
-        return filtered;
-      })
-      .filter(row => Object.values(row).some(val => val !== ''));
+  const hasData = expenses.length || incomes.length || transfers.length;
 
   return (
-    <div className="import-container">
-      <h1 className="import-title">Importa Dati Finanziari da Excel</h1>
-
-      <input type="file" accept=".csv, .xlsx, .xls" onChange={handleFileUpload} className="import-file" />
-
-      {filename && <p className="import-filename">📁 File: <strong>{filename}</strong></p>}
-
+    <div className={styles.container}>
+      <h1 className={styles.title}>Importa Dati Finanziari da Excel</h1>
+      <input type="file" accept=".csv, .xlsx, .xls" onChange={handleFileUpload} className={styles.file} />
+      {filename && <p className={styles.filename}>📁 File: <strong>{filename}</strong></p>}
       {expenses.length > 0 && renderTable('📊 Spese', expenses)}
       {incomes.length > 0 && renderTable('💰 Entrate', incomes)}
       {transfers.length > 0 && renderTable('🔁 Trasferimenti', transfers)}
-
       {hasData && (
         <button onClick={handleImport} className="mt-4 bg-blue-700 hover:bg-blue-800 text-white py-2 px-6 rounded shadow">
           Importa Tutto

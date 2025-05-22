@@ -1,16 +1,14 @@
-// src/pages/DashboardHome.jsx
 import { useState, useEffect } from 'react';
-import { useExpenses } from '../context/ExpenseContext';
-import { useIncome } from '../context/IncomeContext';
+import { useAppSelector } from '../redux/hooks/useRedux';
 import StatCard from '../components/StatCard';
 import FilterBar from '../components/FilterBar';
 import NavigationButtons from '../components/NavigationButtons';
 import DashboardCharts from '../components/DashboardCharts';
-import './DashboardHome.css';
+import styles from './Dashboard.module.css';
 
 const DashboardHome = () => {
-    const { expenses } = useExpenses();
-    const { income } = useIncome();
+    const expenses = useAppSelector(state => state.transaction.expenses);
+    const income = useAppSelector(state => state.transaction.income);
 
     const [filteredExpenses, setFilteredExpenses] = useState([]);
     const [filteredIncome, setFilteredIncome] = useState([]);
@@ -33,7 +31,7 @@ const DashboardHome = () => {
                         date.getFullYear() === now.getFullYear();
                 } else if (filters.period === 'year') {
                     matchesPeriod = date.getFullYear() === now.getFullYear();
-                } // if 'always', we keep matchesPeriod true (no filter)
+                }
 
                 const matchesAccount =
                     filters.account === 'All' ||
@@ -47,7 +45,6 @@ const DashboardHome = () => {
                 return matchesPeriod && matchesAccount && matchesCategory;
             });
         };
-
 
         setFilteredExpenses(filterData(expenses));
         setFilteredIncome(filterData(income));
@@ -63,7 +60,6 @@ const DashboardHome = () => {
     );
     const netBalance = totalIncome - totalExpenses;
 
-    // Format for chart compatibility
     const groupByCategory = (data) =>
         data.reduce((acc, item) => {
             const key = item.category || 'Sconosciuto';
@@ -87,12 +83,11 @@ const DashboardHome = () => {
     };
 
     return (
-        <div className="dashboard-container">
-            <h1 className="dashboard-title">📊 Riepilogo Finanziario</h1>
-
+        <div className={styles.container}>
+            <h1 className={styles.title}>📊 Riepilogo Finanziario</h1>
             <FilterBar filters={filters} setFilters={setFilters} />
 
-            <div className="stat-grid">
+            <div className={styles.statGrid}>
                 <StatCard
                     title="💸 Spese Totali"
                     value={`€${totalExpenses.toFixed(2)}`}

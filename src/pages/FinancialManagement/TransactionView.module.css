@@ -1,0 +1,23 @@
+.section {
+    @apply w-full max-w-4xl bg-white shadow rounded p-6;
+}
+
+.header {
+    @apply flex justify-between items-center mb-4;
+}
+
+.title {
+    @apply text-2xl font-semibold text-gray-700;
+}
+
+.button {
+    @apply bg-primary text-white py-2 px-4 rounded hover:bg-blue-700;
+}
+
+.list {
+    @apply space-y-2 text-gray-800;
+}
+
+.item {
+    @apply border p-3 rounded bg-background;
+}

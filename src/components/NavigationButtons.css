@@ -1,7 +1,0 @@
-.navigation-buttons {
-    @apply mt-8 flex flex-wrap gap-4;
-}
-
-.navigation-buttons button {
-    @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow transition-all duration-200;
-}

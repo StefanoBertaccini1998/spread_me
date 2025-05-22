@@ -1,4 +1,3 @@
-// src/components/MonthlyExpensesChart.jsx
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
 const MonthlyExpensesChart = ({ data }) => (

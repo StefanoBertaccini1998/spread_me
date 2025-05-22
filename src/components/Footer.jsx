@@ -1,8 +1,8 @@
-import './Footer.css';
+import styles from './Footer.module.css';
 
 const Footer = () => {
   return (
-    <footer className="footer">
+    <footer className={styles.footer}>
       © 2025 Finance Tracker - All rights reserved.
     </footer>
   );

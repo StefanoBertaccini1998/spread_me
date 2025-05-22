@@ -1,22 +1,22 @@
 import { useNavigate } from 'react-router-dom';
-import './HomePage.css';
+import styles from './HomePage.module.css';
 
 const HomePage = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="home-container">
-            <h1 className="home-title">📊 Benvenuto in FinanceManager</h1>
-            <p className="home-description">
+        <div className={styles.container}>
+            <h1 className={styles.title}>📊 Benvenuto in FinanceManager</h1>
+            <p className={styles.description}>
                 Questa applicazione ti aiuta a gestire le tue <strong>spese</strong>, <strong>entrate</strong> e <strong>trasferimenti</strong> con facilità.
             </p>
 
-            <section className="home-section">
+            <section className={styles.section}>
                 <h2>🎯 Obiettivo</h2>
                 <p>Fornire un sistema semplice ed efficace per monitorare il tuo flusso di cassa personale.</p>
             </section>
 
-            <section className="home-section">
+            <section className={styles.section}>
                 <h2>🧭 Guida Rapida</h2>
                 <ol>
                     <li>Vai su <strong>Importa</strong> e carica il tuo file Excel</li>
@@ -25,7 +25,9 @@ const HomePage = () => {
                 </ol>
             </section>
 
-            <button className="start-button" onClick={() => navigate('/dashboard')}>Inizia ora</button>
+            <button className={styles.button} onClick={() => navigate('/dashboard')}>
+                Inizia ora
+            </button>
         </div>
     );
 };

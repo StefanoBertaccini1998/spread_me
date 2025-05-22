@@ -1,18 +1,16 @@
-import { useState, useEffect } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import ExpensesSection from './ExpensesSection';
-import IncomeSection from './IncomeSection';
-import TransfersSection from './TransfersSection';
-import './FinancialManagement.css';
-import Toast from '../../components/Toast';
+import styles from './FinancialManagement.module.css';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import TransactionView from './TransactionView';
 import FilterBar from '../../components/FilterBar';
+import Toast from '../../components/Toast';
 
 const FinancialManagement = ({ section }) => {
-    const [view, setView] = useState(section ? section : 'expenses');
+    const [view, setView] = useState(section ?? 'expenses');
     const [toastMessage, setToastMessage] = useState('');
     const [toastType, setToastType] = useState(null);
-    const navigate = useNavigate();
     const location = useLocation();
+    const navigate = useNavigate();
 
     const initialFilters = location.state?.filters || {
         month: new Date().getMonth(),
@@ -20,13 +18,10 @@ const FinancialManagement = ({ section }) => {
         category: 'All',
         account: 'All'
     };
-
     const [filters, setFilters] = useState(initialFilters);
 
     useEffect(() => {
-        if (section) {
-            setView(section);
-        }
+        if (section) setView(section);
     }, [section]);
 
     const handleSectionChange = (newView) => {
@@ -34,37 +29,23 @@ const FinancialManagement = ({ section }) => {
         navigate(`/finance/${newView}`);
     };
 
-
-
-    const renderSection = () => {
-        switch (view) {
-            case 'expenses':
-                return <ExpensesSection setToastMessage={setToastMessage} setToastType={setToastType} />;
-            case 'income':
-                return <IncomeSection setToastMessage={setToastMessage} setToastType={setToastType} />;
-            case 'transfers':
-                return <TransfersSection setToastMessage={setToastMessage} setToastType={setToastType} />;
-            default:
-                return <ExpensesSection setToastMessage={setToastMessage} setToastType={setToastType} />;
-        }
-    };
-
     return (
-        <div className="finance-container">
+        <div className={styles.container}>
             <FilterBar filters={filters} setFilters={setFilters} />
-            <div className="breadcrumb">
-                <Link to="/dashboard" className="breadcrumb-link">Dashboard</Link> / Gestione Finanze / {view === 'expenses' ? 'Spese' : view === 'income' ? 'Entrate' : 'Trasferimenti'}
+
+            <div className={styles.breadcrumb}>
+                <a href="/dashboard" className={styles.breadcrumbLink}>Dashboard</a>
+                {' / '} Gestione Finanze / {view === 'expenses' ? 'Spese' : view === 'income' ? 'Entrate' : 'Trasferimenti'}
             </div>
 
-            <div className="finance-menu">
-                <button className={`finance-button ${view === 'expenses' ? 'active' : ''}`} onClick={() => handleSectionChange('expenses')}>Spese</button>
-                <button className={`finance-button ${view === 'income' ? 'active' : ''}`} onClick={() => handleSectionChange('income')}>Entrate</button>
-                <button className={`finance-button ${view === 'transfers' ? 'active' : ''}`} onClick={() => handleSectionChange('transfers')}>Trasferimenti</button>
+            <div className={styles.menu}>
+                <button className={`${styles.button} ${view === 'expenses' ? styles.active : ''}`} onClick={() => handleSectionChange('expenses')}>Spese</button>
+                <button className={`${styles.button} ${view === 'income' ? styles.active : ''}`} onClick={() => handleSectionChange('income')}>Entrate</button>
+                <button className={`${styles.button} ${view === 'transfers' ? styles.active : ''}`} onClick={() => handleSectionChange('transfers')}>Trasferimenti</button>
             </div>
 
-            <div className="finance-content">
-                {renderSection()}
-            </div>
+            <TransactionView type={view} setToastMessage={setToastMessage} setToastType={setToastType} />
+
             {toastMessage && (
                 <Toast message={toastMessage} type={toastType} onClose={() => {
                     setToastMessage('');

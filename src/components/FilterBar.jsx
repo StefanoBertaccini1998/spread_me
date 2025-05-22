@@ -1,34 +1,32 @@
-import { useAccount } from '../context/AccountContext';
-import { useExpenseCategory } from '../context/ExpenseCategoryContext';
-import './FilterBar.css';
+import { useAppSelector } from '../redux/hooks/useRedux';
+import styles from './FilterBar.module.css';
 
 const FilterBar = ({ filters, setFilters }) => {
-    const { accounts } = useAccount();
-    const { expenseCategories } = useExpenseCategory();
+    const accounts = useAppSelector((state) => state.userSettings.accounts);
+    const categories = useAppSelector((state) => state.userSettings.categories);
 
-    const handlePeriodChange = (e) => setFilters((prev) => ({ ...prev, period: e.target.value }));
-    const handleAccountChange = (e) => setFilters((prev) => ({ ...prev, account: e.target.value }));
-    const handleCategoryChange = (e) => setFilters((prev) => ({ ...prev, category: e.target.value }));
+    const handleChange = (field) => (e) =>
+        setFilters((prev) => ({ ...prev, [field]: e.target.value }));
 
     return (
-        <div className="filter-bar">
-            <select value={filters.period} onChange={handlePeriodChange} className="filter-select">
+        <div className={styles.container}>
+            <select value={filters.period} onChange={handleChange('period')} className={styles.select}>
                 <option value="month">Mese Corrente</option>
                 <option value="year">Anno Corrente</option>
                 <option value="always">Sempre</option>
             </select>
 
-            <select value={filters.account} onChange={handleAccountChange} className="filter-select">
+            <select value={filters.account} onChange={handleChange('account')} className={styles.select}>
                 <option value="All">Tutti i Conti</option>
                 {accounts.map((acc) => (
-                    <option key={acc.name} value={acc.name}>{acc.emoji} {acc.name}</option>
+                    <option key={acc.name} value={acc.name}>{acc.icon} {acc.name}</option>
                 ))}
             </select>
 
-            <select value={filters.category} onChange={handleCategoryChange} className="filter-select">
+            <select value={filters.category} onChange={handleChange('category')} className={styles.select}>
                 <option value="All">Tutte le Categorie</option>
-                {expenseCategories.map((cat) => (
-                    <option key={cat.name} value={cat.name}>{cat.emoji} {cat.name}</option>
+                {categories.map((cat) => (
+                    <option key={cat.name} value={cat.name}>{cat.icon} {cat.name}</option>
                 ))}
             </select>
         </div>

@@ -1,14 +1,14 @@
 import { useNavigate } from 'react-router-dom';
-import './ErrorPage.css';
+import styles from './ErrorPage.module.css';
 
 const ErrorPage = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="error-container">
-            <h1>404 - Pagina Non Trovata</h1>
-            <p>Oops! Sembra che tu abbia digitato un percorso sbagliato.</p>
-            <button onClick={() => navigate('/')}>Torna alla Home</button>
+        <div className={styles.container}>
+            <h1 className={styles.title}>404 - Pagina Non Trovata</h1>
+            <p className={styles.description}>Oops! Sembra che tu abbia digitato un percorso sbagliato.</p>
+            <button className={styles.button} onClick={() => navigate('/')}>Torna alla Home</button>
         </div>
     );
 };

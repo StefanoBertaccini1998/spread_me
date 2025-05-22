@@ -1,239 +1,138 @@
+
 import { useState } from 'react';
-import { Bar, Line, Pie } from 'react-chartjs-2';
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    LineElement,
-    PointElement,
-    ArcElement,
-    Tooltip,
-    Legend,
-} from 'chart.js';
+import { useAppDispatch, useAppSelector } from '../redux/hooks/useRedux';
+import { addAccount, addCategory } from '../redux/slices/userSlice';
+import EmojiPicker from 'emoji-picker-react';
+import styles from './Profile.module.css';
 
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    LineElement,
-    PointElement,
-    ArcElement,
-    Tooltip,
-    Legend
-);
+const ProfilePage = () => {
+    const dispatch = useAppDispatch();
+    const { accounts, categories } = useAppSelector((state) => state.userSettings);
 
-const chartTypes = {
-    bar: Bar,
-    line: Line,
-    pie: Pie,
-};
+    const [newAccountName, setNewAccountName] = useState('');
+    const [newAccountColor, setNewAccountColor] = useState('#60a5fa');
+    const [newAccountIcon, setNewAccountIcon] = useState('🏦');
+    const [newAccountBalance, setNewAccountBalance] = useState(0);
+    const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
 
-const DashboardCharts = ({ expensesData, incomeData, transfersData }) => {
-    const [chartType, setChartType] = useState('bar');
-    const ChartComponent = chartTypes[chartType];
+    const [newCategoryName, setNewCategoryName] = useState('');
+    const [newCategoryColor, setNewCategoryColor] = useState('#e5e7eb');
+    const [newCategoryIcon, setNewCategoryIcon] = useState('🛒');
+    const [emojiCategoryPickerVisible, setEmojiCategoryPickerVisible] = useState(false);
 
-    const formatCurrency = (value) => `€${value}`;
-
-    const pieOptions = {
-        responsive: true,
-        plugins: {
-            legend: { position: 'bottom' },
-            tooltip: {
-                callbacks: {
-                    label: (context) => `${context.label}: €${context.parsed}`,
-                },
-            },
-        },
-    };
-
-
-    const barLineOptions = {
-        responsive: true,
-        plugins: {
-            legend: { labels: { color: 'black' } },
-            tooltip: {
-                callbacks: {
-                    label: (context) => `${context.dataset.label}: €${context.raw}`,
-                },
-            },
-        },
-        scales: {
-            y: {
-                ticks: {
-                    callback: formatCurrency,
-                },
-            },
-        },
-    };
-
-    const totalIncome = incomeData.values.reduce((a, b) => a + b, 0);
-    const totalExpenses = expensesData.values.reduce((a, b) => a + b, 0);
-    const saldoNetto = totalIncome - totalExpenses;
-    const netLabel = saldoNetto >= 0 ? 'Risparmio' : 'Deficit';
-
-    const incomeExpenseComparison = {
-        labels: ['Income', 'Expenses'],
-        datasets: [
-            {
-                label: 'Amount',
-                data: [totalIncome, totalExpenses],
-                backgroundColor: ['#34d399', '#f87171'],
-            },
-        ],
-    };
-
-    const expensesByCategory = {
-        labels: expensesData.labels,
-        datasets: [
-            {
-                label: 'Expenses',
-                data: expensesData.values,
-                backgroundColor: expensesData.labels.map((_, index) => {
-                    const colors = ['#f87171', '#fbbf24', '#60a5fa', '#34d399', '#c084fc'];
-                    return colors[index % colors.length];
-                }),
-            },
-        ],
-    };
-
-    const buildTimeSeriesData = (data, label, color) => {
-        const grouped = {};
-
-        data.forEach((item) => {
-            const date = new Date(item.date).toISOString().slice(0, 10);
-            if (!grouped[date]) grouped[date] = 0;
-            grouped[date] += item.amountBaseCurrency;
-        });
-
-        let dates = Object.keys(grouped).sort();
-        let values = dates.map((date) => grouped[date]);
-
-        // If only one data point, duplicate it to create a horizontal line
-        if (dates.length === 1) {
-            const originalDate = new Date(dates[0]);
-            const nextDate = new Date(originalDate);
-            nextDate.setDate(originalDate.getDate() + 1);
-
-            dates = [dates[0], nextDate.toISOString().slice(0, 10)];
-            values = [values[0], values[0]];
+    const handleAddAccount = () => {
+        if (newAccountName.trim() !== '') {
+            dispatch(addAccount({
+                name: newAccountName,
+                color: newAccountColor,
+                icon: newAccountIcon,
+                balance: parseFloat(newAccountBalance),
+            }));
+            setNewAccountName('');
+            setNewAccountColor('#60a5fa');
+            setNewAccountIcon('🏦');
+            setNewAccountBalance(0);
+            setEmojiPickerVisible(false);
         }
-
-        return {
-            label,
-            data: values,
-            borderColor: color,
-            backgroundColor: color,
-            tension: 0.4,
-            fill: false,
-        };
     };
 
-    const incomeTimeSeries = buildTimeSeriesData(incomeData.raw || [], 'Income', '#34d399');
-    const expensesTimeSeries = buildTimeSeriesData(expensesData.raw || [], 'Expenses', '#f87171');
-
-    const combinedTimeSeries = {
-        labels: incomeTimeSeries.data.length > expensesTimeSeries.data.length ? incomeTimeSeries.labels : expensesTimeSeries.labels,
-        datasets: [incomeTimeSeries, expensesTimeSeries],
+    const handleAddCategory = () => {
+        if (newCategoryName.trim() !== '') {
+            dispatch(addCategory({
+                name: newCategoryName,
+                color: newCategoryColor,
+                icon: newCategoryIcon,
+            }));
+            setNewCategoryName('');
+            setNewCategoryColor('#e5e7eb');
+            setNewCategoryIcon('🛒');
+            setEmojiCategoryPickerVisible(false);
+        }
     };
-
-    const netWealth = {
-        labels: [netLabel],
-        datasets: [
-            {
-                data: [Math.abs(saldoNetto)],
-                backgroundColor: ['#3b82f6'], // Blue color
-            },
-        ],
-    };
-
 
     return (
-        <div className="dashboard-charts">
-            <select
-                value={chartType}
-                onChange={(e) => setChartType(e.target.value)}
-                className="filter-select mb-6"
-            >
-                <option value="bar">📊 Grafico Barre</option>
-                <option value="line">📈 Grafico Linea</option>
-                <option value="pie">🥧 Grafici Torta</option>
-            </select>
+        <div className={styles.container}>
+            <h1 className={styles.title}>⚙️ Impostazioni Utente</h1>
 
-            {chartType === 'pie' ? (
-                <div className="flex flex-wrap gap-6 justify-center">
-                    <div className="w-64">
-                        <h3 className="text-center font-semibold mb-2">Spese</h3>
-                        <Pie
-                            data={{
-                                labels: expensesData.labels,
-                                datasets: [
-                                    {
-                                        data: expensesData.values,
-                                        backgroundColor: expensesData.labels.map((_, index) => {
-                                            const colors = ['#f87171', '#fbbf24', '#60a5fa', '#34d399', '#c084fc'];
-                                            return colors[index % colors.length];
-                                        }),
-                                    },
-                                ],
-                            }}
-                            options={pieOptions}
-                        />
-                    </div>
-                    <div className="flex flex-wrap gap-6 justify-center">
-                        <div className="w-64">
-                            <h3 className="text-center font-semibold mb-2">Spese per Categoria</h3>
-                            <Pie
-                                data={{
-                                    labels: expensesData.labels,
-                                    datasets: [
-                                        {
-                                            data: expensesData.values,
-                                            backgroundColor: expensesData.labels.map((_, index) => {
-                                                const colors = ['#f87171', '#fbbf24', '#60a5fa', '#34d399', '#c084fc'];
-                                                return colors[index % colors.length];
-                                            }),
-                                        },
-                                    ],
-                                }}
-                                options={pieOptions}
-                            />
+            <section className={styles.section}>
+                <h2 className={styles.subtitle}>🏦 Conti Bancari</h2>
+                <div className={styles.list}>
+                    {accounts.map((acc, idx) => (
+                        <div key={idx} className={styles.accountItem} style={{ backgroundColor: acc.color }}>
+                            <div className={styles.accountTop}>
+                                <span className="text-2xl">{acc.icon}</span>
+                                <span className={styles.accountName}>{acc.name}</span>
+                            </div>
+                            <div className={styles.accountBalance}>
+                                €{acc.balance?.toFixed(2) || '0.00'}
+                            </div>
                         </div>
-                        <div className="w-64">
-                            <h3 className="text-center font-semibold mb-2">Saldo Netto</h3>
-                            <Pie
-                                data={{
-                                    labels: [netLabel],
-                                    datasets: [
-                                        {
-                                            data: [Math.abs(saldoNetto)],
-                                            backgroundColor: ['#3b82f6'],
-                                        },
-                                    ],
-                                }}
-                                options={pieOptions}
-                            />
-                        </div>
-                    </div>
-                    <div className="w-64">
-                        <h3 className="text-center font-semibold mb-2">Saldo Netto</h3>
-                        <Pie data={netWealth} options={pieOptions} />
-                    </div>
+                    ))}
                 </div>
-            ) : (
-                <>
-                    <h3 className="text-lg font-semibold mb-2">Entrate vs Spese</h3>
-                    <ChartComponent data={incomeExpenseComparison} options={barLineOptions} />
 
-                    <h3 className="text-lg font-semibold mt-10 mb-2">Spese per Categoria</h3>
-                    <ChartComponent data={expensesByCategory} options={barLineOptions} />
+                <div className={styles.form}>
+                    <div className={styles.formRow}>
+                        <input type="text" value={newAccountName} onChange={(e) => setNewAccountName(e.target.value)} placeholder="Nome Conto" className={styles.input} />
+                        <input type="number" value={newAccountBalance} onChange={(e) => setNewAccountBalance(e.target.value)} placeholder="Saldo Iniziale (€)" className={styles.input} />
+                        <input type="color" value={newAccountColor} onChange={(e) => setNewAccountColor(e.target.value)} className={styles.colorPicker} />
+                    </div>
+                    <div className={styles.formRow}>
+                        <button type="button" onClick={() => setEmojiPickerVisible(!emojiPickerVisible)} className={styles.button}>
+                            {newAccountIcon} Scegli Emoji
+                        </button>
+                        <button onClick={handleAddAccount} className={`${styles.button} bg-green-600 hover:bg-green-700`}>
+                            ➕ Aggiungi Conto
+                        </button>
+                    </div>
+                    {emojiPickerVisible && (
+                        <div className={styles.emojiPicker}>
+                            <EmojiPicker onEmojiClick={(emojiData) => {
+                                setNewAccountIcon(emojiData.emoji);
+                                setEmojiPickerVisible(false);
+                            }} />
+                        </div>
+                    )}
+                </div>
+            </section>
 
-                    <h3 className="text-lg font-semibold mt-10 mb-2">Andamento Entrate e Spese</h3>
-                    <Line data={combinedTimeSeries} options={barLineOptions} />
-                </>
-            )}
+            <section className={styles.section}>
+                <h2 className={styles.subtitle}>🛒 Categorie di Spesa</h2>
+                <div className={styles.list}>
+                    {categories.map((cat, idx) => (
+                        <div key={idx} className={styles.categoryItem} style={{ backgroundColor: cat.color }}>
+                            <div className={styles.categoryTop}>
+                                <span className="text-2xl">{cat.icon}</span>
+                                <span className={styles.categoryName}>{cat.name}</span>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                <div className={styles.form}>
+                    <div className={styles.formRow}>
+                        <input type="text" value={newCategoryName} onChange={(e) => setNewCategoryName(e.target.value)} placeholder="Nome Categoria" className={styles.input} />
+                        <input type="color" value={newCategoryColor} onChange={(e) => setNewCategoryColor(e.target.value)} className={styles.colorPicker} />
+                    </div>
+                    <div className={styles.formRow}>
+                        <button type="button" onClick={() => setEmojiCategoryPickerVisible(!emojiCategoryPickerVisible)} className={styles.button}>
+                            {newCategoryIcon} Scegli Emoji
+                        </button>
+                        <button onClick={handleAddCategory} className={`${styles.button} bg-green-600 hover:bg-green-700`}>
+                            ➕ Aggiungi Categoria
+                        </button>
+                    </div>
+                    {emojiCategoryPickerVisible && (
+                        <div className={styles.emojiPicker}>
+                            <EmojiPicker onEmojiClick={(emojiData) => {
+                                setNewCategoryIcon(emojiData.emoji);
+                                setEmojiCategoryPickerVisible(false);
+                            }} />
+                        </div>
+                    )}
+                </div>
+            </section>
         </div>
     );
 };
 
-export default DashboardCharts;
+export default ProfilePage;

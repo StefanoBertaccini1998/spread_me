@@ -1,4 +1,4 @@
-.finance-container {
+.container {
     @apply p-6 flex flex-col items-center;
 }
 
@@ -6,22 +6,18 @@
     @apply text-sm text-gray-600 mb-6 self-start;
 }
 
-.breadcrumb-link {
+.breadcrumbLink {
     @apply text-blue-600 hover:underline;
 }
 
-.finance-menu {
+.menu {
     @apply flex space-x-4 mb-8;
 }
 
-.finance-button {
+.button {
     @apply bg-primary text-white py-2 px-4 rounded hover:bg-blue-700;
 }
 
-.finance-button.active {
+.active {
     @apply bg-blue-800;
-}
-
-.finance-content {
-    @apply w-full max-w-4xl bg-white shadow rounded p-6;
 }

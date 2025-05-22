@@ -1,13 +1,13 @@
 import { createPortal } from 'react-dom';
-import './Modal.css';
+import styles from './Modal.module.css';
 
 const Modal = ({ isOpen, onClose, children, type }) => {
     if (!isOpen) return null;
 
     return createPortal(
-        <div className="modal-overlay">
-            <div className={`modal-content modal-${type}`}>
-                <button onClick={onClose} className="modal-close">X</button>
+        <div className={styles.overlay}>
+            <div className={`${styles.content} ${styles[`modal-${type}`]}`}>
+                <button onClick={onClose} className={styles.close}>X</button>
                 {children}
             </div>
         </div>,

@@ -1,20 +1,12 @@
-import { AuthProvider } from './context/AuthContext';
-import { ExpenseProvider } from './context/ExpenseContext';
-import { IncomeProvider } from './context/IncomeContext';
-import { TransferProvider } from './context/TransferContext';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
 import AppRoutes from './routes/AppRoutes';
 
 function App() {
   return (
-    <AuthProvider>
-      <ExpenseProvider>
-        <IncomeProvider>
-          <TransferProvider>
-            <AppRoutes />
-          </TransferProvider>
-        </IncomeProvider>
-      </ExpenseProvider>
-    </AuthProvider>
+    <Provider store={store}>
+      <AppRoutes />
+    </Provider>
   );
 }
 
