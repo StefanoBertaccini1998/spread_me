@@ -11,21 +11,73 @@
 }
 
 .filename {
-    @apply mb-4;
+    @apply mb-4 text-sm;
 }
 
 .tableWrapper {
-    @apply overflow-x-auto;
+    @apply overflow-x-auto mt-6;
 }
 
 .table {
-    @apply w-full table-auto border;
+    @apply w-full table-auto border-collapse border border-gray-300;
 }
 
 .th {
-    @apply border px-2 py-1 bg-gray-200 text-sm;
+    @apply border border-gray-300 px-2 py-1 bg-gray-200 text-sm font-semibold;
 }
 
 .td {
-    @apply border px-2 py-1 text-xs;
+    @apply border border-gray-300 px-2 py-1 text-xs;
+}
+
+.section {
+    @apply mt-6;
+}
+
+.sectionTitle {
+    @apply text-base font-semibold mb-2;
+}
+
+.checkboxList {
+    @apply grid grid-cols-2 md:grid-cols-3 gap-y-1 gap-x-4;
+}
+
+.checkboxItem {
+    @apply text-sm;
+}
+
+.checkbox {
+    @apply mr-2 align-middle;
+}
+
+.loading {
+    @apply text-blue-600 mb-2 text-sm;
+}
+
+.toast {
+    @apply text-green-600 mb-2 text-sm;
+}
+
+.importButton {
+    @apply mt-6 bg-blue-700 hover:bg-blue-800 text-white py-2 px-6 rounded shadow transition;
+}
+
+.selectAllButton {
+    @apply text-sm text-blue-600 hover:text-blue-800 font-medium transition;
+}
+
+.sectionTitleWrapper {
+    @apply flex items-center justify-between mb-2;
+}
+
+.checkboxList {
+    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2;
+}
+
+.checkboxItem {
+    @apply text-sm;
+}
+
+.checkbox {
+    @apply mr-2 cursor-pointer accent-blue-500;
 }

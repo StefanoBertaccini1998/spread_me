@@ -1,11 +1,25 @@
 .container {
-    @apply p-6 max-w-6xl mx-auto;
+    @apply mt-6 flex flex-col gap-4 w-full px-4 sm:px-6 md:px-8 max-w-screen-lg mx-auto;
 }
 
 .title {
-    @apply text-2xl font-bold mb-6 text-gray-800;
+    @apply text-xl sm:text-2xl font-bold text-center text-gray-800 mb-2;
 }
 
 .statGrid {
-    @apply flex flex-row gap-4;
+    @apply w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-4;
+}
+
+@media (max-width: 420px) {
+    .container {
+        @apply px-2;
+    }
+
+    .statGrid {
+        @apply grid-cols-1;
+    }
+
+    .title {
+        @apply text-lg;
+    }
 }

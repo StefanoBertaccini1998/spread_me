@@ -1,0 +1,22 @@
+{
+  "transactions": [],
+  "accounts": [
+    {
+      "id": "66f4",
+      "name": "BPER",
+      "color": "#00f51d",
+      "icon": "🏦",
+      "balance": 0
+    }
+  ],
+  "categories": [],
+  "users": [
+    {
+      "id": "20e6",
+      "email": "s.bertaccinidev@gmail.com",
+      "accounts": [],
+      "categories": [],
+      "transactions": []
+    }
+  ]
+}

@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../redux/hooks/useRedux';
-import { logout } from '../redux/slices/authSlice';
+import { logoutUser } from '../redux/slices/userSlice';
 import styles from './Navbar.module.css';
 
 const Navbar = () => {
-  const user = useAppSelector(state => state.auth.user);
+  const user = useAppSelector(state => state.userSettings.user);
   const dispatch = useAppDispatch();
 
-  const handleLogout = () => dispatch(logout());
+  const handleLogout = () => dispatch(logoutUser());
 
   return (
     <nav className={styles.navbar}>

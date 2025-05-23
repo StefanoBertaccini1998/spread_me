@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './TransactionView.module.css';
 import { useAppSelector } from '../../redux/hooks/useRedux';
 import Modal from '../../components/Modal';
@@ -10,9 +10,13 @@ const labels = {
     transfers: 'Trasferimenti'
 };
 
-const TransactionView = ({ type, setToastMessage, setToastType }) => {
+const TransactionView = ({ type, setToastMessage, setToastType, openModal, modalType, onModalClose }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const data = useAppSelector(state => state.transaction[type]);
+
+    useEffect(() => {
+        setIsModalOpen(openModal && modalType === type);
+    }, [openModal, modalType, type]);
 
     const formatLine = (entry) => {
         if (type === 'transfers') {
@@ -37,7 +41,10 @@ const TransactionView = ({ type, setToastMessage, setToastType }) => {
                 )}
             </ul>
 
-            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} type={type}>
+            <Modal isOpen={isModalOpen} onClose={() => {
+                setIsModalOpen(false);
+                onModalClose?.()
+            }} type={type}>
                 <DynamicForm
                     type={type}
                     onClose={() => setIsModalOpen(false)}
@@ -45,7 +52,7 @@ const TransactionView = ({ type, setToastMessage, setToastType }) => {
                     setToastType={setToastType}
                 />
             </Modal>
-        </div>
+        </div >
     );
 };
 

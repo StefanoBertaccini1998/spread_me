@@ -5,59 +5,56 @@ import FilterBar from '../components/FilterBar';
 import NavigationButtons from '../components/NavigationButtons';
 import DashboardCharts from '../components/DashboardCharts';
 import styles from './DashboardHome.module.css';
+import useInitialDataLoad from '../hooks/useInitialDataLoad';
 
 const DashboardHome = () => {
-    const expenses = useAppSelector(state => state.transaction.expenses);
-    const income = useAppSelector(state => state.transaction.income);
+    useInitialDataLoad();
 
-    const [filteredExpenses, setFilteredExpenses] = useState([]);
-    const [filteredIncome, setFilteredIncome] = useState([]);
+    const expenses = useAppSelector((state) => state.transaction.expenses);
+    const income = useAppSelector((state) => state.transaction.income);
+
     const [filters, setFilters] = useState({
-        period: 'always', // 'always' | 'year' | 'month'
+        period: 'always',
         account: 'All',
         category: 'All',
+        startDate: '',
+        endDate: '',
     });
 
-    useEffect(() => {
-        const filterData = (data) => {
-            return data.filter((item) => {
-                const date = new Date(item.date);
-                const now = new Date();
+    const filterData = (data) => {
+        const now = new Date();
+        return data.filter((item) => {
+            const date = new Date(item.date);
 
-                let matchesPeriod = true;
-                if (filters.period === 'month') {
-                    matchesPeriod =
-                        date.getMonth() === now.getMonth() &&
-                        date.getFullYear() === now.getFullYear();
-                } else if (filters.period === 'year') {
-                    matchesPeriod = date.getFullYear() === now.getFullYear();
-                }
+            let matchesPeriod = true;
+            if (filters.period === 'month') {
+                matchesPeriod = date.getMonth() === now.getMonth() && date.getFullYear() === now.getFullYear();
+            } else if (filters.period === 'year') {
+                matchesPeriod = date.getFullYear() === now.getFullYear();
+            } else if (filters.period === 'custom') {
+                const start = filters.startDate ? new Date(filters.startDate) : null;
+                const end = filters.endDate ? new Date(filters.endDate) : null;
+                matchesPeriod = (!start || date >= start) && (!end || date <= end);
+            }
 
-                const matchesAccount =
-                    filters.account === 'All' ||
-                    item.account === filters.account ||
-                    item.fromAccount === filters.account ||
-                    item.toAccount === filters.account;
+            const matchesAccount =
+                filters.account === 'All' ||
+                item.account === filters.account ||
+                item.fromAccount === filters.account ||
+                item.toAccount === filters.account;
 
-                const matchesCategory =
-                    filters.category === 'All' || item.category === filters.category;
+            const matchesCategory =
+                filters.category === 'All' || item.category === filters.category;
 
-                return matchesPeriod && matchesAccount && matchesCategory;
-            });
-        };
+            return matchesPeriod && matchesAccount && matchesCategory;
+        });
+    };
 
-        setFilteredExpenses(filterData(expenses));
-        setFilteredIncome(filterData(income));
-    }, [expenses, income, filters]);
+    const filteredExpenses = filterData(expenses);
+    const filteredIncome = filterData(income);
 
-    const totalExpenses = filteredExpenses.reduce(
-        (sum, e) => sum + e.amountBaseCurrency,
-        0
-    );
-    const totalIncome = filteredIncome.reduce(
-        (sum, i) => sum + i.amountBaseCurrency,
-        0
-    );
+    const totalExpenses = filteredExpenses.reduce((sum, e) => sum + e.amountBaseCurrency, 0);
+    const totalIncome = filteredIncome.reduce((sum, i) => sum + i.amountBaseCurrency, 0);
     const netBalance = totalIncome - totalExpenses;
 
     const groupByCategory = (data) =>
@@ -85,6 +82,7 @@ const DashboardHome = () => {
     return (
         <div className={styles.container}>
             <h1 className={styles.title}>📊 Riepilogo Finanziario</h1>
+
             <FilterBar filters={filters} setFilters={setFilters} />
 
             <div className={styles.statGrid}>

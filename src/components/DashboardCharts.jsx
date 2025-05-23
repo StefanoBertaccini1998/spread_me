@@ -1,3 +1,4 @@
+// DashboardCharts.js
 import { useState } from 'react';
 import { Bar, Line, Pie } from 'react-chartjs-2';
 import {
@@ -38,9 +39,9 @@ const DashboardCharts = ({ expensesData, incomeData }) => {
     const totalExpenses = expensesData.values.reduce((a, b) => a + b, 0);
     const saldoNetto = totalIncome - totalExpenses;
     const netLabel = saldoNetto >= 0 ? 'Risparmio' : 'Deficit';
-    const netColor = saldoNetto >= 0 ? '#7777f8' : '#f87171';
+    const netColor = saldoNetto >= 0 ? '#4ade80' : '#f87171';
 
-    const formatCurrency = (value) => `€${value}`;
+    const formatCurrency = (value) => `€${value.toFixed(2)}`;
 
     const pieOptions = {
         responsive: true,
@@ -57,7 +58,7 @@ const DashboardCharts = ({ expensesData, incomeData }) => {
     const barLineOptions = {
         responsive: true,
         plugins: {
-            legend: { labels: { color: 'black' } },
+            legend: { labels: { color: '#374151' } },
             tooltip: {
                 callbacks: {
                     label: (context) => `${context.dataset.label}: €${context.raw}`
@@ -67,7 +68,19 @@ const DashboardCharts = ({ expensesData, incomeData }) => {
         scales: {
             y: {
                 ticks: {
-                    callback: formatCurrency
+                    callback: (value) => formatCurrency(value),
+                    color: '#6b7280'
+                },
+                grid: {
+                    color: '#e5e7eb'
+                }
+            },
+            x: {
+                ticks: {
+                    color: '#6b7280'
+                },
+                grid: {
+                    color: '#f3f4f6'
                 }
             }
         }
@@ -88,7 +101,7 @@ const DashboardCharts = ({ expensesData, incomeData }) => {
         labels: expensesData.labels,
         datasets: [
             {
-                label: 'Spese',
+                label: 'Spese per Categoria',
                 data: expensesData.values,
                 backgroundColor: expensesData.labels.map((_, index) => {
                     const colors = ['#f87171', '#fbbf24', '#60a5fa', '#34d399', '#c084fc'];
@@ -120,8 +133,8 @@ const DashboardCharts = ({ expensesData, incomeData }) => {
         const datasets = Object.entries(grouped).map(([category, values]) => ({
             label: category,
             data: allDates.map((date) => values[date] || 0),
-            backgroundColor: type === 'expense' ? 'rgba(239,68,68,0.6)' : 'rgba(68,239,68,0.6)',
-            borderColor: type === 'expense' ? 'rgba(239,68,68,1)' : 'rgba(68,239,68,1)',
+            backgroundColor: type === 'expense' ? 'rgba(239,68,68,0.6)' : 'rgba(34,197,94,0.6)',
+            borderColor: type === 'expense' ? 'rgba(239,68,68,1)' : 'rgba(34,197,94,1)',
             fill: chartType === 'line' ? false : true,
             tension: 0.3
         }));
@@ -144,9 +157,9 @@ const DashboardCharts = ({ expensesData, incomeData }) => {
                 onChange={(e) => setChartType(e.target.value)}
                 className={styles.select}
             >
-                <option value="bar">📊 Grafico Barre per Categoria</option>
-                <option value="line">📈 Grafico Linea per Categoria</option>
-                <option value="pie">🥧 Grafici Torta</option>
+                <option value="bar">📊 Grafico Barre</option>
+                <option value="line">📈 Grafico Linea</option>
+                <option value="pie">🥧 Grafico a Torta</option>
             </select>
 
             {chartType === 'pie' ? (
@@ -199,10 +212,10 @@ const DashboardCharts = ({ expensesData, incomeData }) => {
                 </div>
             ) : chartType === 'line' ? (
                 <>
-                    <h3 className={styles.chartTitle}>Spese per Categoria</h3>
+                    <h3 className={styles.chartTitle}>Andamento Spese</h3>
                     <ChartComponent data={timeSeriesExpenses} options={barLineOptions} />
 
-                    <h3 className={`${styles.chartTitle} mt-10`}>Entrate per Categoria</h3>
+                    <h3 className={`${styles.chartTitle} mt-10`}>Andamento Entrate</h3>
                     <ChartComponent data={timeSeriesIncome} options={barLineOptions} />
                 </>
             ) : (

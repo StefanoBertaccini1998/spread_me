@@ -12,6 +12,9 @@ const FinancialManagement = ({ section }) => {
     const location = useLocation();
     const navigate = useNavigate();
 
+    const [modalOpen, setModalOpen] = useState(false);
+    const [modalType, setModalType] = useState(null);
+
     const initialFilters = location.state?.filters || {
         month: new Date().getMonth(),
         year: new Date().getFullYear(),
@@ -21,8 +24,26 @@ const FinancialManagement = ({ section }) => {
     const [filters, setFilters] = useState(initialFilters);
 
     useEffect(() => {
-        if (section) setView(section);
-    }, [section]);
+        const queryParams = new URLSearchParams(location.search);
+        const typeFromUrl = queryParams.get('type');
+        const shouldOpen = queryParams.get('openModal') === 'true';
+
+        if (shouldOpen && typeFromUrl) {
+            setView(typeFromUrl);
+            setModalOpen(true);
+            setModalType(typeFromUrl);
+
+            // Rimuovi i query param dopo l'apertura del modale
+            const cleanUrl = `/finance/${typeFromUrl}`;
+            navigate(cleanUrl, { replace: true });
+
+        }
+    }, [location.search]);
+
+    const handleModalClose = () => {
+        setModalOpen(false);
+        setModalType(null);
+    };
 
     const handleSectionChange = (newView) => {
         setView(newView);
@@ -44,7 +65,14 @@ const FinancialManagement = ({ section }) => {
                 <button className={`${styles.button} ${view === 'transfers' ? styles.active : ''}`} onClick={() => handleSectionChange('transfers')}>Trasferimenti</button>
             </div>
 
-            <TransactionView type={view} setToastMessage={setToastMessage} setToastType={setToastType} />
+            <TransactionView
+                type={view}
+                setToastMessage={setToastMessage}
+                setToastType={setToastType}
+                openModal={modalOpen}
+                modalType={modalType}
+                onModalClose={handleModalClose}
+            />
 
             {toastMessage && (
                 <Toast message={toastMessage} type={toastType} onClose={() => {

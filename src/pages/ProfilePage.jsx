@@ -1,15 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../redux/hooks/useRedux';
 import {
-    addAccountSetting,
-    addCategorySetting,
     removeAccountSetting,
     removeCategorySetting
 } from '../redux/slices/userSlice';
+import { createAccount } from '../redux/asyncThunks/accountThunks';
+import { createCategory } from '../redux/asyncThunks/categoryThunks';
 import styles from './ProfilePage.module.css';
 import AccountCategoryEditor from '../components/AccountCategoryEditor';
 import AccountCategoryCard from '../components/AccountCategoryCard';
-import { v4 as uuidv4 } from 'uuid';
 
 const ProfilePage = () => {
     const dispatch = useAppDispatch();
@@ -18,13 +17,13 @@ const ProfilePage = () => {
     const [editing, setEditing] = useState(null);
     const [mode, setMode] = useState(null); // 'account' | 'category'
 
-    const handleAddAccount = (data) => {
-        dispatch(addAccountSetting({ ...data, id: uuidv4() }));
+    const handleAddAccount = async (data) => {
+        await dispatch(createAccount(data));
         setEditing(null);
     };
 
-    const handleAddCategory = (data) => {
-        dispatch(addCategorySetting({ ...data, id: uuidv4() }));
+    const handleAddCategory = async (data) => {
+        await dispatch(createCategory(data));
         setEditing(null);
     };
 

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { fetchTransactions } from '../asyncThunks/transactionThunks';
 
 const initialState = {
   expenses: [],
@@ -7,7 +8,7 @@ const initialState = {
 };
 
 const transactionSlice = createSlice({
-  name: 'transaction',
+  name: 'transactions',
   initialState,
   reducers: {
     addExpense: (state, action) => {
@@ -19,6 +20,13 @@ const transactionSlice = createSlice({
     addTransfer: (state, action) => {
       state.transfers.push(action.payload);
     }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchTransactions.fulfilled, (state, action) => {
+      state.expenses = action.payload.filter(t => t.type === 'expense');
+      state.income = action.payload.filter(t => t.type === 'income');
+      state.transfers = action.payload.filter(t => t.type === 'transfer');
+    });
   }
 });
 
