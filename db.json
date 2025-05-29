@@ -2,21 +2,86 @@
   "transactions": [],
   "accounts": [
     {
-      "id": "66f4",
+      "id": "9539",
+      "name": "Contanti",
+      "color": "#e44949",
+      "icon": "💵",
+      "balance": 0,
+      "userId": "372b"
+    },
+    {
+      "id": "aed2",
       "name": "BPER",
-      "color": "#00f51d",
+      "color": "#60a5fa",
       "icon": "🏦",
-      "balance": 0
+      "balance": 0,
+      "userId": "372b"
+    },
+    {
+      "id": "c4bd",
+      "name": "Paypal",
+      "color": "#3b82f6",
+      "icon": "💳",
+      "balance": 0,
+      "userId": "372b"
+    },
+    {
+      "id": "f624",
+      "name": "soldi",
+      "color": "#9ba7b5",
+      "icon": "🐒",
+      "balance": 10000,
+      "userId": "372b"
     }
   ],
-  "categories": [],
+  "categories": [
+    {
+      "id": "4bf6",
+      "name": "Alimentari",
+      "color": "#60a5fa",
+      "icon": "🛒",
+      "userId": "372b"
+    },
+    {
+      "id": "caba",
+      "name": "Svago",
+      "color": "#f87171",
+      "icon": "🎉",
+      "userId": "372b"
+    },
+    {
+      "id": "ae28",
+      "name": "Trasporti",
+      "color": "#34d399",
+      "icon": "🚗",
+      "userId": "372b"
+    },
+    {
+      "id": "d651",
+      "name": "Discoteca",
+      "color": "#c084fc",
+      "icon": "🎶",
+      "userId": "372b"
+    },
+    {
+      "id": "75dc",
+      "name": "Vacanza",
+      "color": "#38bdf8",
+      "icon": "🏖️",
+      "userId": "372b"
+    },
+    {
+      "id": "4c79",
+      "name": "Spesa",
+      "color": "#5c687f",
+      "icon": "🫠",
+      "userId": "372b"
+    }
+  ],
   "users": [
     {
-      "id": "20e6",
-      "email": "s.bertaccinidev@gmail.com",
-      "accounts": [],
-      "categories": [],
-      "transactions": []
+      "id": "372b",
+      "email": "s.bertaccinidev@gmail.com"
     }
   ]
 }

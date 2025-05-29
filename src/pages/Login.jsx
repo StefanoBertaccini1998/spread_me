@@ -9,18 +9,33 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [mode, setMode] = useState('login'); // 'login' | 'create'
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const isValidEmail = (email) => /\S+@\S+\.\S+/.test(email);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
+
+        if (!isValidEmail(email)) {
+            setError("Inserisci un'email valida.");
+            return;
+        }
+
+        setLoading(true);
         try {
-            const result = await dispatch(mode === 'login' ? authenticateUser(email) : createUser(email)).unwrap();
-            console.log("Login success", result);
+            const result = await dispatch(
+                mode === 'login' ? authenticateUser(email) : createUser(email)
+            ).unwrap();
             navigate('/dashboard');
         } catch (err) {
-            setError(mode === 'login' ? 'Errore durante il login. Riprova.' : "Errore durante la creazione dell'account.");
+            // err può essere una stringa passata da rejectWithValue
+            setError(typeof err === 'string' ? err :
+                mode === 'login' ? 'Errore durante il login. Riprova.' :
+                    "Errore durante la creazione dell'account.");
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -48,6 +63,7 @@ const Login = () => {
                     <label className={styles.label}>Email</label>
                     <input
                         type="email"
+                        autoFocus
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className={styles.input}
@@ -55,8 +71,8 @@ const Login = () => {
                     />
                 </div>
                 {error && <p className={styles.error}>{error}</p>}
-                <button type="submit" className={styles.button}>
-                    {mode === 'login' ? 'Login' : 'Crea Account'}
+                <button type="submit" className={styles.button} disabled={loading}>
+                    {loading ? 'Caricamento...' : (mode === 'login' ? 'Login' : 'Crea Account')}
                 </button>
             </form>
         </div>

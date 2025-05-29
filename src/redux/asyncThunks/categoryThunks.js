@@ -1,37 +1,71 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import baseURL from '../../utils/api';
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import baseURL from "../../utils/api";
 
 export const fetchCategories = createAsyncThunk(
-  'user/fetchCategories',
-  async (userId, { rejectWithValue }) => {
+  "categories/fetchCategories",
+  async (_, { getState, rejectWithValue }) => {
     try {
-      const res = await fetch(`${baseURL}/users/${userId}`);
-      const user = await res.json();
-      return user.categories || [];
+      const userId = getState().userSettings.user?.id;
+      if (!userId) throw new Error("Utente non autenticato");
+
+      const res = await fetch(`${baseURL}/categories?userId=${userId}`);
+      const data = await res.json();
+      return data;
     } catch (error) {
-      return rejectWithValue('Errore durante il fetch delle categorie.');
+      return rejectWithValue("Errore durante il fetch delle categorie.");
     }
   }
 );
 
 export const createCategory = createAsyncThunk(
-  'user/createCategory',
-  async ({ userId, category }, { rejectWithValue }) => {
+  "categories/createCategory",
+  async (category, { getState, rejectWithValue }) => {
     try {
-      const userRes = await fetch(`${baseURL}/users/${userId}`);
-      const user = await userRes.json();
-      const updatedCategories = [...(user.categories || []), category];
+      const userId = getState().userSettings.user?.id;
+      if (!userId) throw new Error("Utente non autenticato");
 
-      const updateRes = await fetch(`${baseURL}/users/${userId}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ categories: updatedCategories })
+      const res = await fetch(`${baseURL}/categories`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...category, userId }),
       });
 
-      if (!updateRes.ok) throw new Error();
-      return category;
+      if (!res.ok) throw new Error();
+      return await res.json();
     } catch (error) {
-      return rejectWithValue('Errore durante la creazione della categoria.');
+      return rejectWithValue("Errore durante la creazione della categoria.");
+    }
+  }
+);
+
+export const deleteCategory = createAsyncThunk(
+  "categories/deleteCategory",
+  async (categoryId, { rejectWithValue }) => {
+    try {
+      const res = await fetch(`${baseURL}/categories/${categoryId}`, {
+        method: "DELETE",
+      });
+      if (!res.ok) throw new Error();
+      return categoryId;
+    } catch (error) {
+      return rejectWithValue("Errore durante l’eliminazione della categoria.");
+    }
+  }
+);
+
+export const updateCategory = createAsyncThunk(
+  "categories/updateCategory",
+  async ({ id, updates }, { rejectWithValue }) => {
+    try {
+      const res = await fetch(`${baseURL}/categories/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updates),
+      });
+      if (!res.ok) throw new Error();
+      return await res.json();
+    } catch (error) {
+      return rejectWithValue("Errore durante l’aggiornamento della categoria.");
     }
   }
 );

@@ -1,21 +1,18 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import baseURL from '../../utils/api';
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import baseURL from "../../utils/api";
 
 export const authenticateUser = createAsyncThunk(
-  'user/authenticateUser',
+  "user/authenticateUser",
   async (email, { rejectWithValue }) => {
     try {
-      const res = await fetch(`${baseURL}/users?email=${encodeURIComponent(email)}`);
+      const res = await fetch(
+        `${baseURL}/users?email=${encodeURIComponent(email)}`
+      );
       const existing = await res.json();
 
-      let user = existing[0];
+      const user = existing[0];
       if (!user) {
-        const createRes = await fetch(`${baseURL}/users`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email })
-        });
-        user = await createRes.json();
+        return rejectWithValue("Nessun account trovato per questa email.");
       }
 
       const accRes = await fetch(`${baseURL}/accounts?userId=${user.id}`);
@@ -25,7 +22,7 @@ export const authenticateUser = createAsyncThunk(
 
       return { user, accounts, categories };
     } catch (err) {
-      return rejectWithValue('Errore durante autenticazione');
+      return rejectWithValue("Errore durante l'autenticazione.");
     }
   }
 );

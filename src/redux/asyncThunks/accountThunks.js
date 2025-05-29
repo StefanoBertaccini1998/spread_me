@@ -1,37 +1,71 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import baseURL from '../../utils/api';
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import baseURL from "../../utils/api";
 
 export const fetchAccounts = createAsyncThunk(
-  'user/fetchAccounts',
-  async (userId, { rejectWithValue }) => {
+  "accounts/fetchAccounts",
+  async (_, { getState, rejectWithValue }) => {
     try {
-      const res = await fetch(`${baseURL}/users/${userId}`);
-      const user = await res.json();
-      return user.accounts || [];
+      const userId = getState().userSettings.user?.id;
+      if (!userId) throw new Error("Utente non autenticato");
+      const res = await fetch(`${baseURL}/accounts?userId=${userId}`);
+      const data = await res.json();
+      return data;
     } catch (error) {
-      return rejectWithValue('Errore durante il fetch degli account.');
+      return rejectWithValue("Errore durante il fetch degli account.");
     }
   }
 );
 
 export const createAccount = createAsyncThunk(
-  'user/createAccount',
-  async ({ userId, account }, { rejectWithValue }) => {
+  "categories/createAccount",
+  async (account, { getState, rejectWithValue }) => {
     try {
-      const userRes = await fetch(`${baseURL}/users/${userId}`);
-      const user = await userRes.json();
-      const updatedAccounts = [...(user.accounts || []), account];
+      const userId = getState().userSettings.user?.id;
+      if (!userId) throw new Error("Utente non autenticato");
 
-      const updateRes = await fetch(`${baseURL}/users/${userId}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ accounts: updatedAccounts })
+      const res = await fetch(`${baseURL}/accounts`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...account, userId }),
       });
 
-      if (!updateRes.ok) throw new Error();
-      return account;
+      if (!res.ok) throw new Error();
+      return await res.json();
     } catch (error) {
-      return rejectWithValue('Errore durante la creazione dell’account.');
+      return rejectWithValue("Errore durante la creazione della categoria.");
+    }
+  }
+);
+
+export const deleteAccount = createAsyncThunk(
+  "accounts/deleteAccount",
+  async (accountId, { rejectWithValue }) => {
+    try {
+      const res = await fetch(`${baseURL}/accounts/${accountId}`, {
+        method: "DELETE",
+      });
+      if (!res.ok) throw new Error();
+      return accountId;
+    } catch (error) {
+      return rejectWithValue("Errore durante l’eliminazione dell’account.");
+    }
+  }
+);
+
+export const updateAccount = createAsyncThunk(
+  "accounts/updateAccount",
+  async ({ id, updates }, { rejectWithValue }) => {
+    console.log("updateAccount", updates);
+    try {
+      const res = await fetch(`${baseURL}/accounts/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updates),
+      });
+      if (!res.ok) throw new Error();
+      return await res.json();
+    } catch (error) {
+      return rejectWithValue("Errore durante l’aggiornamento dell’account.");
     }
   }
 );

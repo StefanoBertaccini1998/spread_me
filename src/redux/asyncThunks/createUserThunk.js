@@ -1,9 +1,9 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { authenticateUser } from '../asyncThunks/userThunks';
-import baseURL from '../../utils/api';
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { authenticateUser } from "../asyncThunks/userThunks";
+import baseURL from "../../utils/api";
 
 export const createUser = createAsyncThunk(
-  'auth/createUser',
+  "auth/createUser",
   async (email, { dispatch, rejectWithValue }) => {
     try {
       // Verifica se l'utente esiste già
@@ -11,48 +11,59 @@ export const createUser = createAsyncThunk(
       const existing = await resCheck.json();
 
       if (existing.length > 0) {
-        return rejectWithValue('Esiste già un account con questa email.');
+        return rejectWithValue("Esiste già un account con questa email.");
       }
-        const defaultAccounts = [
-        { id: '1', name: 'Contanti', color: '#f87171', icon: '💵', balance: 0 },
-        { id: '2', name: 'BPER', color: '#60a5fa', icon: '🏦', balance: 0 },
-        { id: '3', name: 'Paypal', color: '#3b82f6', icon: '💳', balance: 0 }
-        ];
-
-        const defaultCategories = [
-        { id: '4', name: "Alimentari", color: "#60a5fa", icon: "🛒" },
-        { id: '5', name: "Svago", color: "#f87171", icon: "🎉" },
-        { id: '6', name: "Trasporti", color: "#34d399", icon: "🚗" },
-        { id: '7', name: "Discoteca", color: "#c084fc", icon: "🎶" },
-        { id: '8', name: "Regali", color: "#facc15", icon: "🎁" },
-        { id: '9', name: "Vacanza", color: "#38bdf8", icon: "🏖️" }
-        ];
-      // Crea nuovo utente
-      const newUser = {
-        email,
-        accounts: defaultAccounts,
-        categories: defaultCategories,
-        transactions: []
-      };
-
+      // Step 1: crea user
       const resCreate = await fetch(`${baseURL}/users`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newUser)
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
       });
 
-      if (!resCreate.ok) {
-        throw new Error('Errore durante la creazione utente');
+      if (!resCreate.ok) throw new Error();
+      const createdUser = await resCreate.json();
+
+      const userId = createdUser.id;
+
+      // Step 2: default Accounts
+      const defaultAccounts = [
+        { name: "Contanti", color: "#f87171", icon: "💵", balance: 0 },
+        { name: "BPER", color: "#60a5fa", icon: "🏦", balance: 0 },
+        { name: "Paypal", color: "#3b82f6", icon: "💳", balance: 0 },
+      ];
+
+      for (const acc of defaultAccounts) {
+        await fetch(`${baseURL}/accounts`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ...acc, userId }),
+        });
       }
 
-      const createdUser = await resCreate.json();
+      // Step 3: default Categories
+      const defaultCategories = [
+        { name: "Alimentari", color: "#60a5fa", icon: "🛒" },
+        { name: "Svago", color: "#f87171", icon: "🎉" },
+        { name: "Trasporti", color: "#34d399", icon: "🚗" },
+        { name: "Discoteca", color: "#c084fc", icon: "🎶" },
+        { name: "Regali", color: "#facc15", icon: "🎁" },
+        { name: "Vacanza", color: "#38bdf8", icon: "🏖️" },
+      ];
+
+      for (const cat of defaultCategories) {
+        await fetch(`${baseURL}/categories`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ...cat, userId }),
+        });
+      }
 
       dispatch(authenticateUser(createdUser));
       return createdUser;
     } catch (error) {
-      return rejectWithValue(error.message || 'Errore durante la creazione dell’account.');
+      return rejectWithValue(
+        error.message || "Errore durante la creazione dell’account."
+      );
     }
   }
 );

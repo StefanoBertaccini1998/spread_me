@@ -39,6 +39,7 @@
     @apply w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition;
 }
 
+/* Login.module.css */
 .error {
-    @apply text-red-500 text-sm mt-1 mb-2;
+    @apply text-sm text-red-500 mt-2;
 }

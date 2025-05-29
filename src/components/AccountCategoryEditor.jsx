@@ -5,12 +5,14 @@ import { FiCheck, FiX } from 'react-icons/fi';
 import styles from './AccountCategoryEditor.module.css';
 
 const AccountCategoryEditor = ({ initialData, onSave, onCancel }) => {
+    const isEdit = !!initialData.id;
     const isAccount = initialData.hasOwnProperty('balance');
     const [formData, setFormData] = useState({
         ...initialData,
         balance: isAccount ? initialData.balance ?? 0 : undefined,
     });
 
+    console.log("Intial data", initialData)
     const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
     const [errors, setErrors] = useState({});
 
@@ -25,6 +27,7 @@ const AccountCategoryEditor = ({ initialData, onSave, onCancel }) => {
 
     const handleSave = () => {
         if (!validate()) return;
+        console.log("Form data", formData)
         onSave(formData);
     };
 
@@ -36,9 +39,9 @@ const AccountCategoryEditor = ({ initialData, onSave, onCancel }) => {
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className={`${styles.inputField} ${errors.name ? 'border-red-500' : ''}`}
+                    className={`${styles.inputField} ${errors.name ? styles.inputError : ''}`}
                 />
-                {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
+                {errors.name && <p className={styles.errorText}>{errors.name}</p>}
             </div>
 
             {isAccount && (
@@ -48,13 +51,13 @@ const AccountCategoryEditor = ({ initialData, onSave, onCancel }) => {
                         type="number"
                         value={formData.balance}
                         onChange={(e) => setFormData({ ...formData, balance: parseFloat(e.target.value) })}
-                        className={`${styles.inputField} ${errors.balance ? 'border-red-500' : ''}`}
+                        className={`${styles.inputField} ${errors.name ? styles.inputError : ''}`}
                     />
-                    {errors.balance && <p className="text-sm text-red-500">{errors.balance}</p>}
+                    {errors.balance && <p className={styles.errorText}>{errors.balance}</p>}
                 </div>
             )}
 
-            <div className="flex items-center gap-4">
+            <div className={styles.flexGroup}>
                 <div className={styles.formGroup}>
                     <label className={styles.editorTitle}>Colore</label>
                     <input
@@ -74,7 +77,7 @@ const AccountCategoryEditor = ({ initialData, onSave, onCancel }) => {
                     >
                         {formData.icon} Scegli
                     </button>
-                    {errors.icon && <p className="text-sm text-red-500">{errors.icon}</p>}
+                    {errors.icon && <p className={styles.errorText}>{errors.icon}</p>}
                 </div>
             </div>
 
@@ -102,7 +105,7 @@ const AccountCategoryEditor = ({ initialData, onSave, onCancel }) => {
                     onClick={handleSave}
                     className={styles.saveButton}
                 >
-                    <FiCheck /> Salva
+                    <FiCheck /> {isEdit ? 'Salva modifiche' : 'Aggiungi'}
                 </button>
             </div>
         </div>
@@ -111,13 +114,14 @@ const AccountCategoryEditor = ({ initialData, onSave, onCancel }) => {
 
 AccountCategoryEditor.propTypes = {
     initialData: PropTypes.shape({
+        id: PropTypes.string,
         name: PropTypes.string,
         color: PropTypes.string,
         icon: PropTypes.string,
-        balance: PropTypes.number,
+        balance: PropTypes.number
     }).isRequired,
     onSave: PropTypes.func.isRequired,
-    onCancel: PropTypes.func.isRequired,
+    onCancel: PropTypes.func.isRequired
 };
 
 export default AccountCategoryEditor;

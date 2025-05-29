@@ -1,38 +1,39 @@
 import { useState, useEffect, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../redux/hooks/useRedux';
-import {
-    removeAccountSetting,
-    removeCategorySetting
-} from '../redux/slices/userSlice';
-import { createAccount } from '../redux/asyncThunks/accountThunks';
-import { createCategory } from '../redux/asyncThunks/categoryThunks';
+import { createAccount, updateAccount, deleteAccount } from '../redux/asyncThunks/accountThunks';
+import { createCategory, updateCategory, deleteCategory } from '../redux/asyncThunks/categoryThunks';
 import styles from './ProfilePage.module.css';
 import AccountCategoryEditor from '../components/AccountCategoryEditor';
 import AccountCategoryCard from '../components/AccountCategoryCard';
 
 const ProfilePage = () => {
     const dispatch = useAppDispatch();
-    const { accounts, categories } = useAppSelector((state) => state.userSettings);
+    const accounts = useAppSelector((state) => state.accounts.data);
+    const categories = useAppSelector((state) => state.categories.data);
 
     const [editing, setEditing] = useState(null);
     const [mode, setMode] = useState(null); // 'account' | 'category'
+    const modalRef = useRef();
 
-    const handleAddAccount = async (data) => {
-        await dispatch(createAccount(data));
-        setEditing(null);
-    };
+    const handleSave = async (data) => {
+        console.log("ID: ", data.id, "Mode: ", mode)
+        console.log("Data", data)
+        const action = data.id
+            ? mode === 'account'
+                ? updateAccount({ id: data.id, updates: data })
+                : updateCategory({ id: data.id, updates: data })
+            : mode === 'account'
+                ? createAccount(data)
+                : createCategory(data);
 
-    const handleAddCategory = async (data) => {
-        await dispatch(createCategory(data));
+        await dispatch(action);
         setEditing(null);
     };
 
     const handleDelete = (id, type) => {
-        if (type === 'account') dispatch(removeAccountSetting(id));
-        if (type === 'category') dispatch(removeCategorySetting(id));
+        const action = type === 'account' ? deleteAccount(id) : deleteCategory(id);
+        dispatch(action);
     };
-
-    const modalRef = useRef();
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -68,13 +69,13 @@ const ProfilePage = () => {
                 </div>
 
                 <button
-                    className={`${styles.button} bg-green-600 hover:bg-green-700`}
+                    className={styles.buttonAdd}
                     onClick={() => {
                         setEditing({ name: '', color: '#60a5fa', icon: '🏦', balance: 0 });
                         setMode('account');
                     }}
                 >
-                    ➕ Aggiungi Conto
+                    Aggiungi Conto
                 </button>
             </section>
 
@@ -97,23 +98,23 @@ const ProfilePage = () => {
                 </div>
 
                 <button
-                    className={`${styles.button} bg-green-600 hover:bg-green-700`}
+                    className={styles.buttonAdd}
                     onClick={() => {
                         setEditing({ name: '', color: '#e5e7eb', icon: '🛒' });
                         setMode('category');
                     }}
                 >
-                    ➕ Aggiungi Categoria
+                    Aggiungi Categoria
                 </button>
             </section>
 
             {editing && (
-                <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
-                    <div ref={modalRef} className="bg-white p-6 rounded shadow-lg w-full max-w-md">
+                <div className={styles.modalOverlay}>
+                    <div ref={modalRef} className={styles.modalContent}>
                         <AccountCategoryEditor
                             initialData={editing}
                             mode={mode}
-                            onSave={mode === 'account' ? handleAddAccount : handleAddCategory}
+                            onSave={handleSave}
                             onCancel={() => setEditing(null)}
                         />
                     </div>
