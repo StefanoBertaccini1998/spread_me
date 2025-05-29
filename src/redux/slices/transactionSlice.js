@@ -21,14 +21,14 @@ const transactionSlice = createSlice({
       // CREATE
       .addCase(createTransaction.fulfilled, (state, action) => {
         const tx = action.payload;
-        if (tx.type === "expense") state.expenses.push(tx);
-        if (tx.type === "income") state.income.push(tx);
-        if (tx.type === "transfer") state.transfers.push(tx);
+        if (tx.type === "expenses") state.expenses.push(tx);
+        if (tx.type === "incomes") state.income.push(tx);
+        if (tx.type === "transfers") state.transfers.push(tx);
       })
       .addCase(fetchTransactions.fulfilled, (state, action) => {
-        state.expenses = action.payload.filter((t) => t.type === "expense");
-        state.income = action.payload.filter((t) => t.type === "income");
-        state.transfers = action.payload.filter((t) => t.type === "transfer");
+        state.expenses = action.payload.filter((t) => t.type === "expenses");
+        state.income = action.payload.filter((t) => t.type === "incomes");
+        state.transfers = action.payload.filter((t) => t.type === "transfers");
       })
       // DELETE
       .addCase(deleteTransaction.fulfilled, (state, action) => {

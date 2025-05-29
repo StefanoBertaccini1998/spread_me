@@ -52,12 +52,12 @@ const FinancialManagement = ({ section }) => {
 
     return (
         <div className={styles.container}>
+            <h1 className={styles.title}>
+                {view === 'expenses' && '📉 Gestione Spese'}
+                {view === 'income' && '📈 Gestione Entrate'}
+                {view === 'transfers' && '🔁 Gestione Trasferimenti'}
+            </h1>
             <FilterBar filters={filters} setFilters={setFilters} />
-
-            <div className={styles.breadcrumb}>
-                <a href="/dashboard" className={styles.breadcrumbLink}>Dashboard</a>
-                {' / '} Gestione Finanze / {view === 'expenses' ? 'Spese' : view === 'income' ? 'Entrate' : 'Trasferimenti'}
-            </div>
 
             <div className={styles.menu}>
                 <button className={`${styles.button} ${view === 'expenses' ? styles.active : ''}`} onClick={() => handleSectionChange('expenses')}>Spese</button>

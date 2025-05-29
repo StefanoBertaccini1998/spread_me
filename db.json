@@ -1,5 +1,38 @@
 {
-  "transactions": [],
+  "transactions": [
+    {
+      "id": "b57e",
+      "date": "2025-05-29",
+      "category": "",
+      "account": "",
+      "amountBaseCurrency": null,
+      "baseCurrency": "EUR",
+      "comment": "",
+      "fromAccount": "Contanti",
+      "toAccount": "Paypal",
+      "amountFromCurrency": 100,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "transfers",
+      "userId": "372b"
+    },
+    {
+      "id": "82d0",
+      "date": "2025-05-29",
+      "category": "Alimentari",
+      "account": "soldi",
+      "amountBaseCurrency": 100,
+      "baseCurrency": "EUR",
+      "comment": "",
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
+      "userId": "372b"
+    }
+  ],
   "accounts": [
     {
       "id": "9539",

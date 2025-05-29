@@ -12,7 +12,6 @@ const AccountCategoryEditor = ({ initialData, onSave, onCancel }) => {
         balance: isAccount ? initialData.balance ?? 0 : undefined,
     });
 
-    console.log("Intial data", initialData)
     const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
     const [errors, setErrors] = useState({});
 
@@ -27,7 +26,7 @@ const AccountCategoryEditor = ({ initialData, onSave, onCancel }) => {
 
     const handleSave = () => {
         if (!validate()) return;
-        console.log("Form data", formData)
+
         onSave(formData);
     };
 

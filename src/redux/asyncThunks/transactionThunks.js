@@ -4,10 +4,11 @@ import { addExpense, addIncome, addTransfer } from "../slices/transactionSlice";
 
 export const createTransaction = createAsyncThunk(
   "transactions/create",
-  async (transaction, { dispatch, getState }) => {
+  async (transaction, { getState }) => {
     const state = getState();
     const user = state.userSettings.user;
 
+    console.log("Create TX", transaction);
     if (!user || !user.id) {
       throw new Error("Utente non autenticato");
     }

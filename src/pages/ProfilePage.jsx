@@ -16,8 +16,6 @@ const ProfilePage = () => {
     const modalRef = useRef();
 
     const handleSave = async (data) => {
-        console.log("ID: ", data.id, "Mode: ", mode)
-        console.log("Data", data)
         const action = data.id
             ? mode === 'account'
                 ? updateAccount({ id: data.id, updates: data })

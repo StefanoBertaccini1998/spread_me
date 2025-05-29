@@ -55,7 +55,6 @@ export const deleteAccount = createAsyncThunk(
 export const updateAccount = createAsyncThunk(
   "accounts/updateAccount",
   async ({ id, updates }, { rejectWithValue }) => {
-    console.log("updateAccount", updates);
     try {
       const res = await fetch(`${baseURL}/accounts/${id}`, {
         method: "PATCH",
