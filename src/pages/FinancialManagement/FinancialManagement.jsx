@@ -54,14 +54,14 @@ const FinancialManagement = ({ section }) => {
         <div className={styles.container}>
             <h1 className={styles.title}>
                 {view === 'expenses' && '📉 Gestione Spese'}
-                {view === 'income' && '📈 Gestione Entrate'}
+                {view === 'incomes' && '📈 Gestione Entrate'}
                 {view === 'transfers' && '🔁 Gestione Trasferimenti'}
             </h1>
             <FilterBar filters={filters} setFilters={setFilters} />
 
             <div className={styles.menu}>
                 <button className={`${styles.button} ${view === 'expenses' ? styles.active : ''}`} onClick={() => handleSectionChange('expenses')}>Spese</button>
-                <button className={`${styles.button} ${view === 'income' ? styles.active : ''}`} onClick={() => handleSectionChange('income')}>Entrate</button>
+                <button className={`${styles.button} ${view === 'incomes' ? styles.active : ''}`} onClick={() => handleSectionChange('incomes')}>Entrate</button>
                 <button className={`${styles.button} ${view === 'transfers' ? styles.active : ''}`} onClick={() => handleSectionChange('transfers')}>Trasferimenti</button>
             </div>
 

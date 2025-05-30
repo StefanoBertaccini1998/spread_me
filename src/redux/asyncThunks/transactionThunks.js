@@ -1,86 +1,132 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import baseURL from "../../utils/api";
-import { addExpense, addIncome, addTransfer } from "../slices/transactionSlice";
+import { adjustAccountBalance } from "../../utils/accountUpdateUtils";
+import { updateAccountsBulk } from "./accountThunks";
 
+// CREATE
 export const createTransaction = createAsyncThunk(
   "transactions/create",
-  async (transaction, { getState }) => {
-    const state = getState();
-    const user = state.userSettings.user;
+  async (transaction, { getState, dispatch, rejectWithValue }) => {
+    try {
+      const { user } = getState().userSettings;
+      if (!user?.id) throw new Error("Utente non autenticato");
 
-    console.log("Create TX", transaction);
-    if (!user || !user.id) {
-      throw new Error("Utente non autenticato");
+      const transactionWithUser = { ...transaction, userId: user.id };
+      const res = await fetch(`${baseURL}/transactions`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(transactionWithUser),
+      });
+
+      if (!res.ok)
+        throw new Error("Errore durante la creazione della transazione");
+
+      const saved = await res.json();
+
+      const accounts = getState().accounts.data;
+      const updatedAccounts = adjustAccountBalance(accounts, saved, "add");
+
+      await dispatch(updateAccountsBulk(updatedAccounts)).unwrap(); // 👉 forza errore se fallisce
+
+      return saved;
+    } catch (err) {
+      console.error("Errore createTransaction:", err);
+      return rejectWithValue(
+        err.message || "Errore nella creazione transazione."
+      );
     }
-
-    const userId = user.id;
-    const transactionWithUser = { ...transaction, userId };
-
-    const response = await fetch(`${baseURL}/transactions`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(transactionWithUser),
-    });
-
-    if (!response.ok) {
-      throw new Error("Errore durante la creazione della transazione");
-    }
-
-    const saved = await response.json();
-
-    return saved;
   }
 );
 
-// Fetch all transactions from the server
+// FETCH
 export const fetchTransactions = createAsyncThunk(
   "transactions/fetchAll",
-  async (_, { getState }) => {
-    const state = getState();
-    const user = state.userSettings.user;
+  async (_, { getState, rejectWithValue }) => {
+    try {
+      const { user } = getState().userSettings;
+      if (!user?.id) throw new Error("Utente non autenticato");
 
-    if (!user || !user.id) {
-      throw new Error("Utente non autenticato");
+      const res = await fetch(`${baseURL}/transactions?userId=${user.id}`);
+      if (!res.ok)
+        throw new Error("Errore durante il recupero delle transazioni");
+
+      return await res.json();
+    } catch (err) {
+      return rejectWithValue(err.message || "Errore fetching transazioni.");
     }
-
-    const response = await fetch(`${baseURL}/transactions?userId=${user.id}`);
-    if (!response.ok) {
-      throw new Error("Errore durante il recupero delle transazioni");
-    }
-
-    return await response.json();
   }
 );
 
+// DELETE
 export const deleteTransaction = createAsyncThunk(
   "transactions/deleteTransaction",
-  async (transactionId, { rejectWithValue }) => {
+  async (transactionId, { getState, dispatch, rejectWithValue }) => {
     try {
-      const res = await fetch(`${baseURL}/transactions/${transactionId}`, {
-        method: "DELETE",
-      });
-      if (!res.ok) throw new Error();
+      const state = getState();
+      const res = await fetch(`${baseURL}/transactions/${transactionId}`);
+      if (!res.ok) throw new Error("Transazione non trovata");
+
+      const transaction = await res.json();
+
+      const updatedAccounts = adjustAccountBalance(
+        state.accounts.data,
+        transaction,
+        "remove"
+      );
+      await dispatch(updateAccountsBulk(updatedAccounts)).unwrap();
+
+      const deleteRes = await fetch(
+        `${baseURL}/transactions/${transactionId}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (!deleteRes.ok) throw new Error("Errore durante l'eliminazione");
+
       return transactionId;
-    } catch (error) {
-      return rejectWithValue("Errore durante la rimozione della transazione.");
+    } catch (err) {
+      console.error("Errore deleteTransaction:", err);
+      return rejectWithValue(
+        err.message || "Errore durante la rimozione della transazione."
+      );
     }
   }
 );
 
+// UPDATE
 export const updateTransaction = createAsyncThunk(
   "transactions/updateTransaction",
-  async ({ id, updates }, { rejectWithValue }) => {
+  async ({ id, updates }, { getState, dispatch, rejectWithValue }) => {
     try {
-      const res = await fetch(`${baseURL}/transactions/${id}`, {
+      const state = getState();
+
+      const resOld = await fetch(`${baseURL}/transactions/${id}`);
+      if (!resOld.ok) throw new Error("Transazione precedente non trovata");
+      const oldTx = await resOld.json();
+
+      const resPatch = await fetch(`${baseURL}/transactions/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updates),
       });
-      if (!res.ok) throw new Error();
-      return await res.json();
-    } catch (error) {
+      if (!resPatch.ok) throw new Error("Errore durante il patch");
+
+      const updatedTx = await resPatch.json();
+
+      let updatedAccounts = adjustAccountBalance(
+        state.accounts.data,
+        oldTx,
+        "remove"
+      );
+      updatedAccounts = adjustAccountBalance(updatedAccounts, updatedTx, "add");
+
+      await dispatch(updateAccountsBulk(updatedAccounts)).unwrap();
+
+      return updatedTx;
+    } catch (err) {
+      console.error("Errore updateTransaction:", err);
       return rejectWithValue(
-        "Errore durante l’aggiornamento della transazione."
+        err.message || "Errore durante l’aggiornamento della transazione."
       );
     }
   }

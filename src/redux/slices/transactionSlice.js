@@ -8,7 +8,7 @@ import {
 
 const initialState = {
   expenses: [],
-  income: [],
+  incomes: [],
   transfers: [],
 };
 
@@ -22,18 +22,18 @@ const transactionSlice = createSlice({
       .addCase(createTransaction.fulfilled, (state, action) => {
         const tx = action.payload;
         if (tx.type === "expenses") state.expenses.push(tx);
-        if (tx.type === "incomes") state.income.push(tx);
+        if (tx.type === "incomes") state.incomes.push(tx);
         if (tx.type === "transfers") state.transfers.push(tx);
       })
       .addCase(fetchTransactions.fulfilled, (state, action) => {
         state.expenses = action.payload.filter((t) => t.type === "expenses");
-        state.income = action.payload.filter((t) => t.type === "incomes");
+        state.incomes = action.payload.filter((t) => t.type === "incomes");
         state.transfers = action.payload.filter((t) => t.type === "transfers");
       })
       // DELETE
       .addCase(deleteTransaction.fulfilled, (state, action) => {
         state.expenses = state.expenses.filter((t) => t.id !== action.payload);
-        state.income = state.income.filter((t) => t.id !== action.payload);
+        state.incomes = state.incomes.filter((t) => t.id !== action.payload);
         state.transfers = state.transfers.filter(
           (t) => t.id !== action.payload
         );
@@ -44,9 +44,9 @@ const transactionSlice = createSlice({
         const type = updated.type;
 
         const groupMap = {
-          expense: state.expenses,
-          income: state.income,
-          transfer: state.transfers,
+          expenses: state.expenses,
+          incomes: state.incomes,
+          transfers: state.transfers,
         };
 
         const group = groupMap[type];

@@ -9,6 +9,7 @@ import DashboardHome from '../pages/DashboardHome';
 import ProfilePage from '../pages/ProfilePage';
 import ErrorPage from '../pages/ErrorPage';
 import HomePage from '../pages/HomePage';
+import TransactionDetail from '../pages/FinancialManagement/TransactionDetail';
 
 const AppRoutes = () => (
     <BrowserRouter>
@@ -23,8 +24,9 @@ const AppRoutes = () => (
                 <Route path="dashboard" element={<ProtectedRoute><DashboardHome /></ProtectedRoute>} />
                 <Route path="finance" element={<ProtectedRoute><FinancialManagement /></ProtectedRoute>} />
                 <Route path="finance/expenses" element={<ProtectedRoute><FinancialManagement section="expenses" /></ProtectedRoute>} />
-                <Route path="finance/income" element={<ProtectedRoute><FinancialManagement section="income" /></ProtectedRoute>} />
+                <Route path="finance/incomes" element={<ProtectedRoute><FinancialManagement section="incomes" /></ProtectedRoute>} />
                 <Route path="finance/transfers" element={<ProtectedRoute><FinancialManagement section="transfers" /></ProtectedRoute>} />
+                <Route path="/transaction/:id" element={<TransactionDetail />} />
                 <Route path="import" element={<ProtectedRoute><ImportPage /></ProtectedRoute>} />
                 <Route path="profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
             </Route>

@@ -68,3 +68,36 @@ export const updateAccount = createAsyncThunk(
     }
   }
 );
+
+export const updateAccountsBulk = createAsyncThunk(
+  "accounts/updateBulk",
+  async (accountsToUpdate, { rejectWithValue }) => {
+    try {
+      const results = await Promise.allSettled(
+        accountsToUpdate.map((acc) =>
+          fetch(`${baseURL}/accounts/${acc.id}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ balance: acc.balance }),
+          })
+        )
+      );
+
+      const failed = results.filter(
+        (r) => r.status === "rejected" || (r.value && !r.value.ok)
+      );
+      if (failed.length > 0) {
+        console.warn("Alcuni aggiornamenti account non riusciti:", failed);
+        return rejectWithValue(
+          "Errore durante l’aggiornamento di alcuni account."
+        );
+      }
+
+      return accountsToUpdate; // restituisci i dati aggiornati, se necessario
+    } catch (err) {
+      return rejectWithValue(
+        "Errore generale nell’aggiornamento degli account."
+      );
+    }
+  }
+);

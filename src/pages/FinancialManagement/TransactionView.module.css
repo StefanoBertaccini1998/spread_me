@@ -6,37 +6,74 @@
     @apply flex justify-between items-center mb-6;
 }
 
-/* Expenses styles */
+/* Titoli e bottoni */
 .expenses-title {
     @apply text-3xl font-bold text-red-700;
 }
 
 .expenses-button {
-    @apply bg-red-700 text-white py-2 px-4 rounded hover:bg-red-800;
+    @apply bg-red-700 text-white py-2 px-4 rounded hover:bg-red-800 transition;
 }
 
-/* Income styles */
-.income-title {
+.incomes-title {
     @apply text-3xl font-bold text-green-700;
 }
 
-.income-button {
-    @apply bg-green-700 text-white py-2 px-4 rounded hover:bg-green-800;
+.incomes-button {
+    @apply bg-green-700 text-white py-2 px-4 rounded hover:bg-green-800 transition;
 }
 
-/* Transfers styles */
 .transfers-title {
     @apply text-3xl font-bold text-purple-700;
 }
 
 .transfers-button {
-    @apply bg-purple-700 text-white py-2 px-4 rounded hover:bg-purple-800;
+    @apply bg-purple-700 text-white py-2 px-4 rounded hover:bg-purple-800 transition;
 }
 
+/* Lista */
 .list {
-    @apply space-y-2 text-gray-800;
+    @apply space-y-3;
 }
 
 .item {
-    @apply p-4 bg-gray-100 rounded;
+    @apply p-4 bg-white rounded shadow-sm border border-gray-200 hover:shadow-md transition cursor-pointer;
+}
+
+.content {
+    @apply flex flex-col gap-2;
+}
+
+.topLine {
+    @apply flex justify-between items-center text-sm sm:text-base font-semibold text-gray-700;
+}
+
+.bottomLine {
+    @apply flex flex-wrap items-center gap-2 text-sm text-gray-600;
+}
+
+/* Importi */
+.amountNegative {
+    @apply text-red-600 font-bold;
+}
+
+.amountPositive {
+    @apply text-green-600 font-bold;
+}
+
+.amountTransfer {
+    @apply text-purple-600 font-bold;
+}
+
+/* Badge e extra */
+.badge {
+    @apply inline-block bg-gray-100 px-3 py-1 rounded text-xs sm:text-sm font-medium text-gray-700;
+}
+
+.date {
+    @apply text-sm text-gray-500 font-medium;
+}
+
+.arrow {
+    @apply text-lg text-purple-500;
 }

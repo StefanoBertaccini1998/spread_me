@@ -21,7 +21,7 @@ const Navbar = () => {
               <button className={styles.link}>Gestione Finanza ▾</button>
               <div className={`hidden group-hover:flex flex-col absolute bg-white text-primary shadow-lg mt-1 z-50 ${styles.dropdownMenu}`}>
                 <Link to="/finance/expenses" className={styles.dropdownLink}>Spese</Link>
-                <Link to="/finance/income" className={styles.dropdownLink}>Entrate</Link>
+                <Link to="/finance/incomes" className={styles.dropdownLink}>Entrate</Link>
                 <Link to="/finance/transfers" className={styles.dropdownLink}>Trasferimenti</Link>
               </div>
             </div>

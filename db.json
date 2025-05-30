@@ -1,27 +1,27 @@
 {
   "transactions": [
     {
-      "id": "b57e",
-      "date": "2025-05-29",
-      "category": "",
-      "account": "",
-      "amountBaseCurrency": null,
+      "id": "f7ec",
+      "date": "2025-05-30",
+      "category": "Alimentari",
+      "account": "Casa",
+      "amountBaseCurrency": 50,
       "baseCurrency": "EUR",
-      "comment": "",
-      "fromAccount": "Contanti",
-      "toAccount": "Paypal",
-      "amountFromCurrency": 100,
+      "comment": "wefewf",
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
       "fromCurrency": "EUR",
       "toCurrency": "EUR",
-      "type": "transfers",
-      "userId": "372b"
+      "type": "expenses",
+      "userId": "f2c2"
     },
     {
-      "id": "82d0",
-      "date": "2025-05-29",
-      "category": "Alimentari",
-      "account": "soldi",
-      "amountBaseCurrency": 100,
+      "id": "b435",
+      "date": "2025-05-30",
+      "category": "Regali",
+      "account": "Soldi",
+      "amountBaseCurrency": 200,
       "baseCurrency": "EUR",
       "comment": "",
       "fromAccount": "",
@@ -30,90 +30,201 @@
       "fromCurrency": "EUR",
       "toCurrency": "EUR",
       "type": "expenses",
-      "userId": "372b"
+      "userId": "f2c2"
+    },
+    {
+      "id": "4ecd",
+      "date": "2025-05-30",
+      "category": "Regali",
+      "account": "Contanti",
+      "amountBaseCurrency": 500,
+      "baseCurrency": "EUR",
+      "comment": "",
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "incomes",
+      "userId": "f2c2"
+    },
+    {
+      "id": "c697",
+      "date": "2025-05-30",
+      "category": "",
+      "account": "",
+      "amountBaseCurrency": null,
+      "baseCurrency": "EUR",
+      "comment": "rgfrgf",
+      "fromAccount": "Locker",
+      "toAccount": "Contanti",
+      "amountFromCurrency": 500,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "transfers",
+      "userId": "f2c2"
+    },
+    {
+      "id": "a75b",
+      "date": "2025-05-30",
+      "category": "",
+      "account": "",
+      "amountBaseCurrency": null,
+      "baseCurrency": "EUR",
+      "comment": "",
+      "fromAccount": "Locker",
+      "toAccount": "Contanti",
+      "amountFromCurrency": 500,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "transfers",
+      "userId": "f2c2"
+    },
+    {
+      "id": "9ebd",
+      "date": "2025-05-30",
+      "category": "Vacanza",
+      "account": "Contanti",
+      "amountBaseCurrency": 500,
+      "baseCurrency": "EUR",
+      "comment": "",
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "incomes",
+      "userId": "f2c2"
+    },
+    {
+      "id": "dde8",
+      "date": "2025-05-30",
+      "category": "Alimentari",
+      "account": "BPER",
+      "amountBaseCurrency": 1500,
+      "baseCurrency": "EUR",
+      "comment": "",
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "incomes",
+      "userId": "f2c2"
     }
   ],
   "accounts": [
     {
-      "id": "9539",
+      "id": "f55a",
       "name": "Contanti",
-      "color": "#e44949",
+      "color": "#f87171",
       "icon": "💵",
-      "balance": 0,
-      "userId": "372b"
+      "balance": 1500,
+      "userId": "f2c2"
     },
     {
-      "id": "aed2",
+      "id": "2d58",
       "name": "BPER",
       "color": "#60a5fa",
       "icon": "🏦",
       "balance": 0,
-      "userId": "372b"
+      "userId": "f2c2"
     },
     {
-      "id": "c4bd",
+      "id": "6b6b",
       "name": "Paypal",
       "color": "#3b82f6",
       "icon": "💳",
       "balance": 0,
-      "userId": "372b"
+      "userId": "f2c2"
     },
     {
-      "id": "f624",
-      "name": "soldi",
-      "color": "#9ba7b5",
+      "id": "c8f0",
+      "name": "Soldi",
+      "color": "#2d3e52",
+      "icon": "🥶",
+      "balance": 800,
+      "userId": "f2c2"
+    },
+    {
+      "id": "247e",
+      "name": "Locker",
+      "color": "#226bc3",
+      "icon": "🏦",
+      "balance": 9500,
+      "userId": "f2c2"
+    },
+    {
+      "id": "f125",
+      "name": "Casa",
+      "color": "#60a5fa",
+      "icon": "🫡",
+      "balance": 50,
+      "userId": "f2c2"
+    },
+    {
+      "id": "525e",
+      "name": "65465",
+      "color": "#60a5fa",
       "icon": "🐒",
-      "balance": 10000,
-      "userId": "372b"
+      "balance": 0,
+      "userId": "f2c2"
     }
   ],
   "categories": [
     {
-      "id": "4bf6",
+      "id": "3016",
       "name": "Alimentari",
       "color": "#60a5fa",
       "icon": "🛒",
-      "userId": "372b"
+      "userId": "f2c2"
     },
     {
-      "id": "caba",
+      "id": "d6c0",
       "name": "Svago",
       "color": "#f87171",
       "icon": "🎉",
-      "userId": "372b"
+      "userId": "f2c2"
     },
     {
-      "id": "ae28",
+      "id": "f373",
       "name": "Trasporti",
       "color": "#34d399",
       "icon": "🚗",
-      "userId": "372b"
+      "userId": "f2c2"
     },
     {
-      "id": "d651",
+      "id": "4f61",
       "name": "Discoteca",
       "color": "#c084fc",
       "icon": "🎶",
-      "userId": "372b"
+      "userId": "f2c2"
     },
     {
-      "id": "75dc",
+      "id": "d2be",
+      "name": "Regali",
+      "color": "#facc15",
+      "icon": "🎁",
+      "userId": "f2c2"
+    },
+    {
+      "id": "a9d6",
       "name": "Vacanza",
       "color": "#38bdf8",
       "icon": "🏖️",
-      "userId": "372b"
+      "userId": "f2c2"
     },
     {
-      "id": "4c79",
-      "name": "Spesa",
-      "color": "#5c687f",
-      "icon": "🫠",
-      "userId": "372b"
+      "id": "9782",
+      "name": "wer4r",
+      "color": "#798baf",
+      "icon": "🛒",
+      "userId": "f2c2"
     }
   ],
   "users": [
     {
-      "id": "372b",
+      "id": "f2c2",
       "email": "s.bertaccinidev@gmail.com"
     }
   ]

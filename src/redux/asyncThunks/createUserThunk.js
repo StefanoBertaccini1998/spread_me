@@ -58,8 +58,7 @@ export const createUser = createAsyncThunk(
         });
       }
 
-      dispatch(authenticateUser(createdUser));
-      return createdUser;
+      return await dispatch(authenticateUser(createdUser.email)).unwrap();
     } catch (error) {
       return rejectWithValue(
         error.message || "Errore durante la creazione dell’account."

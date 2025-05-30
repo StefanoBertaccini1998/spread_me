@@ -9,7 +9,11 @@ const AccountCategoryEditor = ({ initialData, onSave, onCancel }) => {
     const isAccount = initialData.hasOwnProperty('balance');
     const [formData, setFormData] = useState({
         ...initialData,
-        balance: isAccount ? initialData.balance ?? 0 : undefined,
+        balance: isAccount
+            ? typeof initialData.balance === 'number'
+                ? initialData.balance
+                : 0
+            : undefined,
     });
 
     const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
@@ -19,7 +23,14 @@ const AccountCategoryEditor = ({ initialData, onSave, onCancel }) => {
         const errs = {};
         if (!formData.name.trim()) errs.name = 'Nome richiesto';
         if (!formData.icon) errs.icon = 'Emoji richiesta';
-        if (isAccount && formData.balance < 0) errs.balance = 'Il saldo non può essere negativo';
+        if (isAccount) {
+            if (formData.balance < 0) {
+                errs.balance = 'Il saldo non può essere negativo';
+            }
+            if (typeof formData.balance !== 'number' || isNaN(formData.balance)) {
+                errs.balance = 'Saldo non valido';
+            }
+        }
         setErrors(errs);
         return Object.keys(errs).length === 0;
     };
@@ -49,6 +60,7 @@ const AccountCategoryEditor = ({ initialData, onSave, onCancel }) => {
                     <input
                         type="number"
                         value={formData.balance}
+                        min="0"
                         onChange={(e) => setFormData({ ...formData, balance: parseFloat(e.target.value) })}
                         className={`${styles.inputField} ${errors.name ? styles.inputError : ''}`}
                     />

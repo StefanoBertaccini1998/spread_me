@@ -15,8 +15,8 @@ const getRandomColor = () => {
 const ImportPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const accountsInStore = useAppSelector(state => state.userSettings.accounts.map(acc => acc.name));
-  const categoriesInStore = useAppSelector(state => state.userSettings.categories.map(cat => cat.name));
+  const accounts = useAppSelector((state) => state.accounts.data);
+  const categories = useAppSelector((state) => state.categories.data);
 
   const [filename, setFilename] = useState('');
   const [expenses, setExpenses] = useState([]);
@@ -95,8 +95,8 @@ const ImportPage = () => {
       ...incomes.map(i => i['Categoria'])
     ].filter(Boolean));
 
-    const newAccounts = [...accs].filter(a => !accountsInStore.includes(a));
-    const newCategories = [...cats].filter(c => !categoriesInStore.includes(c));
+    const newAccounts = [...accs].filter(a => !accounts.includes(a));
+    const newCategories = [...cats].filter(c => !categories.includes(c));
     setUnknownAccounts(newAccounts);
     setAccountsToCreate(newAccounts);
     setUnknownCategories(newCategories);

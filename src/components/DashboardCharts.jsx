@@ -31,13 +31,13 @@ const chartTypes = {
     pie: Pie
 };
 
-const DashboardCharts = ({ expensesData, incomeData }) => {
+const DashboardCharts = ({ expensesData, incomesData }) => {
     const [chartType, setChartType] = useState('bar');
     const ChartComponent = chartTypes[chartType];
 
-    const totalIncome = incomeData.values.reduce((a, b) => a + b, 0);
+    const totalIncomes = incomesData.values.reduce((a, b) => a + b, 0);
     const totalExpenses = expensesData.values.reduce((a, b) => a + b, 0);
-    const saldoNetto = totalIncome - totalExpenses;
+    const saldoNetto = totalIncomes - totalExpenses;
     const netLabel = saldoNetto >= 0 ? 'Risparmio' : 'Deficit';
     const netColor = saldoNetto >= 0 ? '#4ade80' : '#f87171';
 
@@ -86,12 +86,12 @@ const DashboardCharts = ({ expensesData, incomeData }) => {
         }
     };
 
-    const incomeExpenseComparison = {
+    const incomesExpenseComparison = {
         labels: ['Entrate', 'Spese'],
         datasets: [
             {
                 label: 'Totale',
-                data: [totalIncome, totalExpenses],
+                data: [totalIncomes, totalExpenses],
                 backgroundColor: ['#34d399', '#f87171']
             }
         ]
@@ -148,7 +148,7 @@ const DashboardCharts = ({ expensesData, incomeData }) => {
     };
 
     const timeSeriesExpenses = buildTimeSeriesData(expensesData.raw || [], 'expense');
-    const timeSeriesIncome = buildTimeSeriesData(incomeData.raw || [], 'income');
+    const timeSeriesIncomes = buildTimeSeriesData(incomesData.raw || [], 'incomes');
 
     return (
         <div className={styles.container}>
@@ -183,10 +183,10 @@ const DashboardCharts = ({ expensesData, incomeData }) => {
                         <h3 className={styles.chartLabel}>Entrate</h3>
                         <Pie
                             data={{
-                                labels: incomeData.labels,
+                                labels: incomesData.labels,
                                 datasets: [
                                     {
-                                        data: incomeData.values,
+                                        data: incomesData.values,
                                         backgroundColor: ['#34d399', '#60a5fa', '#facc15']
                                     }
                                 ]
@@ -216,12 +216,12 @@ const DashboardCharts = ({ expensesData, incomeData }) => {
                     <ChartComponent data={timeSeriesExpenses} options={barLineOptions} />
 
                     <h3 className={`${styles.chartTitle} mt-10`}>Andamento Entrate</h3>
-                    <ChartComponent data={timeSeriesIncome} options={barLineOptions} />
+                    <ChartComponent data={timeSeriesIncomes} options={barLineOptions} />
                 </>
             ) : (
                 <>
                     <h3 className={styles.chartTitle}>Entrate vs Spese</h3>
-                    <ChartComponent data={incomeExpenseComparison} options={barLineOptions} />
+                    <ChartComponent data={incomesExpenseComparison} options={barLineOptions} />
 
                     <h3 className={`${styles.chartTitle} mt-10`}>Spese per Categoria</h3>
                     <ChartComponent data={expensesByCategory} options={barLineOptions} />

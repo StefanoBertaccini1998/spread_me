@@ -4,6 +4,7 @@ import {
   createAccount,
   updateAccount,
   deleteAccount,
+  updateAccountsBulk,
 } from "../asyncThunks/accountThunks";
 
 const accountsSlice = createSlice({
@@ -13,14 +14,7 @@ const accountsSlice = createSlice({
     loading: false,
     error: null,
   },
-  reducers: {
-    addAccountSetting: (state, action) => {
-      state.data.push(action.payload);
-    },
-    removeAccountSetting: (state, action) => {
-      state.data = state.data.filter((acc) => acc.id !== action.payload);
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchAccounts.pending, (state) => {
@@ -45,6 +39,14 @@ const accountsSlice = createSlice({
       })
       .addCase(deleteAccount.fulfilled, (state, action) => {
         state.data = state.data.filter((acc) => acc.id !== action.payload);
+      })
+      .addCase(updateAccountsBulk.fulfilled, (state, action) => {
+        action.payload.forEach((updatedAcc) => {
+          const index = state.data.findIndex((acc) => acc.id === updatedAcc.id);
+          if (index !== -1) {
+            state.data[index] = { ...state.data[index], ...updatedAcc };
+          }
+        });
       });
   },
 });

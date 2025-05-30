@@ -11,7 +11,7 @@ const DashboardHome = () => {
     useInitialDataLoad();
 
     const expenses = useAppSelector((state) => state.transaction.expenses);
-    const income = useAppSelector((state) => state.transaction.income);
+    const incomes = useAppSelector((state) => state.transaction.incomes);
 
     const [filters, setFilters] = useState({
         period: 'always',
@@ -51,11 +51,11 @@ const DashboardHome = () => {
     };
 
     const filteredExpenses = filterData(expenses);
-    const filteredIncome = filterData(income);
+    const filteredIncomes = filterData(incomes);
 
     const totalExpenses = filteredExpenses.reduce((sum, e) => sum + e.amountBaseCurrency, 0);
-    const totalIncome = filteredIncome.reduce((sum, i) => sum + i.amountBaseCurrency, 0);
-    const netBalance = totalIncome - totalExpenses;
+    const totalIncomes = filteredIncomes.reduce((sum, i) => sum + i.amountBaseCurrency, 0);
+    const netBalance = totalIncomes - totalExpenses;
 
     const groupByCategory = (data) =>
         data.reduce((acc, item) => {
@@ -65,7 +65,7 @@ const DashboardHome = () => {
         }, {});
 
     const expensesByCategory = groupByCategory(filteredExpenses);
-    const incomeByCategory = groupByCategory(filteredIncome);
+    const incomesByCategory = groupByCategory(filteredIncomes);
 
     const expensesData = {
         labels: Object.keys(expensesByCategory),
@@ -73,10 +73,10 @@ const DashboardHome = () => {
         raw: filteredExpenses,
     };
 
-    const incomeData = {
-        labels: Object.keys(incomeByCategory),
-        values: Object.values(incomeByCategory),
-        raw: filteredIncome,
+    const incomesData = {
+        labels: Object.keys(incomesByCategory),
+        values: Object.values(incomesByCategory),
+        raw: filteredIncomes,
     };
 
     return (
@@ -95,9 +95,9 @@ const DashboardHome = () => {
                 />
                 <StatCard
                     title="💰 Entrate Totali"
-                    value={`€${totalIncome.toFixed(2)}`}
+                    value={`€${totalIncomes.toFixed(2)}`}
                     bgColor="bg-green-500"
-                    type="income"
+                    type="incomes"
                     currentFilters={filters}
                 />
                 <StatCard
@@ -110,7 +110,7 @@ const DashboardHome = () => {
 
             <DashboardCharts
                 expensesData={expensesData}
-                incomeData={incomeData}
+                incomesData={incomesData}
                 transfersData={{ labels: [], values: [] }}
             />
 
