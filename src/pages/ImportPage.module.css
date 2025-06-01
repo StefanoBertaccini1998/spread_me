@@ -81,3 +81,12 @@
 .checkbox {
     @apply mr-2 cursor-pointer accent-blue-500;
 }
+
+.importButton:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.error {
+    @apply text-red-700 bg-red-100 p-2 rounded mb-4 text-sm;
+}

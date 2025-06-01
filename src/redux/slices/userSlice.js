@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { authenticateUser } from "../asyncThunks/userThunks";
+import { authenticateUser, createUser } from "../asyncThunks/userThunks";
 
 const initialState = {
   user: null,
@@ -33,6 +33,12 @@ const userSlice = createSlice({
       .addCase(authenticateUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload || "Errore imprevisto";
+      })
+      .addCase(createUser.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.loading = false;
+        state.error = null;
+        localStorage.setItem("user", JSON.stringify(action.payload.user));
       });
   },
 });

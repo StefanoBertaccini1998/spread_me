@@ -22,12 +22,6 @@ export const adjustAccountBalance = (accounts, transaction, operation) => {
       }
     }
 
-    if (balance !== updatedBalance) {
-      console.log(
-        `✅ Updating balance for ${acc.name}: ${balance} → ${updatedBalance}`
-      );
-    }
-
     return {
       ...acc,
       balance: updatedBalance,

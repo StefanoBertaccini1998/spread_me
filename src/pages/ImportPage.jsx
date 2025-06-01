@@ -17,6 +17,7 @@ const ImportPage = () => {
   const navigate = useNavigate();
   const accounts = useAppSelector((state) => state.accounts.data);
   const categories = useAppSelector((state) => state.categories.data);
+  const userId = useAppSelector((state) => state.user.user?.id);
 
   const [filename, setFilename] = useState('');
   const [expenses, setExpenses] = useState([]);
@@ -28,6 +29,8 @@ const ImportPage = () => {
   const [categoriesToCreate, setCategoriesToCreate] = useState([]);
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState('');
+  const [importing, setImporting] = useState(false);
+  const [error, setError] = useState('');
 
   const knownExpenseKeys = ['Data e ora', 'Categoria', 'Conto', 'Importo in valuta predefinita', 'Valuta predefinita', 'Importo in valuta del conto', 'Valuta conto', 'Tag', 'Commento'];
   const knownIncomeKeys = [...knownExpenseKeys];
@@ -95,8 +98,11 @@ const ImportPage = () => {
       ...incomes.map(i => i['Categoria'])
     ].filter(Boolean));
 
-    const newAccounts = [...accs].filter(a => !accounts.includes(a));
-    const newCategories = [...cats].filter(c => !categories.includes(c));
+    const existingAccountNames = accounts.map(acc => acc.name);
+    const existingCategoryNames = categories.map(cat => cat.name);
+
+    const newAccounts = [...accs].filter(a => !existingAccountNames.includes(a));
+    const newCategories = [...cats].filter(c => !existingCategoryNames.includes(c));
     setUnknownAccounts(newAccounts);
     setAccountsToCreate(newAccounts);
     setUnknownCategories(newCategories);
@@ -104,53 +110,101 @@ const ImportPage = () => {
   };
 
   const handleImport = async () => {
-    for (const acc of accountsToCreate) {
-      await dispatch(createAccount({ name: acc, color: getRandomColor(), icon: '🏦', balance: 0 }));
+    if (!userId) {
+      alert('⚠️ Utente non autenticato!');
+      return;
     }
-    for (const cat of categoriesToCreate) {
-      await dispatch(createCategory({ name: cat, color: getRandomColor(), icon: '📂' }));
+
+    setImporting(true);
+    setError('');
+    try {
+      for (const acc of accountsToCreate) {
+        const res = await dispatch(createAccount({
+          userId,
+          account: {
+            name: acc,
+            color: getRandomColor(),
+            icon: '🏦',
+            balance: 0
+          }
+        }));
+        if (res.error) throw new Error(`Errore creazione account "${acc}"`);
+      }
+
+      for (const cat of categoriesToCreate) {
+        const res = await dispatch(createCategory({
+          userId,
+          category: {
+            name: cat,
+            color: getRandomColor(),
+            icon: '📂'
+          }
+        }));
+        if (res.error) throw new Error(`Errore creazione categoria "${cat}"`);
+      }
+
+      for (const row of expenses) {
+        const res = await dispatch(createTransaction({
+          userId,
+          transaction: {
+            type: 'expense',
+            date: row['Data e ora'],
+            category: row['Categoria'],
+            account: row['Conto'],
+            amountBaseCurrency: parseFloat(row['Importo in valuta predefinita']) || 0,
+            baseCurrency: row['Valuta predefinita'],
+            amountAccountCurrency: parseFloat(row['Importo in valuta del conto']) || 0,
+            accountCurrency: row['Valuta conto'],
+            comment: row['Commento']
+          }
+        }));
+        if (res.error) throw new Error(`Errore su spesa: ${row['Commento'] || row['Categoria']}`);
+      }
+
+      for (const row of incomes) {
+        const res = await dispatch(createTransaction({
+          userId,
+          transaction: {
+            type: 'income',
+            date: row['Data e ora'],
+            category: row['Categoria'],
+            account: row['Conto'],
+            amountBaseCurrency: parseFloat(row['Importo in valuta predefinita']) || 0,
+            baseCurrency: row['Valuta predefinita'],
+            amountAccountCurrency: parseFloat(row['Importo in valuta del conto']) || 0,
+            accountCurrency: row['Valuta conto'],
+            comment: row['Commento']
+          }
+        }));
+        if (res.error) throw new Error(`Errore su entrata: ${row['Commento'] || row['Categoria']}`);
+      }
+
+      for (const row of transfers) {
+        const res = await dispatch(createTransaction({
+          userId,
+          transaction: {
+            type: 'transfer',
+            date: row['Data e ora'],
+            fromAccount: row['In uscita'],
+            toAccount: row['In entrata'],
+            amountFromCurrency: parseFloat(row['Importo nella valuta in uscita']) || 0,
+            fromCurrency: row['Valuta in uscita'],
+            comment: row['Commento']
+          }
+        }));
+        if (res.error) throw new Error(`Errore su trasferimento: ${row['Commento']}`);
+      }
+
+      setExpenses([]); setIncomes([]); setTransfers([]);
+      setFilename('');
+      alert('📥 Dati importati con successo!');
+      navigate('/dashboard');
+    } catch (err) {
+      console.error('❌ Import failed:', err);
+      setError(err.message || 'Errore durante l\'importazione');
+    } finally {
+      setImporting(false);
     }
-    for (const row of expenses) {
-      await dispatch(createTransaction({
-        type: 'expense',
-        date: row['Data e ora'],
-        category: row['Categoria'],
-        account: row['Conto'],
-        amountBaseCurrency: parseFloat(row['Importo in valuta predefinita']) || 0,
-        baseCurrency: row['Valuta predefinita'],
-        amountAccountCurrency: parseFloat(row['Importo in valuta del conto']) || 0,
-        accountCurrency: row['Valuta conto'],
-        comment: row['Commento']
-      }));
-    }
-    for (const row of incomes) {
-      await dispatch(createTransaction({
-        type: 'income',
-        date: row['Data e ora'],
-        category: row['Categoria'],
-        account: row['Conto'],
-        amountBaseCurrency: parseFloat(row['Importo in valuta predefinita']) || 0,
-        baseCurrency: row['Valuta predefinita'],
-        amountAccountCurrency: parseFloat(row['Importo in valuta del conto']) || 0,
-        accountCurrency: row['Valuta conto'],
-        comment: row['Commento']
-      }));
-    }
-    for (const row of transfers) {
-      await dispatch(createTransaction({
-        type: 'transfer',
-        date: row['Data e ora'],
-        fromAccount: row['In uscita'],
-        toAccount: row['In entrata'],
-        amountFromCurrency: parseFloat(row['Importo nella valuta in uscita']) || 0,
-        fromCurrency: row['Valuta in uscita'],
-        comment: row['Commento']
-      }));
-    }
-    setExpenses([]); setIncomes([]); setTransfers([]);
-    setFilename('');
-    alert('📥 Dati importati con successo!');
-    navigate('/dashboard');
   };
 
   const renderTable = (title, data) => (
@@ -205,6 +259,7 @@ const ImportPage = () => {
 
   return (
     <div className={styles.container}>
+      {error && <p className={styles.error}>{error}</p>}
       <h1 className={styles.title}>Importa Dati Finanziari da Excel</h1>
       <input type="file" accept=".csv, .xlsx, .xls" onChange={handleFileUpload} className={styles.file} />
       {loading && <p className={styles.loading}>⏳ Parsing in corso...</p>}
@@ -216,8 +271,12 @@ const ImportPage = () => {
       {incomes.length > 0 && renderTable('💰 Entrate', incomes)}
       {transfers.length > 0 && renderTable('🔁 Trasferimenti', transfers)}
       {(expenses.length || incomes.length || transfers.length) > 0 && (
-        <button onClick={handleImport} className={styles.importButton}>
-          Importa Tutto
+        <button
+          onClick={handleImport}
+          className={styles.importButton}
+          disabled={importing}
+        >
+          {importing ? 'Importazione in corso...' : 'Importa Tutto'}
         </button>
       )}
     </div>

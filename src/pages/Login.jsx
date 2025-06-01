@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../redux/hooks/useRedux';
-import { authenticateUser } from '../redux/asyncThunks/userThunks';
-import { createUser } from '../redux/asyncThunks/createUserThunk';
+import { authenticateUser, createUser } from '../redux/asyncThunks/userThunks';
 import styles from './Login.module.css';
 
 const Login = () => {
@@ -12,6 +11,7 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+
     const isValidEmail = (email) => /\S+@\S+\.\S+/.test(email);
 
     const handleSubmit = async (e) => {

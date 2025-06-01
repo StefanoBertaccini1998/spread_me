@@ -11,11 +11,11 @@ const labels = {
     transfers: 'Trasferimenti'
 };
 
-const TransactionView = ({ type, setToastMessage, setToastType, openModal, modalType, onModalClose }) => {
+const TransactionView = ({ type, filters, setToastMessage, setToastType, openModal, modalType, onModalClose }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const navigate = useNavigate();
-    const data = useAppSelector((state) => state.transaction[type]);
-    const transaction = useAppSelector((state) => state.transaction);
+    const allData = useAppSelector((state) => state.transaction[type]);
+
     useEffect(() => {
         setIsModalOpen(openModal && modalType === type);
     }, [openModal, modalType, type]);
@@ -29,6 +29,49 @@ const TransactionView = ({ type, setToastMessage, setToastType, openModal, modal
             style: 'currency',
             currency: currency || 'EUR'
         }).format(parseFloat(amount));
+
+    const matchesFilter = (entry) => {
+        const entryDate = new Date(entry.date);
+
+        // Filtro per periodo
+        let periodMatch = true;
+        const today = new Date();
+        switch (filters.period) {
+            case 'month':
+                periodMatch = (
+                    entryDate.getMonth() === today.getMonth() &&
+                    entryDate.getFullYear() === today.getFullYear()
+                );
+                break;
+            case 'year':
+                periodMatch = entryDate.getFullYear() === today.getFullYear();
+                break;
+            case 'custom':
+                if (filters.startDate && filters.endDate) {
+                    const start = new Date(filters.startDate);
+                    const end = new Date(filters.endDate);
+                    periodMatch = entryDate >= start && entryDate <= end;
+                }
+                break;
+            case 'always':
+            default:
+                periodMatch = true;
+        }
+
+        // Categoria
+        const categoryMatch = filters.category === 'All' || entry.category === filters.category;
+
+        // Conto
+        const accountMatch =
+            filters.account === 'All' ||
+            entry.account === filters.account ||
+            entry.fromAccount === filters.account ||
+            entry.toAccount === filters.account;
+
+        return periodMatch && categoryMatch && accountMatch;
+    };
+
+    const filteredData = allData.filter(matchesFilter);
 
     const formatLine = (entry) => {
         if (type === 'transfers') {
@@ -77,7 +120,7 @@ const TransactionView = ({ type, setToastMessage, setToastType, openModal, modal
             </div>
 
             <ul className={styles.list}>
-                {data.map((entry) => (
+                {filteredData.map((entry) => (
                     <li key={entry.id} className={styles.item} onClick={() => handleClick(entry.id)}>
                         {formatLine(entry)}
                     </li>

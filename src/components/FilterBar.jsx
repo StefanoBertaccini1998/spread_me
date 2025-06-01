@@ -2,9 +2,12 @@ import { useAppSelector } from '../redux/hooks/useRedux';
 import styles from './FilterBar.module.css';
 
 const FilterBar = ({ filters, setFilters }) => {
-    const accounts = useAppSelector((state) => state.accounts.data);
-    const categories = useAppSelector((state) => state.categories.data);
+    const userId = useAppSelector((state) => state.user.user?.id);
+    const allAccounts = useAppSelector((state) => state.accounts.data);
+    const allCategories = useAppSelector((state) => state.categories.data);
 
+    const accounts = allAccounts.filter((acc) => acc.userId === userId);
+    const categories = allCategories.filter((cat) => cat.userId === userId);
     const handleChange = (field) => (e) =>
         setFilters((prev) => ({ ...prev, [field]: e.target.value }));
 

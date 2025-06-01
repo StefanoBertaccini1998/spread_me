@@ -67,6 +67,7 @@ const FinancialManagement = ({ section }) => {
 
             <TransactionView
                 type={view}
+                filters={filters}
                 setToastMessage={setToastMessage}
                 setToastType={setToastType}
                 openModal={modalOpen}
