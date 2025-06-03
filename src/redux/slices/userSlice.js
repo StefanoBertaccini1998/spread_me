@@ -13,9 +13,12 @@ const userSlice = createSlice({
   reducers: {
     logoutUser: (state) => {
       state.user = null;
-      state.accounts = [];
-      state.categories = [];
       state.error = null;
+    },
+    upgradeToPremium: (state) => {
+      if (state.user) {
+        state.user.role = "premium";
+      }
     },
   },
   extraReducers: (builder) => {
@@ -43,6 +46,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { logoutUser } = userSlice.actions;
+export const { logoutUser, upgradeToPremium } = userSlice.actions;
 
 export default userSlice.reducer;

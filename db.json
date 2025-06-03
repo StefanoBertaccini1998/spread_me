@@ -1,147 +1,7 @@
 {
   "transactions": [
     {
-      "id": "f7ec",
-      "date": "2025-05-30",
-      "category": "Alimentari",
-      "account": "Casa",
-      "amountBaseCurrency": 50,
-      "baseCurrency": "EUR",
-      "comment": "wefewf",
-      "fromAccount": "",
-      "toAccount": "",
-      "amountFromCurrency": null,
-      "fromCurrency": "EUR",
-      "toCurrency": "EUR",
-      "type": "expenses",
-      "userId": "f2c2"
-    },
-    {
-      "id": "b435",
-      "date": "2025-05-30",
-      "category": "Regali",
-      "account": "Soldi",
-      "amountBaseCurrency": 200,
-      "baseCurrency": "EUR",
-      "comment": "",
-      "fromAccount": "",
-      "toAccount": "",
-      "amountFromCurrency": null,
-      "fromCurrency": "EUR",
-      "toCurrency": "EUR",
-      "type": "expenses",
-      "userId": "f2c2"
-    },
-    {
-      "id": "4ecd",
-      "date": "2025-05-30",
-      "category": "Regali",
-      "account": "Contanti",
-      "amountBaseCurrency": 500,
-      "baseCurrency": "EUR",
-      "comment": "",
-      "fromAccount": "",
-      "toAccount": "",
-      "amountFromCurrency": null,
-      "fromCurrency": "EUR",
-      "toCurrency": "EUR",
-      "type": "incomes",
-      "userId": "f2c2"
-    },
-    {
-      "id": "c697",
-      "date": "2025-05-30",
-      "category": "",
-      "account": "",
-      "amountBaseCurrency": null,
-      "baseCurrency": "EUR",
-      "comment": "rgfrgf",
-      "fromAccount": "Locker",
-      "toAccount": "Contanti",
-      "amountFromCurrency": 500,
-      "fromCurrency": "EUR",
-      "toCurrency": "EUR",
-      "type": "transfers",
-      "userId": "f2c2"
-    },
-    {
-      "id": "a75b",
-      "date": "2025-05-30",
-      "category": "",
-      "account": "",
-      "amountBaseCurrency": null,
-      "baseCurrency": "EUR",
-      "comment": "",
-      "fromAccount": "Locker",
-      "toAccount": "Contanti",
-      "amountFromCurrency": 500,
-      "fromCurrency": "EUR",
-      "toCurrency": "EUR",
-      "type": "transfers",
-      "userId": "f2c2"
-    },
-    {
-      "id": "9ebd",
-      "date": "2025-05-30",
-      "category": "Vacanza",
-      "account": "Contanti",
-      "amountBaseCurrency": 500,
-      "baseCurrency": "EUR",
-      "comment": "",
-      "fromAccount": "",
-      "toAccount": "",
-      "amountFromCurrency": null,
-      "fromCurrency": "EUR",
-      "toCurrency": "EUR",
-      "type": "incomes",
-      "userId": "f2c2"
-    },
-    {
-      "id": "dde8",
-      "date": "2025-05-30",
-      "category": "Alimentari",
-      "account": "BPER",
-      "amountBaseCurrency": 1500,
-      "baseCurrency": "EUR",
-      "comment": "",
-      "fromAccount": "",
-      "toAccount": "",
-      "amountFromCurrency": null,
-      "fromCurrency": "EUR",
-      "toCurrency": "EUR",
-      "type": "incomes",
-      "userId": "f2c2"
-    },
-    {
-      "id": "0b84",
-      "type": "expense",
-      "date": "2024-12-29",
-      "category": "Barbiere",
-      "account": "Revolut",
-      "amountBaseCurrency": 20,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 20,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "0233",
-      "type": "expense",
-      "date": "2024-12-28",
-      "category": "Discoteca",
-      "account": "Contanti",
-      "amountBaseCurrency": 120,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 120,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "8380",
-      "type": "expense",
-      "date": "2024-12-26",
+      "id": "0dd2",
       "category": "Ristorante",
       "account": "BPER",
       "amountBaseCurrency": 21.6,
@@ -149,12 +9,17 @@
       "amountAccountCurrency": 21.6,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
+      "date": "2024-12-26",
+      "userId": "a896"
     },
     {
-      "id": "fd59",
-      "type": "expense",
-      "date": "2024-12-26",
+      "id": "ec6a",
       "category": "Aperitivo",
       "account": "BPER",
       "amountBaseCurrency": 25,
@@ -162,12 +27,17 @@
       "amountAccountCurrency": 25,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
+      "date": "2024-12-26",
+      "userId": "a896"
     },
     {
-      "id": "4595",
-      "type": "expense",
-      "date": "2024-12-22",
+      "id": "373c",
       "category": "Alimentari",
       "account": "Contanti",
       "amountBaseCurrency": 28.75,
@@ -175,12 +45,17 @@
       "amountAccountCurrency": 28.75,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
+      "date": "2024-12-22",
+      "userId": "a896"
     },
     {
-      "id": "c4d9",
-      "type": "expense",
-      "date": "2024-12-21",
+      "id": "81f5",
       "category": "Svago",
       "account": "Contanti",
       "amountBaseCurrency": 6,
@@ -188,12 +63,17 @@
       "amountAccountCurrency": 6,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
+      "date": "2024-12-21",
+      "userId": "a896"
     },
     {
-      "id": "8090",
-      "type": "expense",
-      "date": "2024-12-19",
+      "id": "8700",
       "category": "Trasporti",
       "account": "Revolut",
       "amountBaseCurrency": 15.7,
@@ -201,12 +81,17 @@
       "amountAccountCurrency": 15.7,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
+      "date": "2024-12-19",
+      "userId": "a896"
     },
     {
-      "id": "18bf",
-      "type": "expense",
-      "date": "2024-12-18",
+      "id": "42f7",
       "category": "Fumo",
       "account": "Revolut",
       "amountBaseCurrency": 20,
@@ -214,12 +99,17 @@
       "amountAccountCurrency": 20,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
+      "date": "2024-12-18",
+      "userId": "a896"
     },
     {
-      "id": "9d6e",
-      "type": "expense",
-      "date": "2024-12-16",
+      "id": "996e",
       "category": "Discoteca",
       "account": "Revolut",
       "amountBaseCurrency": 5.18,
@@ -227,12 +117,17 @@
       "amountAccountCurrency": 5.18,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
+      "date": "2024-12-16",
+      "userId": "a896"
     },
     {
-      "id": "d377",
-      "type": "expense",
-      "date": "2024-12-16",
+      "id": "c912",
       "category": "Discoteca",
       "account": "Paypal",
       "amountBaseCurrency": 14.47,
@@ -240,12 +135,17 @@
       "amountAccountCurrency": 14.47,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
+      "date": "2024-12-16",
+      "userId": "a896"
     },
     {
-      "id": "505f",
-      "type": "expense",
-      "date": "2024-12-15",
+      "id": "a374",
       "category": "Discoteca",
       "account": "Contanti",
       "amountBaseCurrency": 30,
@@ -253,12 +153,35 @@
       "amountAccountCurrency": 30,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
+      "date": "2024-12-15",
+      "userId": "a896"
     },
     {
-      "id": "e16f",
-      "type": "expense",
+      "id": "27df",
+      "category": "Svago",
+      "account": "BPER",
+      "amountBaseCurrency": 6,
+      "baseCurrency": "EUR",
+      "amountAccountCurrency": 6,
+      "accountCurrency": "EUR",
+      "comment": "",
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
       "date": "2024-12-13",
+      "userId": "a896"
+    },
+    {
+      "id": "138b",
       "category": "Ristorante",
       "account": "BPER",
       "amountBaseCurrency": 23,
@@ -266,12 +189,17 @@
       "amountAccountCurrency": 23,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
+      "date": "2024-12-13",
+      "userId": "a896"
     },
     {
-      "id": "bcf2",
-      "type": "expense",
-      "date": "2024-12-12",
+      "id": "2a3d",
       "category": "Aperitivo",
       "account": "BPER",
       "amountBaseCurrency": 12,
@@ -279,25 +207,17 @@
       "amountAccountCurrency": 12,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "9ec1",
-      "type": "expense",
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
       "date": "2024-12-12",
-      "category": "Regali",
-      "account": "BPER",
-      "amountBaseCurrency": 134.1,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 134.1,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
+      "userId": "a896"
     },
     {
-      "id": "0350",
-      "type": "expense",
-      "date": "2024-12-11",
+      "id": "fbea",
       "category": "Trasporti",
       "account": "Paypal",
       "amountBaseCurrency": 2.5,
@@ -305,12 +225,17 @@
       "amountAccountCurrency": 2.5,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
+      "date": "2024-12-11",
+      "userId": "a896"
     },
     {
-      "id": "7e2a",
-      "type": "expense",
-      "date": "2024-12-11",
+      "id": "cadd",
       "category": "Fumo",
       "account": "Paypal",
       "amountBaseCurrency": 20,
@@ -318,12 +243,17 @@
       "amountAccountCurrency": 20,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
+      "date": "2024-12-11",
+      "userId": "a896"
     },
     {
-      "id": "1e56",
-      "type": "expense",
-      "date": "2024-12-09",
+      "id": "25a1",
       "category": "Vacanza",
       "account": "Contanti",
       "amountBaseCurrency": 83,
@@ -331,12 +261,17 @@
       "amountAccountCurrency": 83,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
+      "date": "2024-12-09",
+      "userId": "a896"
     },
     {
-      "id": "b9fd",
-      "type": "expense",
-      "date": "2024-12-09",
+      "id": "a46b",
       "category": "Vacanza",
       "account": "Trade Republic",
       "amountBaseCurrency": 2.12,
@@ -344,25 +279,17 @@
       "amountAccountCurrency": 2.12,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "8def",
-      "type": "expense",
-      "date": "2024-12-29",
-      "category": "Barbiere",
-      "account": "Revolut",
-      "amountBaseCurrency": 20,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 20,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "5a84",
-      "type": "expense",
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
       "date": "2024-12-09",
+      "userId": "a896"
+    },
+    {
+      "id": "5166",
       "category": "Vacanza",
       "account": "BPER",
       "amountBaseCurrency": 73.64,
@@ -370,25 +297,17 @@
       "amountAccountCurrency": 73.64,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
+      "date": "2024-12-09",
+      "userId": "a896"
     },
     {
-      "id": "9131",
-      "type": "expense",
-      "date": "2024-12-28",
-      "category": "Discoteca",
-      "account": "Contanti",
-      "amountBaseCurrency": 120,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 120,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "cda8",
-      "type": "expense",
-      "date": "2024-12-07",
+      "id": "9b37",
       "category": "Benzina",
       "account": "BPER",
       "amountBaseCurrency": 58.61,
@@ -396,25 +315,17 @@
       "amountAccountCurrency": 58.61,
       "accountCurrency": "EUR",
       "comment": "33,51 L\r\n462,4 km",
-      "userId": "f2c2"
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
+      "date": "2024-12-07",
+      "userId": "a896"
     },
     {
-      "id": "46a8",
-      "type": "expense",
-      "date": "2024-12-26",
-      "category": "Ristorante",
-      "account": "BPER",
-      "amountBaseCurrency": 21.6,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 21.6,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "21d6",
-      "type": "expense",
-      "date": "2024-12-06",
+      "id": "261c",
       "category": "Ristorante",
       "account": "BPER",
       "amountBaseCurrency": 99.1,
@@ -422,25 +333,17 @@
       "amountAccountCurrency": 99.1,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "2ab7",
-      "type": "expense",
-      "date": "2024-12-26",
-      "category": "Aperitivo",
-      "account": "BPER",
-      "amountBaseCurrency": 25,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 25,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "067b",
-      "type": "expense",
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
       "date": "2024-12-06",
+      "userId": "a896"
+    },
+    {
+      "id": "20de",
       "category": "Trasporti",
       "account": "BPER",
       "amountBaseCurrency": 22,
@@ -448,25 +351,17 @@
       "amountAccountCurrency": 22,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "e4e3",
-      "type": "expense",
-      "date": "2024-12-22",
-      "category": "Alimentari",
-      "account": "Contanti",
-      "amountBaseCurrency": 28.75,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 28.75,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "e4bb",
-      "type": "expense",
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
       "date": "2024-12-06",
+      "userId": "a896"
+    },
+    {
+      "id": "0d29",
       "category": "Benzina",
       "account": "BPER",
       "amountBaseCurrency": 52.66,
@@ -474,25 +369,17 @@
       "amountAccountCurrency": 52.66,
       "accountCurrency": "EUR",
       "comment": "29,60 l\r\n380,2 km",
-      "userId": "f2c2"
-    },
-    {
-      "id": "247b",
-      "type": "expense",
-      "date": "2024-12-21",
-      "category": "Svago",
-      "account": "Contanti",
-      "amountBaseCurrency": 6,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 6,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "b1ea",
-      "type": "expense",
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
       "date": "2024-12-06",
+      "userId": "a896"
+    },
+    {
+      "id": "b0d0",
       "category": "Trasporti",
       "account": "BPER",
       "amountBaseCurrency": 39.9,
@@ -500,25 +387,17 @@
       "amountAccountCurrency": 39.9,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
+      "date": "2024-12-06",
+      "userId": "a896"
     },
     {
-      "id": "053d",
-      "type": "expense",
-      "date": "2024-12-19",
-      "category": "Trasporti",
-      "account": "Revolut",
-      "amountBaseCurrency": 15.7,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 15.7,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "338d",
-      "type": "expense",
-      "date": "2024-12-05",
+      "id": "09b3",
       "category": "Benzina",
       "account": "Trade Republic",
       "amountBaseCurrency": 60.08,
@@ -526,25 +405,17 @@
       "amountAccountCurrency": 60.08,
       "accountCurrency": "EUR",
       "comment": "34,35 L\r\n386,4 km",
-      "userId": "f2c2"
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
+      "date": "2024-12-05",
+      "userId": "a896"
     },
     {
-      "id": "7116",
-      "type": "expense",
-      "date": "2024-12-18",
-      "category": "Fumo",
-      "account": "Revolut",
-      "amountBaseCurrency": 20,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 20,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "be0f",
-      "type": "expense",
-      "date": "2024-12-03",
+      "id": "6f48",
       "category": "Aperitivo",
       "account": "Trade Republic",
       "amountBaseCurrency": 16.5,
@@ -552,25 +423,17 @@
       "amountAccountCurrency": 16.5,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "47e5",
-      "type": "expense",
-      "date": "2024-12-29",
-      "category": "Barbiere",
-      "account": "Revolut",
-      "amountBaseCurrency": 20,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 20,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "b5fb",
-      "type": "expense",
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
       "date": "2024-12-03",
+      "userId": "a896"
+    },
+    {
+      "id": "509d",
       "category": "Ristorante",
       "account": "Trade Republic",
       "amountBaseCurrency": 28.8,
@@ -578,38 +441,17 @@
       "amountAccountCurrency": 28.8,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "937f",
-      "type": "expense",
-      "date": "2024-12-16",
-      "category": "Discoteca",
-      "account": "Revolut",
-      "amountBaseCurrency": 5.18,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 5.18,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "6e61",
-      "type": "expense",
-      "date": "2024-12-28",
-      "category": "Discoteca",
-      "account": "Contanti",
-      "amountBaseCurrency": 120,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 120,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "e72a",
-      "type": "expense",
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
       "date": "2024-12-03",
+      "userId": "a896"
+    },
+    {
+      "id": "49f4",
       "category": "Vacanza",
       "account": "Revolut",
       "amountBaseCurrency": 103.15,
@@ -617,38 +459,17 @@
       "amountAccountCurrency": 103.15,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "3a2f",
-      "type": "expense",
-      "date": "2024-12-16",
-      "category": "Discoteca",
-      "account": "Paypal",
-      "amountBaseCurrency": 14.47,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 14.47,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "2c15",
-      "type": "expense",
-      "date": "2024-12-26",
-      "category": "Ristorante",
-      "account": "BPER",
-      "amountBaseCurrency": 21.6,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 21.6,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "0103",
-      "type": "expense",
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
       "date": "2024-12-03",
+      "userId": "a896"
+    },
+    {
+      "id": "8558",
       "category": "Trasporti",
       "account": "Trade Republic",
       "amountBaseCurrency": 80,
@@ -656,38 +477,17 @@
       "amountAccountCurrency": 80,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
+      "date": "2024-12-03",
+      "userId": "a896"
     },
     {
-      "id": "b153",
-      "type": "expense",
-      "date": "2024-12-15",
-      "category": "Discoteca",
-      "account": "Contanti",
-      "amountBaseCurrency": 30,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 30,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "0ef5",
-      "type": "expense",
-      "date": "2024-12-26",
-      "category": "Aperitivo",
-      "account": "BPER",
-      "amountBaseCurrency": 25,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 25,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "0958",
-      "type": "expense",
-      "date": "2024-12-02",
+      "id": "8b1c",
       "category": "Alimentari",
       "account": "BPER",
       "amountBaseCurrency": 13.41,
@@ -695,38 +495,17 @@
       "amountAccountCurrency": 13.41,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "a11a",
-      "type": "expense",
-      "date": "2024-12-13",
-      "category": "Svago",
-      "account": "BPER",
-      "amountBaseCurrency": 6,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 6,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "460e",
-      "type": "expense",
-      "date": "2024-12-22",
-      "category": "Alimentari",
-      "account": "Contanti",
-      "amountBaseCurrency": 28.75,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 28.75,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "6b8a",
-      "type": "expense",
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
       "date": "2024-12-02",
+      "userId": "a896"
+    },
+    {
+      "id": "1004",
       "category": "Trasporti",
       "account": "Paypal",
       "amountBaseCurrency": 2.5,
@@ -734,38 +513,17 @@
       "amountAccountCurrency": 2.5,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "e53e",
-      "type": "expense",
-      "date": "2024-12-13",
-      "category": "Ristorante",
-      "account": "BPER",
-      "amountBaseCurrency": 23,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 23,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "b939",
-      "type": "expense",
-      "date": "2024-12-21",
-      "category": "Svago",
-      "account": "Contanti",
-      "amountBaseCurrency": 6,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 6,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "d169",
-      "type": "expense",
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
       "date": "2024-12-02",
+      "userId": "a896"
+    },
+    {
+      "id": "bcaf",
       "category": "Bar",
       "account": "Contanti",
       "amountBaseCurrency": 6.5,
@@ -773,38 +531,17 @@
       "amountAccountCurrency": 6.5,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "2a81",
-      "type": "expense",
-      "date": "2024-12-19",
-      "category": "Trasporti",
-      "account": "Revolut",
-      "amountBaseCurrency": 15.7,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 15.7,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "37eb",
-      "type": "expense",
-      "date": "2024-12-12",
-      "category": "Aperitivo",
-      "account": "BPER",
-      "amountBaseCurrency": 12,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 12,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "0fa0",
-      "type": "expense",
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
       "date": "2024-12-02",
+      "userId": "a896"
+    },
+    {
+      "id": "2450",
       "category": "Trasporti",
       "account": "Paypal",
       "amountBaseCurrency": 2.5,
@@ -812,77 +549,35 @@
       "amountAccountCurrency": 2.5,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
+      "date": "2024-12-02",
+      "userId": "a896"
     },
     {
-      "id": "84c7",
-      "type": "expense",
-      "date": "2024-12-18",
-      "category": "Fumo",
-      "account": "Revolut",
-      "amountBaseCurrency": 20,
+      "id": "d770",
+      "category": "Trasporti",
+      "account": "Paypal",
+      "amountBaseCurrency": 2.5,
       "baseCurrency": "EUR",
-      "amountAccountCurrency": 20,
+      "amountAccountCurrency": 2.5,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "4c7a",
-      "type": "expense",
-      "date": "2024-12-12",
-      "category": "Regali",
-      "account": "BPER",
-      "amountBaseCurrency": 134.1,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 134.1,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "6a40",
-      "type": "expense",
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
       "date": "2024-12-01",
-      "category": "Trasporti",
-      "account": "Paypal",
-      "amountBaseCurrency": 2.5,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 2.5,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
+      "userId": "a896"
     },
     {
-      "id": "72e2",
-      "type": "expense",
-      "date": "2024-12-16",
-      "category": "Discoteca",
-      "account": "Revolut",
-      "amountBaseCurrency": 5.18,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 5.18,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "05e4",
-      "type": "expense",
-      "date": "2024-12-11",
-      "category": "Trasporti",
-      "account": "Paypal",
-      "amountBaseCurrency": 2.5,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 2.5,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "0aa1",
-      "type": "expense",
-      "date": "2024-12-01",
+      "id": "e1be",
       "category": "Regali",
       "account": "Trade Republic",
       "amountBaseCurrency": 162.1,
@@ -890,38 +585,17 @@
       "amountAccountCurrency": 162.1,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "75b4",
-      "type": "expense",
-      "date": "2024-12-16",
-      "category": "Discoteca",
-      "account": "Paypal",
-      "amountBaseCurrency": 14.47,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 14.47,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "bb31",
-      "type": "expense",
-      "date": "2024-12-11",
-      "category": "Fumo",
-      "account": "Paypal",
-      "amountBaseCurrency": 20,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 20,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "8a7e",
-      "type": "expense",
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
       "date": "2024-12-01",
+      "userId": "a896"
+    },
+    {
+      "id": "10d8",
       "category": "Altro",
       "account": "Trade Republic",
       "amountBaseCurrency": 27.95,
@@ -929,77 +603,17 @@
       "amountAccountCurrency": 27.95,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "a976",
-      "type": "expense",
-      "date": "2024-12-29",
-      "category": "Barbiere",
-      "account": "Revolut",
-      "amountBaseCurrency": 20,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 20,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "1018",
-      "type": "expense",
-      "date": "2024-12-29",
-      "category": "Barbiere",
-      "account": "Revolut",
-      "amountBaseCurrency": 20,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 20,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "d5f5",
-      "type": "expense",
-      "date": "2024-12-29",
-      "category": "Barbiere",
-      "account": "Revolut",
-      "amountBaseCurrency": 20,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 20,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "3d89",
-      "type": "expense",
-      "date": "2024-12-29",
-      "category": "Barbiere",
-      "account": "Revolut",
-      "amountBaseCurrency": 20,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 20,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "95c1",
-      "type": "expense",
-      "date": "2024-12-29",
-      "category": "Barbiere",
-      "account": "Revolut",
-      "amountBaseCurrency": 20,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 20,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "65a3",
-      "type": "expense",
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
       "date": "2024-12-01",
+      "userId": "a896"
+    },
+    {
+      "id": "a731",
       "category": "Trasporti",
       "account": "Paypal",
       "amountBaseCurrency": 2.5,
@@ -1007,90 +621,17 @@
       "amountAccountCurrency": 2.5,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "9316",
-      "type": "expense",
-      "date": "2024-12-28",
-      "category": "Discoteca",
-      "account": "Contanti",
-      "amountBaseCurrency": 120,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 120,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "b7ed",
-      "type": "expense",
-      "date": "2024-12-28",
-      "category": "Discoteca",
-      "account": "Contanti",
-      "amountBaseCurrency": 120,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 120,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "db6e",
-      "type": "expense",
-      "date": "2024-12-28",
-      "category": "Discoteca",
-      "account": "Contanti",
-      "amountBaseCurrency": 120,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 120,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "8e8e",
-      "type": "expense",
-      "date": "2024-12-28",
-      "category": "Discoteca",
-      "account": "Contanti",
-      "amountBaseCurrency": 120,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 120,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "7be4",
-      "type": "expense",
-      "date": "2024-12-09",
-      "category": "Vacanza",
-      "account": "Trade Republic",
-      "amountBaseCurrency": 2.12,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 2.12,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "b4fa",
-      "type": "expense",
-      "date": "2024-12-28",
-      "category": "Discoteca",
-      "account": "Contanti",
-      "amountBaseCurrency": 120,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 120,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "4e72",
-      "type": "expense",
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
       "date": "2024-12-01",
+      "userId": "a896"
+    },
+    {
+      "id": "a735",
       "category": "Bar",
       "account": "Contanti",
       "amountBaseCurrency": 5,
@@ -1098,103 +639,17 @@
       "amountAccountCurrency": 5,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
+      "date": "2024-12-01",
+      "userId": "a896"
     },
     {
-      "id": "b96e",
-      "type": "expense",
-      "date": "2024-12-26",
-      "category": "Ristorante",
-      "account": "BPER",
-      "amountBaseCurrency": 21.6,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 21.6,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "2d0a",
-      "type": "expense",
-      "date": "2024-12-26",
-      "category": "Ristorante",
-      "account": "BPER",
-      "amountBaseCurrency": 21.6,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 21.6,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "46ee",
-      "type": "expense",
-      "date": "2024-12-26",
-      "category": "Ristorante",
-      "account": "BPER",
-      "amountBaseCurrency": 21.6,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 21.6,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "df6a",
-      "type": "expense",
-      "date": "2024-12-26",
-      "category": "Ristorante",
-      "account": "BPER",
-      "amountBaseCurrency": 21.6,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 21.6,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "bfcd",
-      "type": "expense",
-      "date": "2024-12-26",
-      "category": "Ristorante",
-      "account": "BPER",
-      "amountBaseCurrency": 21.6,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 21.6,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "c5bd",
-      "type": "expense",
-      "date": "2024-12-09",
-      "category": "Vacanza",
-      "account": "BPER",
-      "amountBaseCurrency": 73.64,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 73.64,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "5a61",
-      "type": "expense",
-      "date": "2024-12-13",
-      "category": "Ristorante",
-      "account": "BPER",
-      "amountBaseCurrency": 23,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 23,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "cba3",
-      "type": "expense",
-      "date": "2024-11-30",
+      "id": "84f7",
       "category": "Ristorante",
       "account": "Trade Republic",
       "amountBaseCurrency": 131,
@@ -1202,116 +657,17 @@
       "amountAccountCurrency": 131,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "106e",
-      "type": "expense",
-      "date": "2024-12-26",
-      "category": "Aperitivo",
-      "account": "BPER",
-      "amountBaseCurrency": 25,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 25,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "efc5",
-      "type": "expense",
-      "date": "2024-12-26",
-      "category": "Aperitivo",
-      "account": "BPER",
-      "amountBaseCurrency": 25,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 25,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "7045",
-      "type": "expense",
-      "date": "2024-12-26",
-      "category": "Aperitivo",
-      "account": "BPER",
-      "amountBaseCurrency": 25,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 25,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "c271",
-      "type": "expense",
-      "date": "2024-12-26",
-      "category": "Aperitivo",
-      "account": "BPER",
-      "amountBaseCurrency": 25,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 25,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "2871",
-      "type": "expense",
-      "date": "2024-12-26",
-      "category": "Aperitivo",
-      "account": "BPER",
-      "amountBaseCurrency": 25,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 25,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "0314",
-      "type": "expense",
-      "date": "2024-12-07",
-      "category": "Benzina",
-      "account": "BPER",
-      "amountBaseCurrency": 58.61,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 58.61,
-      "accountCurrency": "EUR",
-      "comment": "33,51 L\r\n462,4 km",
-      "userId": "f2c2"
-    },
-    {
-      "id": "caa6",
-      "type": "expense",
-      "date": "2024-12-12",
-      "category": "Aperitivo",
-      "account": "BPER",
-      "amountBaseCurrency": 12,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 12,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "c81c",
-      "type": "expense",
-      "date": "2024-12-22",
-      "category": "Alimentari",
-      "account": "Contanti",
-      "amountBaseCurrency": 28.75,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 28.75,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "7205",
-      "type": "expense",
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
       "date": "2024-11-30",
+      "userId": "a896"
+    },
+    {
+      "id": "96ce",
       "category": "Aperitivo",
       "account": "Trade Republic",
       "amountBaseCurrency": 6.2,
@@ -1319,103 +675,17 @@
       "amountAccountCurrency": 6.2,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "6ed7",
-      "type": "expense",
-      "date": "2024-12-22",
-      "category": "Alimentari",
-      "account": "Contanti",
-      "amountBaseCurrency": 28.75,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 28.75,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "18c2",
-      "type": "expense",
-      "date": "2024-12-22",
-      "category": "Alimentari",
-      "account": "Contanti",
-      "amountBaseCurrency": 28.75,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 28.75,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "d543",
-      "type": "expense",
-      "date": "2024-12-22",
-      "category": "Alimentari",
-      "account": "Contanti",
-      "amountBaseCurrency": 28.75,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 28.75,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "bac6",
-      "type": "expense",
-      "date": "2024-12-06",
-      "category": "Ristorante",
-      "account": "BPER",
-      "amountBaseCurrency": 99.1,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 99.1,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "b3ce",
-      "type": "expense",
-      "date": "2024-12-12",
-      "category": "Regali",
-      "account": "BPER",
-      "amountBaseCurrency": 134.1,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 134.1,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "5b75",
-      "type": "expense",
-      "date": "2024-12-22",
-      "category": "Alimentari",
-      "account": "Contanti",
-      "amountBaseCurrency": 28.75,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 28.75,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "2a80",
-      "type": "expense",
-      "date": "2024-12-21",
-      "category": "Svago",
-      "account": "Contanti",
-      "amountBaseCurrency": 6,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 6,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "4740",
-      "type": "expense",
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
       "date": "2024-11-30",
+      "userId": "a896"
+    },
+    {
+      "id": "959a",
       "category": "Fumo",
       "account": "Contanti",
       "amountBaseCurrency": 5.7,
@@ -1423,103 +693,17 @@
       "amountAccountCurrency": 5.7,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "9f3a",
-      "type": "expense",
-      "date": "2024-12-21",
-      "category": "Svago",
-      "account": "Contanti",
-      "amountBaseCurrency": 6,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 6,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "8436",
-      "type": "expense",
-      "date": "2024-12-21",
-      "category": "Svago",
-      "account": "Contanti",
-      "amountBaseCurrency": 6,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 6,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "b681",
-      "type": "expense",
-      "date": "2024-12-06",
-      "category": "Trasporti",
-      "account": "BPER",
-      "amountBaseCurrency": 22,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 22,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "b9f6",
-      "type": "expense",
-      "date": "2024-12-21",
-      "category": "Svago",
-      "account": "Contanti",
-      "amountBaseCurrency": 6,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 6,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "941a",
-      "type": "expense",
-      "date": "2024-12-11",
-      "category": "Trasporti",
-      "account": "Paypal",
-      "amountBaseCurrency": 2.5,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 2.5,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "3a69",
-      "type": "expense",
-      "date": "2024-12-21",
-      "category": "Svago",
-      "account": "Contanti",
-      "amountBaseCurrency": 6,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 6,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "27cd",
-      "type": "expense",
-      "date": "2024-12-19",
-      "category": "Trasporti",
-      "account": "Revolut",
-      "amountBaseCurrency": 15.7,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 15.7,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "665f",
-      "type": "expense",
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
       "date": "2024-11-30",
+      "userId": "a896"
+    },
+    {
+      "id": "804f",
       "category": "Vestiti",
       "account": "Trade Republic",
       "amountBaseCurrency": 340,
@@ -1527,90 +711,17 @@
       "amountAccountCurrency": 340,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "3266",
-      "type": "expense",
-      "date": "2024-12-19",
-      "category": "Trasporti",
-      "account": "Revolut",
-      "amountBaseCurrency": 15.7,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 15.7,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "27fe",
-      "type": "expense",
-      "date": "2024-12-19",
-      "category": "Trasporti",
-      "account": "Revolut",
-      "amountBaseCurrency": 15.7,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 15.7,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "bae4",
-      "type": "expense",
-      "date": "2024-12-06",
-      "category": "Benzina",
-      "account": "BPER",
-      "amountBaseCurrency": 52.66,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 52.66,
-      "accountCurrency": "EUR",
-      "comment": "29,60 l\r\n380,2 km",
-      "userId": "f2c2"
-    },
-    {
-      "id": "e290",
-      "type": "expense",
-      "date": "2024-12-11",
-      "category": "Fumo",
-      "account": "Paypal",
-      "amountBaseCurrency": 20,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 20,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "d9ae",
-      "type": "expense",
-      "date": "2024-12-19",
-      "category": "Trasporti",
-      "account": "Revolut",
-      "amountBaseCurrency": 15.7,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 15.7,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "d6c9",
-      "type": "expense",
-      "date": "2024-12-18",
-      "category": "Fumo",
-      "account": "Revolut",
-      "amountBaseCurrency": 20,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 20,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "e36b",
-      "type": "expense",
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
       "date": "2024-11-30",
+      "userId": "a896"
+    },
+    {
+      "id": "e0d1",
       "category": "Altro",
       "account": "Trade Republic",
       "amountBaseCurrency": 19,
@@ -1618,116 +729,17 @@
       "amountAccountCurrency": 19,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "086b",
-      "type": "expense",
-      "date": "2024-12-18",
-      "category": "Fumo",
-      "account": "Revolut",
-      "amountBaseCurrency": 20,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 20,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "153d",
-      "type": "expense",
-      "date": "2024-12-18",
-      "category": "Fumo",
-      "account": "Revolut",
-      "amountBaseCurrency": 20,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 20,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "70d9",
-      "type": "expense",
-      "date": "2024-12-06",
-      "category": "Trasporti",
-      "account": "BPER",
-      "amountBaseCurrency": 39.9,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 39.9,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "2061",
-      "type": "expense",
-      "date": "2024-12-09",
-      "category": "Vacanza",
-      "account": "Contanti",
-      "amountBaseCurrency": 83,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 83,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "b816",
-      "type": "expense",
-      "date": "2024-12-18",
-      "category": "Fumo",
-      "account": "Revolut",
-      "amountBaseCurrency": 20,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 20,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "c657",
-      "type": "expense",
-      "date": "2024-12-16",
-      "category": "Discoteca",
-      "account": "Revolut",
-      "amountBaseCurrency": 5.18,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 5.18,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "4bae",
-      "type": "expense",
-      "date": "2024-12-09",
-      "category": "Vacanza",
-      "account": "Trade Republic",
-      "amountBaseCurrency": 2.12,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 2.12,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "f2b8",
-      "type": "expense",
-      "date": "2024-12-16",
-      "category": "Discoteca",
-      "account": "Revolut",
-      "amountBaseCurrency": 5.18,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 5.18,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "5b58",
-      "type": "expense",
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
       "date": "2024-11-30",
+      "userId": "a896"
+    },
+    {
+      "id": "b606",
       "category": "Software",
       "account": "Revolut",
       "amountBaseCurrency": 2.65,
@@ -1735,103 +747,17 @@
       "amountAccountCurrency": 2.65,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "expenses",
+      "date": "2024-11-30",
+      "userId": "a896"
     },
     {
-      "id": "d602",
-      "type": "expense",
-      "date": "2024-12-16",
-      "category": "Discoteca",
-      "account": "Revolut",
-      "amountBaseCurrency": 5.18,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 5.18,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "fdf3",
-      "type": "expense",
-      "date": "2024-12-05",
-      "category": "Benzina",
-      "account": "Trade Republic",
-      "amountBaseCurrency": 60.08,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 60.08,
-      "accountCurrency": "EUR",
-      "comment": "34,35 L\r\n386,4 km",
-      "userId": "f2c2"
-    },
-    {
-      "id": "6ca4",
-      "type": "expense",
-      "date": "2024-12-16",
-      "category": "Discoteca",
-      "account": "Revolut",
-      "amountBaseCurrency": 5.18,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 5.18,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "9fd4",
-      "type": "expense",
-      "date": "2024-12-16",
-      "category": "Discoteca",
-      "account": "Paypal",
-      "amountBaseCurrency": 14.47,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 14.47,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "bbe0",
-      "type": "expense",
-      "date": "2024-12-09",
-      "category": "Vacanza",
-      "account": "BPER",
-      "amountBaseCurrency": 73.64,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 73.64,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "af89",
-      "type": "expense",
-      "date": "2024-12-16",
-      "category": "Discoteca",
-      "account": "Paypal",
-      "amountBaseCurrency": 14.47,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 14.47,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "cadb",
-      "type": "expense",
-      "date": "2024-12-03",
-      "category": "Aperitivo",
-      "account": "Trade Republic",
-      "amountBaseCurrency": 16.5,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 16.5,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "605e",
-      "type": "income",
-      "date": "2024-12-27",
+      "id": "dead",
       "category": "Regalo",
       "account": "Contanti",
       "amountBaseCurrency": 100,
@@ -1839,77 +765,17 @@
       "amountAccountCurrency": 100,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "incomes",
+      "date": "2024-12-27",
+      "userId": "a896"
     },
     {
-      "id": "45ef",
-      "type": "expense",
-      "date": "2024-12-16",
-      "category": "Discoteca",
-      "account": "Paypal",
-      "amountBaseCurrency": 14.47,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 14.47,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "37b7",
-      "type": "expense",
-      "date": "2024-12-16",
-      "category": "Discoteca",
-      "account": "Paypal",
-      "amountBaseCurrency": 14.47,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 14.47,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "a6b3",
-      "type": "expense",
-      "date": "2024-12-15",
-      "category": "Discoteca",
-      "account": "Contanti",
-      "amountBaseCurrency": 30,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 30,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "3597",
-      "type": "expense",
-      "date": "2024-12-15",
-      "category": "Discoteca",
-      "account": "Contanti",
-      "amountBaseCurrency": 30,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 30,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "3fe0",
-      "type": "expense",
-      "date": "2024-12-03",
-      "category": "Ristorante",
-      "account": "Trade Republic",
-      "amountBaseCurrency": 28.8,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 28.8,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "7db9",
-      "type": "income",
-      "date": "2024-12-21",
+      "id": "989a",
       "category": "Stipendio",
       "account": "Contanti",
       "amountBaseCurrency": 70,
@@ -1917,116 +783,17 @@
       "amountAccountCurrency": 70,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "incomes",
+      "date": "2024-12-21",
+      "userId": "a896"
     },
     {
-      "id": "90f3",
-      "type": "expense",
-      "date": "2024-12-15",
-      "category": "Discoteca",
-      "account": "Contanti",
-      "amountBaseCurrency": 30,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 30,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "4971",
-      "type": "expense",
-      "date": "2024-12-07",
-      "category": "Benzina",
-      "account": "BPER",
-      "amountBaseCurrency": 58.61,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 58.61,
-      "accountCurrency": "EUR",
-      "comment": "33,51 L\r\n462,4 km",
-      "userId": "f2c2"
-    },
-    {
-      "id": "e050",
-      "type": "expense",
-      "date": "2024-12-15",
-      "category": "Discoteca",
-      "account": "Contanti",
-      "amountBaseCurrency": 30,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 30,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "eefe",
-      "type": "expense",
-      "date": "2024-12-15",
-      "category": "Discoteca",
-      "account": "Contanti",
-      "amountBaseCurrency": 30,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 30,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "76f1",
-      "type": "expense",
-      "date": "2024-12-13",
-      "category": "Svago",
-      "account": "BPER",
-      "amountBaseCurrency": 6,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 6,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "f5c0",
-      "type": "expense",
-      "date": "2024-12-13",
-      "category": "Svago",
-      "account": "BPER",
-      "amountBaseCurrency": 6,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 6,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "b5db",
-      "type": "expense",
-      "date": "2024-12-13",
-      "category": "Svago",
-      "account": "BPER",
-      "amountBaseCurrency": 6,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 6,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "457f",
-      "type": "expense",
-      "date": "2024-12-03",
-      "category": "Vacanza",
-      "account": "Revolut",
-      "amountBaseCurrency": 103.15,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 103.15,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "659d",
-      "type": "income",
-      "date": "2024-12-19",
+      "id": "3932",
       "category": "Stipendio",
       "account": "BPER",
       "amountBaseCurrency": 871,
@@ -2034,103 +801,17 @@
       "amountAccountCurrency": 871,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "incomes",
+      "date": "2024-12-19",
+      "userId": "a896"
     },
     {
-      "id": "6349",
-      "type": "expense",
-      "date": "2024-12-13",
-      "category": "Svago",
-      "account": "BPER",
-      "amountBaseCurrency": 6,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 6,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "f8d2",
-      "type": "expense",
-      "date": "2024-12-06",
-      "category": "Ristorante",
-      "account": "BPER",
-      "amountBaseCurrency": 99.1,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 99.1,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "5f13",
-      "type": "expense",
-      "date": "2024-12-13",
-      "category": "Svago",
-      "account": "BPER",
-      "amountBaseCurrency": 6,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 6,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "5ae0",
-      "type": "expense",
-      "date": "2024-12-13",
-      "category": "Ristorante",
-      "account": "BPER",
-      "amountBaseCurrency": 23,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 23,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "3998",
-      "type": "expense",
-      "date": "2024-12-13",
-      "category": "Ristorante",
-      "account": "BPER",
-      "amountBaseCurrency": 23,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 23,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "5cec",
-      "type": "expense",
-      "date": "2024-12-12",
-      "category": "Aperitivo",
-      "account": "BPER",
-      "amountBaseCurrency": 12,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 12,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "1b2a",
-      "type": "expense",
-      "date": "2024-12-03",
-      "category": "Trasporti",
-      "account": "Trade Republic",
-      "amountBaseCurrency": 80,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 80,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "c507",
-      "type": "income",
-      "date": "2024-12-06",
+      "id": "264a",
       "category": "Stipendio",
       "account": "BPER",
       "amountBaseCurrency": 2240,
@@ -2138,103 +819,17 @@
       "amountAccountCurrency": 2240,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "8b93",
-      "type": "expense",
-      "date": "2024-12-13",
-      "category": "Ristorante",
-      "account": "BPER",
-      "amountBaseCurrency": 23,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 23,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "fc69",
-      "type": "expense",
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "incomes",
       "date": "2024-12-06",
-      "category": "Trasporti",
-      "account": "BPER",
-      "amountBaseCurrency": 22,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 22,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
+      "userId": "a896"
     },
     {
-      "id": "2222",
-      "type": "expense",
-      "date": "2024-12-13",
-      "category": "Ristorante",
-      "account": "BPER",
-      "amountBaseCurrency": 23,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 23,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "b0a9",
-      "type": "expense",
-      "date": "2024-12-13",
-      "category": "Ristorante",
-      "account": "BPER",
-      "amountBaseCurrency": 23,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 23,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "48c4",
-      "type": "expense",
-      "date": "2024-12-12",
-      "category": "Aperitivo",
-      "account": "BPER",
-      "amountBaseCurrency": 12,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 12,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "8d6f",
-      "type": "expense",
-      "date": "2024-12-12",
-      "category": "Regali",
-      "account": "BPER",
-      "amountBaseCurrency": 134.1,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 134.1,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "f407",
-      "type": "expense",
-      "date": "2024-12-02",
-      "category": "Alimentari",
-      "account": "BPER",
-      "amountBaseCurrency": 13.41,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 13.41,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "2445",
-      "type": "income",
-      "date": "2024-12-03",
+      "id": "8130",
       "category": "Interessi",
       "account": "Trade Republic",
       "amountBaseCurrency": 3.33,
@@ -2242,116 +837,17 @@
       "amountAccountCurrency": 3.33,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "1c79",
-      "type": "expense",
-      "date": "2024-12-06",
-      "category": "Benzina",
-      "account": "BPER",
-      "amountBaseCurrency": 52.66,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 52.66,
-      "accountCurrency": "EUR",
-      "comment": "29,60 l\r\n380,2 km",
-      "userId": "f2c2"
-    },
-    {
-      "id": "e5d8",
-      "type": "expense",
-      "date": "2024-12-12",
-      "category": "Aperitivo",
-      "account": "BPER",
-      "amountBaseCurrency": 12,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 12,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "84d5",
-      "type": "expense",
-      "date": "2024-12-12",
-      "category": "Aperitivo",
-      "account": "BPER",
-      "amountBaseCurrency": 12,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 12,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "7958",
-      "type": "expense",
-      "date": "2024-12-12",
-      "category": "Aperitivo",
-      "account": "BPER",
-      "amountBaseCurrency": 12,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 12,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "0056",
-      "type": "expense",
-      "date": "2024-12-12",
-      "category": "Regali",
-      "account": "BPER",
-      "amountBaseCurrency": 134.1,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 134.1,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "f5ad",
-      "type": "expense",
-      "date": "2024-12-11",
-      "category": "Trasporti",
-      "account": "Paypal",
-      "amountBaseCurrency": 2.5,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 2.5,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "e419",
-      "type": "expense",
-      "date": "2024-12-02",
-      "category": "Trasporti",
-      "account": "Paypal",
-      "amountBaseCurrency": 2.5,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 2.5,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "2646",
-      "type": "expense",
-      "date": "2024-12-06",
-      "category": "Trasporti",
-      "account": "BPER",
-      "amountBaseCurrency": 39.9,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 39.9,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "9013",
-      "type": "income",
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "incomes",
       "date": "2024-12-03",
+      "userId": "a896"
+    },
+    {
+      "id": "1a30",
       "category": "Interessi",
       "account": "BBVA",
       "amountBaseCurrency": 5.82,
@@ -2359,2352 +855,286 @@
       "amountAccountCurrency": 5.82,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "incomes",
+      "date": "2024-12-03",
+      "userId": "a896"
     },
     {
-      "id": "bbe9",
-      "type": "expense",
-      "date": "2024-12-12",
-      "category": "Regali",
-      "account": "BPER",
-      "amountBaseCurrency": 134.1,
+      "id": "a62a",
+      "category": "",
+      "account": "",
+      "amountBaseCurrency": null,
       "baseCurrency": "EUR",
-      "amountAccountCurrency": 134.1,
+      "amountAccountCurrency": null,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
+      "fromAccount": "BPER",
+      "toAccount": "Contanti",
+      "amountFromCurrency": 140,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "type": "transfers",
+      "date": "2024-12-15",
+      "userId": "a896"
     },
     {
-      "id": "d03e",
-      "type": "expense",
-      "date": "2024-12-12",
-      "category": "Regali",
-      "account": "BPER",
-      "amountBaseCurrency": 134.1,
+      "id": "23bc",
+      "category": "",
+      "account": "",
+      "amountBaseCurrency": null,
       "baseCurrency": "EUR",
-      "amountAccountCurrency": 134.1,
+      "amountAccountCurrency": null,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "273e",
-      "type": "expense",
-      "date": "2024-12-11",
-      "category": "Trasporti",
-      "account": "Paypal",
-      "amountBaseCurrency": 2.5,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 2.5,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "6d90",
-      "type": "expense",
-      "date": "2024-12-11",
-      "category": "Fumo",
-      "account": "Paypal",
-      "amountBaseCurrency": 20,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 20,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "b617",
-      "type": "expense",
-      "date": "2024-12-02",
-      "category": "Bar",
-      "account": "Contanti",
-      "amountBaseCurrency": 6.5,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 6.5,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "1dc3",
-      "type": "expense",
-      "date": "2024-12-05",
-      "category": "Benzina",
-      "account": "Trade Republic",
-      "amountBaseCurrency": 60.08,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 60.08,
-      "accountCurrency": "EUR",
-      "comment": "34,35 L\r\n386,4 km",
-      "userId": "f2c2"
-    },
-    {
-      "id": "c476",
-      "type": "expense",
-      "date": "2024-12-12",
-      "category": "Regali",
-      "account": "BPER",
-      "amountBaseCurrency": 134.1,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 134.1,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "47f3",
-      "type": "expense",
-      "date": "2024-12-11",
-      "category": "Trasporti",
-      "account": "Paypal",
-      "amountBaseCurrency": 2.5,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 2.5,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "189a",
-      "type": "expense",
-      "date": "2024-12-09",
-      "category": "Vacanza",
-      "account": "Contanti",
-      "amountBaseCurrency": 83,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 83,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "dd3a",
-      "type": "transfer",
-      "date": "2024-12-09",
       "fromAccount": "BPER",
       "toAccount": "Contanti",
       "amountFromCurrency": 150,
       "fromCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "d334",
-      "type": "expense",
-      "date": "2024-12-11",
-      "category": "Trasporti",
-      "account": "Paypal",
-      "amountBaseCurrency": 2.5,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 2.5,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "893f",
-      "type": "expense",
-      "date": "2024-12-11",
-      "category": "Fumo",
-      "account": "Paypal",
-      "amountBaseCurrency": 20,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 20,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "d539",
-      "type": "expense",
-      "date": "2024-12-02",
-      "category": "Trasporti",
-      "account": "Paypal",
-      "amountBaseCurrency": 2.5,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 2.5,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "394a",
-      "type": "expense",
-      "date": "2024-12-03",
-      "category": "Aperitivo",
-      "account": "Trade Republic",
-      "amountBaseCurrency": 16.5,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 16.5,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "3aa1",
-      "type": "expense",
-      "date": "2024-12-11",
-      "category": "Trasporti",
-      "account": "Paypal",
-      "amountBaseCurrency": 2.5,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 2.5,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "a0cc",
-      "type": "expense",
-      "date": "2024-12-11",
-      "category": "Fumo",
-      "account": "Paypal",
-      "amountBaseCurrency": 20,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 20,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "ca44",
-      "type": "expense",
+      "toCurrency": "EUR",
+      "type": "transfers",
       "date": "2024-12-09",
-      "category": "Vacanza",
-      "account": "Trade Republic",
-      "amountBaseCurrency": 2.12,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 2.12,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
+      "userId": "a896"
     },
     {
-      "id": "701d",
-      "type": "expense",
-      "date": "2024-12-09",
-      "category": "Vacanza",
-      "account": "Contanti",
-      "amountBaseCurrency": 83,
+      "id": "d0cf",
+      "category": "",
+      "account": "",
+      "amountBaseCurrency": null,
       "baseCurrency": "EUR",
-      "amountAccountCurrency": 83,
+      "amountAccountCurrency": null,
       "accountCurrency": "EUR",
       "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "2d9b",
-      "type": "expense",
-      "date": "2024-12-01",
-      "category": "Trasporti",
-      "account": "Paypal",
-      "amountBaseCurrency": 2.5,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 2.5,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "6e3f",
-      "type": "transfer",
-      "date": "2024-12-02",
       "fromAccount": "Trade Republic",
       "toAccount": "Trade-Pac",
       "amountFromCurrency": 100,
       "fromCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "4f40",
-      "type": "expense",
-      "date": "2024-12-03",
-      "category": "Ristorante",
-      "account": "Trade Republic",
-      "amountBaseCurrency": 28.8,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 28.8,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "4478",
-      "type": "expense",
-      "date": "2024-12-11",
-      "category": "Fumo",
-      "account": "Paypal",
-      "amountBaseCurrency": 20,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 20,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "a36f",
-      "type": "expense",
-      "date": "2024-12-11",
-      "category": "Fumo",
-      "account": "Paypal",
-      "amountBaseCurrency": 20,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 20,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "2b13",
-      "type": "expense",
-      "date": "2024-12-09",
-      "category": "Vacanza",
-      "account": "Contanti",
-      "amountBaseCurrency": 83,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 83,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "cd75",
-      "type": "expense",
-      "date": "2024-12-09",
-      "category": "Vacanza",
-      "account": "BPER",
-      "amountBaseCurrency": 73.64,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 73.64,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "f3cd",
-      "type": "expense",
-      "date": "2024-12-09",
-      "category": "Vacanza",
-      "account": "Trade Republic",
-      "amountBaseCurrency": 2.12,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 2.12,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "3f23",
-      "type": "expense",
-      "date": "2024-12-01",
-      "category": "Regali",
-      "account": "Trade Republic",
-      "amountBaseCurrency": 162.1,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 162.1,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "740f",
-      "type": "expense",
-      "date": "2024-12-03",
-      "category": "Vacanza",
-      "account": "Revolut",
-      "amountBaseCurrency": 103.15,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 103.15,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "1439",
-      "type": "expense",
-      "date": "2024-12-09",
-      "category": "Vacanza",
-      "account": "Contanti",
-      "amountBaseCurrency": 83,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 83,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "f01a",
-      "type": "expense",
-      "date": "2024-12-09",
-      "category": "Vacanza",
-      "account": "Trade Republic",
-      "amountBaseCurrency": 2.12,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 2.12,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "9dfe",
-      "type": "expense",
-      "date": "2024-12-09",
-      "category": "Vacanza",
-      "account": "Contanti",
-      "amountBaseCurrency": 83,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 83,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "userId": "f2c2"
-    },
-    {
-      "id": "312b",
-      "type": "expense",
-      "date": "2024-12-07",
-      "category": "Benzina",
-      "account": "BPER",
-      "amountBaseCurrency": 58.61,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 58.61,
-      "accountCurrency": "EUR",
-      "comment": "33,51 L\r\n462,4 km",
-      "userId": "f2c2"
+      "toCurrency": "EUR",
+      "type": "transfers",
+      "date": "2024-12-02",
+      "userId": "a896"
     }
   ],
   "accounts": [
     {
-      "id": "f55a",
+      "id": "c4c9",
       "name": "Contanti",
       "color": "#f87171",
       "icon": "💵",
-      "balance": 1500,
-      "userId": "f2c2"
+      "balance": 120,
+      "userId": "a896"
     },
     {
-      "id": "2d58",
-      "name": "BPER",
+      "id": "61c8",
+      "name": "Banca",
       "color": "#60a5fa",
       "icon": "🏦",
       "balance": 0,
-      "userId": "f2c2"
+      "userId": "a896"
     },
     {
-      "id": "6b6b",
-      "name": "Paypal",
+      "id": "7456",
+      "name": "SmartBanck",
       "color": "#3b82f6",
       "icon": "💳",
       "balance": 0,
-      "userId": "f2c2"
+      "userId": "a896"
     },
     {
-      "id": "c8f0",
-      "name": "Soldi",
-      "color": "#2d3e52",
-      "icon": "🥶",
-      "balance": 800,
-      "userId": "f2c2"
-    },
-    {
-      "id": "247e",
-      "name": "Locker",
-      "color": "#226bc3",
-      "icon": "🏦",
-      "balance": 9500,
-      "userId": "f2c2"
-    },
-    {
-      "id": "f125",
-      "name": "Casa",
-      "color": "#60a5fa",
-      "icon": "🫡",
-      "balance": 50,
-      "userId": "f2c2"
-    },
-    {
-      "id": "525e",
-      "name": "65465",
-      "color": "#60a5fa",
-      "icon": "🐒",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "4bd4",
+      "id": "a3dd",
       "name": "Revolut",
-      "color": "#38bdf8",
+      "color": "#f87171",
       "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
+      "balance": 20,
+      "userId": "a896"
     },
     {
-      "id": "e76e",
-      "name": "Contanti",
-      "color": "#3b82f6",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "3b52",
+      "id": "c1a7",
       "name": "BPER",
       "color": "#c084fc",
       "icon": "🏦",
       "balance": 0,
-      "userId": "f2c2"
+      "userId": "a896"
     },
     {
-      "id": "7164",
+      "id": "6861",
       "name": "Paypal",
-      "color": "#10b981",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "5a73",
-      "name": "Trade Republic",
       "color": "#facc15",
       "icon": "🏦",
       "balance": 0,
-      "userId": "f2c2"
+      "userId": "a896"
     },
     {
-      "id": "37bc",
-      "name": "BBVA",
-      "color": "#60a5fa",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "abfa",
-      "name": "Trade-Pac",
-      "color": "#60a5fa",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "b4d4",
-      "name": "Revolut",
-      "color": "#c084fc",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "0a4f",
-      "name": "Contanti",
-      "color": "#3b82f6",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "e470",
-      "name": "BPER",
-      "color": "#f87171",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "bd9a",
-      "name": "Paypal",
-      "color": "#f87171",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "fcbb",
+      "id": "2278",
       "name": "Trade Republic",
-      "color": "#f87171",
+      "color": "#34d399",
       "icon": "🏦",
       "balance": 0,
-      "userId": "f2c2"
+      "userId": "a896"
     },
     {
-      "id": "1a6d",
-      "name": "BBVA",
-      "color": "#facc15",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "9614",
-      "name": "Trade-Pac",
-      "color": "#f87171",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "47e5",
-      "name": "Revolut",
-      "color": "#38bdf8",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "6c9a",
-      "name": "Contanti",
-      "color": "#facc15",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "05fb",
-      "name": "BPER",
-      "color": "#10b981",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "06b9",
-      "name": "Paypal",
-      "color": "#3b82f6",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "2f86",
-      "name": "Trade Republic",
-      "color": "#38bdf8",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "f2f2",
+      "id": "c60a",
       "name": "BBVA",
       "color": "#f87171",
       "icon": "🏦",
       "balance": 0,
-      "userId": "f2c2"
+      "userId": "a896"
     },
     {
-      "id": "853b",
-      "name": "Trade-Pac",
-      "color": "#facc15",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "ae57",
-      "name": "Revolut",
-      "color": "#38bdf8",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "2878",
-      "name": "Revolut",
-      "color": "#34d399",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "1672",
-      "name": "Revolut",
-      "color": "#facc15",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "caea",
-      "name": "Contanti",
-      "color": "#10b981",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "50d5",
-      "name": "Revolut",
-      "color": "#38bdf8",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "9bbd",
-      "name": "Contanti",
-      "color": "#60a5fa",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "be65",
-      "name": "Revolut",
-      "color": "#34d399",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "b739",
-      "name": "BPER",
-      "color": "#3b82f6",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "9b0a",
-      "name": "Contanti",
-      "color": "#3b82f6",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "3c46",
-      "name": "BPER",
-      "color": "#3b82f6",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "b084",
-      "name": "Contanti",
-      "color": "#34d399",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "aa6f",
-      "name": "BPER",
-      "color": "#60a5fa",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "53f2",
-      "name": "Paypal",
-      "color": "#34d399",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "980e",
-      "name": "Paypal",
-      "color": "#60a5fa",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "d393",
-      "name": "BPER",
-      "color": "#34d399",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "fbd1",
-      "name": "Paypal",
-      "color": "#c084fc",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "bc4e",
-      "name": "Trade Republic",
-      "color": "#facc15",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "0de0",
-      "name": "Trade Republic",
-      "color": "#3b82f6",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "4a3e",
-      "name": "Paypal",
-      "color": "#34d399",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "8bbd",
-      "name": "Paypal",
-      "color": "#3b82f6",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "19fa",
-      "name": "BBVA",
-      "color": "#34d399",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "0df1",
-      "name": "Trade Republic",
-      "color": "#10b981",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "0eaf",
-      "name": "BBVA",
-      "color": "#facc15",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "e79f",
-      "name": "Trade Republic",
-      "color": "#38bdf8",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "ae01",
-      "name": "Trade Republic",
-      "color": "#c084fc",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "7ddb",
+      "id": "dbcc",
       "name": "Trade-Pac",
       "color": "#c084fc",
       "icon": "🏦",
       "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "c21f",
-      "name": "BBVA",
-      "color": "#facc15",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "fae1",
-      "name": "Trade-Pac",
-      "color": "#34d399",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "7381",
-      "name": "BBVA",
-      "color": "#facc15",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "404c",
-      "name": "BBVA",
-      "color": "#60a5fa",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "3172",
-      "name": "Trade-Pac",
-      "color": "#3b82f6",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "eb8f",
-      "name": "Trade-Pac",
-      "color": "#c084fc",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "1070",
-      "name": "Trade-Pac",
-      "color": "#f87171",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "f2c2"
-    },
-    {
-      "id": "3249",
-      "name": "Contanti",
-      "color": "#f87171",
-      "icon": "💵",
-      "balance": 0,
-      "userId": "155e"
-    },
-    {
-      "id": "d5c3",
-      "name": "BPER",
-      "color": "#60a5fa",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "155e"
-    },
-    {
-      "id": "efa7",
-      "name": "Paypal",
-      "color": "#3b82f6",
-      "icon": "💳",
-      "balance": 0,
-      "userId": "155e"
-    },
-    {
-      "id": "e1a1",
-      "name": "Contanti",
-      "color": "#f87171",
-      "icon": "💵",
-      "balance": 0,
-      "userId": "cf47"
-    },
-    {
-      "id": "bd27",
-      "name": "BPER",
-      "color": "#60a5fa",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "cf47"
-    },
-    {
-      "id": "bd4c",
-      "name": "Paypal",
-      "color": "#3b82f6",
-      "icon": "💳",
-      "balance": 0,
-      "userId": "cf47"
-    },
-    {
-      "id": "8254",
-      "name": "Contanti",
-      "color": "#f87171",
-      "icon": "💵",
-      "balance": 0,
-      "userId": "9a34"
-    },
-    {
-      "id": "0029",
-      "name": "BPER",
-      "color": "#60a5fa",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "9a34"
-    },
-    {
-      "id": "cf03",
-      "name": "Paypal",
-      "color": "#3b82f6",
-      "icon": "💳",
-      "balance": 0,
-      "userId": "9a34"
-    },
-    {
-      "id": "707c",
-      "name": "Contanti",
-      "color": "#f87171",
-      "icon": "💵",
-      "balance": 0,
-      "userId": "94a9"
-    },
-    {
-      "id": "97b0",
-      "name": "BPER",
-      "color": "#60a5fa",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "94a9"
-    },
-    {
-      "id": "d97a",
-      "name": "Paypal",
-      "color": "#3b82f6",
-      "icon": "💳",
-      "balance": 0,
-      "userId": "94a9"
-    },
-    {
-      "id": "ac08",
-      "name": "Contanti",
-      "color": "#f87171",
-      "icon": "💵",
-      "balance": 0,
-      "userId": "bc05"
-    },
-    {
-      "id": "f450",
-      "name": "BPER",
-      "color": "#60a5fa",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "bc05"
-    },
-    {
-      "id": "785c",
-      "name": "Paypal",
-      "color": "#3b82f6",
-      "icon": "💳",
-      "balance": 0,
-      "userId": "bc05"
-    },
-    {
-      "id": "ada1",
-      "name": "Contanti",
-      "color": "#f87171",
-      "icon": "💵",
-      "balance": 0,
-      "userId": "1248"
-    },
-    {
-      "id": "9918",
-      "name": "BPER",
-      "color": "#60a5fa",
-      "icon": "🏦",
-      "balance": 0,
-      "userId": "1248"
-    },
-    {
-      "id": "a191",
-      "name": "Paypal",
-      "color": "#3b82f6",
-      "icon": "💳",
-      "balance": 0,
-      "userId": "1248"
+      "userId": "a896"
     }
   ],
   "categories": [
     {
-      "id": "3016",
+      "id": "73ac",
       "name": "Alimentari",
       "color": "#60a5fa",
       "icon": "🛒",
-      "userId": "f2c2"
+      "userId": "a896"
     },
     {
-      "id": "d6c0",
+      "id": "2540",
       "name": "Svago",
       "color": "#f87171",
       "icon": "🎉",
-      "userId": "f2c2"
+      "userId": "a896"
     },
     {
-      "id": "f373",
+      "id": "2a55",
       "name": "Trasporti",
       "color": "#34d399",
       "icon": "🚗",
-      "userId": "f2c2"
+      "userId": "a896"
     },
     {
-      "id": "4f61",
+      "id": "7ff0",
       "name": "Discoteca",
       "color": "#c084fc",
       "icon": "🎶",
-      "userId": "f2c2"
+      "userId": "a896"
     },
     {
-      "id": "d2be",
+      "id": "a5e7",
       "name": "Regali",
       "color": "#facc15",
       "icon": "🎁",
-      "userId": "f2c2"
+      "userId": "a896"
     },
     {
-      "id": "a9d6",
+      "id": "035a",
       "name": "Vacanza",
       "color": "#38bdf8",
       "icon": "🏖️",
-      "userId": "f2c2"
+      "userId": "a896"
     },
     {
-      "id": "9782",
-      "name": "wer4r",
-      "color": "#798baf",
-      "icon": "🛒",
-      "userId": "f2c2"
-    },
-    {
-      "id": "6164",
+      "id": "37c3",
       "name": "Barbiere",
-      "color": "#38bdf8",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "874b",
-      "name": "Discoteca",
       "color": "#c084fc",
       "icon": "📂",
-      "userId": "f2c2"
+      "userId": "a896"
     },
     {
-      "id": "8d3d",
-      "name": "Ristorante",
-      "color": "#3b82f6",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "f694",
-      "name": "Aperitivo",
-      "color": "#60a5fa",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "360a",
-      "name": "Alimentari",
-      "color": "#10b981",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "d4c2",
-      "name": "Trasporti",
-      "color": "#10b981",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "6e09",
-      "name": "Fumo",
-      "color": "#c084fc",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "4e7e",
-      "name": "Regali",
-      "color": "#facc15",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "5f1c",
-      "name": "Benzina",
-      "color": "#10b981",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "ad7f",
-      "name": "Bar",
-      "color": "#3b82f6",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "dc6b",
-      "name": "Altro",
-      "color": "#60a5fa",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "d462",
-      "name": "Vestiti",
-      "color": "#3b82f6",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "db60",
-      "name": "Software",
-      "color": "#facc15",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "f2cd",
-      "name": "Regalo",
-      "color": "#3b82f6",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "b96f",
-      "name": "Stipendio",
-      "color": "#10b981",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "ef8a",
-      "name": "Interessi",
-      "color": "#38bdf8",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "660a",
-      "name": "Barbiere",
-      "color": "#60a5fa",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "69a8",
-      "name": "Discoteca",
-      "color": "#38bdf8",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "6190",
-      "name": "Ristorante",
-      "color": "#60a5fa",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "e8d4",
-      "name": "Aperitivo",
-      "color": "#60a5fa",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "d283",
-      "name": "Alimentari",
-      "color": "#c084fc",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "1b82",
-      "name": "Svago",
-      "color": "#c084fc",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "7673",
-      "name": "Trasporti",
-      "color": "#10b981",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "1130",
-      "name": "Fumo",
-      "color": "#60a5fa",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "568e",
-      "name": "Regali",
-      "color": "#c084fc",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "0dd3",
-      "name": "Vacanza",
-      "color": "#facc15",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "f740",
-      "name": "Benzina",
-      "color": "#60a5fa",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "1e97",
-      "name": "Bar",
-      "color": "#facc15",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "9e73",
-      "name": "Vestiti",
-      "color": "#facc15",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "e153",
-      "name": "Software",
-      "color": "#10b981",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "bb15",
-      "name": "Regalo",
-      "color": "#60a5fa",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "2d2c",
-      "name": "Stipendio",
-      "color": "#3b82f6",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "dd21",
-      "name": "Barbiere",
-      "color": "#60a5fa",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "1d3e",
-      "name": "Interessi",
-      "color": "#38bdf8",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "72f7",
-      "name": "Discoteca",
-      "color": "#60a5fa",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "5a08",
-      "name": "Ristorante",
-      "color": "#3b82f6",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "51a5",
-      "name": "Aperitivo",
-      "color": "#10b981",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "dceb",
-      "name": "Alimentari",
-      "color": "#f87171",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "b40b",
-      "name": "Svago",
-      "color": "#3b82f6",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "b37e",
-      "name": "Trasporti",
-      "color": "#60a5fa",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "d261",
-      "name": "Fumo",
-      "color": "#f87171",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "26ea",
-      "name": "Regali",
-      "color": "#34d399",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "d736",
-      "name": "Vacanza",
-      "color": "#f87171",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "9f03",
-      "name": "Benzina",
-      "color": "#60a5fa",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "d71b",
-      "name": "Bar",
-      "color": "#f87171",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "b9db",
-      "name": "Altro",
-      "color": "#3b82f6",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "2be4",
-      "name": "Vestiti",
-      "color": "#facc15",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "2999",
-      "name": "Software",
-      "color": "#10b981",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "a2ed",
-      "name": "Regalo",
-      "color": "#c084fc",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "b52a",
-      "name": "Stipendio",
-      "color": "#3b82f6",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "883e",
-      "name": "Interessi",
-      "color": "#38bdf8",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "ea09",
-      "name": "Barbiere",
-      "color": "#60a5fa",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "0d8c",
-      "name": "Barbiere",
-      "color": "#10b981",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "f44e",
-      "name": "Discoteca",
-      "color": "#3b82f6",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "b2fa",
-      "name": "Barbiere",
-      "color": "#facc15",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "5df2",
-      "name": "Discoteca",
-      "color": "#10b981",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "50a8",
-      "name": "Barbiere",
-      "color": "#3b82f6",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "c1bd",
-      "name": "Barbiere",
-      "color": "#10b981",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "9307",
-      "name": "Ristorante",
-      "color": "#34d399",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "4c00",
+      "id": "9f29",
       "name": "Ristorante",
       "color": "#10b981",
       "icon": "📂",
-      "userId": "f2c2"
+      "userId": "a896"
     },
     {
-      "id": "d70b",
-      "name": "Discoteca",
+      "id": "429f",
+      "name": "Aperitivo",
       "color": "#38bdf8",
       "icon": "📂",
-      "userId": "f2c2"
+      "userId": "a896"
     },
     {
-      "id": "2a24",
-      "name": "Discoteca",
-      "color": "#facc15",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "4088",
-      "name": "Aperitivo",
-      "color": "#c084fc",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "0989",
-      "name": "Aperitivo",
-      "color": "#facc15",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "7bfa",
-      "name": "Ristorante",
-      "color": "#facc15",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "143d",
-      "name": "Ristorante",
-      "color": "#facc15",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "2648",
-      "name": "Alimentari",
-      "color": "#facc15",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "5565",
-      "name": "Aperitivo",
-      "color": "#34d399",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "9d15",
-      "name": "Alimentari",
-      "color": "#60a5fa",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "2228",
-      "name": "Aperitivo",
-      "color": "#f87171",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "d163",
-      "name": "Aperitivo",
-      "color": "#3b82f6",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "6e6c",
-      "name": "Svago",
-      "color": "#10b981",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "2eb4",
-      "name": "Svago",
-      "color": "#38bdf8",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "6492",
-      "name": "Alimentari",
-      "color": "#38bdf8",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "54d6",
-      "name": "Alimentari",
-      "color": "#10b981",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "9715",
-      "name": "Alimentari",
-      "color": "#60a5fa",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "1fc3",
-      "name": "Trasporti",
-      "color": "#34d399",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "477a",
-      "name": "Svago",
-      "color": "#38bdf8",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "b529",
-      "name": "Svago",
-      "color": "#f87171",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "0eed",
-      "name": "Svago",
-      "color": "#facc15",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "1c23",
-      "name": "Trasporti",
-      "color": "#60a5fa",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "b6ef",
-      "name": "Fumo",
-      "color": "#10b981",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "aa31",
-      "name": "Trasporti",
-      "color": "#60a5fa",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "4afa",
-      "name": "Trasporti",
-      "color": "#38bdf8",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "d2b4",
-      "name": "Trasporti",
-      "color": "#c084fc",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "9f34",
-      "name": "Fumo",
-      "color": "#34d399",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "23ee",
-      "name": "Regali",
-      "color": "#c084fc",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "b78d",
-      "name": "Fumo",
-      "color": "#f87171",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "bdfa",
-      "name": "Fumo",
-      "color": "#c084fc",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "7ca3",
-      "name": "Regali",
-      "color": "#facc15",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "9ad7",
+      "id": "071d",
       "name": "Fumo",
       "color": "#38bdf8",
       "icon": "📂",
-      "userId": "f2c2"
+      "userId": "a896"
     },
     {
-      "id": "7a4e",
-      "name": "Vacanza",
-      "color": "#60a5fa",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "183d",
-      "name": "Regali",
-      "color": "#60a5fa",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "20ea",
-      "name": "Regali",
-      "color": "#34d399",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "3587",
-      "name": "Vacanza",
-      "color": "#34d399",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "eb98",
-      "name": "Regali",
-      "color": "#38bdf8",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "5222",
-      "name": "Benzina",
-      "color": "#10b981",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "ce87",
-      "name": "Vacanza",
-      "color": "#c084fc",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "be36",
-      "name": "Vacanza",
-      "color": "#34d399",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "6f96",
-      "name": "Vacanza",
-      "color": "#f87171",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "d99a",
+      "id": "6b7f",
       "name": "Benzina",
       "color": "#60a5fa",
       "icon": "📂",
-      "userId": "f2c2"
+      "userId": "a896"
     },
     {
-      "id": "40e1",
-      "name": "Benzina",
-      "color": "#3b82f6",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "200c",
-      "name": "Benzina",
-      "color": "#f87171",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "571f",
+      "id": "ac76",
       "name": "Bar",
-      "color": "#c084fc",
+      "color": "#60a5fa",
       "icon": "📂",
-      "userId": "f2c2"
+      "userId": "a896"
     },
     {
-      "id": "6b9a",
-      "name": "Benzina",
-      "color": "#38bdf8",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "56b7",
-      "name": "Bar",
-      "color": "#3b82f6",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "5c0f",
-      "name": "Bar",
-      "color": "#facc15",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "dc8f",
-      "name": "Bar",
-      "color": "#3b82f6",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "9a0d",
-      "name": "Altro",
-      "color": "#10b981",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "c858",
-      "name": "Bar",
-      "color": "#facc15",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "4a43",
+      "id": "f2f7",
       "name": "Altro",
       "color": "#60a5fa",
       "icon": "📂",
-      "userId": "f2c2"
+      "userId": "a896"
     },
     {
-      "id": "9373",
-      "name": "Altro",
-      "color": "#60a5fa",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "24a0",
-      "name": "Altro",
-      "color": "#3b82f6",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "aa5a",
-      "name": "Vestiti",
-      "color": "#10b981",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "5ccb",
-      "name": "Altro",
-      "color": "#10b981",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "ca91",
-      "name": "Vestiti",
-      "color": "#60a5fa",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "28c6",
+      "id": "2080",
       "name": "Vestiti",
       "color": "#f87171",
       "icon": "📂",
-      "userId": "f2c2"
+      "userId": "a896"
     },
     {
-      "id": "cb9f",
-      "name": "Vestiti",
-      "color": "#3b82f6",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "f6d2",
+      "id": "8e69",
       "name": "Software",
-      "color": "#34d399",
+      "color": "#60a5fa",
       "icon": "📂",
-      "userId": "f2c2"
+      "userId": "a896"
     },
     {
-      "id": "75ca",
-      "name": "Software",
-      "color": "#10b981",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "016a",
-      "name": "Vestiti",
-      "color": "#3b82f6",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "b01a",
-      "name": "Software",
-      "color": "#f87171",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "949d",
-      "name": "Software",
-      "color": "#34d399",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "f332",
+      "id": "1771",
       "name": "Regalo",
       "color": "#34d399",
       "icon": "📂",
-      "userId": "f2c2"
+      "userId": "a896"
     },
     {
-      "id": "0db5",
-      "name": "Regalo",
-      "color": "#34d399",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "acc2",
-      "name": "Software",
-      "color": "#c084fc",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "f6c2",
-      "name": "Regalo",
-      "color": "#3b82f6",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "05f5",
-      "name": "Regalo",
-      "color": "#38bdf8",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "0536",
+      "id": "3ed6",
       "name": "Stipendio",
-      "color": "#c084fc",
+      "color": "#f87171",
       "icon": "📂",
-      "userId": "f2c2"
+      "userId": "a896"
     },
     {
-      "id": "a016",
-      "name": "Regalo",
-      "color": "#3b82f6",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "ad66",
-      "name": "Stipendio",
-      "color": "#34d399",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "00bb",
-      "name": "Stipendio",
-      "color": "#34d399",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "c100",
-      "name": "Interessi",
-      "color": "#facc15",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "c113",
+      "id": "03be",
       "name": "Interessi",
       "color": "#c084fc",
       "icon": "📂",
-      "userId": "f2c2"
-    },
+      "userId": "a896"
+    }
+  ],
+  "investments": [
     {
-      "id": "dc9a",
-      "name": "Stipendio",
-      "color": "#34d399",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "297d",
-      "name": "Interessi",
-      "color": "#10b981",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "1c1c",
-      "name": "Interessi",
-      "color": "#f87171",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "f592",
-      "name": "Interessi",
-      "color": "#60a5fa",
-      "icon": "📂",
-      "userId": "f2c2"
-    },
-    {
-      "id": "8e17",
-      "name": "Alimentari",
-      "color": "#60a5fa",
-      "icon": "🛒",
-      "userId": "155e"
-    },
-    {
-      "id": "4ccd",
-      "name": "Svago",
-      "color": "#f87171",
-      "icon": "🎉",
-      "userId": "155e"
-    },
-    {
-      "id": "1dea",
-      "name": "Trasporti",
-      "color": "#34d399",
-      "icon": "🚗",
-      "userId": "155e"
-    },
-    {
-      "id": "ab0f",
-      "name": "Discoteca",
-      "color": "#c084fc",
-      "icon": "🎶",
-      "userId": "155e"
-    },
-    {
-      "id": "7484",
-      "name": "Regali",
-      "color": "#facc15",
-      "icon": "🎁",
-      "userId": "155e"
-    },
-    {
-      "id": "0f94",
-      "name": "Vacanza",
-      "color": "#38bdf8",
-      "icon": "🏖️",
-      "userId": "155e"
-    },
-    {
-      "id": "c16f",
-      "name": "Alimentari",
-      "color": "#60a5fa",
-      "icon": "🛒",
-      "userId": "cf47"
-    },
-    {
-      "id": "e6cd",
-      "name": "Svago",
-      "color": "#f87171",
-      "icon": "🎉",
-      "userId": "cf47"
-    },
-    {
-      "id": "bfb9",
-      "name": "Trasporti",
-      "color": "#34d399",
-      "icon": "🚗",
-      "userId": "cf47"
-    },
-    {
-      "id": "07be",
-      "name": "Discoteca",
-      "color": "#c084fc",
-      "icon": "🎶",
-      "userId": "cf47"
-    },
-    {
-      "id": "f0d8",
-      "name": "Regali",
-      "color": "#facc15",
-      "icon": "🎁",
-      "userId": "cf47"
-    },
-    {
-      "id": "9ffd",
-      "name": "Vacanza",
-      "color": "#38bdf8",
-      "icon": "🏖️",
-      "userId": "cf47"
-    },
-    {
-      "id": "15fb",
-      "name": "Alimentari",
-      "color": "#60a5fa",
-      "icon": "🛒",
-      "userId": "9a34"
-    },
-    {
-      "id": "39b6",
-      "name": "Svago",
-      "color": "#f87171",
-      "icon": "🎉",
-      "userId": "9a34"
-    },
-    {
-      "id": "be6d",
-      "name": "Trasporti",
-      "color": "#34d399",
-      "icon": "🚗",
-      "userId": "9a34"
-    },
-    {
-      "id": "3b04",
-      "name": "Discoteca",
-      "color": "#c084fc",
-      "icon": "🎶",
-      "userId": "9a34"
-    },
-    {
-      "id": "907c",
-      "name": "Regali",
-      "color": "#facc15",
-      "icon": "🎁",
-      "userId": "9a34"
-    },
-    {
-      "id": "8166",
-      "name": "Vacanza",
-      "color": "#38bdf8",
-      "icon": "🏖️",
-      "userId": "9a34"
-    },
-    {
-      "id": "3552",
-      "name": "Alimentari",
-      "color": "#60a5fa",
-      "icon": "🛒",
-      "userId": "94a9"
-    },
-    {
-      "id": "cd64",
-      "name": "Svago",
-      "color": "#f87171",
-      "icon": "🎉",
-      "userId": "94a9"
-    },
-    {
-      "id": "8693",
-      "name": "Trasporti",
-      "color": "#34d399",
-      "icon": "🚗",
-      "userId": "94a9"
-    },
-    {
-      "id": "3436",
-      "name": "Discoteca",
-      "color": "#c084fc",
-      "icon": "🎶",
-      "userId": "94a9"
-    },
-    {
-      "id": "d0cc",
-      "name": "Regali",
-      "color": "#facc15",
-      "icon": "🎁",
-      "userId": "94a9"
-    },
-    {
-      "id": "ac25",
-      "name": "Vacanza",
-      "color": "#38bdf8",
-      "icon": "🏖️",
-      "userId": "94a9"
-    },
-    {
-      "id": "b489",
-      "name": "Alimentari",
-      "color": "#60a5fa",
-      "icon": "🛒",
-      "userId": "bc05"
-    },
-    {
-      "id": "d3a1",
-      "name": "Svago",
-      "color": "#f87171",
-      "icon": "🎉",
-      "userId": "bc05"
-    },
-    {
-      "id": "192d",
-      "name": "Trasporti",
-      "color": "#34d399",
-      "icon": "🚗",
-      "userId": "bc05"
-    },
-    {
-      "id": "5242",
-      "name": "Discoteca",
-      "color": "#c084fc",
-      "icon": "🎶",
-      "userId": "bc05"
-    },
-    {
-      "id": "4c58",
-      "name": "Regali",
-      "color": "#facc15",
-      "icon": "🎁",
-      "userId": "bc05"
-    },
-    {
-      "id": "707e",
-      "name": "Vacanza",
-      "color": "#38bdf8",
-      "icon": "🏖️",
-      "userId": "bc05"
-    },
-    {
-      "id": "77ad",
-      "name": "Alimentari",
-      "color": "#60a5fa",
-      "icon": "🛒",
-      "userId": "1248"
-    },
-    {
-      "id": "d394",
-      "name": "Svago",
-      "color": "#f87171",
-      "icon": "🎉",
-      "userId": "1248"
-    },
-    {
-      "id": "24c3",
-      "name": "Trasporti",
-      "color": "#34d399",
-      "icon": "🚗",
-      "userId": "1248"
-    },
-    {
-      "id": "9210",
-      "name": "Discoteca",
-      "color": "#c084fc",
-      "icon": "🎶",
-      "userId": "1248"
-    },
-    {
-      "id": "d040",
-      "name": "Regali",
-      "color": "#facc15",
-      "icon": "🎁",
-      "userId": "1248"
-    },
-    {
-      "id": "2dd4",
-      "name": "Vacanza",
-      "color": "#38bdf8",
-      "icon": "🏖️",
-      "userId": "1248"
+      "id": "inv-001",
+      "userId": "a896",
+      "symbol": "VOO",
+      "amount": 1000,
+      "startDate": "2024-01-01",
+      "pacEnabled": false
     }
   ],
   "users": [
     {
-      "id": "f2c2",
+      "id": "a896",
       "email": "s.bertaccinidev@gmail.com"
-    },
-    {
-      "id": "155e",
-      "email": "kidberta@gmail.com"
-    },
-    {
-      "id": "cf47",
-      "email": "gino@gmail.com"
-    },
-    {
-      "id": "9a34",
-      "email": "pippo@gmail.com"
-    },
-    {
-      "id": "94a9",
-      "email": "pluto@gmail.com"
-    },
-    {
-      "id": "bc05",
-      "email": "loppu@gmail.com"
-    },
-    {
-      "id": "1248",
-      "email": "lobbu@gmail.com"
     }
   ]
 }

@@ -106,7 +106,7 @@ const DynamicForm = ({ type, onClose, setToastMessage, setToastType, editData = 
 
             } else {
 
-                await dispatch(createTransaction(payload)).unwrap();
+                await dispatch(createTransaction({ transaction: payload, skipBalanceUpdate: false })).unwrap();
                 setToastMessage(`${type.charAt(0).toUpperCase() + type.slice(1)} aggiunto con successo!`);
             }
             setToastType('success');

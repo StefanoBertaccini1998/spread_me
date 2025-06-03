@@ -16,7 +16,7 @@ export const createUser = createAsyncThunk(
       const resCreate = await fetch(`${baseURL}/users`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, role: "basic" }),
       });
       if (!resCreate.ok) throw new Error("Errore creazione utente.");
       const createdUser = await resCreate.json();
@@ -25,8 +25,8 @@ export const createUser = createAsyncThunk(
       // Step 2: crea default account
       const defaultAccounts = [
         { name: "Contanti", color: "#f87171", icon: "💵", balance: 0 },
-        { name: "BPER", color: "#60a5fa", icon: "🏦", balance: 0 },
-        { name: "Paypal", color: "#3b82f6", icon: "💳", balance: 0 },
+        { name: "Banca", color: "#60a5fa", icon: "🏦", balance: 0 },
+        { name: "SmartBanck", color: "#3b82f6", icon: "💳", balance: 0 },
       ];
 
       for (const acc of defaultAccounts) {

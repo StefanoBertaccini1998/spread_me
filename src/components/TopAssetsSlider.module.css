@@ -1,0 +1,57 @@
+.sliderWrapper {
+    margin-bottom: 2rem;
+}
+
+.sliderTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #1f2937;
+}
+
+.slider {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    scroll-snap-type: x mandatory;
+}
+
+.assetCard {
+    min-width: 160px;
+    padding: 1rem;
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    text-align: center;
+}
+
+.symbol {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #4f46e5;
+}
+
+.name {
+    font-size: 0.9rem;
+    color: #374151;
+    margin: 0.3rem 0;
+}
+
+.positive {
+    color: #16a34a;
+    font-weight: 500;
+}
+
+.negative {
+    color: #dc2626;
+    font-weight: 500;
+}
+
+.loading {
+    padding: 1rem;
+    text-align: center;
+    color: #6b7280;
+}

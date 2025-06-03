@@ -6,12 +6,15 @@ import { updateAccountsBulk } from "./accountThunks";
 // CREATE
 export const createTransaction = createAsyncThunk(
   "transactions/create",
-  async (transaction, { getState, dispatch, rejectWithValue }) => {
+  async (
+    { transaction, skipBalanceUpdate = false },
+    { getState, dispatch, rejectWithValue }
+  ) => {
     try {
       const { user } = getState().userSettings;
       if (!user?.id) throw new Error("Utente non autenticato");
-
-      const transactionWithUser = { ...transaction, userId: user.id };
+      const normalized = normalizeTransactionData(transaction);
+      const transactionWithUser = { ...normalized, userId: user.id };
       const res = await fetch(`${baseURL}/transactions`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -22,12 +25,12 @@ export const createTransaction = createAsyncThunk(
         throw new Error("Errore durante la creazione della transazione");
 
       const saved = await res.json();
+      if (!skipBalanceUpdate) {
+        const accounts = getState().accounts.data;
+        const updatedAccounts = adjustAccountBalance(accounts, saved, "add");
 
-      const accounts = getState().accounts.data;
-      const updatedAccounts = adjustAccountBalance(accounts, saved, "add");
-
-      await dispatch(updateAccountsBulk(updatedAccounts)).unwrap(); // 👉 forza errore se fallisce
-
+        await dispatch(updateAccountsBulk(updatedAccounts)).unwrap(); // 👉 forza errore se fallisce
+      }
       return saved;
     } catch (err) {
       console.error("Errore createTransaction:", err);
@@ -131,3 +134,33 @@ export const updateTransaction = createAsyncThunk(
     }
   }
 );
+
+const normalizeTransactionData = (tx) => {
+  const base = {
+    category: tx.category || "",
+    account: tx.account || "",
+    amountBaseCurrency: tx.amountBaseCurrency ?? null,
+    baseCurrency: tx.baseCurrency || "EUR",
+    amountAccountCurrency: tx.amountAccountCurrency ?? null,
+    accountCurrency: tx.accountCurrency || "EUR",
+    comment: tx.comment || "",
+    fromAccount: tx.fromAccount || "",
+    toAccount: tx.toAccount || "",
+    amountFromCurrency: tx.amountFromCurrency ?? null,
+    fromCurrency: tx.fromCurrency || "EUR",
+    toCurrency: tx.toCurrency || "EUR",
+  };
+
+  return {
+    ...base,
+    ...tx,
+    type:
+      tx.type === "income"
+        ? "incomes"
+        : tx.type === "expense"
+        ? "expenses"
+        : tx.type === "transfer"
+        ? "transfers"
+        : tx.type,
+  };
+};

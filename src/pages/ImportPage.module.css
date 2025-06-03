@@ -90,3 +90,11 @@
 .error {
     @apply text-red-700 bg-red-100 p-2 rounded mb-4 text-sm;
 }
+
+.importingToast {
+    @apply text-sm text-blue-600 bg-blue-100 p-2 rounded mb-4 flex items-center gap-2;
+}
+
+.spinner {
+    @apply animate-spin inline-block w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full;
+}

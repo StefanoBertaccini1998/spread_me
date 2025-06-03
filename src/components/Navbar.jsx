@@ -4,7 +4,7 @@ import { logoutUser } from '../redux/slices/userSlice';
 import styles from './Navbar.module.css';
 
 const Navbar = () => {
-  const user = useAppSelector(state => state.userSettings.user);
+  const user = useAppSelector(state => state.user.user);
   const dispatch = useAppDispatch();
 
   const handleLogout = () => dispatch(logoutUser());
@@ -25,6 +25,7 @@ const Navbar = () => {
                 <Link to="/finance/transfers" className={styles.dropdownLink}>Trasferimenti</Link>
               </div>
             </div>
+            <Link to="/investments" className={`${styles.link} flex items-center gap-1`}>Investimenti</Link>
             <Link to="/profile" className={`${styles.link} flex items-center gap-1`}>
               <span role="img" aria-label="profile">👤</span> Profilo
             </Link>

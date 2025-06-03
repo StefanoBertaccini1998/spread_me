@@ -10,6 +10,7 @@ import ProfilePage from '../pages/ProfilePage';
 import ErrorPage from '../pages/ErrorPage';
 import HomePage from '../pages/HomePage';
 import TransactionDetail from '../pages/FinancialManagement/TransactionDetail';
+import InvestmentPage from '../pages/InvestmentPage';
 
 const AppRoutes = () => (
     <BrowserRouter>
@@ -29,6 +30,7 @@ const AppRoutes = () => (
                 <Route path="/transaction/:id" element={<TransactionDetail />} />
                 <Route path="import" element={<ProtectedRoute><ImportPage /></ProtectedRoute>} />
                 <Route path="profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
+                <Route path="investments" element={<ProtectedRoute><InvestmentPage /> </ProtectedRoute>} />
             </Route>
 
             {/* Fallback */}

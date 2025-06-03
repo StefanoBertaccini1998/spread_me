@@ -5,6 +5,8 @@ import transactionReducer from "./slices/transactionSlice";
 import placeholderReducer from "./slices/placeholderSlice";
 import accountReducer from "./slices/accountSlice";
 import categoriesReducer from "./slices/categoriesSlice";
+import investmentReducer from "./slices/investmentSlice";
+import investmentUserReducer from "./slices/investmentUserSlice";
 
 export const store = configureStore(
   {
@@ -16,6 +18,8 @@ export const store = configureStore(
       accounts: accountReducer,
       categories: categoriesReducer,
       user: userReducer,
+      investment: investmentReducer,
+      investmentsUser: investmentUserReducer,
     },
   },
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

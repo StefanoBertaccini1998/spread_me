@@ -120,32 +120,25 @@ const ImportPage = () => {
     try {
       for (const acc of accountsToCreate) {
         const res = await dispatch(createAccount({
-          userId,
-          account: {
-            name: acc,
-            color: getRandomColor(),
-            icon: '🏦',
-            balance: 0
-          }
+          name: acc,
+          color: getRandomColor(),
+          icon: '🏦',
+          balance: 0
         }));
         if (res.error) throw new Error(`Errore creazione account "${acc}"`);
       }
 
       for (const cat of categoriesToCreate) {
         const res = await dispatch(createCategory({
-          userId,
-          category: {
-            name: cat,
-            color: getRandomColor(),
-            icon: '📂'
-          }
+          name: cat,
+          color: getRandomColor(),
+          icon: '📂'
         }));
         if (res.error) throw new Error(`Errore creazione categoria "${cat}"`);
       }
 
       for (const row of expenses) {
         const res = await dispatch(createTransaction({
-          userId,
           transaction: {
             type: 'expense',
             date: row['Data e ora'],
@@ -156,14 +149,14 @@ const ImportPage = () => {
             amountAccountCurrency: parseFloat(row['Importo in valuta del conto']) || 0,
             accountCurrency: row['Valuta conto'],
             comment: row['Commento']
-          }
+          },
+          skipBalanceUpdate: true
         }));
         if (res.error) throw new Error(`Errore su spesa: ${row['Commento'] || row['Categoria']}`);
       }
 
       for (const row of incomes) {
         const res = await dispatch(createTransaction({
-          userId,
           transaction: {
             type: 'income',
             date: row['Data e ora'],
@@ -174,14 +167,14 @@ const ImportPage = () => {
             amountAccountCurrency: parseFloat(row['Importo in valuta del conto']) || 0,
             accountCurrency: row['Valuta conto'],
             comment: row['Commento']
-          }
+          },
+          skipBalanceUpdate: true
         }));
         if (res.error) throw new Error(`Errore su entrata: ${row['Commento'] || row['Categoria']}`);
       }
 
       for (const row of transfers) {
         const res = await dispatch(createTransaction({
-          userId,
           transaction: {
             type: 'transfer',
             date: row['Data e ora'],
@@ -190,7 +183,8 @@ const ImportPage = () => {
             amountFromCurrency: parseFloat(row['Importo nella valuta in uscita']) || 0,
             fromCurrency: row['Valuta in uscita'],
             comment: row['Commento']
-          }
+          },
+          skipBalanceUpdate: true
         }));
         if (res.error) throw new Error(`Errore su trasferimento: ${row['Commento']}`);
       }
@@ -260,6 +254,12 @@ const ImportPage = () => {
   return (
     <div className={styles.container}>
       {error && <p className={styles.error}>{error}</p>}
+      {importing && (
+        <p className={styles.importingToast}>
+          <span className={styles.spinner}></span>
+          Importazione in corso, attendi...
+        </p>
+      )}
       <h1 className={styles.title}>Importa Dati Finanziari da Excel</h1>
       <input type="file" accept=".csv, .xlsx, .xls" onChange={handleFileUpload} className={styles.file} />
       {loading && <p className={styles.loading}>⏳ Parsing in corso...</p>}

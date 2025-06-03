@@ -1,0 +1,14 @@
+.graphCard {
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 1rem;
+}
+
+.graphTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #374151;
+    /* gray-700 */
+    margin-bottom: 0.5rem;
+}
