@@ -19,7 +19,7 @@
 }
 
 .edit {
-    @apply text-white hover:text-yellow-300 transition-colors;
+    @apply text-base hover:text-yellow-300 transition-colors;
     pointer-events: none;
     /* edit hidden from click */
     display: none;

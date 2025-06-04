@@ -1,7 +1,0 @@
-.layout {
-    @apply flex flex-col min-h-screen;
-}
-
-.main {
-    @apply flex-1 p-4 bg-gray-50;
-}

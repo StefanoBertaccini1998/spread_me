@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Modal from '../../components/Modal';
 import DynamicForm from '../../components/DynamicForm';
 import styles from './TransactionView.module.css';
+import { Plus } from 'lucide-react';
 
 const labels = {
     expenses: 'Spese',
@@ -115,7 +116,7 @@ const TransactionView = ({ type, filters, setToastMessage, setToastType, openMod
                     className={styles[`${type}-button`]}
                     onClick={() => setIsModalOpen(true)}
                 >
-                    ➕ Aggiungi
+                    <Plus size={18} aria-hidden="true" /> Aggiungi
                 </button>
             </div>
 

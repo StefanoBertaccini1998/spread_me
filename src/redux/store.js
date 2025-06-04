@@ -13,7 +13,6 @@ export const store = configureStore(
     reducer: {
       placeholder: placeholderReducer,
       financial: financialReducer,
-      userSettings: userReducer,
       transaction: transactionReducer,
       accounts: accountReducer,
       categories: categoriesReducer,
@@ -21,6 +20,7 @@ export const store = configureStore(
       investment: investmentReducer,
       investmentsUser: investmentUserReducer,
     },
+    devTools: import.meta.env.MODE !== "production",
   },
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );

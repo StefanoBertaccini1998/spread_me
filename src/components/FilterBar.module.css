@@ -6,25 +6,23 @@
     @apply flex flex-wrap justify-center sm:justify-start gap-4 max-w-5xl;
 }
 
-.customDateGroup {
+.custom {
     @apply flex flex-row gap-4 w-full sm:w-auto;
 }
 
-.filterGroup {
+.group {
     @apply flex flex-col gap-1 w-full sm:w-44;
-    /* oppure sm:w-48 */
 }
 
 .label {
-    @apply text-xs sm:text-sm font-medium text-gray-700;
+    @apply text-xs sm:text-sm font-medium;
 }
 
 .select {
-    @apply px-3 py-2 border rounded bg-white shadow text-sm sm:text-base text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 w-full;
+    @apply px-3 py-2 border border-gray-300 rounded bg-surface shadow text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-primary/60 w-full;
 }
 
-
-@media (max-width: 420px) {
+@media (max-width:420px) {
     .select {
         @apply text-sm px-2 py-1;
     }

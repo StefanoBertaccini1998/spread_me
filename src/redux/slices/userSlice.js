@@ -5,6 +5,8 @@ const initialState = {
   user: null,
   loading: false,
   error: null,
+  theme: "light",
+  locale: "en-GB",
 };
 
 const userSlice = createSlice({
@@ -19,6 +21,12 @@ const userSlice = createSlice({
       if (state.user) {
         state.user.role = "premium";
       }
+    },
+    setTheme(state, action) {
+      state.theme = action.payload;
+    },
+    setLocale(state, action) {
+      state.locale = action.payload;
     },
   },
   extraReducers: (builder) => {

@@ -15,5 +15,5 @@
 }
 
 .button {
-    @apply bg-blue-800 text-white py-3 px-6 rounded-md text-lg hover:bg-blue-900;
+    @apply bg-primary py-3 px-6 rounded-md text-lg hover:bg-primary/80;
 }

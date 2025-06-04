@@ -5,7 +5,7 @@ export const fetchAccounts = createAsyncThunk(
   "accounts/fetchAccounts",
   async (_, { getState, rejectWithValue }) => {
     try {
-      const userId = getState().userSettings.user?.id;
+      const userId = getState().user.user?.id;
       if (!userId) throw new Error("Utente non autenticato");
       const res = await fetch(`${baseURL}/accounts?userId=${userId}`);
       const data = await res.json();
@@ -20,7 +20,7 @@ export const createAccount = createAsyncThunk(
   "categories/createAccount",
   async (account, { getState, rejectWithValue }) => {
     try {
-      const userId = getState().userSettings.user?.id;
+      const userId = getState().user.user?.id;
       if (!userId) throw new Error("Utente non autenticato");
 
       const res = await fetch(`${baseURL}/accounts`, {

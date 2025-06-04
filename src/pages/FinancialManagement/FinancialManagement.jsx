@@ -1,16 +1,19 @@
 import styles from './FinancialManagement.module.css';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import TransactionView from './TransactionView';
 import FilterBar from '../../components/FilterBar';
 import Toast from '../../components/Toast';
 
-const FinancialManagement = ({ section }) => {
-    const [view, setView] = useState(section ?? 'expenses');
+const FinancialManagement = () => {
+    // 1. dynamic route segment
+    const { type = 'expenses' } = useParams();
+    const view = type;                // ← 'expenses', 'incomes', etc.
+    const navigate = useNavigate();
+    const location = useLocation();
+
     const [toastMessage, setToastMessage] = useState('');
     const [toastType, setToastType] = useState(null);
-    const location = useLocation();
-    const navigate = useNavigate();
 
     const [modalOpen, setModalOpen] = useState(false);
     const [modalType, setModalType] = useState(null);
@@ -23,30 +26,26 @@ const FinancialManagement = ({ section }) => {
     };
     const [filters, setFilters] = useState(initialFilters);
 
+    // 3. modal handling
     useEffect(() => {
-        const queryParams = new URLSearchParams(location.search);
-        const typeFromUrl = queryParams.get('type');
-        const shouldOpen = queryParams.get('openModal') === 'true';
+        const shouldOpen = new URLSearchParams(location.search)
+            .get('openModal') === 'true';
 
-        if (shouldOpen && typeFromUrl) {
-            setView(typeFromUrl);
+        if (shouldOpen) {
             setModalOpen(true);
-            setModalType(typeFromUrl);
+            setModalType(type);            // 'expenses' | 'incomes' | 'transfers'
 
-            // Rimuovi i query param dopo l'apertura del modale
-            const cleanUrl = `/finance/${typeFromUrl}`;
-            navigate(cleanUrl, { replace: true });
-
+            // after opening, drop the search-param to keep the URL tidy
+            navigate(location.pathname, { replace: true });
         }
-    }, [location.search]);
+    }, [location.search, type, navigate]);   // ← correct deps
 
     const handleModalClose = () => {
         setModalOpen(false);
         setModalType(null);
     };
-
+    // 4. switch handler
     const handleSectionChange = (newView) => {
-        setView(newView);
         navigate(`/finance/${newView}`);
     };
 

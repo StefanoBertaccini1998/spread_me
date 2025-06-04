@@ -1,6 +1,6 @@
-// DashboardCharts.js
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Bar, Line, Pie } from 'react-chartjs-2';
+import useDarkMode from '../hooks/useDarkMode';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -14,22 +14,27 @@ import {
 } from 'chart.js';
 import styles from './DashboardCharts.module.css';
 
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    LineElement,
-    PointElement,
-    ArcElement,
-    Tooltip,
-    Legend
-);
+ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, PointElement, ArcElement, Tooltip, Legend);
+
+// Tailwind theme → hex map (extend as needed)
+const tw = {
+    primary: '#0D6EFD',
+    success: '#198754',
+    danger: '#DC3545',
+    warning: '#FFC107',
+    info: '#0DCAF0',
+};
 
 const chartTypes = {
     bar: Bar,
     line: Line,
     pie: Pie
 };
+
+const cssVar = (name) =>
+    getComputedStyle(document.documentElement)
+        .getPropertyValue(name)
+        .trim() || undefined;
 
 const DashboardCharts = ({ expensesData, incomesData }) => {
     const [chartType, setChartType] = useState('bar');
@@ -43,6 +48,9 @@ const DashboardCharts = ({ expensesData, incomesData }) => {
 
     const formatCurrency = (value) => `€${value.toFixed(2)}`;
 
+    const { isDark } = useDarkMode();           // si aggiorna da solo
+
+    const baseColor = isDark ? '#F3F4F6' : '#374151';
     const pieOptions = {
         responsive: true,
         plugins: {
@@ -55,46 +63,24 @@ const DashboardCharts = ({ expensesData, incomesData }) => {
         }
     };
 
+    const barColours = useMemo(() => [tw.success, tw.danger], []);
     const barLineOptions = {
         responsive: true,
         plugins: {
-            legend: { labels: { color: '#374151' } },
+            legend: { labels: { color: baseColor } },
             tooltip: {
-                callbacks: {
-                    label: (context) => `${context.dataset.label}: €${context.raw}`
-                }
-            }
+                callbacks: { label: (ctx) => `€${ctx.raw.toFixed(2)}` },
+            },
         },
         scales: {
-            y: {
-                ticks: {
-                    callback: (value) => formatCurrency(value),
-                    color: '#6b7280'
-                },
-                grid: {
-                    color: '#e5e7eb'
-                }
-            },
-            x: {
-                ticks: {
-                    color: '#6b7280'
-                },
-                grid: {
-                    color: '#f3f4f6'
-                }
-            }
-        }
+            y: { ticks: { color: baseColor }, grid: { color: '#e5e7eb' } },
+            x: { ticks: { color: baseColor }, grid: { color: '#f3f4f6' } },
+        },
     };
 
     const incomesExpenseComparison = {
         labels: ['Entrate', 'Spese'],
-        datasets: [
-            {
-                label: 'Totale',
-                data: [totalIncomes, totalExpenses],
-                backgroundColor: ['#34d399', '#f87171']
-            }
-        ]
+        datasets: [{ label: 'Totale', data: [totalIncomes, totalExpenses], backgroundColor: barColours }],
     };
 
     const expensesByCategory = {

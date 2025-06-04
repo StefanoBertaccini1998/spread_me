@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --bg-surface: theme('colors.background');
+    /* chiaro  */
+    --text-base: theme('colors.gray.800');
+}
+
+.dark {
+    --bg-surface: theme('colors.darkBg');
+    /* scuro   */
+    --text-base: theme('colors.gray.100');
+}
+
+@layer utilities {
+    .bg-surface {
+        background-color: var(--bg-surface);
+    }
+
+    .text-base {
+        color: var(--text-base);
+    }
+}

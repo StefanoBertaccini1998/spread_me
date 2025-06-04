@@ -9,7 +9,7 @@ const StatCard = ({ title, value, bgColor, type, currentFilters }) => {
     };
 
     return (
-        <div className={`${styles.card} ${bgColor}`} onClick={handleClick}>
+        <div className={`${styles.card} ${bgColor}`} onClick={handleClick} role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && handleClick()}>
             <h3 className={styles.title}>{title}</h3>
             <p className={styles.value}>{value}</p>
         </div>

@@ -1,6 +1,7 @@
-import { FiTrash2 } from 'react-icons/fi';
+
 import PropTypes from 'prop-types';
 import styles from './AccountCategoryCard.module.css';
+import { Trash2 } from 'lucide-react';
 
 const AccountCategoryCard = ({ name, color, icon, balance, onEdit, onDelete }) => {
     return (
@@ -19,7 +20,7 @@ const AccountCategoryCard = ({ name, color, icon, balance, onEdit, onDelete }) =
                     className={styles.delete}
                     aria-label="Cancella"
                 >
-                    <FiTrash2 size={16} />
+                    <Trash2 size={16} />
                 </button>
             </div>
             <div className={styles.cardTop}>

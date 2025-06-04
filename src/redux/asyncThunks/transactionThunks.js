@@ -11,7 +11,7 @@ export const createTransaction = createAsyncThunk(
     { getState, dispatch, rejectWithValue }
   ) => {
     try {
-      const { user } = getState().userSettings;
+      const { user } = getState().user;
       if (!user?.id) throw new Error("Utente non autenticato");
       const normalized = normalizeTransactionData(transaction);
       const transactionWithUser = { ...normalized, userId: user.id };
@@ -46,7 +46,7 @@ export const fetchTransactions = createAsyncThunk(
   "transactions/fetchAll",
   async (_, { getState, rejectWithValue }) => {
     try {
-      const { user } = getState().userSettings;
+      const { user } = getState().user;
       if (!user?.id) throw new Error("Utente non autenticato");
 
       const res = await fetch(`${baseURL}/transactions?userId=${user.id}`);

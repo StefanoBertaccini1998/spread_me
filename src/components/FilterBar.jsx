@@ -1,22 +1,21 @@
 import { useAppSelector } from '../redux/hooks/useRedux';
 import styles from './FilterBar.module.css';
 
-const FilterBar = ({ filters, setFilters }) => {
+export default function FilterBar({ filters, setFilters }) {
     const userId = useAppSelector((state) => state.user.user?.id);
-    const allAccounts = useAppSelector((state) => state.accounts.data);
-    const allCategories = useAppSelector((state) => state.categories.data);
+    const accounts = useAppSelector((s) => s.accounts.data).filter((a) => a.userId === userId);
+    const categories = useAppSelector((s) => s.categories.data).filter((c) => c.userId === userId);
 
-    const accounts = allAccounts.filter((acc) => acc.userId === userId);
-    const categories = allCategories.filter((cat) => cat.userId === userId);
-    const handleChange = (field) => (e) =>
+    const handle = (field) => (e) =>
         setFilters((prev) => ({ ...prev, [field]: e.target.value }));
 
     return (
         <div className={styles.container}>
             <div className={styles.inner}>
-                <div className={styles.filterGroup}>
+                {/* Period */}
+                <div className={styles.group}>
                     <label className={styles.label}>Periodo</label>
-                    <select value={filters.period} onChange={handleChange('period')} className={styles.select}>
+                    <select value={filters.period} onChange={handle('period')} className={styles.select}>
                         <option value="month">Mese Corrente</option>
                         <option value="year">Anno Corrente</option>
                         <option value="always">Sempre</option>
@@ -24,51 +23,42 @@ const FilterBar = ({ filters, setFilters }) => {
                     </select>
                 </div>
 
+                {/* Custom dates */}
                 {filters.period === 'custom' && (
-                    <div className={styles.customDateGroup}>
-                        <div className={styles.filterGroup}>
+                    <div className={styles.custom}>
+                        <div className={styles.group}>
                             <label className={styles.label}>Da</label>
-                            <input
-                                type="date"
-                                value={filters.startDate || ''}
-                                onChange={handleChange('startDate')}
-                                className={styles.select}
-                            />
+                            <input type="date" value={filters.startDate || ''} onChange={handle('startDate')} className={styles.select} />
                         </div>
-                        <div className={styles.filterGroup}>
+                        <div className={styles.group}>
                             <label className={styles.label}>A</label>
-                            <input
-                                type="date"
-                                value={filters.endDate || ''}
-                                onChange={handleChange('endDate')}
-                                className={styles.select}
-                            />
+                            <input type="date" value={filters.endDate || ''} onChange={handle('endDate')} className={styles.select} />
                         </div>
                     </div>
                 )}
 
-                <div className={styles.filterGroup}>
+                {/* Account */}
+                <div className={styles.group}>
                     <label className={styles.label}>Conto</label>
-                    <select value={filters.account} onChange={handleChange('account')} className={styles.select}>
+                    <select value={filters.account} onChange={handle('account')} className={styles.select}>
                         <option value="All">Tutti i Conti</option>
-                        {accounts.map((acc) => (
-                            <option key={acc.name} value={acc.name}>{acc.icon} {acc.name}</option>
+                        {accounts.map((a) => (
+                            <option key={a.id} value={a.name}>{a.icon} {a.name}</option>
                         ))}
                     </select>
                 </div>
 
-                <div className={styles.filterGroup}>
+                {/* Category */}
+                <div className={styles.group}>
                     <label className={styles.label}>Categoria</label>
-                    <select value={filters.category} onChange={handleChange('category')} className={styles.select}>
+                    <select value={filters.category} onChange={handle('category')} className={styles.select}>
                         <option value="All">Tutte le Categorie</option>
-                        {categories.map((cat) => (
-                            <option key={cat.name} value={cat.name}>{cat.icon} {cat.name}</option>
+                        {categories.map((c) => (
+                            <option key={c.id} value={c.name}>{c.icon} {c.name}</option>
                         ))}
                     </select>
                 </div>
             </div>
         </div>
     );
-};
-
-export default FilterBar;
+}

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useAppSelector } from '../redux/hooks/useRedux';
 import StatCard from '../components/StatCard';
 import FilterBar from '../components/FilterBar';
@@ -12,6 +12,9 @@ const DashboardHome = () => {
 
     const expenses = useAppSelector((state) => state.transaction.expenses);
     const incomes = useAppSelector((state) => state.transaction.incomes);
+
+
+
 
     const [filters, setFilters] = useState({
         period: 'always',
@@ -50,8 +53,8 @@ const DashboardHome = () => {
         });
     };
 
-    const filteredExpenses = filterData(expenses);
-    const filteredIncomes = filterData(incomes);
+    const filteredExpenses = useMemo(() => filterData(expenses), [expenses, filters]);
+    const filteredIncomes = useMemo(() => filterData(incomes), [incomes, filters]);
 
     const totalExpenses = filteredExpenses.reduce((sum, e) => sum + e.amountBaseCurrency, 0);
     const totalIncomes = filteredIncomes.reduce((sum, i) => sum + i.amountBaseCurrency, 0);
@@ -85,25 +88,25 @@ const DashboardHome = () => {
 
             <FilterBar filters={filters} setFilters={setFilters} />
 
-            <div className={styles.statGrid}>
+            <div className={styles.cardsGrid}>
                 <StatCard
                     title="💸 Spese Totali"
                     value={`€${totalExpenses.toFixed(2)}`}
-                    bgColor="bg-red-500"
+                    bgColor="bg-danger"
                     type="expenses"
                     currentFilters={filters}
                 />
                 <StatCard
                     title="💰 Entrate Totali"
                     value={`€${totalIncomes.toFixed(2)}`}
-                    bgColor="bg-green-500"
+                    bgColor="bg-success"
                     type="incomes"
                     currentFilters={filters}
                 />
                 <StatCard
                     title="💼 Saldo Netto"
                     value={`€${netBalance.toFixed(2)}`}
-                    bgColor="bg-blue-500"
+                    bgColor="bg-primary"
                     currentFilters={filters}
                 />
             </div>

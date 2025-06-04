@@ -5,7 +5,7 @@ export const fetchCategories = createAsyncThunk(
   "categories/fetchCategories",
   async (_, { getState, rejectWithValue }) => {
     try {
-      const userId = getState().userSettings.user?.id;
+      const userId = getState().user.user?.id;
       if (!userId) throw new Error("Utente non autenticato");
 
       const res = await fetch(`${baseURL}/categories?userId=${userId}`);
@@ -21,7 +21,7 @@ export const createCategory = createAsyncThunk(
   "categories/createCategory",
   async (category, { getState, rejectWithValue }) => {
     try {
-      const userId = getState().userSettings.user?.id;
+      const userId = getState().user.user?.id;
       if (!userId) throw new Error("Utente non autenticato");
 
       const res = await fetch(`${baseURL}/categories`, {

@@ -1,42 +1,40 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../redux/hooks/useRedux';
 import { logoutUser } from '../redux/slices/userSlice';
 import styles from './Navbar.module.css';
 
-const Navbar = () => {
-  const user = useAppSelector(state => state.user.user);
+export default function Navbar() {
+  const user = useAppSelector((s) => s.user.user);
   const dispatch = useAppDispatch();
-
-  const handleLogout = () => dispatch(logoutUser());
 
   return (
     <nav className={styles.navbar}>
-      <div className={styles.title}>Finance Tracker</div>
+      <Link to="/" className={styles.brand}>Finance Tracker</Link>
+
+      <input type="checkbox" id="nav-toggle" className="hidden peer" />
+      <label htmlFor="nav-toggle" className={styles.burger}><span /></label>
+
       <div className={styles.links}>
-        <Link to="/" className={styles.link}>Home</Link>
+        <NavLink to="/" className={styles.link}>Home</NavLink>
         {user ? (
           <>
-            <Link to="/dashboard" className={styles.link}>Dashboard</Link>
-            <div className="relative group">
-              <button className={styles.link}>Gestione Finanza ▾</button>
-              <div className={`hidden group-hover:flex flex-col absolute bg-white text-primary shadow-lg mt-1 z-50 ${styles.dropdownMenu}`}>
-                <Link to="/finance/expenses" className={styles.dropdownLink}>Spese</Link>
-                <Link to="/finance/incomes" className={styles.dropdownLink}>Entrate</Link>
-                <Link to="/finance/transfers" className={styles.dropdownLink}>Trasferimenti</Link>
+            <NavLink to="/dashboard" className={styles.link}>Dashboard</NavLink>
+            <div className={styles.dropdown}>
+              <button className={styles.link}>Gestione Finanza ▾</button>
+              <div className={styles.menu}>
+                <NavLink to="/finance/expenses" className={styles.menuLink}>Spese</NavLink>
+                <NavLink to="/finance/incomes" className={styles.menuLink}>Entrate</NavLink>
+                <NavLink to="/finance/transfers" className={styles.menuLink}>Trasferimenti</NavLink>
               </div>
             </div>
-            <Link to="/investments" className={`${styles.link} flex items-center gap-1`}>Investimenti</Link>
-            <Link to="/profile" className={`${styles.link} flex items-center gap-1`}>
-              <span role="img" aria-label="profile">👤</span> Profilo
-            </Link>
-            <button onClick={handleLogout} className={styles.button}>Logout</button>
+            <NavLink to="/investments" className={styles.link}>Investimenti</NavLink>
+            <NavLink to="/profile" className={styles.link}>👤 Profilo</NavLink>
+            <button onClick={() => dispatch(logoutUser())} className={styles.logout}>Logout</button>
           </>
         ) : (
-          <Link to="/login" className={styles.link}>Login</Link>
+          <NavLink to="/login" className={styles.link}>Login</NavLink>
         )}
       </div>
     </nav>
   );
-};
-
-export default Navbar;
+}

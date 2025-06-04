@@ -1,5 +1,7 @@
 .card {
-    @apply p-4 rounded-xl shadow-md text-white text-center text-sm sm:text-base md:text-lg flex flex-col items-center justify-center cursor-pointer transition-transform hover:scale-105 min-h-[100px] w-full;
+    @apply p-4 rounded-xl shadow-md text-center text-sm sm:text-base md:text-lg flex flex-col items-center justify-center cursor-pointer transition-transform hover:scale-105 min-h-[100px] w-full select-none outline-none;
+    @apply focus:ring-4 focus:ring-primary/40;
+    /* accessibility */
 }
 
 .title {
@@ -10,7 +12,7 @@
     @apply text-xl sm:text-2xl font-bold;
 }
 
-@media (max-width: 420px) {
+@media (max-width:420px) {
     .card {
         @apply min-h-[90px] text-sm;
     }

@@ -7,12 +7,18 @@
 }
 
 /* Titoli e bottoni */
+
+.btnBase {
+    @apply font-semibold py-2 px-4 rounded shadow flex items-center gap-2 transition-all duration-200 text-base;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary/40;
+}
+
 .expenses-title {
     @apply text-3xl font-bold text-red-700;
 }
 
 .expenses-button {
-    @apply bg-red-700 text-white py-2 px-4 rounded hover:bg-red-800 transition;
+    @apply btnBase bg-red-700 hover:bg-danger/80 transition;
 }
 
 .incomes-title {
@@ -20,7 +26,7 @@
 }
 
 .incomes-button {
-    @apply bg-green-700 text-white py-2 px-4 rounded hover:bg-green-800 transition;
+    @apply btnBase bg-success hover:bg-success/80 transition;
 }
 
 .transfers-title {
@@ -28,7 +34,7 @@
 }
 
 .transfers-button {
-    @apply bg-purple-700 text-white py-2 px-4 rounded hover:bg-purple-800 transition;
+    @apply btnBase bg-purple-700 hover:bg-purple-800 transition;
 }
 
 /* Lista */
@@ -37,7 +43,7 @@
 }
 
 .item {
-    @apply p-4 bg-white rounded shadow-sm border border-gray-200 hover:shadow-md transition cursor-pointer;
+    @apply p-4 bg-surface rounded shadow-sm border border-gray-200 hover:shadow-md transition cursor-pointer;
 }
 
 .content {
@@ -71,7 +77,7 @@
 }
 
 .date {
-    @apply text-sm text-gray-500 font-medium;
+    @apply text-sm font-medium;
 }
 
 .arrow {

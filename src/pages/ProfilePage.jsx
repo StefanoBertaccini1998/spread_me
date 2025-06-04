@@ -5,6 +5,7 @@ import { createCategory, updateCategory, deleteCategory } from '../redux/asyncTh
 import styles from './ProfilePage.module.css';
 import AccountCategoryEditor from '../components/AccountCategoryEditor';
 import AccountCategoryCard from '../components/AccountCategoryCard';
+import { Plus } from 'lucide-react';
 
 const ProfilePage = () => {
     const dispatch = useAppDispatch();
@@ -73,7 +74,7 @@ const ProfilePage = () => {
                         setMode('account');
                     }}
                 >
-                    Aggiungi Conto
+                    <Plus size={18} aria-hidden="true" />Aggiungi Conto
                 </button>
             </section>
 
@@ -102,7 +103,7 @@ const ProfilePage = () => {
                         setMode('category');
                     }}
                 >
-                    Aggiungi Categoria
+                    <Plus size={18} aria-hidden="true" />Aggiungi Categoria
                 </button>
             </section>
 
