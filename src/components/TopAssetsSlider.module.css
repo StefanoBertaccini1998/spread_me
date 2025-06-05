@@ -1,57 +1,35 @@
 .sliderWrapper {
-    margin-bottom: 2rem;
+    @apply mb-8 p-6 rounded-xl shadow-sm flex flex-col gap-2 border border-white;
 }
 
 .sliderTitle {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: #1f2937;
+    @apply text-lg font-semibold mb-4;
 }
 
 .slider {
-    display: flex;
-    overflow-x: auto;
-    gap: 1rem;
-    padding-bottom: 1rem;
-    scroll-snap-type: x mandatory;
+    @apply flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory;
 }
 
 .assetCard {
-    min-width: 160px;
-    padding: 1rem;
-    background: white;
-    border-radius: 1rem;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-    flex-shrink: 0;
-    scroll-snap-align: start;
-    text-align: center;
+    @apply min-w-[160px] p-4 rounded-xl shadow flex-shrink-0 text-center bg-surface snap-start;
 }
 
 .symbol {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #4f46e5;
+    @apply text-[1.1rem] font-semibold text-indigo-600;
 }
 
 .name {
-    font-size: 0.9rem;
-    color: #374151;
-    margin: 0.3rem 0;
+    @apply text-[0.9rem] text-gray-700 my-[0.3rem];
 }
 
 .positive {
-    color: #16a34a;
-    font-weight: 500;
+    @apply text-green-600 font-medium;
 }
 
 .negative {
-    color: #dc2626;
-    font-weight: 500;
+    @apply text-red-600 font-medium;
 }
 
 .loading {
-    padding: 1rem;
-    text-align: center;
-    color: #6b7280;
+    @apply p-4 text-center text-gray-500;
 }

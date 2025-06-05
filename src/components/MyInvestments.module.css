@@ -1,15 +1,9 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+    @apply flex flex-col gap-6 bg-surface rounded-xl p-6 shadow border border-white;
 }
 
 .title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #1f2937;
-    /* gray-800 */
-    margin-bottom: 0.5rem;
+    @apply text-xl font-semibold mb-2;
 }
 
 .grid {

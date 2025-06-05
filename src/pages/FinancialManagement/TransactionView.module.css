@@ -9,7 +9,7 @@
 /* Titoli e bottoni */
 
 .btnBase {
-    @apply font-semibold py-2 px-4 rounded shadow flex items-center gap-2 transition-all duration-200 text-base;
+    @apply font-semibold py-2 px-4 rounded shadow flex items-center gap-2 transition-all duration-200 text-white;
     @apply focus:outline-none focus:ring-2 focus:ring-primary/40;
 }
 
@@ -30,11 +30,11 @@
 }
 
 .transfers-title {
-    @apply text-3xl font-bold text-purple-700;
+    @apply text-3xl font-bold text-secondary;
 }
 
 .transfers-button {
-    @apply btnBase bg-purple-700 hover:bg-purple-800 transition;
+    @apply btnBase bg-secondary hover:bg-secondary/80 transition;
 }
 
 /* Lista */
@@ -43,7 +43,7 @@
 }
 
 .item {
-    @apply p-4 bg-surface rounded shadow-sm border border-gray-200 hover:shadow-md transition cursor-pointer;
+    @apply p-4 bg-white rounded shadow-sm border border-gray-200 hover:shadow-md transition cursor-pointer;
 }
 
 .content {
@@ -51,7 +51,7 @@
 }
 
 .topLine {
-    @apply flex justify-between items-center text-sm sm:text-base font-semibold text-gray-700;
+    @apply flex justify-between items-center text-sm sm:text-gray-700 font-semibold;
 }
 
 .bottomLine {
@@ -60,15 +60,15 @@
 
 /* Importi */
 .amountNegative {
-    @apply text-red-600 font-bold;
+    @apply text-danger font-bold;
 }
 
 .amountPositive {
-    @apply text-green-600 font-bold;
+    @apply text-success font-bold;
 }
 
 .amountTransfer {
-    @apply text-purple-600 font-bold;
+    @apply text-secondary font-bold;
 }
 
 /* Badge e extra */

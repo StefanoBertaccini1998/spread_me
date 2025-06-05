@@ -5,11 +5,11 @@
 }
 
 .title {
-    @apply text-sm sm:text-base font-semibold;
+    @apply text-sm text-white font-semibold;
 }
 
 .value {
-    @apply text-xl sm:text-2xl font-bold;
+    @apply text-xl sm:text-2xl text-white font-bold;
 }
 
 @media (max-width:420px) {

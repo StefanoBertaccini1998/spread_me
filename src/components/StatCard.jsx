@@ -5,7 +5,8 @@ const StatCard = ({ title, value, bgColor, type, currentFilters }) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate(`/finance/${type}`, { state: { filters: currentFilters } });
+        if (type)
+            navigate(`/finance/${type}`, { state: { filters: currentFilters } });
     };
 
     return (

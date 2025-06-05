@@ -43,7 +43,9 @@ const InvestmentPage = () => {
     return (
         <div className={styles.container}>
             <h1 className={styles.heading}>📈 Investment Dashboard</h1>
-            <TopAssetsSlider />
+            <div className={styles.section}>
+                <TopAssetsSlider />
+            </div>
             <div className={styles.section}>
                 <MyInvestments />
             </div>

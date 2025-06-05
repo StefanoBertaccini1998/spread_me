@@ -15,5 +15,5 @@
 }
 
 .button {
-    @apply bg-primary py-3 px-6 rounded-md text-lg hover:bg-primary/80;
+    @apply bg-primary py-3 px-6 rounded-md text-lg hover:bg-primary/80 text-white;
 }

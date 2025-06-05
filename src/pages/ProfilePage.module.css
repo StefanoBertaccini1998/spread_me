@@ -1,5 +1,5 @@
 .container {
-    @apply p-6 max-w-5xl mx-auto bg-surface rounded shadow space-y-12;
+    @apply p-6 max-w-5xl mx-auto bg-surface space-y-12 rounded-xl shadow-sm flex flex-col gap-2 border border-white;
 }
 
 .title {
@@ -11,7 +11,7 @@
 }
 
 .btnBase {
-    @apply font-semibold py-2 px-4 rounded shadow flex items-center gap-2 transition-all duration-200 text-base;
+    @apply font-semibold py-2 px-4 rounded shadow flex items-center gap-2 transition-all duration-200 text-white;
     @apply focus:outline-none focus:ring-2 focus:ring-primary/40;
 }
 
@@ -22,55 +22,6 @@
 .list {
     @apply flex flex-wrap gap-4;
 }
-
-.card {
-    @apply rounded-lg shadow text-base font-semibold flex flex-col items-center justify-center w-36 h-24 p-4 transition-all cursor-pointer hover:scale-105 hover:ring-2 hover:ring-offset-2 hover:ring-primary;
-}
-
-.cardTop {
-    @apply flex items-center gap-2 text-xl;
-}
-
-.cardName {
-    @apply text-center truncate;
-}
-
-.cardBalance {
-    @apply text-xl font-bold;
-}
-
-.form {
-    @apply space-y-4;
-}
-
-.row {
-    @apply flex flex-wrap gap-2;
-}
-
-.input {
-    @apply border border-gray-300 rounded px-3 py-2 flex-1 min-w-[120px] focus:outline-none focus:ring-2 focus:ring-primary;
-}
-
-.inputError {
-    @apply border-red-500 focus:ring-red-500;
-}
-
-.color {
-    @apply w-12 h-12 border rounded cursor-pointer;
-}
-
-.button {
-    @apply bg-blue-600 text-base px-4 py-2 rounded font-semibold transition hover:bg-blue-700;
-}
-
-.emoji {
-    @apply mt-2;
-}
-
-.emojiContainer {
-    @apply border rounded shadow-lg p-2 bg-surface mt-2 max-w-xs;
-}
-
 
 .buttonAdd {
     @apply btnBase bg-green-600 hover:bg-green-700 mt-4;

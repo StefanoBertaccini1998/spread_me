@@ -1,5 +1,5 @@
 .editorContainer {
-    @apply p-4 space-y-4;
+    @apply p-4 space-y-4 p-4 rounded-xl shadow-sm flex flex-col gap-2 border border-white;
 }
 
 .editorTitle {
@@ -12,7 +12,7 @@
 
 .inputField,
 .selectField {
-    @apply border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500;
+    @apply border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-black;
 }
 
 .inputError {

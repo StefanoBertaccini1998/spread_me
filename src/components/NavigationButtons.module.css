@@ -8,17 +8,17 @@
 }
 
 .danger {
-  @apply btnBase bg-danger hover:bg-danger/80 text-base;
+  @apply btnBase bg-danger hover:bg-danger/80 text-white;
 }
 
 .success {
-  @apply btnBase bg-success hover:bg-success/80 text-base;
+  @apply btnBase bg-success hover:bg-success/80 text-white;
 }
 
 .primary {
-  @apply btnBase bg-primary hover:bg-primary/80 text-base;
+  @apply btnBase bg-primary hover:bg-primary/80 text-white;
 }
 
 .secondary {
-  @apply btnBase bg-secondary hover:bg-secondary/80 text-base;
+  @apply btnBase bg-secondary hover:bg-secondary/80 text-white;
 }

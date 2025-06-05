@@ -921,14 +921,6 @@
   ],
   "accounts": [
     {
-      "id": "c4c9",
-      "name": "Contanti",
-      "color": "#f87171",
-      "icon": "💵",
-      "balance": 120,
-      "userId": "a896"
-    },
-    {
       "id": "61c8",
       "name": "Banca",
       "color": "#60a5fa",
@@ -991,6 +983,30 @@
       "icon": "🏦",
       "balance": 0,
       "userId": "a896"
+    },
+    {
+      "id": "af24",
+      "name": "Contanti",
+      "color": "#f87171",
+      "icon": "💵",
+      "balance": 0,
+      "userId": "eb6e"
+    },
+    {
+      "id": "c547",
+      "name": "Banca",
+      "color": "#60a5fa",
+      "icon": "🏦",
+      "balance": 0,
+      "userId": "eb6e"
+    },
+    {
+      "id": "e7e5",
+      "name": "SmartBank",
+      "color": "#3b82f6",
+      "icon": "💳",
+      "balance": 0,
+      "userId": "eb6e"
     }
   ],
   "categories": [
@@ -1119,6 +1135,48 @@
       "color": "#c084fc",
       "icon": "📂",
       "userId": "a896"
+    },
+    {
+      "id": "ac0a",
+      "name": "Alimentari",
+      "color": "#60a5fa",
+      "icon": "🛒",
+      "userId": "eb6e"
+    },
+    {
+      "id": "4bcf",
+      "name": "Svago",
+      "color": "#f87171",
+      "icon": "🎉",
+      "userId": "eb6e"
+    },
+    {
+      "id": "2f1e",
+      "name": "Trasporti",
+      "color": "#34d399",
+      "icon": "🚗",
+      "userId": "eb6e"
+    },
+    {
+      "id": "c9fa",
+      "name": "Discoteca",
+      "color": "#c084fc",
+      "icon": "🎶",
+      "userId": "eb6e"
+    },
+    {
+      "id": "f8a5",
+      "name": "Regali",
+      "color": "#facc15",
+      "icon": "🎁",
+      "userId": "eb6e"
+    },
+    {
+      "id": "9632",
+      "name": "Vacanza",
+      "color": "#38bdf8",
+      "icon": "🏖️",
+      "userId": "eb6e"
     }
   ],
   "investments": [
@@ -1129,12 +1187,33 @@
       "amount": 1000,
       "startDate": "2024-01-01",
       "pacEnabled": false
+    },
+    {
+      "id": 1749135704996,
+      "symbol": "JJJ",
+      "startDate": "2025-06-04",
+      "amount": 111,
+      "pac": false,
+      "userId": "a896"
+    },
+    {
+      "id": 1749135723004,
+      "symbol": "Miaolocp",
+      "startDate": "32143-12-12",
+      "amount": 111,
+      "pac": false,
+      "userId": "a896"
     }
   ],
   "users": [
     {
       "id": "a896",
       "email": "s.bertaccinidev@gmail.com"
+    },
+    {
+      "id": "eb6e",
+      "email": "kidberta@gmail.com",
+      "role": "basic"
     }
   ]
 }

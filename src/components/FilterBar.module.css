@@ -11,7 +11,7 @@
 }
 
 .group {
-    @apply flex flex-col gap-1 w-full sm:w-44;
+    @apply flex flex-col gap-1 w-full sm:w-44 bg-surface;
 }
 
 .label {

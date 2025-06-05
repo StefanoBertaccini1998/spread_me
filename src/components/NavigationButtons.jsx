@@ -1,11 +1,12 @@
-// components/NavigationButtons.jsx
 import { useNavigate } from 'react-router-dom';
 import { Plus, Import } from 'lucide-react';          // lucide icons: no colour issues
 import styles from './NavigationButtons.module.css';
 
 export default function NavigationButtons() {
     const navigate = useNavigate();
-    const go = (type) => navigate(`/finance/${type}?openModal=true`);
+    const go = (type) => {
+        navigate(`/finance/${type}?openModal=true`);
+    }
 
     return (
         <div className={styles.container}>
