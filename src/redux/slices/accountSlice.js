@@ -51,6 +51,4 @@ const accountsSlice = createSlice({
   },
 });
 
-export const { addAccountSetting, removeAccountSetting } =
-  accountsSlice.actions;
 export default accountsSlice.reducer;

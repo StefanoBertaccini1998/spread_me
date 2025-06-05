@@ -26,7 +26,7 @@ export const createUser = createAsyncThunk(
       const defaultAccounts = [
         { name: "Contanti", color: "#f87171", icon: "💵", balance: 0 },
         { name: "Banca", color: "#60a5fa", icon: "🏦", balance: 0 },
-        { name: "SmartBanck", color: "#3b82f6", icon: "💳", balance: 0 },
+        { name: "SmartBank", color: "#3b82f6", icon: "💳", balance: 0 },
       ];
 
       for (const acc of defaultAccounts) {
