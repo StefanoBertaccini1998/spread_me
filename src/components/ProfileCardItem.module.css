@@ -1,5 +1,6 @@
 .item {
-    @apply text-left rounded-md px-4 py-3 text-black;
+    @apply text-left rounded-md px-4 py-3;
+    color: var(--text-base);
     min-width: 140px;
     max-width: 160px;
     display: flex;
@@ -9,6 +10,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    background-color: var(--bg-color);
 }
 
 .top {

@@ -1,8 +1,9 @@
+import React from 'react';
 import styles from './ProfileCardItem.module.css';
 
 const ProfileCardItem = ({ icon, name, color, balance }) => {
     return (
-        <div className={styles.item} style={{ backgroundColor: color }}>
+        <div className={styles.item} style={{ '--bg-color': color }}>
             <div className={styles.top}>
                 <span className={styles.icon}>{icon}</span>
                 <span className={styles.name} title={name}>{name}</span>
@@ -16,4 +17,4 @@ const ProfileCardItem = ({ icon, name, color, balance }) => {
     );
 };
 
-export default ProfileCardItem;
+export default React.memo(ProfileCardItem);

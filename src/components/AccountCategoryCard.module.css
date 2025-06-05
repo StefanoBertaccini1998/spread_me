@@ -1,5 +1,6 @@
 .card {
     @apply relative rounded-lg shadow text-white font-semibold flex flex-col items-center justify-center w-36 h-24 p-4 cursor-pointer hover:scale-105 transition-all;
+    background-color: var(--bg-color);
 }
 
 .cardTop {

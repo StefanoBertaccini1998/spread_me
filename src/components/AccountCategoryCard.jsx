@@ -1,4 +1,4 @@
-
+import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './AccountCategoryCard.module.css';
 import { Trash2 } from 'lucide-react';
@@ -7,7 +7,7 @@ const AccountCategoryCard = ({ name, color, icon, balance, onEdit, onDelete }) =
     return (
         <div
             className={styles.card}
-            style={{ backgroundColor: color }}
+            style={{ '--bg-color': color }}
             onClick={onEdit}
         >
             <div className={styles.actions}>
@@ -43,4 +43,4 @@ AccountCategoryCard.propTypes = {
     onDelete: PropTypes.func.isRequired,
 };
 
-export default AccountCategoryCard;
+export default React.memo(AccountCategoryCard);

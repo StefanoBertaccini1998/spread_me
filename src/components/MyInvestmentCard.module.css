@@ -18,8 +18,7 @@
 .date,
 .amount {
     font-size: 0.9rem;
-    color: #374151;
-    /* gray-700 */
+    color: var(--text-base);
 }
 
 .pacButton {
