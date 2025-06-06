@@ -15,7 +15,10 @@ const AddInvestmentForm = ({ onAdd }) => {
             symbol,
             startDate,
             amount: parseFloat(amount),
-            pac: false,
+            transactions: [
+                { date: startDate, amount: parseFloat(amount) }
+            ],
+            pacEnabled: false,
         };
 
         onAdd(newInvestment);

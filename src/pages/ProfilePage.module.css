@@ -1,9 +1,9 @@
 .container {
-    @apply p-6 max-w-5xl mx-auto bg-surface space-y-12 rounded-xl shadow-sm flex flex-col gap-2 border border-white;
+    @apply p-6 max-w-5xl mx-auto bg-primary space-y-12 rounded-xl shadow-sm flex flex-col gap-2;
 }
 
 .title {
-    @apply text-3xl font-bold text-center text-primary;
+    @apply text-3xl font-bold text-center text-white;
 }
 
 .section {
@@ -16,11 +16,11 @@
 }
 
 .subtitle {
-    @apply text-2xl font-semibold border-b pb-2;
+    @apply text-2xl text-white font-semibold;
 }
 
 .list {
-    @apply flex flex-wrap gap-4;
+    @apply flex flex-wrap gap-3 bg-surface p-6 rounded-xl;
 }
 
 .buttonAdd {

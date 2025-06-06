@@ -1,5 +1,5 @@
 .card {
-    @apply bg-white p-4 rounded-xl shadow-sm flex flex-col gap-2 border border-white;
+    @apply bg-surface p-4 rounded-xl shadow-sm flex flex-col gap-2;
 }
 
 .symbol {
@@ -8,7 +8,7 @@
 
 .date,
 .amount {
-    @apply text-sm text-black;
+    @apply text-sm;
 }
 
 .pacButton {
@@ -17,4 +17,12 @@
 
 .pacButton:hover {
     @apply bg-yellow-500;
+}
+
+.txForm {
+    @apply flex flex-col gap-2 mt-2;
+}
+
+.txForm input {
+    @apply p-2 border border-gray-300 rounded-md text-sm;
 }

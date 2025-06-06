@@ -1,13 +1,14 @@
 .container {
-    @apply flex flex-col gap-6 bg-surface rounded-xl p-6 shadow border border-white;
+    @apply flex flex-col gap-6 rounded-xl;
 }
 
 .title {
-    @apply text-xl font-semibold mb-2;
+    @apply text-xl font-semibold mb-2 text-white;
 }
 
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1rem;
+
 }

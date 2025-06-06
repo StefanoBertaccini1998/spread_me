@@ -55,3 +55,44 @@ export const fetchHistoricalData = async (symbol, startDate, endDate) => {
     close: d.close,
   }));
 };
+
+export const fetchTopAssetsPeriod = async (period = "day") => {
+  const symbols = [
+    "VOO",
+    "SPY",
+    "IVV",
+    "VTI",
+    "QQQ",
+    "EFA",
+    "VEA",
+    "VWO",
+    "IEMG",
+    "BND",
+    "TLT",
+    "ARKK",
+    "LQD",
+    "XLF",
+    "XLE",
+  ];
+
+  const end = new Date();
+  const start = new Date(end);
+  if (period === "week") start.setDate(end.getDate() - 7);
+  else if (period === "month") start.setMonth(end.getMonth() - 1);
+  else start.setDate(end.getDate() - 1);
+
+  const startDate = start.toISOString().split("T")[0];
+  const endDate = end.toISOString().split("T")[0];
+
+  const promises = symbols.map(async (symbol) => {
+    const data = await fetchHistoricalData(symbol, startDate, endDate);
+    const first = data[0];
+    const last = data[data.length - 1];
+    if (!first || !last) return { symbol, name: symbol, changePercent: 0 };
+    const changePercent = ((last.close - first.close) / first.close) * 100;
+    return { symbol, name: symbol, changePercent };
+  });
+
+  const results = await Promise.all(promises);
+  return results.sort((a, b) => b.changePercent - a.changePercent);
+};

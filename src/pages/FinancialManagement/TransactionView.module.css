@@ -1,9 +1,9 @@
 .section {
-    @apply w-full max-w-4xl p-6 rounded;
+    @apply w-full max-w-4xl p-6 rounded-xl bg-primary;
 }
 
 .header {
-    @apply flex justify-between items-center mb-6;
+    @apply flex justify-between items-center mb-6 bg-surface rounded-xl p-6;
 }
 
 /* Titoli e bottoni */
@@ -43,7 +43,7 @@
 }
 
 .item {
-    @apply p-4 bg-white rounded shadow-sm border border-gray-200 hover:shadow-md transition cursor-pointer;
+    @apply bg-surface shadow-sm hover:shadow-md transition cursor-pointer rounded-xl p-6;
 }
 
 .content {
@@ -51,11 +51,11 @@
 }
 
 .topLine {
-    @apply flex justify-between items-center text-sm sm:text-gray-700 font-semibold;
+    @apply flex justify-between items-center text-sm sm:text-base font-semibold;
 }
 
 .bottomLine {
-    @apply flex flex-wrap items-center gap-2 text-sm text-gray-600;
+    @apply flex flex-wrap items-center gap-2 text-sm text-base;
 }
 
 /* Importi */

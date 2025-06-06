@@ -3,7 +3,7 @@
 }
 
 .select {
-    @apply w-full max-w-xs sm:max-w-sm p-3 border border-gray-300 rounded-xl bg-surface shadow text-base focus:outline-none focus:ring-2 focus:ring-blue-500 mx-auto;
+    @apply w-full max-w-xs sm:max-w-sm p-3 border border-gray-300 rounded-xl bg-white shadow text-black focus:outline-none focus:ring-2 focus:ring-blue-500 mx-auto;
 }
 
 .chartGroup {

@@ -3,7 +3,7 @@
 }
 
 .inner {
-    @apply flex flex-wrap justify-center sm:justify-start gap-4 max-w-5xl;
+    @apply flex flex-wrap justify-center sm:justify-start gap-4 max-w-5xl bg-primary rounded-xl p-6;
 }
 
 .custom {
@@ -11,15 +11,15 @@
 }
 
 .group {
-    @apply flex flex-col gap-1 w-full sm:w-44 bg-surface;
+    @apply flex flex-col gap-1 w-full sm:w-44;
 }
 
 .label {
-    @apply text-xs sm:text-sm font-medium;
+    @apply text-xs sm:text-sm font-medium text-white;
 }
 
 .select {
-    @apply px-3 py-2 border border-gray-300 rounded bg-surface shadow text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-primary/60 w-full;
+    @apply px-3 py-2 border border-gray-300 rounded bg-white shadow text-sm sm:text-black focus:outline-none focus:ring-2 focus:ring-primary/60 w-full;
 }
 
 @media (max-width:420px) {

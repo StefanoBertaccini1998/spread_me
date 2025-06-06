@@ -106,7 +106,7 @@ const DashboardHome = () => {
                 <StatCard
                     title="💼 Saldo Netto"
                     value={`€${netBalance.toFixed(2)}`}
-                    bgColor="bg-primary"
+                    bgColor="bg-secondary"
                     currentFilters={filters}
                 />
             </div>

@@ -1,9 +1,9 @@
 .sliderWrapper {
-    @apply mb-8 p-6 rounded-xl shadow-sm flex flex-col gap-2 border border-white;
+    @apply rounded-xl shadow-sm flex flex-col gap-2;
 }
 
 .sliderTitle {
-    @apply text-lg font-semibold mb-4;
+    @apply text-lg font-semibold mb-4 text-white;
 }
 
 .slider {
@@ -14,12 +14,20 @@
     @apply min-w-[160px] p-4 rounded-xl shadow flex-shrink-0 text-center bg-surface snap-start;
 }
 
+.header {
+    @apply flex justify-between items-center mb-4;
+}
+
+.select {
+    @apply p-2 rounded-md border border-gray-300 bg-white text-black text-sm;
+}
+
 .symbol {
     @apply text-[1.1rem] font-semibold text-indigo-600;
 }
 
 .name {
-    @apply text-[0.9rem] text-gray-700 my-[0.3rem];
+    @apply text-[0.9rem] my-[0.3rem];
 }
 
 .positive {

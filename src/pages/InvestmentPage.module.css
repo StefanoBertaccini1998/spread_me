@@ -31,5 +31,5 @@
 }
 
 .section {
-    @apply bg-surface p-6 rounded-xl shadow mb-8;
+    @apply bg-primary p-6 rounded-xl shadow mb-8;
 }

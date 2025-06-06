@@ -1,5 +1,5 @@
 .card {
-    @apply bg-surface p-6 rounded-xl shadow border border-white;
+    @apply bg-surface p-6 rounded-xl shadow;
 }
 
 .title {
@@ -11,7 +11,7 @@
 }
 
 .input {
-    @apply w-full p-2 rounded-md border border-gray-300 mt-1 bg-surface text-base;
+    @apply w-full p-2 rounded-md border border-gray-300 mt-1 bg-white text-black;
 }
 
 .button {

@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../redux/hooks/useRedux';
-import {
-    LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer
-} from 'recharts';
+import { loadHistoricalData } from '../redux/asyncThunks/investmentThunks';
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import styles from './SimulationGraph.module.css';
 
 const SimulationGraph = () => {
@@ -37,7 +36,33 @@ const SimulationGraph = () => {
         <div className={styles.card}>
             <h2 className={styles.title}>📉 Simulazione Performance</h2>
             <div className={styles.formGroup}>
-                {/* ... inputs identici come prima ... */}
+                <label>
+                    Simbolo
+                    <input
+                        type="text"
+                        value={symbol}
+                        onChange={(e) => setSymbol(e.target.value)}
+                        className={styles.input}
+                    />
+                </label>
+                <label>
+                    Data Inizio
+                    <input
+                        type="date"
+                        value={startDate}
+                        onChange={(e) => setStartDate(e.target.value)}
+                        className={styles.input}
+                    />
+                </label>
+                <label>
+                    Data Fine
+                    <input
+                        type="date"
+                        value={endDate}
+                        onChange={(e) => setEndDate(e.target.value)}
+                        className={styles.input}
+                    />
+                </label>
                 <button onClick={handleSimulate} className={styles.button}>Simula Andamento</button>
             </div>
 
