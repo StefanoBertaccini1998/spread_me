@@ -3,6 +3,7 @@ import { authenticateUser, createUser } from "../asyncThunks/userThunks";
 
 const initialState = {
   user: null,
+  token: null,
   loading: false,
   error: null,
   theme: "light",
@@ -15,6 +16,7 @@ const userSlice = createSlice({
   reducers: {
     logoutUser: (state) => {
       state.user = null;
+      state.token = null;
       state.error = null;
     },
     upgradeToPremium: (state) => {
@@ -36,10 +38,10 @@ const userSlice = createSlice({
         state.error = null;
       })
       .addCase(authenticateUser.fulfilled, (state, action) => {
-        const { user } = action.payload;
+        const { user, token } = action.payload;
         state.user = user;
+        state.token = token;
         state.loading = false;
-        localStorage.setItem("user", JSON.stringify(user));
       })
       .addCase(authenticateUser.rejected, (state, action) => {
         state.loading = false;
@@ -49,7 +51,6 @@ const userSlice = createSlice({
         state.user = action.payload.user;
         state.loading = false;
         state.error = null;
-        localStorage.setItem("user", JSON.stringify(action.payload.user));
       });
   },
 });

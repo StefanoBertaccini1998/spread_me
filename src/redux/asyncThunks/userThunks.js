@@ -98,8 +98,9 @@ export const authenticateUser = createAsyncThunk(
       const catRes = await fetch(`${baseURL}/categories?userId=${user.id}`);
       const accounts = await accRes.json();
       const categories = await catRes.json();
+      const token = btoa(`${user.id}-${Date.now()}`);
 
-      return { user, accounts, categories };
+      return { user, token, accounts, categories };
     } catch (err) {
       return rejectWithValue("Errore durante l'autenticazione.");
     }

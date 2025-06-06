@@ -1,13 +1,16 @@
 import { Provider } from 'react-redux';
-import { store } from './redux/store';
+import { store, persistor } from './redux/store';
 import AppRoutes from './routes/AppRoutes';
 import ThemeWidget from './components/ThemeWidget';
+import { PersistGate } from 'redux-persist/integration/react';
 
 function App() {
   return (
     <Provider store={store}>
-      <AppRoutes />
-      <ThemeWidget />
+      <PersistGate loading={null} persistor={persistor}>
+        <AppRoutes />
+        <ThemeWidget />
+      </PersistGate>
     </Provider>
   );
 }

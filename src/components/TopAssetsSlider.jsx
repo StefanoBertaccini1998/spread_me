@@ -7,9 +7,25 @@ const TopAssetsSlider = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        const cached = localStorage.getItem('topAssets');
+        if (cached) {
+            const { timestamp, data } = JSON.parse(cached);
+            if (Date.now() - timestamp < 12 * 60 * 60 * 1000) {
+                setAssets(data);
+                setLoading(false);
+                console.log("No retry")
+                return;
+            }
+        }
+        console.log("Fetching")
         fetchTopAssets()
             .then((data) => {
-                setAssets(data.slice(0, 15)); // Top 15
+                const slice = data.slice(0, 15);
+                setAssets(slice);
+                localStorage.setItem(
+                    'topAssets',
+                    JSON.stringify({ timestamp: Date.now(), data: slice })
+                );
                 setLoading(false);
             })
             .catch((err) => {
