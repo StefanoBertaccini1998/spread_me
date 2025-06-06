@@ -8,9 +8,9 @@
 }
 
 .form button {
-    @apply bg-indigo-600 text-white py-2 px-4 rounded-lg font-medium cursor-pointer transition-colors;
+    @apply bg-success text-white py-2 px-4 rounded-lg font-medium cursor-pointer transition-colors;
 }
 
 .form button:hover {
-    @apply bg-indigo-700;
+    @apply bg-green-700;
 }

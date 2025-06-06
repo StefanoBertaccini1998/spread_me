@@ -23,7 +23,7 @@
 }
 
 .th {
-    @apply border border-gray-300 px-2 py-1 bg-gray-200 text-sm font-semibold;
+    @apply border border-gray-300 px-2 py-1 bg-surface text-sm font-semibold;
 }
 
 .td {
