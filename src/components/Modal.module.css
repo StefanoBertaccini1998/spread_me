@@ -25,56 +25,92 @@
     border: none;
 }
 
-.modal-expense {
+.modal-expenses {
     @apply border-red-600;
 }
 
-.modal-expense form label {
+.modal-expenses form label {
     @apply text-sm font-semibold text-red-700 mb-1 block;
 }
 
-.modal-expense form input,
-.modal-expense form textarea,
-.modal-expense select {
+.modal-expenses form input,
+.modal-expenses form textarea,
+.modal-expenses select {
     @apply bg-white border border-gray-300 rounded px-3 py-2 w-full focus:ring-2 focus:ring-red-500;
 }
 
-.modal-expense form button[type="submit"] {
+.modal-expenses form button[type="submit"] {
     @apply bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-md shadow transition duration-150;
 }
 
-.modal-income {
+.modal-incomes {
     @apply border-green-600;
 }
 
-.modal-income form label {
+.modal-incomes form label {
     @apply text-sm font-semibold text-green-700 mb-1 block;
 }
 
-.modal-income form input,
-.modal-income form textarea,
-.modal-income select {
+.modal-incomes form input,
+.modal-incomes form textarea,
+.modal-incomes select {
     @apply bg-white border border-gray-300 rounded px-3 py-2 w-full focus:ring-2 focus:ring-green-500;
 }
 
-.modal-income form button[type="submit"] {
+.modal-incomes form button[type="submit"] {
     @apply bg-green-700 hover:bg-green-800 text-white px-6 py-2 rounded-md shadow transition duration-150;
 }
 
-.modal-transfer {
-    @apply border-purple-600;
+.modal-transfers {
+    @apply border-gray-600;
 }
 
-.modal-transfer form label {
-    @apply text-sm font-semibold text-purple-700 mb-1 block;
+.modal-transfers form label {
+    @apply text-sm font-semibold text-gray-700 mb-1 block;
 }
 
-.modal-transfer form input,
-.modal-transfer form textarea,
-.modal-transfer select {
-    @apply bg-white border border-gray-300 rounded px-3 py-2 w-full focus:ring-2 focus:ring-purple-500;
+.modal-transfers form input,
+.modal-transfers form textarea,
+.modal-transfers select {
+    @apply bg-white border border-gray-300 rounded px-3 py-2 w-full focus:ring-2 focus:ring-gray-500;
 }
 
-.modal-transfer form button[type="submit"] {
-    @apply bg-purple-700 hover:bg-purple-800 text-white px-6 py-2 rounded-md shadow transition duration-150;
+.modal-transfers form button[type="submit"] {
+    @apply bg-gray-700 hover:bg-gray-800 text-white px-6 py-2 rounded-md shadow transition duration-150;
+}
+
+.modal-account {
+    @apply border-blue-600;
+}
+
+.modal-account form label {
+    @apply text-sm font-semibold text-blue-700 mb-1 block;
+}
+
+.modal-account form input,
+.modal-account form textarea,
+.modal-account select {
+    @apply bg-white border border-gray-300 rounded px-3 py-2 w-full focus:ring-2 focus:ring-blue-500;
+}
+
+.modal-account form button[type="submit"] {
+    @apply bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md shadow transition duration-150;
+}
+
+.modal-category {
+    @apply border-yellow-600;
+}
+
+.modal-category form label {
+    @apply text-sm font-semibold text-yellow-700 mb-1 block;
+}
+
+.modal-category form input,
+.modal-category form textarea,
+.modal-category select {
+    @apply bg-white border border-gray-300 rounded px-3 py-2 w-full focus:ring-2 focus:ring-yellow-500;
+}
+
+.modal-category form button[type="submit"] {
+    @apply bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-2 rounded-md shadow transition duration-150;
 }

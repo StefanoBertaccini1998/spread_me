@@ -757,24 +757,6 @@
       "userId": "a896"
     },
     {
-      "id": "dead",
-      "category": "Regalo",
-      "account": "Contanti",
-      "amountBaseCurrency": 100,
-      "baseCurrency": "EUR",
-      "amountAccountCurrency": 100,
-      "accountCurrency": "EUR",
-      "comment": "",
-      "fromAccount": "",
-      "toAccount": "",
-      "amountFromCurrency": null,
-      "fromCurrency": "EUR",
-      "toCurrency": "EUR",
-      "type": "incomes",
-      "date": "2024-12-27",
-      "userId": "a896"
-    },
-    {
       "id": "989a",
       "category": "Stipendio",
       "account": "Contanti",

@@ -26,11 +26,3 @@
 .buttonAdd {
     @apply btnBase bg-green-600 hover:bg-green-700 mt-4;
 }
-
-.modalOverlay {
-    @apply fixed inset-0 bg-surface bg-opacity-40 flex justify-center items-center z-50;
-}
-
-.modalContent {
-    @apply bg-surface p-6 rounded shadow-lg w-full max-w-md;
-}

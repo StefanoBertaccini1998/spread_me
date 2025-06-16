@@ -6,6 +6,7 @@ import styles from './ProfilePage.module.css';
 import AccountCategoryEditor from '../components/AccountCategoryEditor';
 import AccountCategoryCard from '../components/AccountCategoryCard';
 import { Plus } from 'lucide-react';
+import Modal from '../components/Modal';
 
 const ProfilePage = () => {
     const dispatch = useAppDispatch();
@@ -14,7 +15,6 @@ const ProfilePage = () => {
 
     const [editing, setEditing] = useState(null);
     const [mode, setMode] = useState(null); // 'account' | 'category'
-    const modalRef = useRef();
 
     const handleSave = async (data) => {
         const action = data.id
@@ -33,16 +33,6 @@ const ProfilePage = () => {
         const action = type === 'account' ? deleteAccount(id) : deleteCategory(id);
         dispatch(action);
     };
-
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (modalRef.current && !modalRef.current.contains(event.target)) {
-                setEditing(null);
-            }
-        };
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
-    }, []);
 
     return (
         <div className={styles.container}>
@@ -107,18 +97,20 @@ const ProfilePage = () => {
                 </button>
             </section>
 
-            {editing && (
-                <div className={styles.modalOverlay}>
-                    <div ref={modalRef} className={styles.modalContent}>
-                        <AccountCategoryEditor
-                            initialData={editing}
-                            mode={mode}
-                            onSave={handleSave}
-                            onCancel={() => setEditing(null)}
-                        />
-                    </div>
-                </div>
-            )}
+            <Modal
+                isOpen={!!editing}
+                onClose={() => setEditing(null)}
+                type={mode === 'account' ? 'account' : 'category'}
+            >
+                {editing && (
+                    <AccountCategoryEditor
+                        initialData={editing}
+                        mode={mode}
+                        onSave={handleSave}
+                        onCancel={() => setEditing(null)}
+                    />
+                )}
+            </Modal>
         </div>
     );
 };

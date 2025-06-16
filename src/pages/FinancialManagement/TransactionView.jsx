@@ -16,7 +16,7 @@ const TransactionView = ({ type, filters, setToastMessage, setToastType, openMod
     const [isModalOpen, setIsModalOpen] = useState(false);
     const navigate = useNavigate();
     const allData = useAppSelector((state) => state.transaction[type]);
-
+    console.log("type", type)
     useEffect(() => {
         setIsModalOpen(openModal && modalType === type);
     }, [openModal, modalType, type]);
