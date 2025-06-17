@@ -1,5 +1,5 @@
 .container {
-    @apply p-6 max-w-4xl mx-auto;
+    @apply relative p-6 max-w-4xl mx-auto;
 }
 
 .title {
@@ -104,7 +104,7 @@
 }
 
 .helpButton {
-    @apply mb-4 text-sm text-blue-600 hover:text-blue-800 font-medium transition;
+    @apply absolute top-4 right-4 z-40 bg-blue-600 text-white p-2 rounded-full shadow hover:bg-blue-700 transition;
 }
 
 .helpSection {

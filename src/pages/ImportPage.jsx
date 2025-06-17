@@ -5,6 +5,8 @@ import { useAppDispatch, useAppSelector } from '../redux/hooks/useRedux';
 import { createTransaction } from '../redux/asyncThunks/transactionThunks';
 import { createAccount } from '../redux/asyncThunks/accountThunks';
 import { createCategory } from '../redux/asyncThunks/categoryThunks';
+import Modal from '../components/Modal';
+import { HelpCircle } from 'lucide-react';
 import styles from './ImportPage.module.css';
 
 const getRandomColor = () => {
@@ -43,22 +45,41 @@ const ImportPage = () => {
     setLoading(true);
     setFilename(file.name);
     const reader = new FileReader();
-    reader.onload = (evt) => {
-      const data = new Uint8Array(evt.target.result);
-      const workbook = XLSX.read(data, { type: 'array', cellDates: true });
-      const expensesRaw = workbook.Sheets['Spese'] ? cleanData(workbook.Sheets['Spese'], knownExpenseKeys) : [];
-      const incomesRaw = workbook.Sheets['Entrate'] ? cleanData(workbook.Sheets['Entrate'], knownIncomeKeys) : [];
-      const transfersRaw = workbook.Sheets['Bonifici'] ? cleanData(workbook.Sheets['Bonifici'], knownTransferKeys) : [];
-      setExpenses(expensesRaw);
-      setIncomes(incomesRaw);
-      setTransfers(transfersRaw);
-      detectNewItems(expensesRaw, incomesRaw, transfersRaw);
+    reader.onerror = () => {
       setLoading(false);
-      setToast('✅ File caricato con successo');
-      setTimeout(() => setToast(''), 3000);
+      setError('Errore di lettura del file');
+    };
+    reader.onerror = () => {
+      setLoading(false);
+      setError('Errore di lettura del file');
+    };
+    reader.onerror = () => {
+      setLoading(false);
+      setError('Errore di lettura del file');
+    };
+    reader.onload = (evt) => {
+      try {
+        const data = new Uint8Array(evt.target.result);
+        const workbook = XLSX.read(data, { type: 'array', cellDates: true });
+        const expensesRaw = workbook.Sheets['Spese'] ? cleanData(workbook.Sheets['Spese'], knownExpenseKeys) : [];
+        const incomesRaw = workbook.Sheets['Entrate'] ? cleanData(workbook.Sheets['Entrate'], knownIncomeKeys) : [];
+        const transfersRaw = workbook.Sheets['Bonifici'] ? cleanData(workbook.Sheets['Bonifici'], knownTransferKeys) : [];
+        setExpenses(expensesRaw);
+        setIncomes(incomesRaw);
+        setTransfers(transfersRaw);
+        detectNewItems(expensesRaw, incomesRaw, transfersRaw);
+        setToast('✅ File caricato con successo');
+        setTimeout(() => setToast(''), 3000);
+      } catch (err) {
+        console.error('Errore parsing file:', err);
+        setError('File non valido');
+      } finally {
+        setLoading(false);
+      }
     };
     reader.readAsArrayBuffer(file);
   };
+
 
   const cleanData = (sheet, knownKeys) => {
     const allRows = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '' });
@@ -262,6 +283,14 @@ const ImportPage = () => {
         </p>
       )}
       <h1 className={styles.title}>Importa Dati Finanziari da Excel</h1>
+      <button
+        type="button"
+        onClick={() => setShowHelp(true)}
+        className={styles.helpButton}
+        aria-label="Guida"
+      >
+        <HelpCircle size={20} />
+      </button>
       <div className={styles.fileRow}>
         <input
           id="import-file"
@@ -270,15 +299,8 @@ const ImportPage = () => {
           onChange={handleFileUpload}
           className={styles.file}
         />
-        <button
-          type="button"
-          onClick={() => setShowHelp((v) => !v)}
-          className={styles.helpButton}
-        >
-          {showHelp ? 'Nascondi guida' : 'Guida'}
-        </button>
       </div>
-      {showHelp && (
+      <Modal isOpen={showHelp} onClose={() => setShowHelp(false)} type="info">
         <div className={styles.helpSection}>
           <p>
             Il file Excel pu&ograve; contenere i fogli <strong>Spese</strong>,
@@ -298,7 +320,7 @@ const ImportPage = () => {
           </ul>
           <p>Altre colonne o righe vuote verranno ignorate.</p>
         </div>
-      )}
+      </Modal>
       {loading && <p className={styles.loading}>⏳ Parsing in corso...</p>}
       {toast && <p className={styles.toast}>{toast}</p>}
       {filename && <p className={styles.filename}>📁 File: <strong>{filename}</strong></p>}

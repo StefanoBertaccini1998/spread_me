@@ -114,3 +114,7 @@
 .modal-category form button[type="submit"] {
     @apply bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-2 rounded-md shadow transition duration-150;
 }
+
+.modal-info {
+    @apply border-blue-600;
+}
