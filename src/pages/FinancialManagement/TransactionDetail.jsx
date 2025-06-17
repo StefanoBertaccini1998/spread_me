@@ -42,41 +42,46 @@ const TransactionDetail = () => {
 
     return (
         <div className={styles.container}>
-            <h1 className={`${styles.title} ${styles[`${transaction.type}-title`]}`}>🧾 Dettaglio Transazione</h1>
+            <h1 className={styles.title}>🧾 Dettaglio Transazione</h1>
+            <div className={styles.section}>
 
-            <DynamicForm
-                type={transaction.type}
-                editData={transaction}
-                disabled={!editMode}
-                onClose={() => navigate(-1)}
-                onSave={handleUpdate}
-                setToastMessage={(msg) => setToast({ message: msg, type: 'success' })}
-                setToastType={() => { }}
-            />
 
-            <div className={styles.buttonGroup}>
-                <button className={styles.backButton} onClick={() => navigate(`/finance/${fromSection}`)}>
-                    🔙 Torna a {labels[fromSection]}
-                </button>
-                {!editMode ? (
-                    <button className={styles.updateButton} onClick={() => setEditMode(true)}>
-                        ✏️ Modifica
+                <DynamicForm
+                    type={transaction.type}
+                    editData={transaction}
+                    disabled={!editMode}
+                    onClose={() => navigate(-1)}
+                    onSave={handleUpdate}
+                    setToastMessage={(msg) => setToast({ message: msg, type: 'success' })}
+                    setToastType={() => { }}
+                />
+
+                <div className={styles.buttonGroup}>
+                    <button className={styles.backButton} onClick={() => navigate(`/finance/${fromSection}`)}>
+                        🔙 Torna a {labels[fromSection]}
                     </button>
-                ) : (
-                    <button className={styles.saveButton} onClick={() => document.querySelector('form').requestSubmit()}>
-                        💾 Salva
+                    {!editMode ? (
+                        <button className={styles.updateButton} onClick={() => setEditMode(true)}>
+                            ✏️ Modifica
+                        </button>
+                    ) : (
+                        <button className={styles.saveButton} onClick={() => document.querySelector('form').requestSubmit()}>
+                            💾 Salva
+                        </button>
+                    )}
+
+                    <button className={styles.deleteButton} onClick={handleDelete}>
+                        🗑️ Elimina
                     </button>
-                )}
 
-                <button className={styles.deleteButton} onClick={handleDelete}>
-                    🗑️ Elimina
-                </button>
+                </div>
 
-            </div>
-
-            {toast.message && (
-                <div className={`${styles.toast} ${styles[toast.type]}`}>{toast.message}</div>
-            )}
+                {
+                    toast.message && (
+                        <div className={`${styles.toast} ${styles[toast.type]}`}>{toast.message}</div>
+                    )
+                }
+            </div >
         </div>
     );
 };

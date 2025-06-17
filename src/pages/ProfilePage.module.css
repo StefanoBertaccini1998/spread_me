@@ -3,7 +3,7 @@
 }
 
 .title {
-    @apply text-3xl font-bold text-center text-white;
+    @apply text-3xl font-bold text-center;
 }
 
 .section {
@@ -20,7 +20,7 @@
 }
 
 .list {
-    @apply flex flex-wrap gap-6 bg-surface p-6 rounded-xl;
+    @apply flex flex-wrap justify-center gap-6 bg-surface p-6 rounded-xl;
 }
 
 .buttonAdd {
