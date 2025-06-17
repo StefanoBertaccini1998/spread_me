@@ -1,9 +1,21 @@
 .container {
-    @apply max-w-3xl mx-auto px-6 py-8 flex flex-col gap-6;
+    @apply w-full max-w-4xl mx-auto p-6 flex flex-col gap-6 rounded-xl bg-primary;
 }
 
 .title {
-    @apply text-2xl font-bold text-gray-800 text-center;
+    @apply text-2xl font-bold text-center;
+}
+
+.expenses-title {
+    @apply text-red-700;
+}
+
+.incomes-title {
+    @apply text-green-700;
+}
+
+.transfers-title {
+    @apply text-secondary;
 }
 
 .buttonGroup {
@@ -11,7 +23,7 @@
 }
 
 .updateButton {
-    @apply bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition;
+    @apply bg-yellow-400 text-white py-2 px-4 rounded hover:bg-yellow-600 transition;
 }
 
 .saveButton {

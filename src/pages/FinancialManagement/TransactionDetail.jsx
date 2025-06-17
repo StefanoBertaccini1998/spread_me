@@ -42,7 +42,7 @@ const TransactionDetail = () => {
 
     return (
         <div className={styles.container}>
-            <h1 className={styles.title}>🧾 Dettaglio Transazione</h1>
+            <h1 className={`${styles.title} ${styles[`${transaction.type}-title`]}`}>🧾 Dettaglio Transazione</h1>
 
             <DynamicForm
                 type={transaction.type}
