@@ -80,6 +80,16 @@ const TransactionView = ({ type, filters, setToastMessage, setToastType, openMod
         (currentPage - 1) * itemsPerPage,
         currentPage * itemsPerPage
     );
+
+    // Reset and clamp pagination when view or filters change
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [type, filters]);
+
+    useEffect(() => {
+        setCurrentPage((p) => Math.min(p, pageCount));
+    }, [pageCount]);
+
     const formatLine = (entry) => {
         if (type === 'transfers') {
             return (
