@@ -89,5 +89,5 @@
 }
 
 .pageButton {
-    @apply px-3 py-1 rounded bg-gray-200 text-sm disabled:opacity-50;
+    @apply px-3 py-1 rounded bg-gray-200 text-gray-700 disabled:opacity-0;
 }

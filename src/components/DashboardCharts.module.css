@@ -23,7 +23,7 @@
 }
 
 .sliderLabel {
-    @apply text-xs text-gray-500;
+    @apply text-xs;
 }
 
 
