@@ -41,3 +41,7 @@
 .loading {
     @apply p-4 text-center text-gray-500;
 }
+
+.error {
+    @apply p-4 text-xl text-center text-red-600;
+}
