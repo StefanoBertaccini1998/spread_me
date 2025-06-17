@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from '../pages/layout/Layout';
-import Landing from '../pages/Landing';
 import Login from '../pages/Login';
 import ProtectedRoute from '../components/ProtectedRoute';
 import FinancialManagement from '../pages/financialManagement/FinancialManagement';
@@ -19,7 +18,6 @@ const AppRoutes = () => (
                 {/* Public Pages */}
                 <Route index element={<HomePage />} />
                 <Route path="login" element={<Login />} />
-                <Route path="welcome" element={<Landing />} />
 
                 {/* Protected Dashboard Pages */}
                 <Route path="dashboard" element={<ProtectedRoute><DashboardHome /></ProtectedRoute>} />

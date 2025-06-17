@@ -31,6 +31,7 @@ const ImportPage = () => {
   const [toast, setToast] = useState('');
   const [importing, setImporting] = useState(false);
   const [error, setError] = useState('');
+  const [showHelp, setShowHelp] = useState(false);
 
   const knownExpenseKeys = ['Data e ora', 'Categoria', 'Conto', 'Importo in valuta predefinita', 'Valuta predefinita', 'Importo in valuta del conto', 'Valuta conto', 'Tag', 'Commento'];
   const knownIncomeKeys = [...knownExpenseKeys];
@@ -261,6 +262,34 @@ const ImportPage = () => {
         </p>
       )}
       <h1 className={styles.title}>Importa Dati Finanziari da Excel</h1>
+      <button
+        type="button"
+        onClick={() => setShowHelp((v) => !v)}
+        className={styles.helpButton}
+      >
+        {showHelp ? 'Nascondi guida' : 'Mostra guida'}
+      </button>
+      {showHelp && (
+        <div className={styles.helpSection}>
+          <p>
+            Il file Excel pu&ograve; contenere i fogli <strong>Spese</strong>,
+            <strong>Entrate</strong> e <strong>Bonifici</strong> (opzionali).
+            Le colonne riconosciute sono:
+          </p>
+          <ul className={styles.helpList}>
+            <li>
+              <strong>Spese/Entrate</strong>: Data e ora, Categoria, Conto,
+              Importo in valuta predefinita, Valuta predefinita, Importo in
+              valuta del conto, Valuta conto, Tag, Commento
+            </li>
+            <li>
+              <strong>Bonifici</strong>: Data e ora, In uscita, In entrata,
+              Importo nella valuta in uscita, Valuta in uscita, Commento
+            </li>
+          </ul>
+          <p>Altre colonne o righe vuote verranno ignorate.</p>
+        </div>
+      )}
       <input type="file" accept=".csv, .xlsx, .xls" onChange={handleFileUpload} className={styles.file} />
       {loading && <p className={styles.loading}>⏳ Parsing in corso...</p>}
       {toast && <p className={styles.toast}>{toast}</p>}
