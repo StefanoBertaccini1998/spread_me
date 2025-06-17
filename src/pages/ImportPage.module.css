@@ -6,8 +6,12 @@
     @apply text-2xl font-bold mb-4;
 }
 
+.fileRow {
+    @apply flex items-center gap-4 mb-6;
+}
+
 .file {
-    @apply mb-6;
+    @apply text-sm file:mr-2 file:py-2 file:px-4 file:bg-blue-600 file:text-white file:rounded file:border-0 file:cursor-pointer;
 }
 
 .filename {

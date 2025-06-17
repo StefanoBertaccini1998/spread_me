@@ -262,13 +262,22 @@ const ImportPage = () => {
         </p>
       )}
       <h1 className={styles.title}>Importa Dati Finanziari da Excel</h1>
-      <button
-        type="button"
-        onClick={() => setShowHelp((v) => !v)}
-        className={styles.helpButton}
-      >
-        {showHelp ? 'Nascondi guida' : 'Mostra guida'}
-      </button>
+      <div className={styles.fileRow}>
+        <input
+          id="import-file"
+          type="file"
+          accept=".csv, .xlsx, .xls"
+          onChange={handleFileUpload}
+          className={styles.file}
+        />
+        <button
+          type="button"
+          onClick={() => setShowHelp((v) => !v)}
+          className={styles.helpButton}
+        >
+          {showHelp ? 'Nascondi guida' : 'Guida'}
+        </button>
+      </div>
       {showHelp && (
         <div className={styles.helpSection}>
           <p>
@@ -290,7 +299,6 @@ const ImportPage = () => {
           <p>Altre colonne o righe vuote verranno ignorate.</p>
         </div>
       )}
-      <input type="file" accept=".csv, .xlsx, .xls" onChange={handleFileUpload} className={styles.file} />
       {loading && <p className={styles.loading}>⏳ Parsing in corso...</p>}
       {toast && <p className={styles.toast}>{toast}</p>}
       {filename && <p className={styles.filename}>📁 File: <strong>{filename}</strong></p>}

@@ -13,7 +13,7 @@ Finance Tracker is a personal finance application for tracking income, expenses 
 - 🔑 User authentication with optional premium upgrade.
 - 📊 Dashboard showing totals and category charts.
 - 📁 Manage accounts, categories and transactions (expenses, incomes and transfers).
-- 📥 Import transactions from Excel/CSV files.
+- 📥 Import transactions from Excel/CSV files. La pagina di import offre ora un pulsante di aiuto accanto al selettore di file che spiega intestazioni e fogli attesi.
 - 🌓 Dark/light theme toggle stored in local storage.
 - 💹 Investment dashboard with top assets slider, calculators and performance graphs.
 
