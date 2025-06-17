@@ -14,3 +14,7 @@
 .form button:hover {
     @apply bg-green-700;
 }
+
+.error {
+    @apply text-red-600 text-sm mt-2 w-full;
+}

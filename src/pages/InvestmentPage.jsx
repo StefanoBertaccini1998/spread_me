@@ -2,8 +2,7 @@ import { useAppDispatch, useAppSelector } from '../redux/hooks/useRedux';
 import { useState } from 'react';
 import { upgradeToPremium } from '../redux/slices/userSlice';
 import TopAssetsSlider from '../components/TopAssetsSlider';
-import InvestmentCalculator from '../components/InvestmentCalculator';
-import SimulationGraph from '../components/SimulationGraph';
+import InvestmentSimulator from '../components/InvestmentSimulator';
 import MyInvestments from '../components/MyInvestments';
 import styles from './InvestmentPage.module.css';
 
@@ -50,10 +49,7 @@ const InvestmentPage = () => {
                 <MyInvestments />
             </div>
             <div className={styles.section}>
-                <InvestmentCalculator />
-            </div>
-            <div className={styles.section}>
-                <SimulationGraph />
+                <InvestmentSimulator />
             </div>
         </div>
     );

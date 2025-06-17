@@ -6,6 +6,7 @@ const MyInvestmentCard = ({ data, onUpdate }) => {
     const [showForm, setShowForm] = useState(false);
     const [txAmount, setTxAmount] = useState('');
     const [txDate, setTxDate] = useState('');
+    const [error, setError] = useState('');
 
 
     const togglePac = () => {
@@ -14,12 +15,26 @@ const MyInvestmentCard = ({ data, onUpdate }) => {
     };
 
     const handleAddTx = () => {
-        if (!txAmount || !txDate) return;
+        if (!txAmount || !txDate) {
+            setError('Inserisci importo e data');
+            return;
+        }
+        const date = new Date(txDate);
+        if (isNaN(date.getTime()) || date > new Date()) {
+            setError('Data non valida');
+            return;
+        }
+        const parsed = parseFloat(txAmount);
+        if (isNaN(parsed) || parsed < 0) {
+            setError('Importo non valido');
+            return;
+        }
         const txs = data.transactions ? [...data.transactions] : [];
-        txs.push({ amount: parseFloat(txAmount), date: txDate });
+        txs.push({ amount: parsed, date: txDate });
         onUpdate({ id: data.id, updates: { transactions: txs } });
         setTxAmount('');
         setTxDate('');
+        setError('');
         setShowForm(false);
     };
 
@@ -53,6 +68,7 @@ const MyInvestmentCard = ({ data, onUpdate }) => {
                     <button onClick={handleAddTx} className={styles.pacButton}>
                         Salva
                     </button>
+                    {error && <p className={styles.error}>{error}</p>}
                 </div>
             )}
         </div>
