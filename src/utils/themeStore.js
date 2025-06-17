@@ -1,7 +1,14 @@
 // una variabile “globale” al modulo
-let current = document.documentElement.classList.contains("dark")
-  ? "dark"
-  : "light";
+// Determine initial theme from localStorage or system preference
+let current =
+  localStorage.theme === "dark" ||
+  (!("theme" in localStorage) &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ? "dark"
+    : "light";
+
+// Ensure the root element reflects the chosen theme
+document.documentElement.classList.toggle("dark", current === "dark");
 
 // subscribers → Set di callback
 const subs = new Set();
