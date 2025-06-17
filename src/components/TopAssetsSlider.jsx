@@ -6,6 +6,7 @@ const TopAssetsSlider = () => {
     const [assets, setAssets] = useState([]);
     const [loading, setLoading] = useState(true);
     const [period, setPeriod] = useState('day');
+    const [error, setError] = useState('');
 
     useEffect(() => {
         const cacheKey = `topAssets-${period}`;
@@ -14,6 +15,7 @@ const TopAssetsSlider = () => {
             const { timestamp, data } = JSON.parse(cached);
             if (Date.now() - timestamp < 12 * 60 * 60 * 1000) {
                 setAssets(data);
+                setError(data.length ? '' : 'Nessun asset disponibile al momento.');
                 setLoading(false);
                 return;
             }
@@ -28,10 +30,13 @@ const TopAssetsSlider = () => {
                     cacheKey,
                     JSON.stringify({ timestamp: Date.now(), data: slice })
                 );
+                setError(slice.length ? '' : 'Nessun asset disponibile al momento.');
                 setLoading(false);
             })
             .catch((err) => {
                 console.error('Errore caricamento ETF:', err);
+                setError('Errore caricamento ETF');
+                setAssets([]);
                 setLoading(false);
             });
     }, [period]);
@@ -52,17 +57,27 @@ const TopAssetsSlider = () => {
                     <option value="month">Ultimo Mese</option>
                 </select>
             </div>
-            <div className={styles.slider}>
-                {assets.map((asset) => (
-                    <div key={asset.symbol} className={styles.assetCard}>
-                        <div className={styles.symbol}>{asset.symbol}</div>
-                        <div className={styles.name}>{asset.name}</div>
-                        <div className={asset.changePercent >= 0 ? styles.positive : styles.negative}>
-                            {asset.changePercent.toFixed(2)}%
+            {error ? (
+                <div className={styles.error}>{error}</div>
+            ) : (
+                <div className={styles.slider}>
+                    {assets.map((asset) => (
+                        <div key={asset.symbol} className={styles.assetCard}>
+                            <div className={styles.symbol}>{asset.symbol}</div>
+                            <div className={styles.name}>{asset.name}</div>
+                            <div
+                                className={
+                                    asset.changePercent >= 0
+                                        ? styles.positive
+                                        : styles.negative
+                                }
+                            >
+                                {asset.changePercent.toFixed(2)}%
+                            </div>
                         </div>
-                    </div>
-                ))}
-            </div>
+                    ))}
+                </div>
+            )}
         </div>
     );
 };

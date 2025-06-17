@@ -1,5 +1,5 @@
 .container {
-    @apply p-6 max-w-5xl mx-auto bg-primary space-y-12 rounded-xl shadow-sm flex flex-col gap-2;
+    @apply p-6 max-w-5xl mx-auto space-y-12 rounded-xl shadow-sm flex flex-col gap-2;
 }
 
 .title {
@@ -7,7 +7,7 @@
 }
 
 .section {
-    @apply space-y-6;
+    @apply space-y-6 bg-primary p-6 rounded-xl;
 }
 
 .btnBase {
@@ -20,7 +20,7 @@
 }
 
 .list {
-    @apply flex flex-wrap gap-3 bg-surface p-6 rounded-xl;
+    @apply flex flex-wrap gap-6 bg-surface p-6 rounded-xl;
 }
 
 .buttonAdd {
