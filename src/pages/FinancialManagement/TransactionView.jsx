@@ -16,7 +16,7 @@ const TransactionView = ({ type, filters, setToastMessage, setToastType, openMod
     const [isModalOpen, setIsModalOpen] = useState(false);
     const navigate = useNavigate();
     const allData = useAppSelector((state) => state.transaction[type]);
-    console.log("type", type)
+
     useEffect(() => {
         setIsModalOpen(openModal && modalType === type);
     }, [openModal, modalType, type]);
@@ -73,7 +73,13 @@ const TransactionView = ({ type, filters, setToastMessage, setToastType, openMod
     };
 
     const filteredData = allData.filter(matchesFilter);
-
+    const itemsPerPage = 10;
+    const [currentPage, setCurrentPage] = useState(1);
+    const pageCount = Math.ceil(filteredData.length / itemsPerPage) || 1;
+    const paginatedData = filteredData.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+    );
     const formatLine = (entry) => {
         if (type === 'transfers') {
             return (
@@ -121,12 +127,32 @@ const TransactionView = ({ type, filters, setToastMessage, setToastType, openMod
             </div>
 
             <ul className={styles.list}>
-                {filteredData.map((entry) => (
+                {paginatedData.map((entry) => (
                     <li key={entry.id} className={styles.item} onClick={() => handleClick(entry.id)}>
                         {formatLine(entry)}
                     </li>
                 ))}
             </ul>
+
+            {pageCount > 1 && (
+                <div className={styles.pagination}>
+                    <button
+                        className={styles.pageButton}
+                        disabled={currentPage === 1}
+                        onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                    >
+                        Prev
+                    </button>
+                    <span>{currentPage} / {pageCount}</span>
+                    <button
+                        className={styles.pageButton}
+                        disabled={currentPage === pageCount}
+                        onClick={() => setCurrentPage((p) => Math.min(pageCount, p + 1))}
+                    >
+                        Next
+                    </button>
+                </div>
+            )}
 
             <Modal isOpen={isModalOpen} onClose={() => {
                 setIsModalOpen(false);

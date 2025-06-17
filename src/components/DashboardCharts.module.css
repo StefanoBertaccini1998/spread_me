@@ -22,6 +22,11 @@
     @apply text-base font-semibold mb-4 self-start;
 }
 
+.sliderLabel {
+    @apply text-xs text-gray-500;
+}
+
+
 @media (max-width: 420px) {
     .select {
         @apply w-full text-sm p-2;

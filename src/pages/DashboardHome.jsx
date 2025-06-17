@@ -12,9 +12,7 @@ const DashboardHome = () => {
 
     const expenses = useAppSelector((state) => state.transaction.expenses);
     const incomes = useAppSelector((state) => state.transaction.incomes);
-
-
-
+    const transfers = useAppSelector((state) => state.transaction.transfers);
 
     const [filters, setFilters] = useState({
         period: 'always',
@@ -82,6 +80,22 @@ const DashboardHome = () => {
         raw: filteredIncomes,
     };
 
+    const balanceData = useMemo(() => {
+        const all = [...filteredExpenses, ...filteredIncomes, ...transfers];
+        all.sort((a, b) => new Date(a.date) - new Date(b.date));
+        let running = 0;
+        const labels = [];
+        const values = [];
+        all.forEach((tx) => {
+            if (tx.type === 'incomes') running += tx.amountBaseCurrency;
+            if (tx.type === 'expenses') running -= tx.amountBaseCurrency;
+            labels.push(new Date(tx.date).toISOString().slice(0, 10));
+            values.push(running);
+        });
+        return { labels, values };
+    }, [filteredExpenses, filteredIncomes, transfers]);
+
+
     return (
         <div className={styles.container}>
             <h1 className={styles.title}>📊 Riepilogo Finanziario</h1>
@@ -114,6 +128,7 @@ const DashboardHome = () => {
             <DashboardCharts
                 expensesData={expensesData}
                 incomesData={incomesData}
+                balanceData={balanceData}
                 transfersData={{ labels: [], values: [] }}
             />
 

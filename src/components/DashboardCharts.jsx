@@ -31,14 +31,12 @@ const chartTypes = {
     pie: Pie
 };
 
-const cssVar = (name) =>
-    getComputedStyle(document.documentElement)
-        .getPropertyValue(name)
-        .trim() || undefined;
+const colorPalette = ['#f87171', '#fbbf24', '#60a5fa', '#34d399', '#c084fc'];
 
-const DashboardCharts = ({ expensesData, incomesData }) => {
+const DashboardCharts = ({ expensesData, incomesData, balanceData }) => {
     const [chartType, setChartType] = useState('bar');
     const ChartComponent = chartTypes[chartType];
+    const [maxCategories, setMaxCategories] = useState(expensesData.labels.length);
 
     const totalIncomes = incomesData.values.reduce((a, b) => a + b, 0);
     const totalExpenses = expensesData.values.reduce((a, b) => a + b, 0);
@@ -83,16 +81,20 @@ const DashboardCharts = ({ expensesData, incomesData }) => {
         datasets: [{ label: 'Totale', data: [totalIncomes, totalExpenses], backgroundColor: barColours }],
     };
 
+    const sortedExpenses = useMemo(() => {
+        return expensesData.labels.map((label, idx) => ({ label, value: expensesData.values[idx] }))
+            .sort((a, b) => b.value - a.value);
+    }, [expensesData]);
+
+    const slicedExpenses = useMemo(() => sortedExpenses.slice(0, maxCategories), [sortedExpenses, maxCategories]);
+
     const expensesByCategory = {
-        labels: expensesData.labels,
+        labels: slicedExpenses.map((e) => e.label),
         datasets: [
             {
                 label: 'Spese per Categoria',
-                data: expensesData.values,
-                backgroundColor: expensesData.labels.map((_, index) => {
-                    const colors = ['#f87171', '#fbbf24', '#60a5fa', '#34d399', '#c084fc'];
-                    return colors[index % colors.length];
-                })
+                data: slicedExpenses.map((e) => e.value),
+                backgroundColor: slicedExpenses.map((_, index) => colorPalette[index % colorPalette.length])
             }
         ]
     };
@@ -116,14 +118,19 @@ const DashboardCharts = ({ expensesData, incomesData }) => {
         );
         const allDates = Array.from(allDatesSet).sort();
 
-        const datasets = Object.entries(grouped).map(([category, values]) => ({
-            label: category,
-            data: allDates.map((date) => values[date] || 0),
-            backgroundColor: type === 'expense' ? 'rgba(239,68,68,0.6)' : 'rgba(34,197,94,0.6)',
-            borderColor: type === 'expense' ? 'rgba(239,68,68,1)' : 'rgba(34,197,94,1)',
-            fill: chartType === 'line' ? false : true,
-            tension: 0.3
-        }));
+        const datasets = Object.entries(grouped).map(([category, values], idx) => {
+            const dataArr = allDates.map((date) => values[date] || 0);
+            if (dataArr.every((v) => v === 0)) return null;
+            const color = colorPalette[idx % colorPalette.length];
+            return {
+                label: category,
+                data: dataArr,
+                backgroundColor: color + '80',
+                borderColor: color,
+                fill: false,
+                tension: 0.3
+            };
+        }).filter(Boolean);
 
         if (allDates.length === 1) {
             allDates.push(allDates[0]);
@@ -134,7 +141,20 @@ const DashboardCharts = ({ expensesData, incomesData }) => {
     };
 
     const timeSeriesExpenses = buildTimeSeriesData(expensesData.raw || [], 'expense');
-    const timeSeriesIncomes = buildTimeSeriesData(incomesData.raw || [], 'incomes');
+    const balanceSeries = {
+        labels: balanceData.labels,
+        datasets: [
+            {
+                label: 'Saldo Conti',
+                data: balanceData.values,
+                borderColor: tw.primary,
+                backgroundColor: tw.primary + '33',
+                fill: false,
+                tension: 0.3,
+            },
+        ],
+    };
+
 
     return (
         <div className={styles.container}>
@@ -158,7 +178,7 @@ const DashboardCharts = ({ expensesData, incomesData }) => {
                                 datasets: [
                                     {
                                         data: expensesData.values,
-                                        backgroundColor: ['#f87171', '#fbbf24', '#60a5fa', '#34d399', '#c084fc']
+                                        backgroundColor: expensesData.labels.map((_, i) => colorPalette[i % colorPalette.length])
                                     }
                                 ]
                             }}
@@ -173,7 +193,7 @@ const DashboardCharts = ({ expensesData, incomesData }) => {
                                 datasets: [
                                     {
                                         data: incomesData.values,
-                                        backgroundColor: ['#34d399', '#60a5fa', '#facc15']
+                                        backgroundColor: incomesData.labels.map((_, i) => colorPalette[i % colorPalette.length])
                                     }
                                 ]
                             }}
@@ -201,8 +221,8 @@ const DashboardCharts = ({ expensesData, incomesData }) => {
                     <h3 className={styles.chartTitle}>Andamento Spese</h3>
                     <ChartComponent data={timeSeriesExpenses} options={barLineOptions} />
 
-                    <h3 className={`${styles.chartTitle} mt-10`}>Andamento Entrate</h3>
-                    <ChartComponent data={timeSeriesIncomes} options={barLineOptions} />
+                    <h3 className={`${styles.chartTitle} mt-10`}>Saldo Complessivo</h3>
+                    <ChartComponent data={balanceSeries} options={barLineOptions} />
                 </>
             ) : (
                 <>
@@ -211,6 +231,18 @@ const DashboardCharts = ({ expensesData, incomesData }) => {
 
                     <h3 className={`${styles.chartTitle} mt-10`}>Spese per Categoria</h3>
                     <ChartComponent data={expensesByCategory} options={barLineOptions} />
+                    {sortedExpenses.length > 5 && (
+                        <div className="mt-2 flex items-center gap-2">
+                            <input
+                                type="range"
+                                min="1"
+                                max={sortedExpenses.length}
+                                value={maxCategories}
+                                onChange={(e) => setMaxCategories(parseInt(e.target.value))}
+                            />
+                            <span className={styles.sliderLabel}>Top {maxCategories}</span>
+                        </div>
+                    )}
                 </>
             )}
         </div>

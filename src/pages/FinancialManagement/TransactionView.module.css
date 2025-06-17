@@ -83,3 +83,11 @@
 .arrow {
     @apply text-lg text-purple-500;
 }
+
+.pagination {
+    @apply flex justify-center items-center gap-2 mt-4;
+}
+
+.pageButton {
+    @apply px-3 py-1 rounded bg-gray-200 text-sm disabled:opacity-50;
+}
