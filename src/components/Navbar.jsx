@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../redux/hooks/useRedux';
 import { logoutUser } from '../redux/slices/userSlice';
@@ -6,6 +7,7 @@ import styles from './Navbar.module.css';
 export default function Navbar() {
   const user = useAppSelector((s) => s.user.user);
   const dispatch = useAppDispatch();
+  const [openFinance, setOpenFinance] = useState(false);
 
   return (
     <nav className={styles.navbar}>
@@ -19,12 +21,39 @@ export default function Navbar() {
         {user ? (
           <>
             <NavLink to="/dashboard" className={styles.link}>Dashboard</NavLink>
-            <div className={styles.dropdown}>
-              <button className={styles.link}>Gestione Finanza ▾</button>
+            <div
+              className={`${styles.dropdown} ${openFinance ? styles.open : ''}`}
+              onMouseLeave={() => setOpenFinance(false)}
+            >
+              <button
+                className={styles.link}
+                type="button"
+                onClick={() => setOpenFinance((o) => !o)}
+              >
+                Gestione Finanza ▾
+              </button>
               <div className={styles.menu}>
-                <NavLink to="/finance/expenses" className={styles.menuLink}>Spese</NavLink>
-                <NavLink to="/finance/incomes" className={styles.menuLink}>Entrate</NavLink>
-                <NavLink to="/finance/transfers" className={styles.menuLink}>Trasferimenti</NavLink>
+                <NavLink
+                  to="/finance/expenses"
+                  className={styles.menuLink}
+                  onClick={() => setOpenFinance(false)}
+                >
+                  Spese
+                </NavLink>
+                <NavLink
+                  to="/finance/incomes"
+                  className={styles.menuLink}
+                  onClick={() => setOpenFinance(false)}
+                >
+                  Entrate
+                </NavLink>
+                <NavLink
+                  to="/finance/transfers"
+                  className={styles.menuLink}
+                  onClick={() => setOpenFinance(false)}
+                >
+                  Trasferimenti
+                </NavLink>
               </div>
             </div>
             <NavLink to="/investments" className={styles.link}>Investimenti</NavLink>

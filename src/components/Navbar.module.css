@@ -47,9 +47,10 @@
 }
 
 .menu {
-    @apply absolute left-0 mt-1 hidden flex-col bg-white text-primary rounded shadow-lg w-48 z-50 dark:bg-gray-900 dark:text-gray-100;
+    @apply absolute left-0 top-full hidden flex-col bg-white text-primary rounded shadow-lg w-48 z-50 dark:bg-gray-900 dark:text-gray-100;
 }
 
+.dropdown.open .menu,
 .dropdown:hover .menu {
     @apply flex;
 }
