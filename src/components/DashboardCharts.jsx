@@ -34,6 +34,9 @@ const chartTypes = {
 
 const colorPalette = ['#f87171', '#fbbf24', '#60a5fa', '#34d399', '#c084fc'];
 
+const addAlpha = (hex, alpha) =>
+    hex + Math.round(alpha * 255).toString(16).padStart(2, '0');
+
 const DashboardCharts = ({ expensesData, incomesData, balanceData }) => {
     const [chartType, setChartType] = useState('bar');
     const ChartComponent = chartTypes[chartType];
@@ -97,29 +100,47 @@ const DashboardCharts = ({ expensesData, incomesData, balanceData }) => {
         [expensesData.labels, incomesData.labels]
     );
 
+    const categoryColors = useMemo(
+        () => allCategories.map((_, idx) => colorPalette[idx % colorPalette.length]),
+        [allCategories]
+    );
+
     const polarData = useMemo(() => {
         const incomeMap = {};
-        incomesData.labels.forEach((l, i) => { incomeMap[l] = incomesData.values[i]; });
+        incomesData.labels.forEach((l, i) => {
+            incomeMap[l] = incomesData.values[i];
+        });
         const expenseMap = {};
-        expensesData.labels.forEach((l, i) => { expenseMap[l] = expensesData.values[i]; });
+        expensesData.labels.forEach((l, i) => {
+            expenseMap[l] = expensesData.values[i];
+        });
         return {
             labels: allCategories,
             datasets: [
                 {
                     label: 'Entrate',
                     data: allCategories.map((c) => incomeMap[c] || 0),
-                    backgroundColor: tw.success + '33',
-                    borderColor: tw.success,
+                    backgroundColor: categoryColors.map((c) => addAlpha(c, 0.6)),
+                    borderColor: categoryColors,
                 },
                 {
                     label: 'Spese',
                     data: allCategories.map((c) => expenseMap[c] || 0),
-                    backgroundColor: tw.danger + '33',
-                    borderColor: tw.danger,
+                    backgroundColor: categoryColors.map((c) => addAlpha(c, 0.3)),
+                    borderColor: categoryColors,
                 },
             ],
         };
-    }, [allCategories, incomesData, expensesData]);
+    }, [allCategories, incomesData, expensesData, categoryColors]);
+
+    const categoryLegend = useMemo(
+        () =>
+            allCategories.map((cat, idx) => ({
+                label: cat,
+                color: categoryColors[idx],
+            })),
+        [allCategories, categoryColors]
+    );
 
     const polarOptions = {
         responsive: true,
