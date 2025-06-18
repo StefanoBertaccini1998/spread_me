@@ -8,60 +8,59 @@ export default function Navbar() {
   const user = useAppSelector((s) => s.user.user);
   const dispatch = useAppDispatch();
   const [openFinance, setOpenFinance] = useState(false);
+  const [navOpen, setNavOpen] = useState(false);
+
+  const closeNav = () => setNavOpen(false);
 
   return (
     <nav className={styles.navbar}>
-      <Link to="/" className={styles.brand}>Finance Tracker</Link>
+      <Link to="/" className={styles.brand}>Finance Tracker</Link>
 
-      <input type="checkbox" id="nav-toggle" className="hidden peer" />
-      <label htmlFor="nav-toggle" className={styles.burger}><span /></label>
+      <button
+        className={`${styles.burger} ${navOpen ? styles.burgerOpen : ''}`}
+        onClick={() => setNavOpen((prev) => !prev)}
+        aria-label="Toggle navigation"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-      <div className={styles.links}>
-        <NavLink to="/" className={styles.link}>Home</NavLink>
+      <div className={`${styles.links} ${navOpen ? styles.linksOpen : ''}`}>
+        <NavLink to="/" className={styles.link} onClick={closeNav}>Home</NavLink>
+
         {user ? (
           <>
-            <NavLink to="/dashboard" className={styles.link}>Dashboard</NavLink>
-            <div
-              className={`${styles.dropdown} ${openFinance ? styles.open : ''}`}
-              onMouseLeave={() => setOpenFinance(false)}
-            >
+            <NavLink to="/dashboard" className={styles.link} onClick={closeNav}>Dashboard</NavLink>
+
+            <div className={styles.dropdown}>
               <button
                 className={styles.link}
                 type="button"
-                onClick={() => setOpenFinance((o) => !o)}
+                onClick={(e) => {
+                  e.stopPropagation(); // prevent closing nav
+                  setOpenFinance((o) => !o);
+                }}
               >
-                Gestione Finanza ▾
+                Gestione Finanza {openFinance ? '▴' : '▾'}
               </button>
-              <div className={styles.menu}>
-                <NavLink
-                  to="/finance/expenses"
-                  className={styles.menuLink}
-                  onClick={() => setOpenFinance(false)}
-                >
-                  Spese
-                </NavLink>
-                <NavLink
-                  to="/finance/incomes"
-                  className={styles.menuLink}
-                  onClick={() => setOpenFinance(false)}
-                >
-                  Entrate
-                </NavLink>
-                <NavLink
-                  to="/finance/transfers"
-                  className={styles.menuLink}
-                  onClick={() => setOpenFinance(false)}
-                >
-                  Trasferimenti
-                </NavLink>
-              </div>
+
+              {openFinance && (
+                <div className={styles.menu}>
+                  <NavLink to="/finance/expenses" className={styles.menuLink} onClick={() => { setOpenFinance(false); closeNav(); }}>Spese</NavLink>
+                  <NavLink to="/finance/incomes" className={styles.menuLink} onClick={() => { setOpenFinance(false); closeNav(); }}>Entrate</NavLink>
+                  <NavLink to="/finance/transfers" className={styles.menuLink} onClick={() => { setOpenFinance(false); closeNav(); }}>Trasferimenti</NavLink>
+                </div>
+              )}
             </div>
-            <NavLink to="/investments" className={styles.link}>Investimenti</NavLink>
-            <NavLink to="/profile" className={styles.link}>👤 Profilo</NavLink>
-            <button onClick={() => dispatch(logoutUser())} className={styles.logout}>Logout</button>
+
+            <NavLink to="/investments" className={styles.link} onClick={closeNav}>Investimenti</NavLink>
+            <NavLink to="/profile" className={styles.link} onClick={closeNav}>👤 Profilo</NavLink>
+
+            <button onClick={() => { dispatch(logoutUser()); closeNav(); }} className={styles.logout}>Logout</button>
           </>
         ) : (
-          <NavLink to="/login" className={styles.link}>Login</NavLink>
+          <NavLink to="/login" className={styles.link} onClick={closeNav}>Login</NavLink>
         )}
       </div>
     </nav>

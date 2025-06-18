@@ -10,31 +10,38 @@
 
 /* mobile burger */
 .burger {
-    @apply sm:hidden w-6 h-5 flex flex-col justify-between cursor-pointer;
+    @apply sm:hidden flex flex-col justify-center items-center cursor-pointer w-8 h-8 z-50 relative gap-1;
+    background-color: transparent;
 }
 
-.burger span,
-.burger::before,
-.burger::after {
-    @apply block h-0.5 bg-white transition-all duration-200;
-    content: "";
+.burger span {
+    @apply w-5 h-0.5 bg-white rounded transition-all duration-300;
 }
 
-.peer:checked+label span {
-    @apply rotate-45 translate-y-[7px];
+.burger span {
+    @apply w-5 h-0.5 bg-white rounded transition-all duration-300;
 }
 
-.peer:checked+label::after {
-    @apply -rotate-45 -translate-y-[7px];
+/* React-controlled burger open state */
+.burgerOpen span:nth-child(1) {
+    @apply rotate-45 translate-y-1.5;
 }
 
-.peer:checked+label::before {
+.burgerOpen span:nth-child(2) {
     @apply opacity-0;
+}
+
+.burgerOpen span:nth-child(3) {
+    @apply -rotate-45 -translate-y-1.5;
 }
 
 /* links container */
 .links {
-    @apply flex-col sm:flex-row gap-4 sm:gap-6 items-center sm:static absolute top-14 left-0 w-full sm:w-auto bg-primary sm:bg-transparent px-4 py-4 sm:p-0 hidden sm:flex peer-checked:flex;
+    @apply flex-col sm:flex-row gap-4 sm:gap-6 items-center sm:static absolute top-14 left-0 w-full sm:w-auto bg-primary sm:bg-transparent px-4 py-4 sm:p-0 hidden sm:flex;
+}
+
+.linksOpen {
+    @apply flex;
 }
 
 .link {
@@ -66,4 +73,14 @@
 
 .themeBtn {
     @apply bg-transparent p-1 rounded hover:bg-primary/20 mr-2 sm:mr-0;
+}
+
+@media (max-width: 640px) {
+    .menu {
+        @apply w-full shadow-none rounded-xl bg-white text-primary mt-2;
+    }
+
+    .menuLink {
+        @apply text-primary text-sm opacity-90 hover:opacity-100;
+    }
 }
