@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Bar, Line, Pie } from 'react-chartjs-2';
+import { Bar, Line, PolarArea } from 'react-chartjs-2';
 import useDarkMode from '../hooks/useDarkMode';
 import {
     Chart as ChartJS,
@@ -8,13 +8,14 @@ import {
     BarElement,
     LineElement,
     PointElement,
-    ArcElement,
+    RadialLinearScale,
+    Filler,
     Tooltip,
     Legend
 } from 'chart.js';
 import styles from './DashboardCharts.module.css';
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, PointElement, ArcElement, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, PointElement, RadialLinearScale, Filler, Tooltip, Legend);
 
 // Tailwind theme → hex map (extend as needed)
 const tw = {
@@ -28,7 +29,7 @@ const tw = {
 const chartTypes = {
     bar: Bar,
     line: Line,
-    pie: Pie
+    polar: PolarArea,
 };
 
 const colorPalette = ['#f87171', '#fbbf24', '#60a5fa', '#34d399', '#c084fc'];
@@ -43,26 +44,10 @@ const DashboardCharts = ({ expensesData, incomesData, balanceData }) => {
 
     const totalIncomes = incomesData.values.reduce((a, b) => a + b, 0);
     const totalExpenses = expensesData.values.reduce((a, b) => a + b, 0);
-    const saldoNetto = totalIncomes - totalExpenses;
-    const netLabel = saldoNetto >= 0 ? 'Risparmio' : 'Deficit';
-    const netColor = saldoNetto >= 0 ? '#4ade80' : '#f87171';
-
-    const formatCurrency = (value) => `€${value.toFixed(2)}`;
 
     const { isDark } = useDarkMode();           // si aggiorna da solo
 
     const baseColor = isDark ? '#F3F4F6' : '#374151';
-    const pieOptions = {
-        responsive: true,
-        plugins: {
-            legend: { position: 'bottom' },
-            tooltip: {
-                callbacks: {
-                    label: (context) => `${context.label}: €${context.parsed}`
-                }
-            }
-        }
-    };
 
     const barColours = useMemo(() => [tw.success, tw.danger], []);
     const barLineOptions = {
@@ -106,6 +91,49 @@ const DashboardCharts = ({ expensesData, incomesData, balanceData }) => {
             }
         ]
     };
+
+    const allCategories = useMemo(
+        () => Array.from(new Set([...expensesData.labels, ...incomesData.labels])),
+        [expensesData.labels, incomesData.labels]
+    );
+
+    const polarData = useMemo(() => {
+        const incomeMap = {};
+        incomesData.labels.forEach((l, i) => { incomeMap[l] = incomesData.values[i]; });
+        const expenseMap = {};
+        expensesData.labels.forEach((l, i) => { expenseMap[l] = expensesData.values[i]; });
+        return {
+            labels: allCategories,
+            datasets: [
+                {
+                    label: 'Entrate',
+                    data: allCategories.map((c) => incomeMap[c] || 0),
+                    backgroundColor: tw.success + '33',
+                    borderColor: tw.success,
+                },
+                {
+                    label: 'Spese',
+                    data: allCategories.map((c) => expenseMap[c] || 0),
+                    backgroundColor: tw.danger + '33',
+                    borderColor: tw.danger,
+                },
+            ],
+        };
+    }, [allCategories, incomesData, expensesData]);
+
+    const polarOptions = {
+        responsive: true,
+        plugins: { legend: { labels: { color: baseColor } } },
+        scales: {
+            r: {
+                ticks: { color: baseColor },
+                pointLabels: { color: baseColor },
+                grid: { color: '#e5e7eb' },
+                angleLines: { color: '#e5e7eb' },
+            },
+        },
+    };
+
 
     const buildTimeSeriesData = (data) => {
         const grouped = {};
@@ -181,57 +209,14 @@ const DashboardCharts = ({ expensesData, incomesData, balanceData }) => {
             >
                 <option value="bar">📊 Grafico Barre</option>
                 <option value="line">📈 Grafico Linea</option>
-                <option value="pie">🥧 Grafico a Torta</option>
+                <option value="polar">🌐 Grafico Polare</option>
             </select>
 
-            {chartType === 'pie' ? (
-                <div className={styles.chartGroup}>
-                    <div className={styles.chartWrapper}>
-                        <h3 className={styles.chartLabel}>Spese</h3>
-                        <Pie
-                            data={{
-                                labels: expensesData.labels,
-                                datasets: [
-                                    {
-                                        data: expensesData.values,
-                                        backgroundColor: expensesData.labels.map((_, i) => colorPalette[i % colorPalette.length])
-                                    }
-                                ]
-                            }}
-                            options={pieOptions}
-                        />
-                    </div>
-                    <div className={styles.chartWrapper}>
-                        <h3 className={styles.chartLabel}>Entrate</h3>
-                        <Pie
-                            data={{
-                                labels: incomesData.labels,
-                                datasets: [
-                                    {
-                                        data: incomesData.values,
-                                        backgroundColor: incomesData.labels.map((_, i) => colorPalette[i % colorPalette.length])
-                                    }
-                                ]
-                            }}
-                            options={pieOptions}
-                        />
-                    </div>
-                    <div className={styles.chartWrapper}>
-                        <h3 className={styles.chartLabel}>Saldo Netto</h3>
-                        <Pie
-                            data={{
-                                labels: [netLabel],
-                                datasets: [
-                                    {
-                                        data: [Math.abs(saldoNetto)],
-                                        backgroundColor: [netColor]
-                                    }
-                                ]
-                            }}
-                            options={pieOptions}
-                        />
-                    </div>
-                </div>
+            {chartType === 'polar' ? (
+                <>
+                    <h3 className={styles.chartTitle}>Entrate vs Spese per Categoria</h3>
+                    <ChartComponent data={polarData} options={polarOptions} />
+                </>
             ) : chartType === 'line' ? (
                 <>
                     <h3 className={styles.chartTitle}>Andamento Spese</h3>
