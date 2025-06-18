@@ -1,5 +1,5 @@
 .container {
-    @apply relative p-6 max-w-4xl mx-auto;
+    @apply relative p-4 max-w-4xl mx-auto max-h-full overflow-y-auto;
 }
 
 .title {

@@ -1,8 +1,8 @@
 .layout {
-    @apply flex flex-col min-h-screen;
+    @apply flex flex-col min-h-screen overflow-hidden;
 }
 
 /* usa i token del tema così segue il toggle */
 .main {
-    @apply flex-1 p-4 bg-surface text-base;
+    @apply flex-1 p-4 bg-surface text-base overflow-y-auto;
 }

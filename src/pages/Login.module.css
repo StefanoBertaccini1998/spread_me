@@ -1,6 +1,6 @@
 /* Login.module.css */
 .container {
-    @apply min-h-screen flex flex-col justify-center items-center bg-surface px-4;
+    @apply min-h-full flex flex-col justify-center items-center bg-surface p-4 overflow-y-auto;
 }
 
 .title {

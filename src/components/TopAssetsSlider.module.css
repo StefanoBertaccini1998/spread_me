@@ -43,5 +43,5 @@
 }
 
 .error {
-    @apply p-4 text-xl text-center text-red-600;
+    @apply p-4 text-xl text-center text-red-600 bg-surface rounded-xl;
 }

@@ -1,5 +1,5 @@
 .section {
-    @apply w-full max-w-4xl p-6 rounded-xl bg-primary;
+    @apply w-full max-w-4xl p-4 rounded-xl bg-primary max-h-full overflow-y-auto;
 }
 
 .header {
