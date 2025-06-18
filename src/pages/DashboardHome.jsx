@@ -12,7 +12,6 @@ const DashboardHome = () => {
 
     const expenses = useAppSelector((state) => state.transaction.expenses);
     const incomes = useAppSelector((state) => state.transaction.incomes);
-    const transfers = useAppSelector((state) => state.transaction.transfers);
 
     const [filters, setFilters] = useState({
         period: 'always',
@@ -81,19 +80,37 @@ const DashboardHome = () => {
     };
 
     const balanceData = useMemo(() => {
-        const all = [...filteredExpenses, ...filteredIncomes, ...transfers];
-        all.sort((a, b) => new Date(a.date) - new Date(b.date));
-        let running = 0;
+        const monthly = {};
+
+        filteredIncomes.forEach((tx) => {
+            const key = new Date(tx.date).toISOString().slice(0, 7);
+            if (!monthly[key]) monthly[key] = { incomes: 0, expenses: 0 };
+            monthly[key].incomes += tx.amountBaseCurrency;
+        });
+        filteredExpenses.forEach((tx) => {
+            const key = new Date(tx.date).toISOString().slice(0, 7);
+            if (!monthly[key]) monthly[key] = { incomes: 0, expenses: 0 };
+            monthly[key].expenses += tx.amountBaseCurrency;
+        });
+
+        const months = Object.keys(monthly).sort();
         const labels = [];
         const values = [];
-        all.forEach((tx) => {
-            if (tx.type === 'incomes') running += tx.amountBaseCurrency;
-            if (tx.type === 'expenses') running -= tx.amountBaseCurrency;
-            labels.push(new Date(tx.date).toISOString().slice(0, 10));
+        let running = 0;
+
+        months.forEach((m) => {
+            const { incomes = 0, expenses = 0 } = monthly[m];
+            running += incomes - expenses;
+            labels.push(m);
             values.push(running);
         });
+
+        if (labels.length === 1) {
+            labels.push(labels[0]);
+            values.push(values[0]);
+        }
         return { labels, values };
-    }, [filteredExpenses, filteredIncomes, transfers]);
+    }, [filteredExpenses, filteredIncomes]);
 
 
     return (

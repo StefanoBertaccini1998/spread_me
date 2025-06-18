@@ -70,7 +70,12 @@ const DashboardCharts = ({ expensesData, incomesData, balanceData }) => {
         plugins: {
             legend: { labels: { color: baseColor } },
             tooltip: {
-                callbacks: { label: (ctx) => `€${ctx.raw.toFixed(2)}` },
+                callbacks: {
+                    label: (ctx) => {
+                        const lbl = ctx.dataset?.label;
+                        return `${lbl ? `${lbl}: ` : ''}€${ctx.raw.toFixed(2)}`;
+                    },
+                },
             },
         },
         scales: {
@@ -102,7 +107,7 @@ const DashboardCharts = ({ expensesData, incomesData, balanceData }) => {
         ]
     };
 
-    const buildTimeSeriesData = (data, type) => {
+    const buildTimeSeriesData = (data) => {
         const grouped = {};
 
         data.forEach((item) => {
@@ -121,23 +126,31 @@ const DashboardCharts = ({ expensesData, incomesData, balanceData }) => {
         );
         const allDates = Array.from(allDatesSet).sort();
 
-        const datasets = Object.entries(grouped).map(([category, values], idx) => {
-            const dataArr = allDates.map((date) => values[date] || 0);
-            if (dataArr.every((v) => v === 0)) return null;
-            const color = colorPalette[idx % colorPalette.length];
-            return {
-                label: category,
-                data: dataArr,
-                backgroundColor: color + '80',
-                borderColor: color,
-                fill: false,
-                tension: 0.3
-            };
-        }).filter(Boolean);
+        const datasets = Object.entries(grouped)
+            .map(([category, values], idx) => {
+                const daily = allDates.map((date) => values[date] || 0);
+                const cumulative = [];
+                daily.reduce((sum, val, i) => {
+                    const total = sum + val;
+                    cumulative[i] = total;
+                    return total;
+                }, 0);
+                if (cumulative.every((v) => v === 0)) return null;
+                const color = colorPalette[idx % colorPalette.length];
+                return {
+                    label: category,
+                    data: cumulative,
+                    backgroundColor: color + '80',
+                    borderColor: color,
+                    fill: false,
+                    tension: 0.3,
+                };
+            })
+            .filter(Boolean);
 
         if (allDates.length === 1) {
             allDates.push(allDates[0]);
-            datasets.forEach(ds => ds.data.push(ds.data[0]));
+            datasets.forEach((ds) => ds.data.push(ds.data[0]));
         }
 
         return { labels: allDates, datasets };
