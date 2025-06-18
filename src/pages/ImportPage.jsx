@@ -33,6 +33,7 @@ const ImportPage = () => {
   const [toast, setToast] = useState('');
   const [importing, setImporting] = useState(false);
   const [error, setError] = useState('');
+  const [balanceError, setBalanceError] = useState('');
   const [showHelp, setShowHelp] = useState(false);
   const [transactionAccounts, setTransactionAccounts] = useState([]);
   const [accountBalances, setAccountBalances] = useState({});
@@ -51,14 +52,7 @@ const ImportPage = () => {
       setLoading(false);
       setError('Errore di lettura del file');
     };
-    reader.onerror = () => {
-      setLoading(false);
-      setError('Errore di lettura del file');
-    };
-    reader.onerror = () => {
-      setLoading(false);
-      setError('Errore di lettura del file');
-    };
+
     reader.onload = (evt) => {
       try {
         const data = new Uint8Array(evt.target.result);
@@ -145,16 +139,18 @@ const ImportPage = () => {
     for (const name of transactionAccounts) {
       const val = accountBalances[name];
       if (val === '' || val === null || val === undefined) {
-        setError(`Saldo mancante per l'account "${name}"`);
+        setBalanceError(`Saldo mancante per l'account "${name}"`);
         return false;
       }
       if (parseFloat(val) < 0) {
-        setError(`Il saldo di "${name}" non può essere negativo`);
+        setBalanceError(`Il saldo di "${name}" non può essere negativo`);
         return false;
       }
     }
+    setBalanceError('');
     return true;
   };
+
 
   const handleImport = async () => {
     if (!userId) {
@@ -164,6 +160,8 @@ const ImportPage = () => {
 
     setImporting(true);
     setError('');
+    setBalanceError('');
+
     try {
       if (!validateAccountBalances()) {
         return;
@@ -327,6 +325,7 @@ const ImportPage = () => {
               <td className={styles.td}>
                 <input
                   type="number"
+                  min="0"
                   className={styles.balanceInput}
                   value={accountBalances[name] ?? ''}
                   onChange={(e) =>
@@ -343,16 +342,10 @@ const ImportPage = () => {
       </table>
     </div>
   );
+
   return (
     <div className={styles.container}>
-      {error && <p className={styles.error}>{error}</p>}
-      {importing && (
-        <p className={styles.importingToast}>
-          <span className={styles.spinner}></span>
-          Importazione in corso, attendi...
-        </p>
-      )}
-      <h1 className={styles.title}>Importa Dati Finanziari da Excel</h1>
+
       <button
         type="button"
         onClick={() => setShowHelp(true)}
@@ -361,6 +354,14 @@ const ImportPage = () => {
       >
         <HelpCircle size={20} />
       </button>
+      {error && <p className={styles.error}>{error}</p>}
+      {importing && (
+        <p className={styles.importingToast}>
+          <span className={styles.spinner}></span>
+          Importazione in corso, attendi...
+        </p>
+      )}
+      <h1 className={styles.title}>Importa Dati Finanziari da Excel</h1>
       <div className={styles.fileRow}>
         <input
           id="import-file"
@@ -400,6 +401,7 @@ const ImportPage = () => {
       {incomes.length > 0 && renderTable('💰 Entrate', incomes)}
       {transfers.length > 0 && renderTable('🔁 Trasferimenti', transfers)}
       {transactionAccounts.length > 0 && renderAccountsTable()}
+      {balanceError && <p className={styles.error}>{balanceError}</p>}
       {(expenses.length || incomes.length || transfers.length) > 0 && (
         <button
           onClick={handleImport}
