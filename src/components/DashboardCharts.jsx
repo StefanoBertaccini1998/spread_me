@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Bar, Line, Pie } from 'react-chartjs-2';
 import useDarkMode from '../hooks/useDarkMode';
 import {
@@ -37,6 +37,9 @@ const DashboardCharts = ({ expensesData, incomesData, balanceData }) => {
     const [chartType, setChartType] = useState('bar');
     const ChartComponent = chartTypes[chartType];
     const [maxCategories, setMaxCategories] = useState(expensesData.labels.length);
+    useEffect(() => {
+        setMaxCategories(expensesData.labels.length);
+    }, [expensesData.labels.length]);
 
     const totalIncomes = incomesData.values.reduce((a, b) => a + b, 0);
     const totalExpenses = expensesData.values.reduce((a, b) => a + b, 0);
