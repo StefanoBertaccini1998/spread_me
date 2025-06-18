@@ -141,6 +141,21 @@ const ImportPage = () => {
     setCategoriesToCreate(newCategories);
   };
 
+  const validateAccountBalances = () => {
+    for (const name of transactionAccounts) {
+      const val = accountBalances[name];
+      if (val === '' || val === null || val === undefined) {
+        setError(`Saldo mancante per l'account "${name}"`);
+        return false;
+      }
+      if (parseFloat(val) < 0) {
+        setError(`Il saldo di "${name}" non può essere negativo`);
+        return false;
+      }
+    }
+    return true;
+  };
+
   const handleImport = async () => {
     if (!userId) {
       alert('⚠️ Utente non autenticato!');
@@ -150,6 +165,9 @@ const ImportPage = () => {
     setImporting(true);
     setError('');
     try {
+      if (!validateAccountBalances()) {
+        return;
+      }
       for (const acc of accountsToCreate) {
         const res = await dispatch(createAccount({
           name: acc,
