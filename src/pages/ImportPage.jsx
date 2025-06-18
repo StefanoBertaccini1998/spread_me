@@ -3,7 +3,7 @@ import * as XLSX from 'xlsx';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../redux/hooks/useRedux';
 import { createTransaction } from '../redux/asyncThunks/transactionThunks';
-import { createAccount } from '../redux/asyncThunks/accountThunks';
+import { createAccount, fetchAccounts, updateAccountsBulk } from '../redux/asyncThunks/accountThunks';
 import { createCategory } from '../redux/asyncThunks/categoryThunks';
 import Modal from '../components/Modal';
 import { HelpCircle } from 'lucide-react';
@@ -34,6 +34,8 @@ const ImportPage = () => {
   const [importing, setImporting] = useState(false);
   const [error, setError] = useState('');
   const [showHelp, setShowHelp] = useState(false);
+  const [transactionAccounts, setTransactionAccounts] = useState([]);
+  const [accountBalances, setAccountBalances] = useState({});
 
   const knownExpenseKeys = ['Data e ora', 'Categoria', 'Conto', 'Importo in valuta predefinita', 'Valuta predefinita', 'Importo in valuta del conto', 'Valuta conto', 'Tag', 'Commento'];
   const knownIncomeKeys = [...knownExpenseKeys];
@@ -114,6 +116,14 @@ const ImportPage = () => {
       ...transfers.map(t => t['In uscita']),
       ...transfers.map(t => t['In entrata'])
     ].filter(Boolean));
+    setTransactionAccounts([...accs]);
+
+    const balances = {};
+    [...accs].forEach(name => {
+      const found = accounts.find(a => a.name === name);
+      balances[name] = found ? found.balance : 0;
+    });
+    setAccountBalances(balances);
 
     const cats = new Set([
       ...expenses.map(e => e['Categoria']),
@@ -211,6 +221,16 @@ const ImportPage = () => {
         if (res.error) throw new Error(`Errore su trasferimento: ${row['Commento']}`);
       }
 
+      const allAccounts = await dispatch(fetchAccounts()).unwrap();
+      const updates = transactionAccounts.map(name => {
+        const acc = allAccounts.find(a => a.name === name);
+        return acc ? { id: acc.id, balance: parseFloat(accountBalances[name]) || 0 } : null;
+      }).filter(Boolean);
+      if (updates.length > 0) {
+        const updRes = await dispatch(updateAccountsBulk(updates));
+        if (updRes.error) throw new Error('Errore aggiornamento saldi account');
+      }
+
       setExpenses([]); setIncomes([]); setTransfers([]);
       setFilename('');
       alert('📥 Dati importati con successo!');
@@ -272,7 +292,39 @@ const ImportPage = () => {
       </ul>
     </div>
   );
-
+  const renderAccountsTable = () => (
+    <div className={styles.tableWrapper}>
+      <h2 className={styles.title}>Saldo finale account</h2>
+      <table className={styles.table}>
+        <thead>
+          <tr>
+            <th className={styles.th}>Account</th>
+            <th className={styles.th}>Saldo</th>
+          </tr>
+        </thead>
+        <tbody>
+          {transactionAccounts.map((name) => (
+            <tr key={name}>
+              <td className={styles.td}>{name}</td>
+              <td className={styles.td}>
+                <input
+                  type="number"
+                  className={styles.balanceInput}
+                  value={accountBalances[name] ?? ''}
+                  onChange={(e) =>
+                    setAccountBalances((prev) => ({
+                      ...prev,
+                      [name]: e.target.value,
+                    }))
+                  }
+                />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
   return (
     <div className={styles.container}>
       {error && <p className={styles.error}>{error}</p>}
@@ -329,6 +381,7 @@ const ImportPage = () => {
       {expenses.length > 0 && renderTable('📊 Spese', expenses)}
       {incomes.length > 0 && renderTable('💰 Entrate', incomes)}
       {transfers.length > 0 && renderTable('🔁 Trasferimenti', transfers)}
+      {transactionAccounts.length > 0 && renderAccountsTable()}
       {(expenses.length || incomes.length || transfers.length) > 0 && (
         <button
           onClick={handleImport}
