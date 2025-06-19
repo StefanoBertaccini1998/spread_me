@@ -1,14 +1,12 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { useAppSelector } from '../redux/hooks/useRedux';
 import StatCard from '../components/StatCard';
 import FilterBar from '../components/FilterBar';
 import NavigationButtons from '../components/NavigationButtons';
 import DashboardCharts from '../components/DashboardCharts';
 import styles from './DashboardHome.module.css';
-import useInitialDataLoad from '../hooks/useInitialDataLoad';
 
 const DashboardHome = () => {
-    useInitialDataLoad();
 
     const expenses = useAppSelector((state) => state.transaction.expenses);
     const incomes = useAppSelector((state) => state.transaction.incomes);

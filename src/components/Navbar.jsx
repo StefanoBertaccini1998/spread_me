@@ -14,7 +14,10 @@ export default function Navbar() {
 
   return (
     <nav className={styles.navbar}>
-      <Link to="/" className={styles.brand}>Finance Tracker</Link>
+      <Link to="/" className={styles.brand}>
+        <img src="/fta.svg" alt="Finance Tracker logo" className={styles.logo} />
+        Finance Tracker
+      </Link>
 
       <button
         className={`${styles.burger} ${navOpen ? styles.burgerOpen : ''}`}
