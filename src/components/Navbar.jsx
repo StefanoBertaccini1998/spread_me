@@ -14,7 +14,7 @@ export default function Navbar() {
 
   return (
     <nav className={styles.navbar}>
-      <Link to="/" className={styles.brand}>
+      <Link to={user ? '/dashboard' : '/'} className={styles.brand}>
         <img src="/fta.svg" alt="Finance Tracker logo" className={styles.logo} />
         Finance Tracker
       </Link>
@@ -30,8 +30,9 @@ export default function Navbar() {
       </button>
 
       <div className={`${styles.links} ${navOpen ? styles.linksOpen : ''}`}>
-        <NavLink to="/" className={styles.link} onClick={closeNav}>Home</NavLink>
-
+        {!user && (
+          <NavLink to="/" className={styles.link} onClick={closeNav}>Home</NavLink>
+        )}
         {user ? (
           <>
             <NavLink to="/dashboard" className={styles.link} onClick={closeNav}>Dashboard</NavLink>

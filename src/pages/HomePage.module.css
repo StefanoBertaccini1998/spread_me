@@ -2,6 +2,14 @@
     @apply p-4 max-w-3xl mx-auto text-center max-h-full overflow-y-auto;
 }
 
+.hero {
+    @apply bg-gradient-to-br from-primary/10 to-background rounded-lg p-6 mb-8 flex flex-col items-center;
+}
+
+.heroImage {
+    @apply w-24 h-24 mb-4 opacity-90;
+}
+
 .title {
     @apply text-3xl font-bold mb-4;
 }
@@ -16,4 +24,8 @@
 
 .button {
     @apply bg-primary py-3 px-6 rounded-md text-lg hover:bg-primary/80 text-white;
+}
+
+.list {
+    @apply list-disc pl-6 space-y-1;
 }

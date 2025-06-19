@@ -3887,6 +3887,24 @@
       "type": "transfers",
       "date": "2024-09-17",
       "userId": "a896"
+    },
+    {
+      "id": "1867",
+      "category": "Alimentari",
+      "account": "Revolut",
+      "amountBaseCurrency": 10,
+      "baseCurrency": "EUR",
+      "amountAccountCurrency": null,
+      "accountCurrency": "EUR",
+      "comment": "",
+      "fromAccount": "",
+      "toAccount": "",
+      "amountFromCurrency": null,
+      "fromCurrency": "EUR",
+      "toCurrency": "EUR",
+      "date": "2025-06-19",
+      "type": "expenses",
+      "userId": "a896"
     }
   ],
   "accounts": [
@@ -3911,7 +3929,7 @@
       "name": "Revolut",
       "color": "#f87171",
       "icon": "🏦",
-      "balance": 20,
+      "balance": 10,
       "userId": "a896"
     },
     {
