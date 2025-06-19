@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useId } from 'react';
 import { useAppDispatch, useAppSelector } from '../redux/hooks/useRedux';
 import { createTransaction, updateTransaction } from '../redux/asyncThunks/transactionThunks';
 import styles from './DynamicForm.module.css';
@@ -7,6 +7,7 @@ const DynamicForm = ({ type, onClose, setToastMessage, setToastType, editData = 
     const dispatch = useAppDispatch();
     const accounts = useAppSelector((state) => state.accounts.data);
     const categories = useAppSelector((state) => state.categories.data);
+    const idPrefix = useId();
 
     const [formData, setFormData] = useState(() => {
         if (editData) {
@@ -120,8 +121,9 @@ const DynamicForm = ({ type, onClose, setToastMessage, setToastType, editData = 
 
     return (
         <form onSubmit={handleSubmit} className={styles.form}>
-            <label className={styles.label}>Data</label>
+            <label htmlFor={`${idPrefix}-date`} className={styles.label}>Data</label>
             <input
+                id={`${idPrefix}-date`}
                 type="date"
                 name="date"
                 value={formData.date}
@@ -133,8 +135,9 @@ const DynamicForm = ({ type, onClose, setToastMessage, setToastType, editData = 
 
             {type !== 'transfers' && (
                 <>
-                    <label className={styles.label}>Categoria</label>
+                    <label htmlFor={`${idPrefix}-category`} className={styles.label}>Categoria</label>
                     <select
+                        id={`${idPrefix}-category`}
                         name="category"
                         value={formData.category}
                         disabled={disabled}
@@ -150,8 +153,9 @@ const DynamicForm = ({ type, onClose, setToastMessage, setToastType, editData = 
                     </select>
                     {errors.category && <div className={styles.error}>{errors.category}</div>}
 
-                    <label className={styles.label}>Conti</label>
+                    <label htmlFor={`${idPrefix}-account`} className={styles.label}>Conti</label>
                     <select
+                        id={`${idPrefix}-account`}
                         name="account"
                         value={formData.account}
                         disabled={disabled}
@@ -167,8 +171,9 @@ const DynamicForm = ({ type, onClose, setToastMessage, setToastType, editData = 
                     </select>
                     {errors.account && <div className={styles.error}>{errors.account}</div>}
 
-                    <label className={styles.label}>Importo</label>
+                    <label htmlFor={`${idPrefix}-amount-base`} className={styles.label}>Importo</label>
                     <input
+                        id={`${idPrefix}-amount-base`}
                         type="number"
                         name="amountBaseCurrency"
                         placeholder="Importo"
@@ -183,8 +188,9 @@ const DynamicForm = ({ type, onClose, setToastMessage, setToastType, editData = 
 
             {type === 'transfers' && (
                 <>
-                    <label className={styles.label}>Da Conto</label>
+                    <label htmlFor={`${idPrefix}-fromAccount`} className={styles.label}>Da Conto</label>
                     <select
+                        id={`${idPrefix}-fromAccount`}
                         name="fromAccount"
                         value={formData.fromAccount}
                         disabled={disabled}
@@ -202,8 +208,9 @@ const DynamicForm = ({ type, onClose, setToastMessage, setToastType, editData = 
                     </select>
                     {errors.fromAccount && <div className={styles.error}>{errors.fromAccount}</div>}
 
-                    <label className={styles.label}>A Conto</label>
+                    <label htmlFor={`${idPrefix}-toAccount`} className={styles.label}>A Conto</label>
                     <select
+                        id={`${idPrefix}-toAccount`}
                         name="toAccount"
                         value={formData.toAccount}
                         disabled={disabled}
@@ -221,8 +228,9 @@ const DynamicForm = ({ type, onClose, setToastMessage, setToastType, editData = 
                     </select>
                     {errors.toAccount && <div className={styles.error}>{errors.toAccount}</div>}
 
-                    <label className={styles.label}>Importo</label>
+                    <label htmlFor={`${idPrefix}-transferAmount`} className={styles.label}>Importo</label>
                     <input
+                        id={`${idPrefix}-transferAmount`}
                         type="number"
                         name="amountFromCurrency"
                         placeholder="Importo"
@@ -235,8 +243,9 @@ const DynamicForm = ({ type, onClose, setToastMessage, setToastType, editData = 
                 </>
             )}
 
-            <label className={styles.label}>Commento</label>
+            <label htmlFor={`${idPrefix}-comment`} className={styles.label}>Commento</label>
             <textarea
+                id={`${idPrefix}-comment`}
                 name="comment"
                 placeholder="Commento"
                 value={formData.comment}

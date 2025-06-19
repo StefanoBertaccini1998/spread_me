@@ -1,4 +1,5 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useId } from 'react';
+
 import * as XLSX from 'xlsx';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../redux/hooks/useRedux';
@@ -20,6 +21,7 @@ const ImportPage = () => {
   const accounts = useAppSelector((state) => state.accounts.data);
   const categories = useAppSelector((state) => state.categories.data);
   const userId = useAppSelector((state) => state.user.user?.id);
+  const idPrefix = useId();
 
   const [filename, setFilename] = useState('');
   const [expenses, setExpenses] = useState([]);
@@ -320,10 +322,11 @@ const ImportPage = () => {
         </button>
       </div>
       <ul className={styles.checkboxList}>
-        {items.map(item => (
+        {items.map((item, idx) => (
           <li key={item} className={styles.checkboxItem}>
-            <label>
+            <label htmlFor={`${idPrefix}-${idx}`}>
               <input
+                id={`${idPrefix}-${idx}`}
                 type="checkbox"
                 className={styles.checkbox}
                 checked={selected.includes(item)}
@@ -386,7 +389,6 @@ const ImportPage = () => {
       >
         <HelpCircle size={20} />
       </button>
-
       {importing && (
         <p className={styles.importingToast}>
           <span className={styles.spinner}></span>

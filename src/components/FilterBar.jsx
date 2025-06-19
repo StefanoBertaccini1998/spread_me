@@ -1,3 +1,4 @@
+import { useId } from 'react';
 import { useAppSelector } from '../redux/hooks/useRedux';
 import styles from './FilterBar.module.css';
 
@@ -5,6 +6,7 @@ export default function FilterBar({ filters, setFilters }) {
     const userId = useAppSelector((state) => state.user.user?.id);
     const accounts = useAppSelector((s) => s.accounts.data).filter((a) => a.userId === userId);
     const categories = useAppSelector((s) => s.categories.data).filter((c) => c.userId === userId);
+    const idPrefix = useId();
 
     const handle = (field) => (e) => {
         const value = e.target.value;
@@ -26,8 +28,8 @@ export default function FilterBar({ filters, setFilters }) {
             <div className={styles.inner}>
                 {/* Period */}
                 <div className={styles.group}>
-                    <label className={styles.label}>Periodo</label>
-                    <select value={filters.period} onChange={handle('period')} className={styles.select}>
+                    <label htmlFor={`${idPrefix}-period`} className={styles.label}>Periodo</label>
+                    <select id={`${idPrefix}-period`} value={filters.period} onChange={handle('period')} className={styles.select}>
                         <option value="month">Mese Corrente</option>
                         <option value="year">Anno Corrente</option>
                         <option value="always">Sempre</option>
@@ -39,12 +41,13 @@ export default function FilterBar({ filters, setFilters }) {
                 {filters.period === 'custom' && (
                     <div className={styles.custom}>
                         <div className={styles.group}>
-                            <label className={styles.label}>Da</label>
-                            <input type="date" value={filters.startDate || ''} onChange={handle('startDate')} className={styles.select} />
+                            <label htmlFor={`${idPrefix}-start`} className={styles.label}>Da</label>
+                            <input id={`${idPrefix}-start`} type="date" value={filters.startDate || ''} onChange={handle('startDate')} className={styles.select} />
                         </div>
                         <div className={styles.group}>
-                            <label className={styles.label}>A</label>
+                            <label htmlFor={`${idPrefix}-end`} className={styles.label}>A</label>
                             <input
+                                id={`${idPrefix}-end`}
                                 type="date"
                                 value={filters.endDate || ''}
                                 onChange={handle('endDate')}
@@ -57,8 +60,8 @@ export default function FilterBar({ filters, setFilters }) {
 
                 {/* Account */}
                 <div className={styles.group}>
-                    <label className={styles.label}>Conto</label>
-                    <select value={filters.account} onChange={handle('account')} className={styles.select}>
+                    <label htmlFor={`${idPrefix}-account`} className={styles.label}>Conto</label>
+                    <select id={`${idPrefix}-account`} value={filters.account} onChange={handle('account')} className={styles.select}>
                         <option value="All">Tutti i Conti</option>
                         {accounts.map((a) => (
                             <option key={a.id} value={a.name}>{a.icon} {a.name}</option>
@@ -68,8 +71,8 @@ export default function FilterBar({ filters, setFilters }) {
 
                 {/* Category */}
                 <div className={styles.group}>
-                    <label className={styles.label}>Categoria</label>
-                    <select value={filters.category} onChange={handle('category')} className={styles.select}>
+                    <label htmlFor={`${idPrefix}-category`} className={styles.label}>Categoria</label>
+                    <select id={`${idPrefix}-category`} value={filters.category} onChange={handle('category')} className={styles.select}>
                         <option value="All">Tutte le Categorie</option>
                         {categories.map((c) => (
                             <option key={c.id} value={c.name}>{c.icon} {c.name}</option>

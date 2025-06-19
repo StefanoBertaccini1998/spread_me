@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useId } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../redux/hooks/useRedux';
 import { authenticateUser, createUser } from '../redux/asyncThunks/userThunks';
@@ -11,6 +11,7 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const idPrefix = useId();
 
     const isValidEmail = (email) => /\S+@\S+\.\S+/.test(email);
 
@@ -60,8 +61,9 @@ const Login = () => {
 
             <form className={styles.form} onSubmit={handleSubmit}>
                 <div className={styles.field}>
-                    <label className={styles.label}>Email</label>
+                    <label htmlFor={`${idPrefix}-email`} className={styles.label}>Email</label>
                     <input
+                        id={`${idPrefix}-email`}
                         type="email"
                         autoFocus
                         value={email}
