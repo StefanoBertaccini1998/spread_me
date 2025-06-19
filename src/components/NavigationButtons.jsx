@@ -2,11 +2,11 @@ import { useNavigate } from 'react-router-dom';
 import { Plus, Import } from 'lucide-react';          // lucide icons: no colour issues
 import styles from './NavigationButtons.module.css';
 
-export default function NavigationButtons() {
+export default function NavigationButtons({ currentFilters }) {
     const navigate = useNavigate();
     const go = (type) => {
-        navigate(`/finance/${type}?openModal=true`);
-    }
+        navigate(`/finance/${type}?openModal=true`, { state: { filters: currentFilters } });
+    };
 
     return (
         <div className={styles.container}>

@@ -1,4 +1,5 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useAppSelector } from '../redux/hooks/useRedux';
 import StatCard from '../components/StatCard';
 import FilterBar from '../components/FilterBar';
@@ -10,14 +11,23 @@ const DashboardHome = () => {
 
     const expenses = useAppSelector((state) => state.transaction.expenses);
     const incomes = useAppSelector((state) => state.transaction.incomes);
+    const location = useLocation();
 
-    const [filters, setFilters] = useState({
-        period: 'always',
-        account: 'All',
-        category: 'All',
-        startDate: '',
-        endDate: '',
-    });
+    const stored = localStorage.getItem('financeFilters');
+    const initialFilters =
+        location.state?.filters || (stored ? JSON.parse(stored) : null) || {
+            period: 'always',
+            account: 'All',
+            category: 'All',
+            startDate: '',
+            endDate: '',
+        };
+
+    const [filters, setFilters] = useState(initialFilters);
+
+    useEffect(() => {
+        localStorage.setItem('financeFilters', JSON.stringify(filters));
+    }, [filters]);
 
     const filterData = (data) => {
         const now = new Date();
@@ -146,7 +156,7 @@ const DashboardHome = () => {
                 balanceData={balanceData}
             />
 
-            <NavigationButtons />
+            <NavigationButtons currentFilters={filters} />
         </div>
     );
 };

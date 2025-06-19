@@ -18,13 +18,20 @@ const FinancialManagement = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const [modalType, setModalType] = useState(null);
 
-    const initialFilters = location.state?.filters || {
-        month: new Date().getMonth(),
-        year: new Date().getFullYear(),
-        category: 'All',
-        account: 'All'
-    };
+    const stored = localStorage.getItem('financeFilters');
+    const initialFilters =
+        location.state?.filters || (stored ? JSON.parse(stored) : null) || {
+            period: 'always',
+            account: 'All',
+            category: 'All',
+            startDate: '',
+            endDate: ''
+        };
     const [filters, setFilters] = useState(initialFilters);
+
+    useEffect(() => {
+        localStorage.setItem('financeFilters', JSON.stringify(filters));
+    }, [filters]);
 
     // 3. modal handling
     useEffect(() => {
@@ -46,7 +53,7 @@ const FinancialManagement = () => {
     };
     // 4. switch handler
     const handleSectionChange = (newView) => {
-        navigate(`/finance/${newView}`);
+        navigate(`/finance/${newView}`, { state: { filters } });
     };
 
     return (
