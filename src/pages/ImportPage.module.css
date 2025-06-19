@@ -15,7 +15,7 @@
 }
 
 .filename {
-    @apply mb-4 text-sm;
+    @apply ml-2 text-sm;
 }
 
 .tableWrapper {

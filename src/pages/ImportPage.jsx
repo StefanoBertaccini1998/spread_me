@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useId } from 'react';
 import * as XLSX from 'xlsx';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../redux/hooks/useRedux';
@@ -20,6 +20,7 @@ const ImportPage = () => {
   const accounts = useAppSelector((state) => state.accounts.data);
   const categories = useAppSelector((state) => state.categories.data);
   const userId = useAppSelector((state) => state.user.user?.id);
+  const idPrefix = useId();
 
   const [filename, setFilename] = useState('');
   const [expenses, setExpenses] = useState([]);
@@ -37,15 +38,20 @@ const ImportPage = () => {
   const [showHelp, setShowHelp] = useState(false);
   const [transactionAccounts, setTransactionAccounts] = useState([]);
   const [accountBalances, setAccountBalances] = useState({});
+  const fileInputRef = useRef(null);
 
   const knownExpenseKeys = ['Data e ora', 'Categoria', 'Conto', 'Importo in valuta predefinita', 'Valuta predefinita', 'Importo in valuta del conto', 'Valuta conto', 'Tag', 'Commento'];
   const knownIncomeKeys = [...knownExpenseKeys];
   const knownTransferKeys = ['Data e ora', 'In uscita', 'In entrata', 'Importo nella valuta in uscita', 'Valuta in uscita', 'Commento'];
 
+  const requiredExpenseIncome = ['Data e ora', 'Categoria', 'Conto', 'Importo in valuta predefinita'];
+  const requiredTransfer = ['Data e ora', 'In uscita', 'In entrata', 'Importo nella valuta in uscita'];
+
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
     if (!file) return;
     setLoading(true);
+    setError('');
     setFilename(file.name);
     const reader = new FileReader();
     reader.onerror = () => {
@@ -57,9 +63,16 @@ const ImportPage = () => {
       try {
         const data = new Uint8Array(evt.target.result);
         const workbook = XLSX.read(data, { type: 'array', cellDates: true });
-        const expensesRaw = workbook.Sheets['Spese'] ? cleanData(workbook.Sheets['Spese'], knownExpenseKeys) : [];
-        const incomesRaw = workbook.Sheets['Entrate'] ? cleanData(workbook.Sheets['Entrate'], knownIncomeKeys) : [];
-        const transfersRaw = workbook.Sheets['Bonifici'] ? cleanData(workbook.Sheets['Bonifici'], knownTransferKeys) : [];
+        const expensesRaw = workbook.Sheets['Spese'] ?
+          cleanData(workbook.Sheets['Spese'], knownExpenseKeys, requiredExpenseIncome, 'Spese') : [];
+        const incomesRaw = workbook.Sheets['Entrate'] ?
+          cleanData(workbook.Sheets['Entrate'], knownIncomeKeys, requiredExpenseIncome, 'Entrate') : [];
+        const transfersRaw = workbook.Sheets['Bonifici'] ?
+          cleanData(workbook.Sheets['Bonifici'], knownTransferKeys, requiredTransfer, 'Bonifici') : [];
+
+        if (!workbook.Sheets['Spese'] && !workbook.Sheets['Entrate'] && !workbook.Sheets['Bonifici']) {
+          throw new Error('Nessun foglio valido trovato');
+        }
         setExpenses(expensesRaw);
         setIncomes(incomesRaw);
         setTransfers(transfersRaw);
@@ -68,7 +81,20 @@ const ImportPage = () => {
         setTimeout(() => setToast(''), 3000);
       } catch (err) {
         console.error('Errore parsing file:', err);
-        setError('File non valido');
+        setError(err.message || 'File non valido');
+        setFilename('');
+        if (fileInputRef.current) {
+          fileInputRef.current.value = '';
+        }
+        setExpenses([]);
+        setIncomes([]);
+        setTransfers([]);
+        setUnknownAccounts([]);
+        setUnknownCategories([]);
+        setAccountsToCreate([]);
+        setCategoriesToCreate([]);
+        setTransactionAccounts([]);
+        setAccountBalances({});
       } finally {
         setLoading(false);
       }
@@ -77,10 +103,17 @@ const ImportPage = () => {
   };
 
 
-  const cleanData = (sheet, knownKeys) => {
+  const cleanData = (sheet, knownKeys, requiredKeys, sheetName) => {
     const allRows = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '' });
     const headerIdx = allRows.findIndex(row => row.some(cell => knownKeys.includes(cell?.toString().trim())));
-    if (headerIdx === -1) return [];
+    if (headerIdx === -1) {
+      throw new Error(`Intestazione mancante nel foglio "${sheetName}"`);
+    }
+    const headerRow = allRows[headerIdx].map(h => h?.toString().trim());
+    const hasAllRequired = requiredKeys.every(k => headerRow.includes(k));
+    if (!hasAllRequired) {
+      throw new Error(`Intestazione incompleta nel foglio "${sheetName}"`);
+    }
     const parsed = XLSX.utils.sheet_to_json(sheet, { defval: '', range: headerIdx });
     return parsed.map(row => {
       const cleaned = {};
@@ -288,10 +321,11 @@ const ImportPage = () => {
         </button>
       </div>
       <ul className={styles.checkboxList}>
-        {items.map(item => (
+        {items.map((item, idx) => (
           <li key={item} className={styles.checkboxItem}>
-            <label>
+            <label htmlFor={`${idPrefix}-${idx}`}>
               <input
+                id={`${idPrefix}-${idx}`}
                 type="checkbox"
                 className={styles.checkbox}
                 checked={selected.includes(item)}
@@ -354,7 +388,6 @@ const ImportPage = () => {
       >
         <HelpCircle size={20} />
       </button>
-      {error && <p className={styles.error}>{error}</p>}
       {importing && (
         <p className={styles.importingToast}>
           <span className={styles.spinner}></span>
@@ -369,8 +402,11 @@ const ImportPage = () => {
           accept=".csv, .xlsx, .xls"
           onChange={handleFileUpload}
           className={styles.file}
+          ref={fileInputRef}
         />
+        {filename && <span className={styles.filename}>📁 {filename}</span>}
       </div>
+      {error && <p className={styles.error}>{error}</p>}
       <Modal isOpen={showHelp} onClose={() => setShowHelp(false)} type="info">
         <div className={styles.helpSection}>
           <p>
@@ -394,7 +430,6 @@ const ImportPage = () => {
       </Modal>
       {loading && <p className={styles.loading}>⏳ Parsing in corso...</p>}
       {toast && <p className={styles.toast}>{toast}</p>}
-      {filename && <p className={styles.filename}>📁 File: <strong>{filename}</strong></p>}
       {unknownAccounts.length > 0 && renderUnknownSection(unknownAccounts, 'Account da creare', accountsToCreate, setAccountsToCreate)}
       {unknownCategories.length > 0 && renderUnknownSection(unknownCategories, 'Categorie da creare', categoriesToCreate, setCategoriesToCreate)}
       {expenses.length > 0 && renderTable('📊 Spese', expenses)}

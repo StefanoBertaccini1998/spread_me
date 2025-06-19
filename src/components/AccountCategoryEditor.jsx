@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useId } from 'react';
 import PropTypes from 'prop-types';
 import EmojiPicker from 'emoji-picker-react';
 import { FiCheck, FiX } from 'react-icons/fi';
@@ -7,6 +7,7 @@ import styles from './AccountCategoryEditor.module.css';
 const AccountCategoryEditor = ({ initialData, onSave, onCancel }) => {
     const isEdit = !!initialData.id;
     const isAccount = initialData.hasOwnProperty('balance');
+    const idPrefix = useId();
     const [formData, setFormData] = useState({
         ...initialData,
         balance: isAccount
@@ -44,8 +45,9 @@ const AccountCategoryEditor = ({ initialData, onSave, onCancel }) => {
     return (
         <div className={styles.editorContainer}>
             <div className={styles.formGroup}>
-                <label className={styles.editorTitle}>Nome</label>
+                <label htmlFor={`${idPrefix}-name`} className={styles.editorTitle}>Nome</label>
                 <input
+                    id={`${idPrefix}-name`}
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -56,8 +58,9 @@ const AccountCategoryEditor = ({ initialData, onSave, onCancel }) => {
 
             {isAccount && (
                 <div className={styles.formGroup}>
-                    <label className={styles.editorTitle}>Saldo Iniziale</label>
+                    <label htmlFor={`${idPrefix}-balance`} className={styles.editorTitle}>Saldo Iniziale</label>
                     <input
+                        id={`${idPrefix}-balance`}
                         type="number"
                         value={formData.balance}
                         min="0"
@@ -70,8 +73,9 @@ const AccountCategoryEditor = ({ initialData, onSave, onCancel }) => {
 
             <div className={styles.flexGroup}>
                 <div className={styles.formGroup}>
-                    <label className={styles.editorTitle}>Colore</label>
+                    <label htmlFor={`${idPrefix}-color`} className={styles.editorTitle}>Colore</label>
                     <input
+                        id={`${idPrefix}-color`}
                         type="color"
                         value={formData.color}
                         onChange={(e) => setFormData({ ...formData, color: e.target.value })}
@@ -80,8 +84,9 @@ const AccountCategoryEditor = ({ initialData, onSave, onCancel }) => {
                 </div>
 
                 <div className={styles.formGroup}>
-                    <label className={styles.editorTitle}>Emoji</label>
+                    <label htmlFor={`${idPrefix}-emoji`} className={styles.editorTitle}>Emoji</label>
                     <button
+                        id={`${idPrefix}-emoji`}
                         type="button"
                         onClick={() => setEmojiPickerVisible(!emojiPickerVisible)}
                         className={styles.emojiTrigger}

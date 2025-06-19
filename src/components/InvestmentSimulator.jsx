@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useId } from 'react';
 import { useAppDispatch, useAppSelector } from '../redux/hooks/useRedux';
 import { loadHistoricalData } from '../redux/asyncThunks/investmentThunks';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
@@ -13,6 +13,7 @@ const InvestmentSimulator = () => {
     const [amount, setAmount] = useState('');
     const [finalValue, setFinalValue] = useState(null);
     const [error, setError] = useState('');
+    const idPrefix = useId();
 
     const validateInputs = () => {
         if (!symbol || !startDate || !endDate || amount === '') {
@@ -57,42 +58,46 @@ const InvestmentSimulator = () => {
         <div className={styles.card}>
             <h2 className={styles.title}>💹 Simulatore Investimento</h2>
             <div className={styles.formGroup}>
-                <label>
+                <label htmlFor={`${idPrefix}-symbol`}>
                     Simbolo
-                    <input
-                        type="text"
-                        value={symbol}
-                        onChange={(e) => setSymbol(e.target.value.toUpperCase())}
-                        className={styles.input}
-                    />
                 </label>
-                <label>
+                <input
+                    id={`${idPrefix}-symbol`}
+                    type="text"
+                    value={symbol}
+                    onChange={(e) => setSymbol(e.target.value.toUpperCase())}
+                    className={styles.input}
+                />
+                <label htmlFor={`${idPrefix}-start`}> 
                     Data inizio
-                    <input
-                        type="date"
-                        value={startDate}
-                        onChange={(e) => setStartDate(e.target.value)}
-                        className={styles.input}
-                    />
                 </label>
-                <label>
+                <input
+                    id={`${idPrefix}-start`}
+                    type="date"
+                    value={startDate}
+                    onChange={(e) => setStartDate(e.target.value)}
+                    className={styles.input}
+                />
+                <label htmlFor={`${idPrefix}-end`}>
                     Data fine
-                    <input
-                        type="date"
-                        value={endDate}
-                        onChange={(e) => setEndDate(e.target.value)}
-                        className={styles.input}
-                    />
                 </label>
-                <label>
+                <input
+                    id={`${idPrefix}-end`}
+                    type="date"
+                    value={endDate}
+                    onChange={(e) => setEndDate(e.target.value)}
+                    className={styles.input}
+                />
+                <label htmlFor={`${idPrefix}-amount`}>
                     Importo (€)
-                    <input
-                        type="number"
-                        value={amount}
-                        onChange={(e) => setAmount(e.target.value)}
-                        className={styles.input}
-                    />
                 </label>
+                <input
+                    id={`${idPrefix}-amount`}
+                    type="number"
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                    className={styles.input}
+                />
                 <button onClick={handleSimulate} className={styles.button}>
                     Calcola e Simula
                 </button>
