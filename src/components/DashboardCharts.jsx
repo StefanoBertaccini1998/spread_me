@@ -9,13 +9,14 @@ import {
     LineElement,
     PointElement,
     RadialLinearScale,
+    ArcElement,
     Filler,
     Tooltip,
     Legend
 } from 'chart.js';
 import styles from './DashboardCharts.module.css';
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, PointElement, RadialLinearScale, Filler, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, PointElement, RadialLinearScale, ArcElement, Filler, Tooltip, Legend);
 
 // Tailwind theme → hex map (extend as needed)
 const tw = {
@@ -133,15 +134,6 @@ const DashboardCharts = ({ expensesData, incomesData, balanceData }) => {
         };
     }, [allCategories, incomesData, expensesData, categoryColors]);
 
-    const categoryLegend = useMemo(
-        () =>
-            allCategories.map((cat, idx) => ({
-                label: cat,
-                color: categoryColors[idx],
-            })),
-        [allCategories, categoryColors]
-    );
-
     const polarOptions = {
         responsive: true,
         plugins: { legend: { labels: { color: baseColor } } },
@@ -205,7 +197,7 @@ const DashboardCharts = ({ expensesData, incomesData, balanceData }) => {
         return { labels: allDates, datasets };
     };
 
-    const timeSeriesExpenses = buildTimeSeriesData(expensesData.raw || [], 'expense');
+    const timeSeriesExpenses = buildTimeSeriesData(expensesData.raw || []);
     const balanceSeries = {
         labels: balanceData.labels,
         datasets: [

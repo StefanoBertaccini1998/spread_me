@@ -146,7 +146,6 @@ const DashboardHome = () => {
                 expensesData={expensesData}
                 incomesData={incomesData}
                 balanceData={balanceData}
-                transfersData={{ labels: [], values: [] }}
             />
 
             <NavigationButtons />
