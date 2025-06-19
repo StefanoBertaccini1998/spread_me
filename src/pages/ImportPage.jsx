@@ -1,4 +1,5 @@
 import { useState, useRef, useId } from 'react';
+
 import * as XLSX from 'xlsx';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../redux/hooks/useRedux';
@@ -200,7 +201,7 @@ const ImportPage = () => {
         return;
       }
       for (const acc of accountsToCreate) {
-        const res = await dispatch(createAccount({
+        const res = dispatch(createAccount({
           name: acc,
           color: getRandomColor(),
           icon: '🏦',
@@ -210,7 +211,7 @@ const ImportPage = () => {
       }
 
       for (const cat of categoriesToCreate) {
-        const res = await dispatch(createCategory({
+        const res = dispatch(createCategory({
           name: cat,
           color: getRandomColor(),
           icon: '📂'
@@ -219,7 +220,7 @@ const ImportPage = () => {
       }
 
       for (const row of expenses) {
-        const res = await dispatch(createTransaction({
+        const res = dispatch(createTransaction({
           transaction: {
             type: 'expense',
             date: row['Data e ora'],
@@ -237,7 +238,7 @@ const ImportPage = () => {
       }
 
       for (const row of incomes) {
-        const res = await dispatch(createTransaction({
+        const res = dispatch(createTransaction({
           transaction: {
             type: 'income',
             date: row['Data e ora'],
@@ -255,7 +256,7 @@ const ImportPage = () => {
       }
 
       for (const row of transfers) {
-        const res = await dispatch(createTransaction({
+        const res = dispatch(createTransaction({
           transaction: {
             type: 'transfer',
             date: row['Data e ora'],
@@ -276,7 +277,7 @@ const ImportPage = () => {
         return acc ? { id: acc.id, balance: parseFloat(accountBalances[name]) || 0 } : null;
       }).filter(Boolean);
       if (updates.length > 0) {
-        const updRes = await dispatch(updateAccountsBulk(updates));
+        const updRes = dispatch(updateAccountsBulk(updates));
         if (updRes.error) throw new Error('Errore aggiornamento saldi account');
       }
 
