@@ -6,8 +6,20 @@ export default function FilterBar({ filters, setFilters }) {
     const accounts = useAppSelector((s) => s.accounts.data).filter((a) => a.userId === userId);
     const categories = useAppSelector((s) => s.categories.data).filter((c) => c.userId === userId);
 
-    const handle = (field) => (e) =>
-        setFilters((prev) => ({ ...prev, [field]: e.target.value }));
+    const handle = (field) => (e) => {
+        const value = e.target.value;
+        setFilters((prev) => {
+            const next = { ...prev, [field]: value };
+            const complete = value.length === 10;
+            if (field === 'startDate' && prev.endDate && complete && value > prev.endDate) {
+                next.endDate = value;
+            }
+            if (field === 'endDate' && prev.startDate && complete && value < prev.startDate) {
+                next.endDate = prev.startDate;
+            }
+            return next;
+        });
+    };
 
     return (
         <div className={styles.container}>
@@ -32,7 +44,13 @@ export default function FilterBar({ filters, setFilters }) {
                         </div>
                         <div className={styles.group}>
                             <label className={styles.label}>A</label>
-                            <input type="date" value={filters.endDate || ''} onChange={handle('endDate')} className={styles.select} />
+                            <input
+                                type="date"
+                                value={filters.endDate || ''}
+                                onChange={handle('endDate')}
+                                className={styles.select}
+                                min={filters.startDate || undefined}
+                            />
                         </div>
                     </div>
                 )}
