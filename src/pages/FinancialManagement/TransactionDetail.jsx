@@ -4,6 +4,7 @@ import { deleteTransaction, updateTransaction } from '../../redux/asyncThunks/tr
 import DynamicForm from '../../components/DynamicForm';
 import styles from './TransactionDetail.module.css';
 import { useState } from 'react';
+import { ArrowLeft, Pencil, Save, Trash2, FileText } from 'lucide-react';
 
 const TransactionDetail = () => {
     const { id } = useParams();
@@ -42,7 +43,10 @@ const TransactionDetail = () => {
 
     return (
         <div className={styles.container}>
-            <h1 className={styles.title}>🧾 Dettaglio Transazione</h1>
+            <div className={styles.header}>
+                <FileText size={24} aria-hidden="true" />
+                <h1 className={styles.title}>Dettaglio Transazione</h1>
+            </div>
             <div className={styles.section}>
 
 
@@ -58,20 +62,20 @@ const TransactionDetail = () => {
 
                 <div className={styles.buttonGroup}>
                     <button className={styles.backButton} onClick={() => navigate(`/finance/${fromSection}`)}>
-                        🔙 Torna a {labels[fromSection]}
+                        <ArrowLeft size={16} aria-hidden="true" /> Torna a {labels[fromSection]}
                     </button>
                     {!editMode ? (
                         <button className={styles.updateButton} onClick={() => setEditMode(true)}>
-                            ✏️ Modifica
+                            <Pencil size={16} aria-hidden="true" /> Modifica
                         </button>
                     ) : (
                         <button className={styles.saveButton} onClick={() => document.querySelector('form').requestSubmit()}>
-                            💾 Salva
+                            <Save size={16} aria-hidden="true" /> Salva
                         </button>
                     )}
 
                     <button className={styles.deleteButton} onClick={handleDelete}>
-                        🗑️ Elimina
+                        <Trash2 size={16} aria-hidden="true" /> Elimina
                     </button>
 
                 </div>

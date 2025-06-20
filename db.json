@@ -4265,6 +4265,20 @@
       "amount": 111,
       "pac": false,
       "userId": "a896"
+    },
+    {
+      "id": 1750431039949,
+      "symbol": "REF",
+      "startDate": "2025-06-20",
+      "amount": 100,
+      "transactions": [
+        {
+          "date": "2025-06-20",
+          "amount": 100
+        }
+      ],
+      "pacEnabled": false,
+      "userId": "a896"
     }
   ],
   "users": [

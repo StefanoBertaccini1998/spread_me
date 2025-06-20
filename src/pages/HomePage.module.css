@@ -3,7 +3,7 @@
 }
 
 .hero {
-    @apply bg-gradient-to-br from-primary/10 to-background rounded-lg p-6 mb-8 flex flex-col items-center;
+    @apply bg-gradient-to-br from-primary/10 to-primary rounded-lg p-6 mb-8 flex flex-col items-center;
 }
 
 .heroImage {
