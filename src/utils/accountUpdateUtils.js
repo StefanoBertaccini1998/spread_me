@@ -1,3 +1,9 @@
+/**
+ * Update account balances when creating or editing a transaction.
+ * @param {Array<Object>} accounts List of existing accounts
+ * @param {Object} transaction Transaction being applied
+ * @param {'add'|'remove'} operation Type of operation
+ */
 export const adjustAccountBalance = (accounts, transaction, operation) => {
   const getDelta = (amount) => (operation === "add" ? amount : -amount);
 

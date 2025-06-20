@@ -1,4 +1,4 @@
-// una variabile “globale” al modulo
+// Simple publish/subscribe store for the UI theme
 // Determine initial theme from localStorage or system preference
 let current =
   localStorage.theme === "dark" ||

@@ -2,6 +2,8 @@ import { useState } from 'react';
 import styles from './AddInvestmentForm.module.css';
 import PropTypes from 'prop-types';
 
+
+// Form used in the investment dashboard to add a new asset to the user's list
 const AddInvestmentForm = ({ onAdd }) => {
     const [symbol, setSymbol] = useState('');
     const [startDate, setStartDate] = useState('');

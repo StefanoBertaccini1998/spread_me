@@ -5,6 +5,9 @@ import AddInvestmentForm from './AddInvestmentForm';
 import MyInvestmentCard from './MyInvestmentCard';
 import styles from './MyInvestments.module.css';
 
+
+// Displays the user's current investments and allows adding or updating them
+
 const MyInvestments = () => {
     const dispatch = useAppDispatch();
     const investments = useAppSelector((state) => state.investmentsUser.data);

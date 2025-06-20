@@ -1,6 +1,12 @@
 const API_KEY = import.meta.env.VITE_MARKETSTACK_API_KEY;
 const BASE_URL = "http://api.marketstack.com/v1";
 
+// Wrapper functions around the Marketstack API
+
+/**
+ * Retrieve EOD data for a single stock.
+ * @param {string} symbol Stock ticker symbol
+ */
 export const fetchStockData = async (symbol) => {
   const res = await fetch(
     `${BASE_URL}/eod?access_key=${API_KEY}&symbols=${symbol}`
@@ -10,6 +16,9 @@ export const fetchStockData = async (symbol) => {
   return json.data;
 };
 
+/**
+ * Get latest close data for a pre-defined list of assets.
+ */
 export const fetchTopAssets = async () => {
   const symbols = [
     "VOO",
@@ -56,6 +65,10 @@ export const fetchHistoricalData = async (symbol, startDate, endDate) => {
   }));
 };
 
+/**
+ * Compare assets by performance over a period.
+ * @param {'day'|'week'|'month'} period Range to evaluate
+ */
 export const fetchTopAssetsPeriod = async (period = "day") => {
   const symbols = [
     "VOO",

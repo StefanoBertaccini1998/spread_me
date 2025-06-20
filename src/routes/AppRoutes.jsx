@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from '../pages/layout/Layout';
 import Login from '../pages/Login';
 import ProtectedRoute from '../components/ProtectedRoute';
-import FinancialManagement from '../pages/FinancialManagement/FinancialManagement';
+import FinancialManagement from '../pages/financialManagement/FinancialManagement';
 import ImportPage from '../pages/ImportPage';
 import DashboardHome from '../pages/DashboardHome';
 import ProfilePage from '../pages/ProfilePage';
@@ -11,6 +11,7 @@ import HomePage from '../pages/HomePage';
 import TransactionDetail from '../pages/FinancialManagement/TransactionDetail';
 import InvestmentPage from '../pages/InvestmentPage';
 
+// Define the main application routes using React Router
 const AppRoutes = () => (
     <BrowserRouter>
         <Routes>

@@ -5,6 +5,8 @@ import TransactionView from './TransactionView';
 import FilterBar from '../../components/FilterBar';
 import Toast from '../../components/Toast';
 
+// Central page for listing and editing financial transactions
+
 const FinancialManagement = () => {
     // 1. dynamic route segment
     const { type = 'expenses' } = useParams();

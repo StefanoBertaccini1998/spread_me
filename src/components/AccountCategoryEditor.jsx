@@ -6,7 +6,7 @@ import styles from './AccountCategoryEditor.module.css';
 
 const AccountCategoryEditor = ({ initialData, onSave, onCancel }) => {
     const isEdit = !!initialData.id;
-    const isAccount = initialData.hasOwnProperty('balance');
+    const isAccount = 'balance' in initialData;
     const idPrefix = useId();
     const balance = typeof initialData.balance === 'number'
         ? initialData.balance

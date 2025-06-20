@@ -22,10 +22,6 @@
     @apply w-5 h-0.5 bg-white rounded transition-all duration-300;
 }
 
-.burger span {
-    @apply w-5 h-0.5 bg-white rounded transition-all duration-300;
-}
-
 /* React-controlled burger open state */
 .burgerOpen span:nth-child(1) {
     @apply rotate-45 translate-y-1.5;

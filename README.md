@@ -33,3 +33,13 @@ Finance Tracker is a personal finance application for tracking income, expenses 
 - **Pages & routing** – at least six pages with dynamic routing via `finance/:type?` and `transaction/:id` in `src/routes/AppRoutes.jsx`.
 - **API usage** – asynchronous actions in `src/redux/asyncThunks/` interact with the mock API defined in `src/utils/api.js`.
 - **Controlled forms with validation** – `Login.jsx`, `DynamicForm.jsx`, `AddInvestmentForm.jsx` and `AccountCategoryEditor.jsx` all implement validated forms.
+
+## 📁 Codebase Overview
+The `src` folder is organized into reusable React components, page components, Redux state logic and utility helpers.
+- **components** – presentational and form components used across pages
+- **pages** – routeable screens such as the dashboard and investment views
+- **redux** – slices, async thunks and the store configuration
+- **utils** – small helper modules (theme management, API wrappers)
+- **routes** – React Router setup
+
+Each component or helper now includes brief comments describing its purpose.

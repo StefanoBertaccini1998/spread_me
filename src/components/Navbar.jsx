@@ -1,4 +1,6 @@
 import { useState } from 'react';
+// Navigation bar displayed at the top of the application
+// Shows links depending on authentication state and handles logout logic
 import { Link, NavLink } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../redux/hooks/useRedux';
 import { logoutUser } from '../redux/slices/userSlice';
@@ -9,7 +11,7 @@ export default function Navbar() {
   const dispatch = useAppDispatch();
   const [openFinance, setOpenFinance] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
-
+  // Close the mobile navigation panel
   const closeNav = () => setNavOpen(false);
 
   return (

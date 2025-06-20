@@ -6,6 +6,8 @@ import InvestmentSimulator from '../components/InvestmentSimulator';
 import MyInvestments from '../components/MyInvestments';
 import styles from './InvestmentPage.module.css';
 
+// Page that contains all premium investment features
+
 const InvestmentPage = () => {
     const user = useAppSelector((state) => state.user.user);
     const dispatch = useAppDispatch();
