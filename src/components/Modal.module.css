@@ -3,7 +3,7 @@
 }
 
 .content {
-    @apply p-6 rounded-lg shadow-xl w-full max-w-lg relative border-t-8 bg-white;
+    @apply p-6 rounded-lg shadow-xl w-full max-w-lg relative border-t-8 bg-surface;
     animation: modalFade 0.2s ease-in-out;
 }
 

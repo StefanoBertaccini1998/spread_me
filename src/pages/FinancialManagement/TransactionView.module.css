@@ -44,6 +44,7 @@
 
 .item {
     @apply bg-surface shadow-sm hover:shadow-md transition cursor-pointer rounded-xl p-6;
+    @apply w-full text-left block;
 }
 
 .content {
