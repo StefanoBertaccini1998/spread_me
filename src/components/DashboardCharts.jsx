@@ -62,7 +62,8 @@ const DashboardCharts = ({ expensesData, incomesData, balanceData }) => {
                 callbacks: {
                     label: (ctx) => {
                         const lbl = ctx.dataset?.label;
-                        return `${lbl ? `${lbl}: ` : ''}€${ctx.raw.toFixed(2)}`;
+                        const prefix = lbl ? `${lbl}: ` : '';
+                        return `${prefix}€${ctx.raw.toFixed(2)}`;
                     },
                 },
             },
@@ -165,17 +166,19 @@ const DashboardCharts = ({ expensesData, incomesData, balanceData }) => {
         Object.values(grouped).forEach((catData) =>
             Object.keys(catData).forEach((date) => allDatesSet.add(date))
         );
-        const allDates = Array.from(allDatesSet).sort();
+        const allDates = Array.from(allDatesSet).sort(
+            (a, b) => new Date(a) - new Date(b)
+        );
 
         const datasets = Object.entries(grouped)
             .map(([category, values], idx) => {
                 const daily = allDates.map((date) => values[date] || 0);
                 const cumulative = [];
-                daily.reduce((sum, val, i) => {
-                    const total = sum + val;
-                    cumulative[i] = total;
-                    return total;
-                }, 0);
+                let runningTotal = 0;
+                daily.forEach((val, i) => {
+                    runningTotal += val;
+                    cumulative[i] = runningTotal;
+                });
                 if (cumulative.every((v) => v === 0)) return null;
                 const color = colorPalette[idx % colorPalette.length];
                 return {
@@ -225,40 +228,48 @@ const DashboardCharts = ({ expensesData, incomesData, balanceData }) => {
                 <option value="polar">🌐 Grafico Polare</option>
             </select>
 
-            {chartType === 'polar' ? (
-                <>
-                    <h3 className={styles.chartTitle}>Entrate vs Spese per Categoria</h3>
-                    <ChartComponent data={polarData} options={polarOptions} />
-                </>
-            ) : chartType === 'line' ? (
-                <>
-                    <h3 className={styles.chartTitle}>Andamento Spese</h3>
-                    <ChartComponent data={timeSeriesExpenses} options={barLineOptions} />
+            {(() => {
+                if (chartType === 'polar') {
+                    return (
+                        <>
+                            <h3 className={styles.chartTitle}>Entrate vs Spese per Categoria</h3>
+                            <ChartComponent data={polarData} options={polarOptions} />
+                        </>
+                    );
+                }
+                if (chartType === 'line') {
+                    return (
+                        <>
+                            <h3 className={styles.chartTitle}>Andamento Spese</h3>
+                            <ChartComponent data={timeSeriesExpenses} options={barLineOptions} />
 
-                    <h3 className={`${styles.chartTitle} mt-10`}>Saldo Complessivo</h3>
-                    <ChartComponent data={balanceSeries} options={barLineOptions} />
-                </>
-            ) : (
-                <>
-                    <h3 className={styles.chartTitle}>Entrate vs Spese</h3>
-                    <ChartComponent data={incomesExpenseComparison} options={barLineOptions} />
+                            <h3 className={`${styles.chartTitle} mt-10`}>Saldo Complessivo</h3>
+                            <ChartComponent data={balanceSeries} options={barLineOptions} />
+                        </>
+                    );
+                }
+                return (
+                    <>
+                        <h3 className={styles.chartTitle}>Entrate vs Spese</h3>
+                        <ChartComponent data={incomesExpenseComparison} options={barLineOptions} />
 
-                    <h3 className={`${styles.chartTitle} mt-10`}>Spese per Categoria</h3>
-                    <ChartComponent data={expensesByCategory} options={barLineOptions} />
-                    {sortedExpenses.length > 5 && (
-                        <div className="mt-2 flex items-center gap-2">
-                            <input
-                                type="range"
-                                min="1"
-                                max={sortedExpenses.length}
-                                value={maxCategories}
-                                onChange={(e) => setMaxCategories(parseInt(e.target.value))}
-                            />
-                            <span className={styles.sliderLabel}>Top {maxCategories}</span>
-                        </div>
-                    )}
-                </>
-            )}
+                        <h3 className={`${styles.chartTitle} mt-10`}>Spese per Categoria</h3>
+                        <ChartComponent data={expensesByCategory} options={barLineOptions} />
+                        {sortedExpenses.length > 5 && (
+                            <div className="mt-2 flex items-center gap-2">
+                                <input
+                                    type="range"
+                                    min="1"
+                                    max={sortedExpenses.length}
+                                    value={maxCategories}
+                                    onChange={(e) => setMaxCategories(parseInt(e.target.value))}
+                                />
+                                <span className={styles.sliderLabel}>Top {maxCategories}</span>
+                            </div>
+                        )}
+                    </>
+                );
+            })()}
         </div>
     );
 };

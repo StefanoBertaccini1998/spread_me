@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from './AddInvestmentForm.module.css';
+import PropTypes from 'prop-types';
 
 const AddInvestmentForm = ({ onAdd }) => {
     const [symbol, setSymbol] = useState('');
@@ -58,4 +59,7 @@ const AddInvestmentForm = ({ onAdd }) => {
     );
 };
 
+AddInvestmentForm.prototypes = {
+    onAdd: PropTypes.func.isRequired,
+};
 export default AddInvestmentForm;
