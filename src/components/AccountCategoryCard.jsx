@@ -9,6 +9,14 @@ const AccountCategoryCard = ({ name, color, icon, balance, onEdit, onDelete }) =
             className={styles.card}
             style={{ '--bg-color': color }}
             onClick={onEdit}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onEdit();
+                }
+            }}
         >
             <div className={styles.actions}>
                 <button

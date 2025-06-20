@@ -7,8 +7,10 @@ const Toast = ({ message, type, onClose }) => {
         return () => clearTimeout(timer);
     }, [onClose]);
 
+    const toastTypeClass = styles[`toast-${type}`];
+
     return (
-        <div className={`${styles.toast} ${styles[`toast-${type}`]}`}>
+        <div className={`${styles.toast} ${toastTypeClass}`}>
             {message}
         </div>
     );

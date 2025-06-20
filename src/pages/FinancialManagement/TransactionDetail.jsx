@@ -12,7 +12,7 @@ const TransactionDetail = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const [toast, setToast] = useState({ message: '', type: '' });
-    const [editMode, setEditMode] = useState(false); // 👈 nuovo stato
+    const [editMode, setEditMode] = useState(false); // nuovo stato
 
     const labels = {
         expenses: 'Spese',

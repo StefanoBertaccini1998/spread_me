@@ -463,9 +463,9 @@ const ImportPage = () => {
       <Modal isOpen={showHelp} onClose={() => setShowHelp(false)} type="info">
         <div className={styles.helpSection}>
           <p>
-            Il file Excel pu&ograve; contenere i fogli <strong>Spese</strong>,
-            <strong>Entrate</strong> e <strong>Bonifici</strong> (opzionali).
-            Le colonne riconosciute sono:
+            Il file Excel pu&ograve; contenere i fogli <strong>Spese</strong>,{' '}
+            <strong> Entrate</strong> e{' '}
+            <strong>Bonifici</strong> (opzionali). Le colonne riconosciute sono:
           </p>
           <ul className={styles.helpList}>
             <li>

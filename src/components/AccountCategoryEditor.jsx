@@ -8,13 +8,15 @@ const AccountCategoryEditor = ({ initialData, onSave, onCancel }) => {
     const isEdit = !!initialData.id;
     const isAccount = initialData.hasOwnProperty('balance');
     const idPrefix = useId();
+    const balance = typeof initialData.balance === 'number'
+        ? initialData.balance
+        : 0;
+    const initialBalance = isAccount
+        ? balance
+        : undefined;
     const [formData, setFormData] = useState({
         ...initialData,
-        balance: isAccount
-            ? typeof initialData.balance === 'number'
-                ? initialData.balance
-                : 0
-            : undefined,
+        balance: initialBalance,
     });
 
     const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);

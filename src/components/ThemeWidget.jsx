@@ -1,4 +1,3 @@
-// components/ThemeWidget.jsx
 import { Sun, Moon } from 'lucide-react';
 import useDarkMode from '../hooks/useDarkMode';
 import styles from './ThemeWidget.module.css';
