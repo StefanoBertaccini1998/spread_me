@@ -11,7 +11,9 @@ export const fetchAccounts = createAsyncThunk(
       const data = await res.json();
       return data;
     } catch (error) {
-      return rejectWithValue("Errore durante il fetch degli account.");
+      return rejectWithValue(
+        error.message || "Errore durante il fetch degli account."
+      );
     }
   }
 );
@@ -32,7 +34,9 @@ export const createAccount = createAsyncThunk(
       if (!res.ok) throw new Error();
       return await res.json();
     } catch (error) {
-      return rejectWithValue("Errore durante la creazione della categoria.");
+      return rejectWithValue(
+        error.message || "Errore durante la creazione dell'account."
+      );
     }
   }
 );
@@ -47,7 +51,9 @@ export const deleteAccount = createAsyncThunk(
       if (!res.ok) throw new Error();
       return accountId;
     } catch (error) {
-      return rejectWithValue("Errore durante l’eliminazione dell’account.");
+      return rejectWithValue(
+        error.message || "Errore durante l’eliminazione dell’account."
+      );
     }
   }
 );
@@ -64,7 +70,9 @@ export const updateAccount = createAsyncThunk(
       if (!res.ok) throw new Error();
       return await res.json();
     } catch (error) {
-      return rejectWithValue("Errore durante l’aggiornamento dell’account.");
+      return rejectWithValue(
+        error.message || "Errore durante l’aggiornamento dell’account."
+      );
     }
   }
 );
@@ -96,7 +104,7 @@ export const updateAccountsBulk = createAsyncThunk(
       return accountsToUpdate; // restituisci i dati aggiornati, se necessario
     } catch (err) {
       return rejectWithValue(
-        "Errore generale nell’aggiornamento degli account."
+        err.message || "Errore generale nell’aggiornamento degli account."
       );
     }
   }

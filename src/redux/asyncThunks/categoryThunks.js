@@ -12,7 +12,9 @@ export const fetchCategories = createAsyncThunk(
       const data = await res.json();
       return data;
     } catch (error) {
-      return rejectWithValue("Errore durante il fetch delle categorie.");
+      return rejectWithValue(
+        error.message || "Errore durante il fetch delle categorie."
+      );
     }
   }
 );
@@ -33,7 +35,9 @@ export const createCategory = createAsyncThunk(
       if (!res.ok) throw new Error();
       return await res.json();
     } catch (error) {
-      return rejectWithValue("Errore durante la creazione della categoria.");
+      return rejectWithValue(
+        error.message || "Errore durante la creazione della categoria."
+      );
     }
   }
 );
@@ -48,7 +52,9 @@ export const deleteCategory = createAsyncThunk(
       if (!res.ok) throw new Error();
       return categoryId;
     } catch (error) {
-      return rejectWithValue("Errore durante l’eliminazione della categoria.");
+      return rejectWithValue(
+        error.message || "Errore durante l’eliminazione della categoria."
+      );
     }
   }
 );
@@ -65,7 +71,9 @@ export const updateCategory = createAsyncThunk(
       if (!res.ok) throw new Error();
       return await res.json();
     } catch (error) {
-      return rejectWithValue("Errore durante l’aggiornamento della categoria.");
+      return rejectWithValue(
+        error.message || "Errore durante l’aggiornamento della categoria."
+      );
     }
   }
 );

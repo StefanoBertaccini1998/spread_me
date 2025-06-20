@@ -73,7 +73,7 @@ const retryAuthenticate = async (email, dispatch, retries = 5, delay = 200) => {
       const result = await dispatch(authenticateUser(email)).unwrap();
       if (result?.user) return result;
     } catch (err) {
-      // Optional: log
+      console.warn("Retry authentication attempt failed:", err);
     }
     await new Promise((res) => setTimeout(res, delay * (attempt + 1)));
   }
@@ -102,7 +102,7 @@ export const authenticateUser = createAsyncThunk(
 
       return { user, token, accounts, categories };
     } catch (err) {
-      return rejectWithValue("Errore durante l'autenticazione.");
+      return rejectWithValue(err.message || "Errore durante l'autenticazione.");
     }
   }
 );

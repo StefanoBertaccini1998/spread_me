@@ -151,16 +151,14 @@ const normalizeTransactionData = (tx) => {
     toCurrency: tx.toCurrency || "EUR",
   };
 
+  let normalizedType = tx.type;
+  if (tx.type === "income") normalizedType = "incomes";
+  else if (tx.type === "expense") normalizedType = "expenses";
+  else if (tx.type === "transfer") normalizedType = "transfers";
+
   return {
     ...base,
     ...tx,
-    type:
-      tx.type === "income"
-        ? "incomes"
-        : tx.type === "expense"
-        ? "expenses"
-        : tx.type === "transfer"
-        ? "transfers"
-        : tx.type,
+    type: normalizedType,
   };
 };
