@@ -25,7 +25,7 @@ const ProfilePage = () => {
                 ? createAccount(data)
                 : createCategory(data);
 
-        await dispatch(action);
+        dispatch(action);
         setEditing(null);
     };
 

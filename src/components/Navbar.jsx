@@ -16,7 +16,7 @@ export default function Navbar() {
     <nav className={styles.navbar}>
       <Link to={user ? '/dashboard' : '/'} className={styles.brand}>
         <img src="/fta.svg" alt="Finance Tracker logo" className={styles.logo} />
-        Finance Tracker
+        <span>Finance Tracker</span>
       </Link>
 
       <button

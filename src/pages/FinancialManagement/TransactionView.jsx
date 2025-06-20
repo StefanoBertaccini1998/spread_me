@@ -56,7 +56,7 @@ const TransactionView = ({ type, filters, setToastMessage, setToastType, openMod
                 break;
             case 'always':
             default:
-                periodMatch = true;
+                break;
         }
 
         // Categoria
@@ -138,8 +138,14 @@ const TransactionView = ({ type, filters, setToastMessage, setToastType, openMod
 
             <ul className={styles.list}>
                 {paginatedData.map((entry) => (
-                    <li key={entry.id} className={styles.item} onClick={() => handleClick(entry.id)}>
-                        {formatLine(entry)}
+                    <li key={entry.id}>
+                        <button
+                            type="button"
+                            className={styles.item}
+                            onClick={() => handleClick(entry.id)}
+                        >
+                            {formatLine(entry)}
+                        </button>
                     </li>
                 ))}
             </ul>

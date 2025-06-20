@@ -6,7 +6,7 @@ const Modal = ({ isOpen, onClose, children, type }) => {
 
     return createPortal(
         <div className={styles.overlay}>
-            <div className={`${styles.content} ${styles[`modal-${type}`]}`}>
+            <div className={`${styles.content} ${styles['modal-' + type]}`}>
                 <button onClick={onClose} className={styles.close}>X</button>
                 {children}
             </div>

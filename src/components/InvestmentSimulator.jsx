@@ -50,7 +50,14 @@ const InvestmentSimulator = () => {
                 setError('Dati insufficienti per il simbolo inserito');
             }
         } catch (err) {
-            setError('Errore nel recupero dati, simbolo non valido?');
+            console.error('Errore simulazione investimento:', err);
+            if (typeof err === 'string') {
+                setError(err);
+            } else if (err instanceof Error) {
+                setError(err.message);
+            } else {
+                setError('Errore nel recupero dati, simbolo non valido?');
+            }
         }
     };
 
@@ -68,7 +75,7 @@ const InvestmentSimulator = () => {
                     onChange={(e) => setSymbol(e.target.value.toUpperCase())}
                     className={styles.input}
                 />
-                <label htmlFor={`${idPrefix}-start`}> 
+                <label htmlFor={`${idPrefix}-start`}>
                     Data inizio
                 </label>
                 <input

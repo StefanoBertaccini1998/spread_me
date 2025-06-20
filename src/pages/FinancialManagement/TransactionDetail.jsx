@@ -27,13 +27,13 @@ const TransactionDetail = () => {
     );
 
     const handleDelete = async () => {
-        await dispatch(deleteTransaction(id));
+        dispatch(deleteTransaction(id));
         setToast({ message: 'Transazione eliminata con successo', type: 'success' });
         setTimeout(() => navigate(`/finance/${fromSection}`), 1200);
     };
 
     const handleUpdate = async (updatedData) => {
-        await dispatch(updateTransaction({ id, updates: updatedData }));
+        dispatch(updateTransaction({ id, updates: updatedData }));
         setToast({ message: 'Transazione aggiornata con successo', type: 'success' });
         setEditMode(false);
     };
