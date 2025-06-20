@@ -140,8 +140,15 @@ const DashboardCharts = ({ expensesData, incomesData, balanceData }) => {
         plugins: { legend: { labels: { color: baseColor } } },
         scales: {
             r: {
-                ticks: { color: baseColor },
-                pointLabels: { color: baseColor },
+                ticks: {
+                    color: baseColor,
+                    // Ensure tick labels stay legible in dark mode
+                    backdropColor: isDark ? 'rgba(55,65,81,0.8)' : 'rgba(255,255,255,0.8)',
+                },
+                pointLabels: {
+                    color: baseColor,
+                    backdropColor: isDark ? 'rgba(55,65,81,0.8)' : 'rgba(255,255,255,0.8)',
+                },
                 grid: { color: '#e5e7eb' },
                 angleLines: { color: '#e5e7eb' },
             },

@@ -96,7 +96,7 @@
 }
 
 .helpSection {
-    @apply mb-6 p-4 rounded text-sm leading-relaxed text-black;
+    @apply mb-6 p-4 rounded text-sm leading-relaxed;
 }
 
 .helpList {
