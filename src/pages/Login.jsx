@@ -26,19 +26,34 @@ const Login = () => {
 
         setLoading(true);
         try {
-            const result = await dispatch(
+            await dispatch(
                 mode === 'login' ? authenticateUser(email) : createUser(email)
             ).unwrap();
             navigate('/dashboard');
         } catch (err) {
             // err può essere una stringa passata da rejectWithValue
-            setError(typeof err === 'string' ? err :
-                mode === 'login' ? 'Errore durante il login. Riprova.' :
-                    "Errore durante la creazione dell'account.");
+            let message;
+            if (typeof err === 'string') {
+                message = err;
+            } else if (mode === 'login') {
+                message = 'Errore durante il login. Riprova.';
+            } else {
+                message = "Errore durante la creazione dell'account.";
+            }
+            setError(message);
         } finally {
             setLoading(false);
         }
     };
+
+    let buttonText;
+    if (loading) {
+        buttonText = 'Caricamento...';
+    } else if (mode === 'login') {
+        buttonText = 'Login';
+    } else {
+        buttonText = 'Crea Account';
+    }
 
     return (
         <div className={styles.container}>
@@ -74,7 +89,7 @@ const Login = () => {
                 </div>
                 {error && <p className={styles.error}>{error}</p>}
                 <button type="submit" className={styles.button} disabled={loading}>
-                    {loading ? 'Caricamento...' : (mode === 'login' ? 'Login' : 'Crea Account')}
+                    {buttonText}
                 </button>
             </form>
         </div>

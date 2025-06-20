@@ -101,7 +101,9 @@ const DashboardHome = () => {
             monthly[key].expenses += tx.amountBaseCurrency;
         });
 
-        const months = Object.keys(monthly).sort();
+        const months = Object.keys(monthly).sort((a, b) =>
+            a.localeCompare(b)
+        );
         const labels = [];
         const values = [];
         let running = 0;

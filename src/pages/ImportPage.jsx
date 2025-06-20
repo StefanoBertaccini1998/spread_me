@@ -185,6 +185,130 @@ const ImportPage = () => {
     return true;
   };
 
+  const createMissingAccounts = () => {
+    for (const acc of accountsToCreate) {
+      const res = dispatch(
+        createAccount({ name: acc, color: getRandomColor(), icon: '🏦', balance: 0 })
+      );
+      if (res.error) throw new Error(`Errore creazione account "${acc}"`);
+    }
+  };
+
+  const createMissingCategories = () => {
+    for (const cat of categoriesToCreate) {
+      const res = dispatch(
+        createCategory({ name: cat, color: getRandomColor(), icon: '📂' })
+      );
+      if (res.error) throw new Error(`Errore creazione categoria "${cat}"`);
+    }
+  };
+
+  const importExpenses = () => {
+    for (const row of expenses) {
+      const res = dispatch(
+        createTransaction({
+          transaction: {
+            type: 'expense',
+            date: row['Data e ora'],
+            category: row['Categoria'],
+            account: row['Conto'],
+            amountBaseCurrency: parseFloat(row['Importo in valuta predefinita']) || 0,
+            baseCurrency: row['Valuta predefinita'],
+            amountAccountCurrency: parseFloat(row['Importo in valuta del conto']) || 0,
+            accountCurrency: row['Valuta conto'],
+            comment: row['Commento'],
+          },
+          skipBalanceUpdate: true,
+        })
+      );
+      if (res.error) {
+        throw new Error(`Errore su spesa: ${row['Commento'] || row['Categoria']}`);
+      }
+    }
+  };
+
+  const importIncomes = () => {
+    for (const row of incomes) {
+      const res = dispatch(
+        createTransaction({
+          transaction: {
+            type: 'income',
+            date: row['Data e ora'],
+            category: row['Categoria'],
+            account: row['Conto'],
+            amountBaseCurrency: parseFloat(row['Importo in valuta predefinita']) || 0,
+            baseCurrency: row['Valuta predefinita'],
+            amountAccountCurrency: parseFloat(row['Importo in valuta del conto']) || 0,
+            accountCurrency: row['Valuta conto'],
+            comment: row['Commento'],
+          },
+          skipBalanceUpdate: true,
+        })
+      );
+      if (res.error) {
+        throw new Error(`Errore su entrata: ${row['Commento'] || row['Categoria']}`);
+      }
+    }
+  };
+
+  const importTransfers = () => {
+    for (const row of transfers) {
+      const res = dispatch(
+        createTransaction({
+          transaction: {
+            type: 'transfer',
+            date: row['Data e ora'],
+            fromAccount: row['In uscita'],
+            toAccount: row['In entrata'],
+            amountFromCurrency: parseFloat(row['Importo nella valuta in uscita']) || 0,
+            fromCurrency: row['Valuta in uscita'],
+            comment: row['Commento'],
+          },
+          skipBalanceUpdate: true,
+        })
+      );
+      if (res.error) {
+        throw new Error(`Errore su trasferimento: ${row['Commento']}`);
+      }
+    }
+  };
+
+  const updateAccountBalances = async () => {
+    const allAccounts = await dispatch(fetchAccounts()).unwrap();
+    const updates = transactionAccounts
+      .map((name) => {
+        const acc = allAccounts.find((a) => a.name === name);
+        return acc ? { id: acc.id, balance: parseFloat(accountBalances[name]) || 0 } : null;
+      })
+      .filter(Boolean);
+    if (updates.length > 0) {
+      const updRes = dispatch(updateAccountsBulk(updates));
+      if (updRes.error) throw new Error('Errore aggiornamento saldi account');
+    }
+  };
+
+  const toggleSelectAll = (items, selected, setter) => {
+    setter(selected.length === items.length ? [] : [...items]);
+  };
+
+  const toggleItemSelection = (item, setter) => {
+    setter((prev) => (prev.includes(item) ? prev.filter((i) => i !== item) : [...prev, item]));
+  };
+
+  const updateBalance = (name, value) => {
+    setAccountBalances((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const resetImportState = () => {
+    setExpenses([]);
+    setIncomes([]);
+    setTransfers([]);
+    setFilename('');
+  };
+
 
   const handleImport = async () => {
     if (!userId) {
@@ -197,92 +321,17 @@ const ImportPage = () => {
     setBalanceError('');
 
     try {
-      if (!validateAccountBalances()) {
-        return;
-      }
-      for (const acc of accountsToCreate) {
-        const res = dispatch(createAccount({
-          name: acc,
-          color: getRandomColor(),
-          icon: '🏦',
-          balance: 0
-        }));
-        if (res.error) throw new Error(`Errore creazione account "${acc}"`);
-      }
+      if (!validateAccountBalances()) return;
 
-      for (const cat of categoriesToCreate) {
-        const res = dispatch(createCategory({
-          name: cat,
-          color: getRandomColor(),
-          icon: '📂'
-        }));
-        if (res.error) throw new Error(`Errore creazione categoria "${cat}"`);
-      }
+      createMissingAccounts();
+      createMissingCategories();
+      importExpenses();
+      importIncomes();
+      importTransfers();
 
-      for (const row of expenses) {
-        const res = dispatch(createTransaction({
-          transaction: {
-            type: 'expense',
-            date: row['Data e ora'],
-            category: row['Categoria'],
-            account: row['Conto'],
-            amountBaseCurrency: parseFloat(row['Importo in valuta predefinita']) || 0,
-            baseCurrency: row['Valuta predefinita'],
-            amountAccountCurrency: parseFloat(row['Importo in valuta del conto']) || 0,
-            accountCurrency: row['Valuta conto'],
-            comment: row['Commento']
-          },
-          skipBalanceUpdate: true
-        }));
-        if (res.error) throw new Error(`Errore su spesa: ${row['Commento'] || row['Categoria']}`);
-      }
+      await updateAccountBalances();
 
-      for (const row of incomes) {
-        const res = dispatch(createTransaction({
-          transaction: {
-            type: 'income',
-            date: row['Data e ora'],
-            category: row['Categoria'],
-            account: row['Conto'],
-            amountBaseCurrency: parseFloat(row['Importo in valuta predefinita']) || 0,
-            baseCurrency: row['Valuta predefinita'],
-            amountAccountCurrency: parseFloat(row['Importo in valuta del conto']) || 0,
-            accountCurrency: row['Valuta conto'],
-            comment: row['Commento']
-          },
-          skipBalanceUpdate: true
-        }));
-        if (res.error) throw new Error(`Errore su entrata: ${row['Commento'] || row['Categoria']}`);
-      }
-
-      for (const row of transfers) {
-        const res = dispatch(createTransaction({
-          transaction: {
-            type: 'transfer',
-            date: row['Data e ora'],
-            fromAccount: row['In uscita'],
-            toAccount: row['In entrata'],
-            amountFromCurrency: parseFloat(row['Importo nella valuta in uscita']) || 0,
-            fromCurrency: row['Valuta in uscita'],
-            comment: row['Commento']
-          },
-          skipBalanceUpdate: true
-        }));
-        if (res.error) throw new Error(`Errore su trasferimento: ${row['Commento']}`);
-      }
-
-      const allAccounts = await dispatch(fetchAccounts()).unwrap();
-      const updates = transactionAccounts.map(name => {
-        const acc = allAccounts.find(a => a.name === name);
-        return acc ? { id: acc.id, balance: parseFloat(accountBalances[name]) || 0 } : null;
-      }).filter(Boolean);
-      if (updates.length > 0) {
-        const updRes = dispatch(updateAccountsBulk(updates));
-        if (updRes.error) throw new Error('Errore aggiornamento saldi account');
-      }
-
-      setExpenses([]); setIncomes([]); setTransfers([]);
-      setFilename('');
+      resetImportState();
       alert('📥 Dati importati con successo!');
       navigate('/dashboard');
     } catch (err) {
@@ -299,15 +348,22 @@ const ImportPage = () => {
       <table className={styles.table}>
         <thead>
           <tr>
-            {Object.keys(data[0]).map((key) => <th key={key} className={styles.th}>{key}</th>)}
+            {Object.keys(data[0]).map((key) => (
+              <th key={key} className={styles.th}>{key}</th>
+            ))}
           </tr>
         </thead>
         <tbody>
-          {data.map((row, i) => (
-            <tr key={i}>
-              {Object.values(row).map((val, idx) => <td key={idx} className={styles.td}>{val}</td>)}
-            </tr>
-          ))}
+          {data.map((row) => {
+            const rowKey = Object.values(row).join('|');
+            return (
+              <tr key={rowKey}>
+                {Object.entries(row).map(([k, val]) => (
+                  <td key={k} className={styles.td}>{val}</td>
+                ))}
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
@@ -317,7 +373,11 @@ const ImportPage = () => {
     <div className={styles.section}>
       <div className={styles.sectionTitleWrapper}>
         <h3 className={styles.sectionTitle}>{label}</h3>
-        <button type="button" className={styles.selectAllButton} onClick={() => setSelected(selected.length === items.length ? [] : [...items])}>
+        <button
+          type="button"
+          className={styles.selectAllButton}
+          onClick={() => toggleSelectAll(items, selected, setSelected)}
+        >
           {selected.length === items.length ? 'Deseleziona tutto' : 'Seleziona tutto'}
         </button>
       </div>
@@ -330,11 +390,7 @@ const ImportPage = () => {
                 type="checkbox"
                 className={styles.checkbox}
                 checked={selected.includes(item)}
-                onChange={() =>
-                  setSelected(prev =>
-                    prev.includes(item) ? prev.filter(i => i !== item) : [...prev, item]
-                  )
-                }
+                onChange={() => toggleItemSelection(item, setSelected)}
               />
               <span>{item}</span>
             </label>
@@ -363,12 +419,7 @@ const ImportPage = () => {
                   min="0"
                   className={styles.balanceInput}
                   value={accountBalances[name] ?? ''}
-                  onChange={(e) =>
-                    setAccountBalances((prev) => ({
-                      ...prev,
-                      [name]: e.target.value,
-                    }))
-                  }
+                  onChange={(e) => updateBalance(name, e.target.value)}
                 />
               </td>
             </tr>
@@ -390,9 +441,10 @@ const ImportPage = () => {
         <HelpCircle size={20} />
       </button>
       {importing && (
-        <p className={styles.importingToast}>
-          <span className={styles.spinner}></span>
-          Importazione in corso, attendi...
+        <p>
+          Il file Excel pu&ograve; contenere i fogli <strong>Spese</strong>,{' '}
+          <strong>Entrate</strong> e{' '}
+          <strong>Bonifici</strong> (opzionali). Le colonne riconosciute sono:
         </p>
       )}
       <h1 className={styles.title}>Importa Dati Finanziari da Excel</h1>

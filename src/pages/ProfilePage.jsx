@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../redux/hooks/useRedux';
 import { createAccount, updateAccount, deleteAccount } from '../redux/asyncThunks/accountThunks';
 import { createCategory, updateCategory, deleteCategory } from '../redux/asyncThunks/categoryThunks';
@@ -17,13 +17,19 @@ const ProfilePage = () => {
     const [mode, setMode] = useState(null); // 'account' | 'category'
 
     const handleSave = async (data) => {
-        const action = data.id
-            ? mode === 'account'
-                ? updateAccount({ id: data.id, updates: data })
-                : updateCategory({ id: data.id, updates: data })
-            : mode === 'account'
-                ? createAccount(data)
-                : createCategory(data);
+        let action;
+
+        if (data.id) {
+            if (mode === 'account') {
+                action = updateAccount({ id: data.id, updates: data });
+            } else {
+                action = updateCategory({ id: data.id, updates: data });
+            }
+        } else if (mode === 'account') {
+            action = createAccount(data);
+        } else {
+            action = createCategory(data);
+        }
 
         dispatch(action);
         setEditing(null);
