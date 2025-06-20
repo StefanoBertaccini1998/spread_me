@@ -53,32 +53,40 @@ const DynamicForm = ({ type, onClose, setToastMessage, setToastType, editData = 
         const selectedAccount = accounts.find(acc => acc.name === formData.account);
         const selectedFromAccount = accounts.find(acc => acc.name === formData.fromAccount);
 
-        if (!formData.date) newErrors.date = 'Campo obbligatorio';
+        const addRequiredError = (value, key) => {
+            if (!value) newErrors[key] = 'Campo obbligatorio';
+        };
 
+        const validateAmount = (amount, key, balance, insufficientMsg) => {
+            if (!amount || amount <= 0) {
+                newErrors[key] = 'Importo obbligatorio e maggiore di 0';
+            } else if (balance !== undefined && amount > balance) {
+                newErrors[key] = insufficientMsg;
+            }
+        };
+
+        addRequiredError(formData.date, 'date');
         if (type !== 'transfers') {
-            if (!formData.category) newErrors.category = 'Campo obbligatorio';
-            if (!formData.account) newErrors.account = 'Campo obbligatorio';
+            addRequiredError(formData.category, 'category');
+            addRequiredError(formData.account, 'account');
 
-            if (!amountBase || amountBase <= 0) {
-                newErrors.amountBaseCurrency = 'Importo obbligatorio e maggiore di 0';
-            } else if (
-                type === 'expenses' &&
-                selectedAccount &&
-                amountBase > selectedAccount.balance
-            ) {
-                newErrors.amountBaseCurrency = 'Saldo insufficiente sull’account selezionato';
-            }
+            validateAmount(
+                amountBase,
+                'amountBaseCurrency',
+                type === 'expenses' && selectedAccount ? selectedAccount.balance : undefined,
+                'Saldo insufficiente sull’account selezionato'
+            );
         } else {
-            if (!formData.fromAccount) newErrors.fromAccount = 'Campo obbligatorio';
-            if (!formData.toAccount) newErrors.toAccount = 'Campo obbligatorio';
+            addRequiredError(formData.fromAccount, 'fromAccount');
+            addRequiredError(formData.toAccount, 'toAccount');
 
-            if (!amountFrom || amountFrom <= 0) {
-                newErrors.amountFromCurrency = 'Importo obbligatorio e maggiore di 0';
-            } else if (selectedFromAccount && amountFrom > selectedFromAccount.balance) {
-                newErrors.amountFromCurrency = 'Saldo insufficiente sull’account di partenza';
-            }
+            validateAmount(
+                amountFrom,
+                'amountFromCurrency',
+                selectedFromAccount ? selectedFromAccount.balance : undefined,
+                'Saldo insufficiente sull’account di partenza'
+            );
         }
-
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -100,7 +108,7 @@ const DynamicForm = ({ type, onClose, setToastMessage, setToastType, editData = 
         };
 
         try {
-            if (editData && editData.id) {
+            if (editData?.id) {
 
                 await dispatch(updateTransaction({ id: editData.id, updates: payload })).unwrap();
                 setToastMessage('Transazione modificata con successo!');
@@ -113,6 +121,7 @@ const DynamicForm = ({ type, onClose, setToastMessage, setToastType, editData = 
             setToastType('success');
             onClose();
         } catch (error) {
+            console.error('Errore durante la creazione della transazione:', error);
             setToastMessage('Errore durante la creazione della transazione.');
             setToastType('error');
         }
@@ -261,6 +270,5 @@ const DynamicForm = ({ type, onClose, setToastMessage, setToastType, editData = 
             )}
         </form>
     );
-};
-
+}
 export default DynamicForm;
